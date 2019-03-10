@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ChatApp.Models.InforFriendDto>
+@{
+    Layout = "~/Views/Shared/_LayoutAppChat.cshtml";
+}
+<div class="row maincontent">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-8 MidContent">
+        <div class="row">
+                @{
+                    Html.RenderPartial("Content");
+                }
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>

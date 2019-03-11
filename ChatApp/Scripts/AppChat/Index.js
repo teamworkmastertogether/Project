@@ -115,7 +115,7 @@ function OpenChatBox(item) {
         QuantityMessage = -1;
     }
     var partnerUserName = $(item).find(".status").attr('id');
-    var partnerName = $(item).find(".name").text();
+    var partnerName = $(item).find(".name1").text();
     var partnerImage = $(item).find("img").attr('src');
     QuantityMessageNew = 0;
     $(item).find(".message").html("");

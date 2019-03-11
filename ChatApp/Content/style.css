@@ -1211,8 +1211,9 @@ border-color: red;
 }
 
 .imgMenu img {
-    width: 70px;
-    height: 70px;
+    width: 59px;
+    margin-left: -11px;
+    height: 59px;
     border-radius: 50%;
     background-size: contain;
 }

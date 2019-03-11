@@ -72,12 +72,10 @@ namespace ChatApp.Controllers
             List<string> listUserName1 = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
             .ListFriends.First().MemberOfListFriends.Select(s => s.User.UserName).ToList();
             Random rnd = new Random();
-            int person2 = rnd.Next(1, listUserName1.Count());
-            //string userName2 = listUserName1[person2];
-            string userName2 = "xuan";
-            List<InforFriendDto> listUser = db.Users.FirstOrDefault(s => s.UserName.Equals(userName2))
-           .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest && !listUserName1.Contains(s.User.UserName) && !s.User.UserName.Equals(userName))
-           .Select(s => new InforFriendDto { UserName = s.User.UserName, Avatar = s.User.Avatar, Name = s.User.Name }).Take(4).ToList();
+            //int from = rnd.Next(1, 100);
+            int from = 1;
+            List<InforFriendDto> listUser = db.Users.Where(s => !listUserName1.Contains(s.UserName) && !s.UserName.Equals(userName))
+           .Select(s => new InforFriendDto { UserName = s.UserName, Avatar = s.Avatar, Name = s.Name }).Take(4).ToList();
             return listUser;
         }
         [HttpPost]
@@ -98,6 +96,9 @@ namespace ChatApp.Controllers
                  .Take(sumMess - userDto.QuantityMessage * 10 - userDto.QuantityMessageNew);
             return Json(listMess, JsonRequestBehavior.AllowGet);
         }
+
+
+
         public ActionResult Edit()
         {
             var userName = Session["userName"] as string;
@@ -121,6 +122,17 @@ namespace ChatApp.Controllers
             db.SaveChanges();
             var userDto = new PersonalDto { Avatar = user.Avatar };
             return Json(userDto, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult Subject(int id)
+        {
+            Subject sub = db.Subjects.FirstOrDefault(s => s.Id == id);
+            if (sub == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

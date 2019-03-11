@@ -12,12 +12,6 @@ namespace ChatApp.Models
         public DbSet<MemberOfListFriend> MemberOfListFriends { get; set; }
         public DbSet<ListFriend> ListFriends { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Message>()
-        //    .HasRequired(c => c.User)
-        //    .WithMany()
-        //    .WillCascadeOnDelete(false);
-        //}
+        public DbSet<Subject> Subjects { get; set; }
     }
 }

@@ -174,9 +174,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Migrations\201903040918466_CreateDB.cs" />
-    <Compile Include="Migrations\201903040918466_CreateDB.Designer.cs">
-      <DependentUpon>201903040918466_CreateDB.cs</DependentUpon>
+    <Compile Include="Migrations\201903110816202_CreateDB.cs" />
+    <Compile Include="Migrations\201903110816202_CreateDB.Designer.cs">
+      <DependentUpon>201903110816202_CreateDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
@@ -187,6 +187,7 @@
     <Compile Include="Models\MemberOfListFriend.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\PersonalDto.cs" />
+    <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -194,7 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Shared\css\dashboard.css" />
     <Content Include="Content\SignIn\css\Login.css" />
     <Content Include="Content\SignIn\images\bg.jpg" />
     <Content Include="Content\SignIn\images\book.png" />
@@ -251,11 +251,11 @@
     <Content Include="Views\Shared\_MenuPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Content.cshtml" />
+    <Content Include="Views\Home\Subject.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903040918466_CreateDB.resx">
-      <DependentUpon>201903040918466_CreateDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903110816202_CreateDB.resx">
+      <DependentUpon>201903110816202_CreateDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

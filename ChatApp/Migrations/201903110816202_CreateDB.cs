@@ -1,11 +1,10 @@
-﻿namespace ChatApp.Migrations
+namespace ChatApp.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
     
     public partial class CreateDB : DbMigration
     {
-		//tại sao không gen ra các class dto
         public override void Up()
         {
             CreateTable(
@@ -80,6 +79,15 @@
                 .Index(t => t.ContactId)
                 .Index(t => t.UserId);
             
+            CreateTable(
+                "dbo.Subjects",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
@@ -99,6 +107,7 @@
             DropIndex("dbo.ListFriends", new[] { "UserId" });
             DropIndex("dbo.Contacts", new[] { "ToUserId" });
             DropIndex("dbo.Contacts", new[] { "FromUserId" });
+            DropTable("dbo.Subjects");
             DropTable("dbo.Messages");
             DropTable("dbo.MemberOfListFriends");
             DropTable("dbo.ListFriends");

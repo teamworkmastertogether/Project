@@ -3,6 +3,8 @@
     Layout = "~/Views/Shared/_LayoutAppChat.cshtml";
 }
 
+<link href="~/css/CommentPost.css" rel="stylesheet" />
+
 <div class="main">
     <div class="background">
         <img src="~/AppFile/Images/toan.jpg" />
@@ -50,3 +52,217 @@
     </div>
 </nav>
 
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="post">
+            <div class="content-post">
+                <div class="header-post">
+                    <div class="avatar-post" style="padding-left: 5px">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="">
+                    </div>
+                    <div class="infor col-md-11">
+                        <div class="row">
+                            <div class="name-user col-md-9">
+                                <a href="javascript:void(0)" class="username_post">Nguyễn Tiến Xuân</a>
+                                <div class="time-post">23h30 - 30/12/2019</div>
+                            </div>
+                            <div class="option-seting col-md-2">
+                                <span class="glyphicon glyphicon-cog" id="setting"></span>
+                                <ul class="setting-menu list-unstyled">
+                                    <li class="setting-menu_list-item" id="edit-post"><a href="javascript:void(0)">Sửa bài viết</a></li>
+                                    <li class="setting-menu_list-item" id="delete-post"><a href="javascript:void(0)">Xóa bài viết</a></li>
+                                    <li class="setting-menu_list-item" id="report-post"><a href="javascript:void(0)">Báo cáo bài viết</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-post">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, a nemo asperiores dolorum
+                        ipsam
+                        officiis saepe blanditiis repudiandae sint. Sapiente tempora nulla maiores quod
+                        praesentium,
+                        ducimus cumque vitae incidunt natus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, a nemo asperiores dolorum
+                        ipsam
+                        officiis saepe blanditiis repudiandae sint. Sapiente tempora nulla maiores quod
+                        praesentium,
+                        ducimus cumque vitae incidunt natus.
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, a nemo asperiores dolorum
+                        ipsam
+                        officiis saepe blanditiis repudiandae sint. Sapiente tempora nulla maiores quod
+                        praesentium,
+                        ducimus cumque vitae incidunt natus.
+                    </p>
+                </div>
+                <div class="footer-post" style="background:#eef7f1">
+
+                    <div class="option-like">
+
+                        <div class="like col-md-4" id="like-post">
+                            <a href="javascript:void(0)" class="button"><span class="glyphicon glyphicon-thumbs-up"></span>Thích</a>
+                        </div>
+                        <div class="comment col-md-8" id="numberOfLikes">
+                            <a href="javascript:void(0)" class="button"><span class="countLike_post"> 0 </span> người thích</a>
+                        </div>
+                        <div class="save col-md-4" id="save-post">
+                            <a href="javascript:void(0)" class="button"><span class="glyphicon glyphicon-save"></span> Lưu</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-comment" id="btnShowComment">
+                    <a href="javascript:void(0)">
+                        <span>Xem thêm bình luận</span>
+                        <span><i class="fas fa-angle-down"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="comment-post">
+                <div class="comment-post-wrapper">
+
+                </div>
+                <div class="row textbox-comment">
+                    <div class="comment-img col-md-2">
+                        <img src="~/Content/SignIn/images/bacho.png" style="width:50px;height:50px" />
+                    </div>
+                    <div class="comment-box col-md-9">
+                        <input id="inputComment" type="text" placeholder="Viết bình luận....">
+                        <div class="pick-emoji">
+                            😊
+                        </div>
+                        <div class="list-icon-comment" style="display:none;">
+                            <span class="icon-comment">😀</span><span class="icon-comment">😂</span><span class="icon-comment">😉</span><span class="icon-comment">😋</span>
+                            <span class="icon-comment">😎</span><span class="icon-comment">😍</span><span class="icon-comment">😘</span><span class="icon-comment">🤩</span>
+                            <span class="icon-comment">🤗</span><span class="icon-comment">😭</span><span class="icon-comment">😔</span><span class="icon-comment">😜</span>
+                            <span class="icon-comment">😨</span><span class="icon-comment">😰</span><span class="icon-comment">😱</span><span class="icon-comment">😡</span>
+                            <span class="icon-comment">🤑</span><span class="icon-comment">🤡</span><span class="icon-comment">😈</span><span class="icon-comment">💀</span>
+                            <span class="icon-comment">👻</span><span class="icon-comment">☠</span><span class="icon-comment">💩</span><span class="icon-comment">😹</span>
+                            <span class="icon-comment">🙈</span><span class="icon-comment">💘</span><span class="icon-comment">💖</span><span class="icon-comment">💚</span>
+                            <span class="icon-comment">💞</span><span class="icon-comment">💋</span><span class="icon-comment">💓</span><span class="icon-comment">💔</span>
+                            <span class="icon-comment">🐶</span><span class="icon-comment">🐺</span><span class="icon-comment">🐩</span><span class="icon-comment">🐹</span>
+                            <span class="icon-comment">🐼</span><span class="icon-comment">🐻</span><span class="icon-comment">🐧</span><span class="icon-comment">🐷</span>
+                            <span class="icon-comment">🍎</span><span class="icon-comment">🍏</span><span class="icon-comment">🍑</span><span class="icon-comment">🍓</span>
+                            <span class="icon-comment">🍅</span><span class="icon-comment">🍇</span><span class="icon-comment">🍄</span><span class="icon-comment">🕗</span>
+                            <span class="icon-comment">🌎</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="demo" style="display: none">
+    <div class="comment-level" style="padding-bottom: 10px">
+        <div class="row">
+            <div class="col-md-1" style="display: inline-block">
+                <img src="~/Content/SignIn/images/bacho.png" />
+            </div>
+
+            <div class="comment-content">
+                <div class="comment-content_wrapper">
+                    <a href="javascript:void(0)" class="name-reply">Nguyễn Tiến Xuân</a>
+                    <span>
+                        xin chào các bạn, các bạn đang làm gì đó
+                    </span>
+                </div>
+                <div class="comment-content_setting">
+                    <span class="glyphicon glyphicon-option-horizontal" id="setting-comment"></span>
+                    <ul class="setting-comment_list list-unstyled">
+                        <li class="setting-comment_list-item" id="edit-comment"><a href="javascript:void(0)">Sửa</a></li>
+                        <li class="setting-comment_list-item" id="delete-comment"><a href="javascript:void(0)">Xóa</a></li>
+                    </ul>
+                </div>
+                <br />
+                <div class="reply-button" style="margin-left: -7px; font-size: 9pt; margin-top: 2px">
+                    <div class="col-md-1" style="padding-right: 30px" id="btnLikeComment">
+                        <a href="javascript:void(0)" class="button"><span>Thích</span></a>
+                    </div>
+                    <div class="col-md-1">
+                        <a id="btnReply" href="javascript:void(0)">Reply</a>
+                    </div>
+                    <div style="margin-left: 100px; display:none">
+                        <a id="countLikeComment" href="javascript:void(0)"><span class="countLike_comment"> 0 </span> lượt thích</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="comment-wrapper2">
+
+        </div>
+        <div class="textbox-reply row">
+            <div class="reply-img col-md-1" style="padding-top: 8px">
+                <img src="~/Content/SignIn/images/bacho.png" />
+            </div>
+            <div class="reply-box col-md-9" style="margin-left: 20px">
+                <input id="inputReply" type="text" placeholder="Viết phản hồi....">
+                <div class="pick-emoji-reply">
+                    😊
+                </div>
+                <div class="list-icon-reply" style="display:none;">
+                    <span class="icon-reply">😀</span><span class="icon-reply">😂</span><span class="icon-reply">😉</span><span class="icon-reply">😋</span>
+                    <span class="icon-reply">😎</span><span class="icon-reply">😍</span><span class="icon-reply">😘</span><span class="icon-reply">🤩</span>
+                    <span class="icon-reply">🤗</span><span class="icon-reply">😭</span><span class="icon-reply">😔</span><span class="icon-reply">😜</span>
+                    <span class="icon-reply">😨</span><span class="icon-reply">😰</span><span class="icon-reply">😱</span><span class="icon-reply">😡</span>
+                    <span class="icon-reply">🤑</span><span class="icon-reply">🤡</span><span class="icon-reply">😈</span><span class="icon-reply">💀</span>
+                    <span class="icon-reply">👻</span><span class="icon-reply">☠</span><span class="icon-reply">💩</span><span class="icon-reply">😹</span>
+                    <span class="icon-reply">🙈</span><span class="icon-reply">💘</span><span class="icon-reply">💖</span><span class="icon-reply">💚</span>
+                    <span class="icon-reply">💞</span><span class="icon-reply">💋</span><span class="icon-reply">💓</span><span class="icon-reply">💔</span>
+                    <span class="icon-reply">🐶</span><span class="icon-reply">🐺</span><span class="icon-reply">🐩</span><span class="icon-reply">🐹</span>
+                    <span class="icon-reply">🐼</span><span class="icon-reply">🐻</span><span class="icon-reply">🐧</span><span class="icon-reply">🐷</span>
+                    <span class="icon-reply">🍎</span><span class="icon-reply">🍏</span><span class="icon-reply">🍑</span><span class="icon-reply">🍓</span>
+                    <span class="icon-reply">🍅</span><span class="icon-reply">🍇</span><span class="icon-reply">🍄</span><span class="icon-reply">🕗</span>
+                    <span class="icon-reply">🌎</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div id="demo2" style="display: none">
+    <div class="comment-level2" style="padding-left: 45px">
+        <div class="row">
+            <div class="col-md-1" style="display:inline-block;margin-top:12px;">
+                <img src="~/Content/SignIn/images/bacho.png" />
+            </div>
+            <div class="reply-content">
+                <div class="reply-content-wrapper">
+                    <a href="javascript:void(0)" class="name-reply">Nguyễn Tiến Xuân</a>
+                    <span>
+                        xin chào các bạn, các bạn đang làm gì đó
+                    </span>
+                </div>
+                <div class="reply-content_setting">
+                    <span class="glyphicon glyphicon-option-horizontal" id="setting-reply"></span>
+                    <ul class="setting-reply_list list-unstyled">
+                        <li class="setting-reply_list-item" id="edit-reply"><a href="javascript:void(0)">Sửa</a></li>
+                        <li class="setting-reply_list-item" id="delete-reply"><a href="javascript:void(0)">Xóa</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="subcomment-button">
+                <div class="col-md-1" style="padding-right: 30px" id="btnLikeReply">
+                    <a href="javascript:void(0)" class="button">Thích</a>
+                </div>
+                <div class="col-md-8" style="display:none">
+                    <a id="countLikeReply" href="javascript:void(0)"><span class="countLike_reply"> 0 </span> lượt thích</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/AppChat/CommentPost.js"></script>

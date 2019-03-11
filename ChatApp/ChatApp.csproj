@@ -197,6 +197,7 @@
     <Content Include="Content\Shared\css\dashboard.css" />
     <Content Include="Content\SignIn\css\Login.css" />
     <Content Include="Content\SignIn\images\bg.jpg" />
+    <Content Include="Content\SignIn\images\book.png" />
     <Content Include="Content\SignIn\images\facebook.jpg" />
     <Content Include="Content\SignIn\images\free-computer-elements-vector.png" />
     <Content Include="Content\SignIn\images\naruto.jpg" />

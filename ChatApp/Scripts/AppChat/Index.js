@@ -304,10 +304,10 @@ function load() {
         dataType: "json",
         success: function (result) {
             var html = '';
-            html += '<tr>';
-            html += '<td>'+'<p>Nick Name    :' + result.UserName + '</p>'+'</td>';
-            html += '<td>' +'<p>Họ tên      :' + result.Name + '</p>'+'</td>';
-            html += '</tr>';
+            html += '<ul>';
+            html += '<li>' + '<span class="ht-left">Nick Name</span>' + '<span class="ht-right">' + result.UserName + '</span>' + '</li>';
+            html += '<li>' + '<span class="ht-left">Họ tên</span>' + '<span class="ht-right">' + result.Name + '</span>' + '</li>';
+            html += '</ul>';
             $('.info-user').html(html);
         },
         error: function (message) {
@@ -316,6 +316,7 @@ function load() {
 
     });
 }
+
 function Update() {
     var object = {
         UserName: MyUserName,
@@ -324,6 +325,7 @@ function Update() {
         Avatar: $('#Avatar').val(),
         PicUrl: $('#UploadImg').val()
     };
+    
     $.ajax({
         type: "POST",
         url: "/Home/SaveData",
@@ -331,6 +333,7 @@ function Update() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
+            
             load();
         },
         error: function (errormessage) {
@@ -355,4 +358,25 @@ function UploadAvatar(formData) {
     }
     $.ajax(ajaxConfig);
     return false;
+}
+function DisplayImg() {
+    var outputImg = $("#UploadImage").val();
+    var object = {
+        PicUrl: $('#UploadImg').val()
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "/Home/UploadAvatar",
+        data: JSON.stringify(object),
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+            load();
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
 }

@@ -37,9 +37,10 @@
                 </div>
                 <div class="modal-body">
                     <form id="FormAvatar" method="post" enctype="multipart/form-data" onsubmit="return UploadAvatar(this)">
-                        <input type="file" id="UploadImage" name="UploadImage" class="form-control" style="display:none;"/><br />
+                        <img src="~/AppFile/Images/avatar.jpg" />
+                        <input type="file" id="UploadImage" accept="image/gif, image/jpeg, image/png" name="UploadImage" class="form-control" style="display:none"; onchange="DisplayImg()" /><br />
                         <a href="#" id="selectFile" class="btn btn-primary">Chọn ảnh</a>
-                        <button class="btn btn-danger" >Upload</button>
+                        <button class="btn btn-danger">Upload</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -215,19 +216,11 @@
             <form method="post">
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="text" class="form-control" id="PassWord" placeholder="Password" />
+                    <input type="password" class="form-control" id="PassWord" placeholder="Password" />
                 </div>
                 <div class="form-group">
                     <label>Name</label>
                     <input type="text" class="form-control" id="Name" placeholder="Name" />
-                </div>
-                <div class="form-group">
-                    <label>Avatar</label>
-                    <input type="text" class="form-control" id="Avatar" placeholder="Avatar" />
-                </div>
-                <div class="form-group">
-                    <label>Image</label>
-                    <input type="file" accept="image/gif, image/jpeg, image/png" class="form-control" id="UploadImg" placeholder="Image" />
                 </div>
                 <button class="btn btn-danger" onclick="Update();">Update</button>
             </form>

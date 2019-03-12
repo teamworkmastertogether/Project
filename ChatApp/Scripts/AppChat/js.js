@@ -16,8 +16,17 @@
         "moreText": "Xem thêm...",
         "lessText": "Rút gọn"
     });
+    count=1
     $("#edit-info").click(function () {
-        $(".edit-user").css("display", "block");
+        count++;
+        if (count % 2 == 0) {
+            $(".edit-user").css("display", "block", "transition", "1s");
+            $(".info-user").css("display", "none", "transition", "1s");
+        }
+        else {
+            $(".edit-user").css("display", "none", "transition", "1s");
+            $(".info-user").css("display", "block", "transition", "1s");
+        }
     });
     $(".avatar").mouseover(function () {
         $(this).css("cursor", "pointer");

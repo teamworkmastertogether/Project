@@ -6,6 +6,27 @@
     box-sizing: border-box;
 }
 
+.col-lg-12.col-md-12.edit-user {
+    margin-bottom: 20%;
+    margin-top: 5%;
+}
+
+.info-user ul li {
+    margin-bottom: 10%;
+}
+
+.info-user {
+    font-size: 100%;
+    font-family: cursive;
+}
+
+span.ht-right {
+    float: right;
+}
+
+span.ht-left {
+}
+
 .update-img i.fa.fa-camera {
     padding-left: 26%;
     font-size: 130%;
@@ -1909,4 +1930,8 @@ i.fas.fa-list-ul {
     margin: 0;
     left: 30%;
     top: 15%;
+}
+
+.showEdit {
+    display: block;
 }

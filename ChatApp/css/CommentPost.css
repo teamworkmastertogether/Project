@@ -123,27 +123,27 @@ span.glyphicon.glyphicon-thumbs-up {
 	padding-left: 40px;
 }
 
-.comment-box, .reply-box {
+.comment-box, .reply-box, .edit-comment-box {
 	border: 1px solid gray;
 	border-radius: 15px;
 	margin-top: 5px;
 }
 
-.textbox-comment {
+.textbox-comment, .edit-comment{
 	padding-left: 10px;
 }
 
-#inputComment, #inputReply {
+#inputComment, #inputReply, #inputEditComment {
 	border: none;
 	outline: none;
 }
 
-.pick-emoji, .pick-emoji-reply {
+.pick-emoji, .pick-emoji-reply, .pick-emoji-edit-comment {
 	display: inline-block;
 	cursor: pointer;
 }
 
-.list-icon-comment, .list-icon-reply {
+.list-icon-comment, .list-icon-reply, .list-icon-edit-comment {
 	overflow: auto;
 	width: 188px;
 	height: 130px;
@@ -154,7 +154,7 @@ span.glyphicon.glyphicon-thumbs-up {
 	border: 1px solid #b9adab;
 }
 
-span.icon-comment, span.icon-reply {
+span.icon {
 	text-align: center;
 	display: inline-block;
 	cursor: pointer;

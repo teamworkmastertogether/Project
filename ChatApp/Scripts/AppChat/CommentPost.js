@@ -103,13 +103,14 @@
         e.preventDefault();
     });
 
-    $(".icon-comment").click(function () {
-        $('#inputComment').val($('#inputComment').val() + $(this).html());
+    $(".comment-post").on('click', '.icon', function () {
+        var input = $(this).parent().prev().prev();
+        input.val(input.val() + $(this).html());
     });
 
-    $('.comment-post-wrapper').on('click', '.icon-reply', function () {
-        $(this).parent().prev().prev().val($(this).parent().prev().prev().val() + $(this).html());
-    });
+    //$('.comment-post-wrapper').on('click', '.icon-reply', function () {
+    //    $(this).parent().prev().prev().val($(this).parent().prev().prev().val() + $(this).html());
+    //});
 
     $('#like-post').click(function () {
         if ($(this).hasClass('clicked')) {
@@ -182,26 +183,28 @@
         $('.post').remove();
     });
 
-    //$('.comment-post-wrapper').on('click', '#edit-comment', function () {
-    //    var oldData = $(this).parent().parent().prev().find('span').text();
-    //    var $input = $('.textbox-comment').clone();
-    //    $input.find('input').val(oldData);
-    //    $(this).parent().parent().parent().parent().parent().html($input);
-    //    $(this).parent().parent().parent().parent().hide();
+    $('.comment-post-wrapper').on('click', '#edit-comment', function () {
+        $(this).parents('.comment-level').children().eq(0).hide();
+        var $edit = $(this).parents('.comment-level').children().eq(3);
+        $edit.show();
+        var oldData = $(this).parent().parent().prev().find('span').text();
+        $edit.find('input').val(oldData);
 
-    //    $('.comment-post-wrapper').on('keypress', $input.find('input'), function (e) {
-    //        if (e.which === 13) {
-    //            var username = "Nguyễn Tiến Xuân";
-    //            var message = $(this).val();
-    //            $(this).val('');
-    //            $(this).parent().parent().prev().prev().prev().children().attr('src', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg');
-    //            $(this).parent().parent().prev().prev().prev().children().children().css('width', '35px');
-    //            //$('#demo .comment-level img:eq(1)').css('width', '25px');
-    //            $(this).parent().parent().prev().prev().prev().children().eq(1).children().find('a').text(username);
-    //            $(this).parent().parent().prev().prev().prev().children().eq(1).children().find('span').text(message);
+        $('.comment-post-wrapper').on('keypress', '#inputEditComment', function (e) {
+            if (e.which === 13) {
+                $(this).parents('.comment-level').children().eq(0).show();
+                var username = "Nguyễn Tiến Xuân";
+                var message = $(this).val();
+                $(this).val('');
+                $(this).parents('.comment-level').children().eq(0).children().attr('src', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg');
+                $(this).parents('.comment-level').children().eq(0).children().find('img').css('width', '35px');
+                $(this).parents('.comment-level').children('.comment-content_wrapper').find('a').text(username);
+                $(this).parents('.comment-level').children('.comment-content_wrapper').find('span').text(message);
 
-
-    //        }
-    //    });
-    //});
+                alert(message);
+                $edit.hide();
+                
+            }
+        });
+    });
 });

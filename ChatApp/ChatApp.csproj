@@ -174,9 +174,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Migrations\201903110816202_CreateDB.cs" />
-    <Compile Include="Migrations\201903110816202_CreateDB.Designer.cs">
-      <DependentUpon>201903110816202_CreateDB.cs</DependentUpon>
+    <Compile Include="Migrations\201903120149513_database.cs" />
+    <Compile Include="Migrations\201903120149513_database.Designer.cs">
+      <DependentUpon>201903120149513_database.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
@@ -259,8 +259,8 @@
     <Content Include="Views\Home\Subject.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903110816202_CreateDB.resx">
-      <DependentUpon>201903110816202_CreateDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903120149513_database.resx">
+      <DependentUpon>201903120149513_database.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

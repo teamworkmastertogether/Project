@@ -7,15 +7,15 @@
     <div class="background">
         <img src="~/AppFile/Images/coverphoto.jpg" />
     </div>
-    <div class="avatar" data-toggle="modal" data-target="#exampleModalCenter">
+    <div class="avatar" data-toggle="modal" data-target="#myModal">
         <div class="img-responsive">
-            <img src="~/AppFile/Images/avatar.jpg" />
+            <img src="@ViewBag.Img" />
             <div class="update-img">
                 <i class="fa fa-camera"></i>
                 <p>Cập nhật</p>
             </div>
         </div>
-        
+
         <div class="name">
             <h3>
                 <a href="#">Nguyen Tien Xuan</a>
@@ -24,29 +24,31 @@
 
     </div>
 </div>
-<div class="container">
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Change avatar</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="FormAvatar" method="post" enctype="multipart/form-data" onsubmit="return UploadAvatar(this)">
-                        <img src="~/AppFile/Images/avatar.jpg" />
-                        <input type="file" id="UploadImage" accept="image/gif, image/jpeg, image/png" name="UploadImage" class="form-control" style="display:none"; onchange="DisplayImg()" /><br />
-                        <a href="#" id="selectFile" class="btn btn-primary">Chọn ảnh</a>
-                        <button class="btn btn-danger">Upload</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog mod">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Modal Heading</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="FormAvatar" method="post" enctype="multipart/form-data" onsubmit="return UploadAvatar(this)" runat="server">
+                    <img id="blah" src="@ViewBag.Img" />
+                    <input type="file" id="UploadImage" accept="image/gif, image/jpeg, image/png" name="UploadImage" class="form-control" style="display:none" ; /><br />
+                    <a href="#" id="selectFile" class="btn btn-primary">Chọn ảnh</a>
+                    <button class="btn btn-danger">Upload</button>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+
         </div>
     </div>
 </div>
@@ -77,15 +79,6 @@
                         <i class="material-icons clearfix sercurity">&#xe32a;</i>
                     </a>
 
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Xem Thêm <b class="caret"></b></a>
-                    <ul class="dropdown-menu MoreHover">
-                        <li><a href="#">Videos</a></li>
-                        <li><a href="#">Check-Ins</a></li>
-                        <li><a href="#">Sports</a></li>
-                        <li><a href="#">Music</a></li>
-                    </ul>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

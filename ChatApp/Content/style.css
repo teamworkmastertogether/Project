@@ -6,6 +6,21 @@
     box-sizing: border-box;
 }
 
+.MidContent .mod {
+    margin: 0;
+    left: 30%;
+}
+
+img#blah {
+    margin-bottom: 10%;
+    width: 100%;
+    height: 36em;
+    object-fit: contain;
+}
+
+.mod img {
+}
+
 .col-lg-12.col-md-12.edit-user {
     margin-bottom: 20%;
     margin-top: 5%;
@@ -1929,7 +1944,7 @@ i.fas.fa-list-ul {
 .modal-dialog.modal-dialog-centered {
     margin: 0;
     left: 30%;
-    top: 15%;
+    top: 5%;
 }
 
 .showEdit {

@@ -322,8 +322,6 @@ function Update() {
         UserName: MyUserName,
         Password: $('#PassWord').val(),
         Name: $('#Name').val(),
-        Avatar: $('#Avatar').val(),
-        PicUrl: $('#UploadImg').val()
     };
     
     $.ajax({
@@ -333,7 +331,6 @@ function Update() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            
             load();
         },
         error: function (errormessage) {
@@ -348,8 +345,9 @@ function UploadAvatar(formData) {
         url: "/Home/UploadAvatar",
         data: new FormData(formData),
         success: function (result) {
-            console.log(result.Avatar);
             $(".avatar .img-responsive img").attr("src", result.Avatar);
+            $(".modal-backdrop").remove();
+            $("#myModal").hide();
         }
     }
     if ($(formData).attr('enctype') == "multipart/form-data") {
@@ -357,26 +355,21 @@ function UploadAvatar(formData) {
         ajaxConfig["processData"] = false;
     }
     $.ajax(ajaxConfig);
+    
     return false;
 }
-function DisplayImg() {
-    var outputImg = $("#UploadImage").val();
-    var object = {
-        PicUrl: $('#UploadImg').val()
-    };
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-    $.ajax({
-        type: "POST",
-        url: "/Home/UploadAvatar",
-        data: JSON.stringify(object),
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-
-            load();
-        },
-        error: function (errormessage) {
-            alert(errormessage.responseText);
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
         }
-    });
+
+        reader.readAsDataURL(input.files[0]);
+    }
 }
+
+$("#UploadImage").change(function () {
+    readURL(this);
+});

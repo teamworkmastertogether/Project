@@ -236,6 +236,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AppFile\Display\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

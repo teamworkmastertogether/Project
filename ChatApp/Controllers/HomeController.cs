@@ -14,6 +14,9 @@ namespace ChatApp.Controllers
 
         public ActionResult Index()
         {
+            var userName = Session["userName"] as string;
+            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            ViewBag.Img = user.Avatar;
             return View(GetFriendSuggest());
         }
 
@@ -104,7 +107,7 @@ namespace ChatApp.Controllers
             var userName = Session["userName"] as string;
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
             var personDto = new PersonalDto { UserName = user.UserName, Name = user.Name };
-
+            
             return Json(personDto, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -123,7 +126,17 @@ namespace ChatApp.Controllers
             var userDto = new PersonalDto { Avatar = user.Avatar };
             return Json(userDto, JsonRequestBehavior.AllowGet);
         }
-
+        [HttpPost]
+        public JsonResult SaveData(PersonalDto personalDto)
+        {
+            var userName = Session["userName"] as string;
+            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            user.PassWord = personalDto.PassWord;
+            user.Name = personalDto.Name;
+            db.SaveChanges();
+            
+            return Json("Success", JsonRequestBehavior.AllowGet);
+        }
         [HttpGet]
         public ActionResult Subject(int id)
         {
@@ -134,5 +147,6 @@ namespace ChatApp.Controllers
             }
             return View();
         }
+        
     }
 }

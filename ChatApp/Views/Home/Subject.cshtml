@@ -135,19 +135,7 @@
                             😊
                         </div>
                         <div class="list-icon-comment" style="display:none;">
-                            <span class="icon-comment">😀</span><span class="icon-comment">😂</span><span class="icon-comment">😉</span><span class="icon-comment">😋</span>
-                            <span class="icon-comment">😎</span><span class="icon-comment">😍</span><span class="icon-comment">😘</span><span class="icon-comment">🤩</span>
-                            <span class="icon-comment">🤗</span><span class="icon-comment">😭</span><span class="icon-comment">😔</span><span class="icon-comment">😜</span>
-                            <span class="icon-comment">😨</span><span class="icon-comment">😰</span><span class="icon-comment">😱</span><span class="icon-comment">😡</span>
-                            <span class="icon-comment">🤑</span><span class="icon-comment">🤡</span><span class="icon-comment">😈</span><span class="icon-comment">💀</span>
-                            <span class="icon-comment">👻</span><span class="icon-comment">☠</span><span class="icon-comment">💩</span><span class="icon-comment">😹</span>
-                            <span class="icon-comment">🙈</span><span class="icon-comment">💘</span><span class="icon-comment">💖</span><span class="icon-comment">💚</span>
-                            <span class="icon-comment">💞</span><span class="icon-comment">💋</span><span class="icon-comment">💓</span><span class="icon-comment">💔</span>
-                            <span class="icon-comment">🐶</span><span class="icon-comment">🐺</span><span class="icon-comment">🐩</span><span class="icon-comment">🐹</span>
-                            <span class="icon-comment">🐼</span><span class="icon-comment">🐻</span><span class="icon-comment">🐧</span><span class="icon-comment">🐷</span>
-                            <span class="icon-comment">🍎</span><span class="icon-comment">🍏</span><span class="icon-comment">🍑</span><span class="icon-comment">🍓</span>
-                            <span class="icon-comment">🍅</span><span class="icon-comment">🍇</span><span class="icon-comment">🍄</span><span class="icon-comment">🕗</span>
-                            <span class="icon-comment">🌎</span>
+                            @Html.Partial("_IconPartialView")
                         </div>
                     </div>
                 </div>
@@ -267,22 +255,25 @@
                     😊
                 </div>
                 <div class="list-icon-reply" style="display:none;">
-                    <span class="icon-reply">😀</span><span class="icon-reply">😂</span><span class="icon-reply">😉</span><span class="icon-reply">😋</span>
-                    <span class="icon-reply">😎</span><span class="icon-reply">😍</span><span class="icon-reply">😘</span><span class="icon-reply">🤩</span>
-                    <span class="icon-reply">🤗</span><span class="icon-reply">😭</span><span class="icon-reply">😔</span><span class="icon-reply">😜</span>
-                    <span class="icon-reply">😨</span><span class="icon-reply">😰</span><span class="icon-reply">😱</span><span class="icon-reply">😡</span>
-                    <span class="icon-reply">🤑</span><span class="icon-reply">🤡</span><span class="icon-reply">😈</span><span class="icon-reply">💀</span>
-                    <span class="icon-reply">👻</span><span class="icon-reply">☠</span><span class="icon-reply">💩</span><span class="icon-reply">😹</span>
-                    <span class="icon-reply">🙈</span><span class="icon-reply">💘</span><span class="icon-reply">💖</span><span class="icon-reply">💚</span>
-                    <span class="icon-reply">💞</span><span class="icon-reply">💋</span><span class="icon-reply">💓</span><span class="icon-reply">💔</span>
-                    <span class="icon-reply">🐶</span><span class="icon-reply">🐺</span><span class="icon-reply">🐩</span><span class="icon-reply">🐹</span>
-                    <span class="icon-reply">🐼</span><span class="icon-reply">🐻</span><span class="icon-reply">🐧</span><span class="icon-reply">🐷</span>
-                    <span class="icon-reply">🍎</span><span class="icon-reply">🍏</span><span class="icon-reply">🍑</span><span class="icon-reply">🍓</span>
-                    <span class="icon-reply">🍅</span><span class="icon-reply">🍇</span><span class="icon-reply">🍄</span><span class="icon-reply">🕗</span>
-                    <span class="icon-reply">🌎</span>
+                    @Html.Partial("_IconPartialView")
                 </div>
             </div>
 
+        </div>
+
+        <div class="row edit-comment" style="display:none">
+            <div class="edit-comment-img col-md-2">
+                <img src="~/Content/SignIn/images/bacho.png" style="width:50px;height:50px" />
+            </div>
+            <div class="edit-comment-box col-md-9">
+                <input id="inputEditComment" type="text" placeholder="Viết bình luận....">
+                <div class="pick-emoji-edit-comment">   
+                    😊
+                </div>
+                <div class="list-icon-edit-comment" style="display:none;">
+                    @Html.Partial("_IconPartialView")
+                </div>
+            </div>
         </div>
     </div>
 </div>

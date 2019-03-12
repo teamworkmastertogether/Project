@@ -266,7 +266,7 @@ function LoadData(item) {
     }
 }
 var checkOpenIcon = true;
-$(".icon").click(function () {
+$(".chat-message .icon").click(function () {
     $("#message-to-send").val($("#message-to-send").val() + $(this).text());
 });
 $(".fa-smile-o").click(function () {

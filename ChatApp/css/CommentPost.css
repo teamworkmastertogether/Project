@@ -123,29 +123,29 @@ span.glyphicon.glyphicon-thumbs-up {
 	padding-left: 40px;
 }
 
-.comment-box, .reply-box {
+.comment-box, .reply-box, .edit-comment-box {
 	border: 1px solid gray;
 	border-radius: 15px;
 	margin-top: 5px;
 }
 
-.textbox-comment {
+.textbox-comment, .edit-comment{
 	padding-left: 10px;
 }
 
-#inputComment, #inputReply {
+#inputComment, #inputReply, #inputEditComment {
 	border: none;
 	outline: none;
 }
 
-.pick-emoji, .pick-emoji-reply {
+.pick-emoji, .pick-emoji-reply, .pick-emoji-edit-comment {
 	display: inline-block;
 	cursor: pointer;
 }
 
-.list-icon-comment, .list-icon-reply {
+.list-icon-comment, .list-icon-reply, .list-icon-edit-comment {
 	overflow: auto;
-	width: 188px;
+	width: 190px;
 	height: 130px;
 	position: absolute;
 	right: 0;
@@ -154,7 +154,7 @@ span.glyphicon.glyphicon-thumbs-up {
 	border: 1px solid #b9adab;
 }
 
-span.icon-comment, span.icon-reply {
+span.icon {
 	text-align: center;
 	display: inline-block;
 	cursor: pointer;
@@ -283,7 +283,7 @@ span.icon-comment, span.icon-reply {
 		text-decoration: none;
 	}
 
-	.show-comment a span {
+	.show-comment a span, .countLike_post {
 		color: blue;
 	}
 
@@ -307,5 +307,14 @@ span.icon-comment, span.icon-reply {
 
 .content-listFriendSuggest {
 	margin-top: -9px;
+}
+
+#edit-clone {
+	position: absolute;
+	border-radius: 15px;
+	padding: 5px;
+	margin-top: -20px;
+	margin-left: -10px;
+	width: 100%;
 }
 

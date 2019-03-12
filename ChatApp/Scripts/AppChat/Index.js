@@ -305,8 +305,8 @@ function load() {
         success: function (result) {
             var html = '';
             html += '<tr>';
-            html += '<td>' + result.UserName + '</td>';
-            html += '<td>' + result.Name + '</td>';
+            html += '<td>'+'<p>Nick Name    :' + result.UserName + '</p>'+'</td>';
+            html += '<td>' +'<p>Họ tên      :' + result.Name + '</p>'+'</td>';
             html += '</tr>';
             $('.info-user').html(html);
         },
@@ -346,7 +346,7 @@ function UploadAvatar(formData) {
         data: new FormData(formData),
         success: function (result) {
             console.log(result.Avatar);
-            $(".avatar img").attr("src", result.Avatar);
+            $(".avatar .img-responsive img").attr("src", result.Avatar);
         }
     }
     if ($(formData).attr('enctype') == "multipart/form-data") {

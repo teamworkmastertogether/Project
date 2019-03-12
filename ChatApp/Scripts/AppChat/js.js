@@ -34,9 +34,9 @@
     $("#selectFile").click(function () {
         $("#UploadImage").trigger('click');
     })
-    $("#submited").click(function () {
-        $("#exampleModalCenter").hide();
-    });
+    //$("#submited").click(function () {
+    //    $(".modal").hide();
+    //});
 });
 
 

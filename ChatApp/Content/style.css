@@ -6,6 +6,58 @@
     box-sizing: border-box;
 }
 
+.col-lg-12.col-md-12.edit-user {
+    margin-bottom: 20%;
+    margin-top: 5%;
+}
+
+.info-user ul li {
+    margin-bottom: 10%;
+}
+
+.info-user {
+    font-size: 100%;
+    font-family: cursive;
+}
+
+span.ht-right {
+    float: right;
+}
+
+span.ht-left {
+}
+
+.update-img i.fa.fa-camera {
+    padding-left: 26%;
+    font-size: 130%;
+}
+
+.update-img {
+    position: absolute;
+    top: 0;
+    background-color: #00000063;
+    height: 168px;
+    width: 170px;
+    border-radius: 50%;
+    padding-top: 43%;
+    padding-left: 25%;
+    color: #ddd;
+    display: none;
+}
+
+    .update-img p {
+        color: #ddd;
+        font-weight: bold;
+        font-family: initial;
+        font-size: 100%;
+        padding-left: 10%;
+    }
+
+.main .avatar .img-responsive {
+    position: relative;
+    width: 170px;
+}
+
 img.img-responsive {
     height: 12em;
 }
@@ -1859,7 +1911,6 @@ i.fas.fa-list-ul {
     }
 
         .card.img-fluid h2 {
-            /* color: blue; */
             text-align: center;
         }
 
@@ -1873,4 +1924,14 @@ i.fas.fa-list-ul {
         margin-left: 3%;
         padding-left: 15px;
     }
+}
+
+.modal-dialog.modal-dialog-centered {
+    margin: 0;
+    left: 30%;
+    top: 15%;
+}
+
+.showEdit {
+    display: block;
 }

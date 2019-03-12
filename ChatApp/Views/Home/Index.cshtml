@@ -2,21 +2,51 @@
 @{
     Layout = "~/Views/Shared/_LayoutAppChat.cshtml";
 }
+
 <div class="main">
     <div class="background">
         <img src="~/AppFile/Images/coverphoto.jpg" />
     </div>
-    <div class="avatar">
-        <img src="~/AppFile/Images/avatar.jpg" />
+    <div class="avatar" data-toggle="modal" data-target="#exampleModalCenter">
+        <div class="img-responsive">
+            <img src="~/AppFile/Images/avatar.jpg" />
+            <div class="update-img">
+                <i class="fa fa-camera"></i>
+                <p>Cập nhật</p>
+            </div>
+        </div>
+        
         <div class="name">
             <h3>
-                <a href="#">Quang JVevermind</a>
+                <a href="#">Nguyen Tien Xuan</a>
             </h3>
         </div>
-        <form id="FormAvatar" method="post" enctype="multipart/form-data" onsubmit="return UploadAvatar(this)">
-            <input type="file" id="UploadImage" name="UploadImage" class="form-control" /><br />
-            <button class="btn btn-danger">Upload</button>
-        </form>
+
+    </div>
+</div>
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Change avatar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="FormAvatar" method="post" enctype="multipart/form-data" onsubmit="return UploadAvatar(this)">
+                        <input type="file" id="UploadImage" name="UploadImage" class="form-control" style="display:none;"/><br />
+                        <a href="#" id="selectFile" class="btn btn-primary">Chọn ảnh</a>
+                        <button id="submited" class="btn btn-danger">Upload</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <nav class="navbar navbar-default fbTimeline" role="navigation">

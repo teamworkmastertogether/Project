@@ -301,3 +301,11 @@ span.icon-comment, span.icon-reply {
 	display: inline-block;
 }
 
+.row.infor {
+	margin-left: -7px;
+}
+
+.content-listFriendSuggest {
+	margin-top: -9px;
+}
+

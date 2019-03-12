@@ -145,7 +145,7 @@ span.glyphicon.glyphicon-thumbs-up {
 
 .list-icon-comment, .list-icon-reply, .list-icon-edit-comment {
 	overflow: auto;
-	width: 188px;
+	width: 190px;
 	height: 130px;
 	position: absolute;
 	right: 0;
@@ -283,7 +283,7 @@ span.icon {
 		text-decoration: none;
 	}
 
-	.show-comment a span {
+	.show-comment a span, .countLike_post {
 		color: blue;
 	}
 
@@ -307,5 +307,14 @@ span.icon {
 
 .content-listFriendSuggest {
 	margin-top: -9px;
+}
+
+#edit-clone {
+	position: absolute;
+	border-radius: 15px;
+	padding: 5px;
+	margin-top: -20px;
+	margin-left: -10px;
+	width: 100%;
 }
 

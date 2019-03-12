@@ -146,7 +146,7 @@
         </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4" style="position:sticky;top:0;overflow-x:auto">
         <div class="content-listFriendSuggest">
             <div class="row suggest-friend">
                 <div class="col-sm-12">
@@ -220,6 +220,7 @@
                     <span>
                         xin chào các bạn, các bạn đang làm gì đó
                     </span>
+                    <textarea type="text" name="name" value="" id="edit-clone" />
                 </div>
                 <div class="comment-content_setting">
                     <span class="glyphicon glyphicon-option-horizontal" id="setting-comment"></span>
@@ -264,20 +265,21 @@
 
         </div>
 
-        <div class="row edit-comment" style="display:none">
-            <div class="edit-comment-img col-md-2">
-                <img src="~/Content/SignIn/images/bacho.png" style="width:50px;height:50px" />
-            </div>
-            <div class="edit-comment-box col-md-9">
-                <input id="inputEditComment" type="text" placeholder="Viết bình luận....">
-                <div class="pick-emoji-edit-comment">   
-                    😊
+        @*<div class="row edit-comment" style="display:none">
+                <div class="edit-comment-img col-md-2">
+                    <img src="~/Content/SignIn/images/bacho.png" style="width:50px;height:50px" />
                 </div>
-                <div class="list-icon-edit-comment" style="display:none;">
-                    @Html.Partial("_IconPartialView")
+                <div class="edit-comment-box col-md-9">
+                    <input id="inputEditComment" type="text" placeholder="Viết bình luận....">
+
+                    <div class="pick-emoji-edit-comment">
+                        😊
+                    </div>
+                    <div class="list-icon-edit-comment" style="display:none;">
+                        @Html.Partial("_IconPartialView")
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>*@
     </div>
 </div>
 

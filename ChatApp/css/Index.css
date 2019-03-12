@@ -471,11 +471,6 @@ li:hover .message-data-time {
     margin-left: 38%;
 }
 
-.content-listFriendSuggest {
-    position: sticky;
-    top: 0;
-    overflow-x: auto;
-}
 
 @media only screen and (max-width: 1367px) {
     .chat .chat-history {

@@ -108,10 +108,6 @@
         input.val(input.val() + $(this).html());
     });
 
-    //$('.comment-post-wrapper').on('click', '.icon-reply', function () {
-    //    $(this).parent().prev().prev().val($(this).parent().prev().prev().val() + $(this).html());
-    //});
-
     $('#like-post').click(function () {
         if ($(this).hasClass('clicked')) {
             $(this).removeClass('clicked');
@@ -183,28 +179,29 @@
         $('.post').remove();
     });
 
-    $('.comment-post-wrapper').on('click', '#edit-comment', function () {
-        $(this).parents('.comment-level').children().eq(0).hide();
-        var $edit = $(this).parents('.comment-level').children().eq(3);
-        $edit.show();
-        var oldData = $(this).parent().parent().prev().find('span').text();
-        $edit.find('input').val(oldData);
-
-        $('.comment-post-wrapper').on('keypress', '#inputEditComment', function (e) {
-            if (e.which === 13) {
-                $(this).parents('.comment-level').children().eq(0).show();
-                var username = "Nguyễn Tiến Xuân";
-                var message = $(this).val();
-                $(this).val('');
-                $(this).parents('.comment-level').children().eq(0).children().attr('src', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg');
-                $(this).parents('.comment-level').children().eq(0).children().find('img').css('width', '35px');
-                $(this).parents('.comment-level').children('.comment-content_wrapper').find('a').text(username);
-                $(this).parents('.comment-level').children('.comment-content_wrapper').find('span').text(message);
-
-                alert(message);
-                $edit.hide();
-                
-            }
-        });
+    $('.comment-post').on('click', '#edit-comment', function () {
+        var oldData = $(this).parents('.comment-content_setting').prev().find('span').text();
+        $(this).parents('.comment-content_setting').prev().find('span').hide();
+        var res = $(this).parents('.comment-content_setting').prev().find('textarea');
+        res.val(oldData).show();
+        $(this).parent().hide();
+        $(this).parents('.comment-content_setting').next().next().hide();
     });
+
+    $('.comment-post').on('click', '#edit-reply', function () {
+        var oldData = $(this).parents('.reply-content_setting').prev().find('span').text();
+        $(this).parents('.reply-content_setting').prev().find('textarea').val(oldData).show();
+        $(this).parent().hide();
+    });
+
+    $('.comment-post').on('keypress', '#edit-clone', function (e) {
+        if (e.which === 13) {
+            $(this).prev().text($(this).val());
+            $(this).hide();
+            $(this).prev().show();
+            $(this).parents('.comment-content').children().eq(3).show();
+        }
+    });
+
 });
+

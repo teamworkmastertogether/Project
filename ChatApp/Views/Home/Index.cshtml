@@ -7,8 +7,8 @@
     <div class="background">
         <img src="~/AppFile/Images/coverphoto.jpg" />
     </div>
-    <div class="avatar" data-toggle="modal" data-target="#myModal">
-        <div class="img-responsive">
+    <div class="avatar">
+        <div class="img-responsive" data-toggle="modal" data-target="#myModal">
             <img src="@ViewBag.Img" />
             <div class="update-img">
                 <i class="fa fa-camera"></i>
@@ -40,7 +40,7 @@
                     <img id="blah" src="@ViewBag.Img" />
                     <input type="file" id="UploadImage" accept="image/gif, image/jpeg, image/png" name="UploadImage" class="form-control" style="display:none" ; /><br />
                     <a href="#" id="selectFile" class="btn btn-primary">Chọn ảnh</a>
-                    <button class="btn btn-danger">Upload</button>
+                    <button class="btn btn-danger" id="upImg" style="display:none;">Lưu chỉnh sửa</button>
                 </form>
             </div>
 

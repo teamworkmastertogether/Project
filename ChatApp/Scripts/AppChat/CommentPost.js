@@ -192,7 +192,7 @@
     $('.comment-post').on('click', '#edit-comment', function () {
         var oldData = $(this).parents('.comment-content_setting').prev().find('span').text();
         $(this).parents('.comment-content_setting').prev().find('span').hide();
-        var res = $(this).parents('.comment-content_setting').prev().find('textarea');
+        var res = $(this).closest('.comment-content_setting').prev().find('textarea');
         res.val(oldData).show();
         $(this).parent().hide();
         $(this).parents('.comment-content_setting').next().next().hide();

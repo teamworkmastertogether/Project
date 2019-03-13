@@ -15,6 +15,7 @@
         }
     });
 
+   
     $('.comment-post-wrapper').on('click', '#btnReply', function () {
         $(this).parent().parent().parent().parent().next().next().show();
         $(this).css('text-decoration', 'none');
@@ -229,7 +230,5 @@
         $(this).parent().prev().hide();
         $(this).parent().prev().prev().show();
     });
-
-    $('')
 });
 

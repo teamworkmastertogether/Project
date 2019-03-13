@@ -174,9 +174,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
-    <Compile Include="Migrations\201903120149513_database.cs" />
-    <Compile Include="Migrations\201903120149513_database.Designer.cs">
-      <DependentUpon>201903120149513_database.cs</DependentUpon>
+    <Compile Include="Migrations\201903131315246_CreateDB.cs" />
+    <Compile Include="Migrations\201903131315246_CreateDB.Designer.cs">
+      <DependentUpon>201903131315246_CreateDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
@@ -198,6 +198,14 @@
     <Content Include="AppFile\Images\coverphoto.jpg" />
     <Content Include="AppFile\Images\toan.jpg" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\anhvatly.PNG" />
+    <Content Include="Content\Images\dialy.PNG" />
+    <Content Include="Content\Images\hoahoc.PNG" />
+    <Content Include="Content\Images\lichsu.PNG" />
+    <Content Include="Content\Images\nguvan.PNG" />
+    <Content Include="Content\Images\sinhhoc.PNG" />
+    <Content Include="Content\Images\tienganh.PNG" />
+    <Content Include="Content\Images\toanhoc.PNG" />
     <Content Include="Content\SignIn\css\Login.css" />
     <Content Include="Content\SignIn\images\bacho.png" />
     <Content Include="Content\SignIn\images\bg.jpg" />
@@ -261,11 +269,6 @@
     <Content Include="Views\Home\Subject.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903120149513_database.resx">
-      <DependentUpon>201903120149513_database.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +276,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_IconPartialView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903131315246_CreateDB.resx">
+      <DependentUpon>201903131315246_CreateDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

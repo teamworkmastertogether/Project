@@ -8,5 +8,6 @@ namespace ChatApp.Models
     public class Subject : BaseEntity
     {
         public string Name { get; set; }
+        public string Photo { get; set; }
     }
 }

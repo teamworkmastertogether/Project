@@ -6,6 +6,13 @@
     box-sizing: border-box;
 }
 
+.col-xs-12.col-sm-12.col-md-12.col-lg-12 {
+    padding: 0;
+}
+
+.bot {
+}
+
 .MidContent .mod {
     margin: 0;
     left: 30%;
@@ -105,8 +112,20 @@ img.img-responsive {
     padding-bottom: 27px;
 }
 
-.col-lg-12.col-md-12 {
+.col-lg-12.col-md-12 rig {
     padding-right: 0px;
+}
+
+.col-xs-12.col-sm-12.col-md-12.col-lg-12.rig {
+    padding: 0;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border: 1px solid #00000024;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    margin-bottom: 1em;
+    padding-bottom: 3%;
+    box-shadow: 1px 1px 10px;
 }
 
 .notifyClass .col-lg-12.col-md-12 {
@@ -545,7 +564,6 @@ i.fa.fa-users {
 }
 
 .tool {
-    background-color: #f5f6f7;
 }
 
 .textbox {
@@ -604,7 +622,7 @@ i.glyphicon.glyphicon-flag {
     padding-right: 1em;
 }
 
-li.post {
+li.post1 {
     position: relative;
 }
 
@@ -1422,12 +1440,12 @@ i.fa.fa-photo {
 .bot ul li {
     list-style-type: none;
     float: left;
-    padding-right: 1em;
-    background-color: #ebedf0;
+    padding-right: 2em;
     margin-right: 1em;
     text-align: center;
     border-radius: 28px;
     cursor: pointer;
+    margin-right: 4%;
 }
 
     .bot ul li:hover {
@@ -1474,8 +1492,11 @@ i.fa.fa-users {
 
 .rig nav.navbar.navbar-default {
     margin: 0px;
-    border-radius: 2px;
-    z-index: 0;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    background-color: white;
 }
 
 .box.clearfix {
@@ -1486,7 +1507,6 @@ i.fa.fa-users {
 }
 
 .tool {
-    background-color: #f5f6f7;
 }
 
 .textbox {
@@ -1519,8 +1539,7 @@ img._bth.img {
 .tool .navbar-default .navbar-nav > li > a {
     padding-left: 4px;
     padding-top: 15px;
-    float: right;
-    font-size: 11px;
+    padding-right: 16px;
 }
 
 i.glyphicon.glyphicon-flag {
@@ -1540,12 +1559,11 @@ i.glyphicon.glyphicon-flag {
 }
 
 .tool .nav > li {
-    border-right: 1px solid #00000036;
     cursor: pointer;
-    padding-right: 1em;
+    padding-right: 1.5em;
 }
 
-li.post {
+li.post1 {
     position: relative;
 }
 

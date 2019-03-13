@@ -6,6 +6,72 @@
     box-sizing: border-box;
 }
 
+.nameFriend {
+    width: 40%;
+}
+
+    .nameFriend p {
+        margin-top: 20%;
+        margin-left: 30%;
+        width: 100%;
+        font-family: inherit;
+    }
+
+    .nameFriend p {
+    }
+
+.col-lg-4.col-md-4.lef-2 {
+    padding: 0;
+}
+
+.lef-2 .col-lg-12.col-md-12 {
+    display: flex;
+    background: #99999921;
+    margin-bottom: 5%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    border: 1px solid #00000029;
+}
+
+.avatarFriend img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #00000047;
+}
+
+.inviteFriend {
+    position: absolute;
+    top: 50%;
+    left: 350%;
+    width: 70%;
+    background-color: #999999eb;
+    cursor: pointer;
+    border-radius: 50px;
+    padding-left: 1em;
+    padding-top: 7px;
+    border: 3px solid #00000070;
+    box-shadow: 1px 1px 10px;
+}
+
+    .inviteFriend:hover {
+        background: #ccc;
+        transition: 0.4s;
+    }
+
+    .inviteFriend p span {
+        color: white;
+        font-family: monospace;
+        font-weight: 700;
+    }
+
+    .inviteFriend span p {
+        padding-top: 3px;
+        font-family: inherit;
+        margin-top: 4px;
+    }
+
 .col-xs-12.col-sm-12.col-md-12.col-lg-12 {
     padding: 0;
 }
@@ -1350,6 +1416,7 @@ border-color: red;
 .col-xs-4.col-sm-4.col-md-4.col-lg-4.lef-1 {
     background: #00000003;
     border: 1px solid #0000000f;
+    display: none;
 }
 
 .col-lg-7.col-md-7 {
@@ -1560,7 +1627,7 @@ i.glyphicon.glyphicon-flag {
 
 .tool .nav > li {
     cursor: pointer;
-    padding-right: 1.5em;
+    padding-right: 1.4em;
 }
 
 li.post1 {
@@ -1613,15 +1680,19 @@ nav.navbar.navbar-default.fbTimeline {
 }
 
 i.material-icons {
-    font-size: 16px;
-    padding-top: 15px;
+    font-size: 21px;
+    padding-top: 5px;
     float: left;
 }
 
-    i.material-icons.clearfix.sercurity {
-        padding-top: 1px;
-        padding-right: 5px;
-    }
+.inviteFriend i.material-icons {
+    padding-right: 6px;
+}
+
+i.material-icons.clearfix.sercurity {
+    padding-top: 1px;
+    padding-right: 5px;
+}
 
 .fbTimeline ul li {
     padding-right: 2em;
@@ -1814,8 +1885,16 @@ i.fas.fa-list-ul {
         z-index: 1;
     }
 
+.inviteFriend img {
+    width: 30px;
+    height: 30px;
+}
+
 .background {
     z-index: 0;
+    box-shadow: 1px 1px 20px;
+    margin-top: 3px;
+    border-radius: 15px;
 }
 
     .background img {

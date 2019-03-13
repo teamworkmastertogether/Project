@@ -347,7 +347,7 @@ function UploadAvatar(formData) {
         success: function (result) {
             $(".avatar .img-responsive img").attr("src", result.Avatar);
             $(".modal-backdrop").remove();
-            $("#myModal").hide();
+            $("#myModal #close").click();
         }
     }
     if ($(formData).attr('enctype') == "multipart/form-data") {

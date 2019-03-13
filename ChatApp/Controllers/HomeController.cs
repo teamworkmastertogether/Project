@@ -110,21 +110,34 @@ namespace ChatApp.Controllers
             
             return Json(personDto, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult GetImg()
+        {
+            var userName = Session["userName"] as string;
+            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            PersonalDto personalDto = new PersonalDto();
+            personalDto.Avatar = user.Avatar;
+            return Json(personalDto, JsonRequestBehavior.AllowGet);
+        }
         [HttpPost]
         public ActionResult UploadAvatar(HttpPostedFileBase UploadImage)
 
         {
-            var userName = Session["userName"] as string;
-            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
-            string fileName = Path.GetFileNameWithoutExtension(UploadImage.FileName);
-            string extension = Path.GetExtension(UploadImage.FileName);
-           // fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
-            fileName = fileName + extension;
-            UploadImage.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images"), fileName));
-            user.Avatar = "http://localhost:54576/AppFile/Images/" + fileName;
-            db.SaveChanges();
-            var userDto = new PersonalDto { Avatar = user.Avatar };
-            return Json(userDto, JsonRequestBehavior.AllowGet);
+            if(UploadImage!=null)
+            {
+                var userName = Session["userName"] as string;
+                var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+                string fileName = Path.GetFileNameWithoutExtension(UploadImage.FileName);
+                string extension = Path.GetExtension(UploadImage.FileName);
+                // fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
+                fileName = fileName + extension;
+                UploadImage.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images"), fileName));
+                user.Avatar = "http://localhost:54576/AppFile/Images/" + fileName;
+                db.SaveChanges();
+                var userDto = new PersonalDto { Avatar = user.Avatar };
+                return Json(userDto, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json("Vui lòng chọn ảnh thích hợp !", JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public JsonResult SaveData(PersonalDto personalDto)

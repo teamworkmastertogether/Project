@@ -28,13 +28,13 @@
             $(".info-user").css("display", "block", "transition", "1s");
         }
     });
-    $(".avatar").mouseover(function () {
+    $(".avatar .img-responsive").mouseover(function () {
         $(this).css("cursor", "pointer");
         $(".update-img").addClass(function () {
             $(this).css("display", "block","cursor","pointer");
         });
     });
-    $(".avatar").mouseout(function () {
+    $(".avatar .img-responsive").mouseout(function () {
         $(this).css("cursor", "pointer");
         $(".update-img").addClass(function () {
             $(this).css("display", "none","cursor","pointer");

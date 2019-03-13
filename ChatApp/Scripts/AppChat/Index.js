@@ -340,12 +340,14 @@ function Update() {
 }
 
 function UploadAvatar(formData) {
+    
     var ajaxConfig = {
         type: "POST",
         url: "/Home/UploadAvatar",
         data: new FormData(formData),
         success: function (result) {
             $(".avatar .img-responsive img").attr("src", result.Avatar);
+
             $(".modal-backdrop").remove();
             $("#myModal #close").click();
         }
@@ -365,11 +367,27 @@ function readURL(input) {
         reader.onload = function (e) {
             $('#blah').attr('src', e.target.result);
         }
-
+        $("#upImg").show();
         reader.readAsDataURL(input.files[0]);
     }
 }
 
 $("#UploadImage").change(function () {
     readURL(this);
+});
+$("#close").click(function() {
+    $.ajax({
+        type: "GET",
+        url: "/Home/GetImg",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            $('#blah').attr('src', result.Avatar);
+            $("#upImg").hide();
+        },
+        error: function (message) {
+            alert(message.responseText);
+        }
+
+    });
 });

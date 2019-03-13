@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
     $('#inputComment').keypress(function (e) {
-        if (e.which === 13) {
+        if (e.which === 13 && $(this).val() !== "") {
             var username = "Nguyễn Tiến Xuân";
             var message = $(this).val();
             $(this).val('');
@@ -21,7 +21,7 @@
     });
 
     $('.comment-post-wrapper').on('keypress', '#inputReply', function (e) {
-        if (e.which === 13) {
+        if (e.which === 13 && $(this).val() !== "") {
 
             var username = "Nigga";
             var message = $(this).val();
@@ -179,6 +179,15 @@
         $('.post').remove();
     });
 
+    $('#edit-post').click(function () {
+        var oldData = $(this).parents('.header-post').next().children().eq(0).text();
+        $(this).parents('.header-post').next().children().eq(0).hide();
+        var res = $(this).parents('.header-post').next().find('textarea');
+        res.next().show();
+        res.val(oldData).show();
+        $(this).parent().hide();
+    });
+
     $('.comment-post').on('click', '#edit-comment', function () {
         var oldData = $(this).parents('.comment-content_setting').prev().find('span').text();
         $(this).parents('.comment-content_setting').prev().find('span').hide();
@@ -192,16 +201,35 @@
         var oldData = $(this).parents('.reply-content_setting').prev().find('span').text();
         $(this).parents('.reply-content_setting').prev().find('textarea').val(oldData).show();
         $(this).parent().hide();
+        $(this).parents('.reply-content').next().hide();
     });
 
     $('.comment-post').on('keypress', '#edit-clone', function (e) {
-        if (e.which === 13) {
+        if (e.which === 13 && $(this).prev().text($(this).val()) !== "") {
             $(this).prev().text($(this).val());
             $(this).hide();
             $(this).prev().show();
             $(this).parents('.comment-content').children().eq(3).show();
+            $(this).parents('.reply-content').next().show();
         }
     });
 
+    $('.post').on('click', '#save-edited-post', function () {
+        if ($(this).parent().prev().val() !== "") {
+            $(this).parent().prev().prev().text($(this).parent().prev().val());
+            $(this).parent().hide();
+            $(this).parent().prev().hide();
+            $(this).parent().prev().prev().show();
+        }
+    });
+
+    $('.post').on('click', '#cancel-edited-post', function () {
+        $(this).parent().prev().prev().show();
+        $(this).parent().hide();
+        $(this).parent().prev().hide();
+        $(this).parent().prev().prev().show();
+    });
+
+    $('')
 });
 

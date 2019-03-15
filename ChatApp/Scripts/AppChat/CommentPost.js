@@ -124,8 +124,9 @@
     });
 
     $('.footer-post').on('click','.save-post',function () {
-        $(this).children().css('font-weight', 'bold').css('text-decoration', 'none').css('color', 'red');
-    });
+        //$(this).children().css('font-weight', 'bold').css('text-decoration', 'none').css('color', 'red');
+        $(this).parents('.option-like').next().show();
+    }); 
 
     $('.comment-post-wrapper').on('click', '.btnLikeComment', function () {
         if ($(this).hasClass('clicked')) {

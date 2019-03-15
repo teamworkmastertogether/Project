@@ -341,8 +341,7 @@ span.icon {
     padding: 3px 6px;
 }
 
-.modal-confirm {
-    position: absolute;
-    left: 36%;
-    top: 40%;
+.new-modal {
+    position: fixed;
+    margin: auto;
 }

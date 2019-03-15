@@ -159,6 +159,8 @@ namespace ChatApp.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.photo = sub.Photo;
+            ViewBag.name = sub.Name;
+
             return View();
         }
         

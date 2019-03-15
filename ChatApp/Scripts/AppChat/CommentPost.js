@@ -125,8 +125,12 @@
 
     $('.footer-post').on('click','.save-post',function () {
         //$(this).children().css('font-weight', 'bold').css('text-decoration', 'none').css('color', 'red');
-        $(this).parents('.option-like').next().show();
+        $('.confirm').show();
     }); 
+
+    $('.confirm').on('click','#modal-btn-si',function () {
+        $('.confirm').hide();
+    });
 
     $('.comment-post-wrapper').on('click', '.btnLikeComment', function () {
         if ($(this).hasClass('clicked')) {

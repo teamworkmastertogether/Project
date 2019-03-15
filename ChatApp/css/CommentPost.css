@@ -341,7 +341,19 @@ span.icon {
     padding: 3px 6px;
 }
 
-.new-modal {
-    position: fixed;
-    margin: auto;
+.confirm {
+	position: fixed;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999;
+	background: #80808087;
+	display: none;
+}
+
+.modal-dialog {
+	margin: 183px auto;
+	position:unset;
 }

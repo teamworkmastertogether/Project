@@ -6,6 +6,121 @@
     box-sizing: border-box;
 }
 
+.showInfoFriend {
+    margin-left: 5%;
+}
+
+    .showInfoFriend nav.navbar {
+        margin: 0;
+        margin-left: 0.8em;
+    }
+
+.dropdown {
+}
+
+.showInfoFriend button.dropbtn {
+    position: relative;
+    margin-top: 28%;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.showInfoFriend .dropdown-content {
+    overflow: hidden;
+    position: absolute;
+    background: white;
+    min-width: 200%;
+    height: 80px;
+    margin-top: 10px;
+    border-radius: 1px;
+    border: 1px solid #00000021;
+    display: none;
+    z-index: 999;
+}
+
+    .showInfoFriend .dropdown-content ul li {
+        padding: 10px;
+        text-align: center;
+    }
+
+        .showInfoFriend .dropdown-content ul li:hover {
+            background: #428bca;
+            transition: 0.4s;
+        }
+
+        .showInfoFriend .dropdown-content ul li a {
+            color: #555;
+            text-decoration: none;
+            font-family: sans-serif;
+            font-weight: 600;
+        }
+
+    .showInfoFriend .dropdown-content a {
+        float: none;
+        text-align: center;
+    }
+
+#modalGioiThieu .modal-dialog {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+}
+
+#modalNoiQuy .modal-dialog {
+    position: absolute;
+    top: 10%;
+    left: 30%;
+}
+
+.ToolLeft.pull-left {
+    cursor: pointer;
+}
+
+.ToolRight.pull-right {
+    margin-top: 3%;
+}
+
+    .ToolRight.pull-right ul {
+        display: flex;
+        padding-right: 1em;
+    }
+
+        .ToolRight.pull-right ul li {
+            margin-right: 1em;
+        }
+
+            .ToolRight.pull-right ul li:hover {
+                border-bottom: 3px solid #cccccce0;
+                transition: 0.4s;
+            }
+
+            .ToolRight.pull-right ul li a {
+                text-decoration: none;
+                color: black;
+                font-size: 20px;
+                font-family: serif;
+            }
+
+.ToolLeft.pull-left h2 {
+    font-size: 30px;
+    color: #ab00ef;
+    font-weight: 700;
+    font-family: serif;
+    margin-bottom: 15%;
+}
+
+.row.ToolFb {
+    padding-left: 5%;
+    border: 1px solid #0000003d;
+    margin-left: 0%;
+    width: 100%;
+    background-color: #f5f6f7;
+    margin-bottom: 3%;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-top: none;
+}
+
 .avatarFriend {
     cursor: pointer;
 }
@@ -2119,13 +2234,13 @@ ul.nav.navbar-nav.navbar-left {
     }
 
 .nameFriend {
-    width: 40%;
+    width: 47%;
     cursor: pointer;
 }
 
     .nameFriend p {
-        margin-top: 20%;
-        margin-left: 30%;
+        margin-top: 18%;
+        margin-left: 16%;
         width: 100%;
         font-family: inherit;
     }
@@ -2141,14 +2256,14 @@ ul.nav.navbar-nav.navbar-left {
     display: flex;
     background: #99999921;
     margin-bottom: 5%;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    padding-top: 5%;
+    padding-bottom: 7%;
     border: 1px solid #00000029;
 }
 
 .avatarFriend img {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     object-fit: cover;
     border: 2px solid #00000047;
@@ -2160,7 +2275,7 @@ ul.nav.navbar-nav.navbar-left {
     width: 62%;
     background-color: #ddd;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 1px;
     padding-left: 1em;
     padding-top: 2px;
     border: 2px solid #00000070;

@@ -16,7 +16,7 @@
         "moreText": "Xem thêm...",
         "lessText": "Rút gọn"
     });
-    count=1
+    count = 1
     $("#edit-info").click(function () {
         count++;
         if (count % 2 == 0) {
@@ -31,13 +31,13 @@
     $(".avatar .img-responsive").mouseover(function () {
         $(this).css("cursor", "pointer");
         $(".update-img").addClass(function () {
-            $(this).css("display", "block","cursor","pointer");
+            $(this).css("display", "block", "cursor", "pointer");
         });
     });
     $(".avatar .img-responsive").mouseout(function () {
         $(this).css("cursor", "pointer");
         $(".update-img").addClass(function () {
-            $(this).css("display", "none","cursor","pointer");
+            $(this).css("display", "none", "cursor", "pointer");
         });
     });
     $("#selectFile").click(function () {
@@ -49,6 +49,20 @@
     $(".think").click(function () {
         $(".bot #huy").show();
     })
+    $("#gioithieu").click(function () {
+        //$('body,html').removeClass('.modal-backdrop fade in');
+        //$('.modal-backdrop').remove();
+        //$('.modal.in').modal('hide')
+        //$('#myModalGioiThieu').appendTo("body").modal('show');
+        $(".modalGioiThieu").show();
+    })
+    //$("#noiquy").click(function () {
+    //    $(".modal-backdrop").remove();
+    //    $("#myModalNoiQuy #close").click();
+    //})
+    $(".showInfoFriend .dropdown .dropbtn").on("click", (function () {
+        $(this).next().toggle();
+    }));
 
 });
 

@@ -184,6 +184,8 @@ body {
 
 .people-list img {
     float: left;
+	width: 55px;
+	height: 55px;
 }
 
 .people-list .about {
@@ -250,6 +252,8 @@ body {
     .chat .chat-header img {
         float: left;
         border-radius: 50%;
+		width: 55px;
+		height: 55px;
     }
 
     .chat .chat-header .chat-about {

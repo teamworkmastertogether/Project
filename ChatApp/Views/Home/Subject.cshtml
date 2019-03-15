@@ -25,16 +25,13 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#">@ViewBag.name</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Giới Thiệu</a></li>
                 <li>
                     <a href="#">Nội quy</a>
-                </li>
-                <li>
-                    <a href="#">
-                        Bảo Mật
-                        <i class="material-icons clearfix sercurity">&#xe32a;</i>
-                    </a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -70,12 +67,12 @@
                                 </li>
                                 <li>
 
-                                    <i class="material-icons">ondemand_video</i>
-                                    <a href="#">Live Video</a>
+                                    <i class="fa fa-tags"></i>
+                                    <a href="#">Tag Friend</a>
                                 </li>
                                 <li class="life">
-                                    <i class="glyphicon glyphicon-flag"></i>
-                                    <a href="#">Life Event</a>
+                                    <i class="far fa-smile-beam"></i>
+                                    <a href="#">Feeling/Active</a>
                                 </li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
@@ -83,28 +80,12 @@
                 </nav>
             </div>
             <div class="box clearfix">
-                <div class="photo-box ">
-                    <img class="_bth img" src="~/Content/SignIn/images/naruto.jpg" height="40" width="40">
-                </div>
                 <div class="textbox">
-                    What's on your mind?
+                    <textarea class="think" placeholder="Nhập vào đây dể đăng bài viết..."></textarea>
                 </div>
                 <hr>
                 <div class="bot">
-                    <ul>
-                        <li>
-                            <i class="fa fa-photo"><span>Photo/Video</span></i>
-
-                        </li>
-                        <li>
-                            <i class="fa fa-tags"><span>Tag Friends</span></i>
-
-                        </li>
-                        <li>
-                            <i class="far fa-smile-beam"><span>Feeling/Active</span></i>
-
-                        </li>
-                    </ul>
+                    <button class="btn btn-primary">Chia sẻ</button>
                 </div>
             </div>
         </div>
@@ -251,7 +232,7 @@
             </div>
         </div>
     </div>
-    
+
 
 
 </div>

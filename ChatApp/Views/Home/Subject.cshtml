@@ -11,6 +11,7 @@
         <img src="@Url.Content(@ViewBag.Photo)" />
     </div>
 </div>
+<!-- Thanh công cụ -->
 <nav class="navbar navbar-default fbTimeline" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,23 +26,21 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#">@ViewBag.name</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Giới Thiệu</a></li>
                 <li>
                     <a href="#">Nội quy</a>
-                </li>
-                <li>
-                    <a href="#">
-                        Bảo Mật
-                        <i class="material-icons clearfix sercurity">&#xe32a;</i>
-                    </a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div>
 </nav>
 
-<div class="row post-space">
+<!-- Đăng bài viết -->
+<div class="row">
     <div class="col-md-8">
         <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 rig">
             <div class="tool">
@@ -70,12 +69,12 @@
                                 </li>
                                 <li>
 
-                                    <i class="material-icons">ondemand_video</i>
-                                    <a href="#">Live Video</a>
+                                    <i class="fa fa-tags"></i>
+                                    <a href="#">Tag Friend</a>
                                 </li>
                                 <li class="life">
-                                    <i class="glyphicon glyphicon-flag"></i>
-                                    <a href="#">Life Event</a>
+                                    <i class="far fa-smile-beam"></i>
+                                    <a href="#">Feeling/Active</a>
                                 </li>
                             </ul>
                         </div><!-- /.navbar-collapse -->
@@ -83,28 +82,13 @@
                 </nav>
             </div>
             <div class="box clearfix">
-                <div class="photo-box ">
-                    <img class="_bth img" src="~/Content/SignIn/images/naruto.jpg" height="40" width="40">
-                </div>
                 <div class="textbox">
-                    What's on your mind?
+                    <textarea class="think" placeholder="Nhập vào đây để đăng bài viết..."></textarea>
                 </div>
                 <hr>
                 <div class="bot">
-                    <ul>
-                        <li>
-                            <i class="fa fa-photo"><span>Photo/Video</span></i>
-
-                        </li>
-                        <li>
-                            <i class="fa fa-tags"><span>Tag Friends</span></i>
-
-                        </li>
-                        <li>
-                            <i class="far fa-smile-beam"><span>Feeling/Active</span></i>
-
-                        </li>
-                    </ul>
+                    <button id="chiase" class="btn btn-primary">Chia sẻ</button>
+                    <button id="huy" class="btn btn-danger" style="display:none;">Hủy</button>
                 </div>
             </div>
         </div>
@@ -122,11 +106,11 @@
                                     <div class="time-post">23h30 - 30/12/2019</div>
                                 </div>
                                 <div class="option-seting col-md-2">
-                                    <span class="glyphicon glyphicon-cog setting"></span>
+                                    <span class="glyphicon glyphicon-cog" id="setting"></span>
                                     <ul class="setting-menu list-unstyled">
-                                        <li class="setting-menu_list-item edit-post"><a href="javascript:void(0)">Sửa bài viết</a></li>
-                                        <li class="setting-menu_list-item delete-post"><a href="javascript:void(0)">Xóa bài viết</a></li>
-                                        <li class="setting-menu_list-item report-post"><a href="javascript:void(0)">Báo cáo bài viết</a></li>
+                                        <li class="setting-menu_list-item" id="edit-post"><a href="javascript:void(0)">Sửa bài viết</a></li>
+                                        <li class="setting-menu_list-item" id="delete-post"><a href="javascript:void(0)">Xóa bài viết</a></li>
+                                        <li class="setting-menu_list-item" id="report-post"><a href="javascript:void(0)">Báo cáo bài viết</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -140,10 +124,10 @@
                             praesentium,
                             ducimus cumque vitae incidunt natus.
                         </p>
-                        <textarea type="text" name="name" value="" class="edit-contentpost"></textarea>
+                        <textarea type="text" name="name" value="" id="edit-contentpost"></textarea>
                         <div class="row edit-post-btn">
-                            <button class="btn btn-success save-edited-post">Lưu</button>
-                            <button class="btn btn-danger cancel-edited-post">Hủy</button>
+                            <button id="save-edited-post" class="btn btn-success">Lưu</button>
+                            <button id="cancel-edited-post" class="btn btn-danger">Hủy</button>
                         </div>
 
                     </div>
@@ -151,18 +135,18 @@
 
                         <div class="option-like">
 
-                            <div class="like col-md-4 like-post">
+                            <div class="like col-md-4" id="like-post">
                                 <a href="javascript:void(0)" class="button"><span class="glyphicon glyphicon-thumbs-up"></span>Thích</a>
                             </div>
-                            <div class="comment col-md-8 numberOfLikes">
+                            <div class="comment col-md-8" id="numberOfLikes">
                                 <a href="javascript:void(0)" class="button"><span class="countLike_post"> 0 </span> người thích</a>
                             </div>
-                            <div class="save col-md-4 save-post">
+                            <div class="save col-md-4" id="save-post">
                                 <a href="javascript:void(0)" class="button"><span class="glyphicon glyphicon-save"></span> Lưu</a>
                             </div>
                         </div>
                     </div>
-                    <div class="show-comment btnShowComment">
+                    <div class="show-comment" id="btnShowComment">
                         <a href="javascript:void(0)">
                             <span>Xem thêm bình luận</span>
                             <span><i class="fas fa-angle-down"></i></span>
@@ -174,276 +158,12 @@
                     <div class="comment-post-wrapper">
 
                     </div>
-                    <div class="demo" style="display: none">
-                        <div class="comment-level" style="padding-bottom: 10px">
-                            <div class="row">
-                                <div class="col-md-1 img-comment" style="display: inline-block">
-                                    <img src="~/Content/SignIn/images/bacho.png" />
-                                </div>
-
-                                <div class="comment-content">
-                                    <div class="comment-content_wrapper">
-                                        <a href="javascript:void(0)" class="name-comment"></a>
-                                        <span>
-                                            xin chào các bạn, các bạn đang làm gì đó
-                                        </span>
-                                        <textarea type="text" name="name" value="" class="edit-clone"></textarea>
-                                    </div>
-                                    <div class="comment-content_setting">
-                                        <span class="glyphicon glyphicon-option-horizontal setting-comment"></span>
-                                        <ul class="setting-comment_list list-unstyled">
-                                            <li class="setting-comment_list-item edit-comment"><a href="javascript:void(0)" class="button">Sửa</a></li>
-                                            <li class="setting-comment_list-item delete-comment"><a href="javascript:void(0)" class="button">Xóa</a></li>
-                                        </ul>
-                                    </div>
-                                    <br />
-                                    <div class="reply-button" style="margin-left: -7px; font-size: 9pt; margin-top: 2px">
-                                        <div class="col-md-1 btnLikeComment" style="padding-right: 30px">
-                                            <a href="javascript:void(0)" class="button"><span>Thích</span></a>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <a class="btnReply" href="javascript:void(0)">Reply</a>
-                                        </div>
-                                        <div style="margin-left: 100px; display:none">
-                                            <a class="countLikeComment" href="javascript:void(0)"><span class="countLike_comment"> 0 </span> lượt thích</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="comment-wrapper2">
-
-                            </div>
-                            <div class="demo2" style="display: none">
-                                <div class="comment-level2" style="padding-left: 45px">
-                                    <div class="row">
-                                        <div class="col-md-1" style="display:inline-block;margin-top:12px;">
-                                            <img src="~/Content/SignIn/images/bacho.png" />
-                                        </div>
-                                        <div class="reply-content">
-                                            <div class="reply-content-wrapper">
-                                                <a href="javascript:void(0)" class="name-reply"></a>
-                                                <span>
-                                                    xin chào các bạn, các bạn đang làm gì đó
-                                                </span>
-                                                <textarea type="text" name="name" value="" class="edit-clone"></textarea>
-                                            </div>
-                                            <div class="reply-content_setting">
-                                                <span class="glyphicon glyphicon-option-horizontal setting-reply"></span>
-                                                <ul class="setting-reply_list list-unstyled">
-                                                    <li class="setting-reply_list-item edit-reply"><a href="javascript:void(0)">Sửa</a></li>
-                                                    <li class="setting-reply_list-item delete-reply"><a href="javascript:void(0)">Xóa</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="subcomment-button">
-                                            <div class="col-md-1 btnLikeReply" style="padding-right: 30px">
-                                                <a href="javascript:void(0)" class="button">Thích</a>
-                                            </div>
-                                            <div class="col-md-8" style="display:none">
-                                                <a class="countLikeReply" href="javascript:void(0)"><span class="countLike_reply"> 0 </span> lượt thích</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="textbox-reply row">
-                                <div class="reply-img col-md-1" style="padding-top: 8px">
-                                    <img src="~/Content/SignIn/images/bacho.png" style="width: 25px" />
-                                </div>
-                                <div class="reply-box col-md-9" style="margin-left: 20px">
-                                    <input class="inputReply" type="text" placeholder="Viết phản hồi....">
-                                    <div class="pick-emoji-reply">
-                                        😊
-                                    </div>
-                                    <div class="list-icon-reply" style="display:none;">
-                                        @Html.Partial("_IconPartialView")
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="row textbox-comment">
                         <div class="comment-img col-md-2">
                             <img src="~/Content/SignIn/images/bacho.png" style="width:50px;height:50px" />
                         </div>
                         <div class="comment-box col-md-9">
-                            <input class="inputComment" type="text" placeholder="Viết bình luận....">
-                            <div class="pick-emoji">
-                                😊
-                            </div>
-                            <div class="list-icon-comment" style="display:none;">
-                                @Html.Partial("_IconPartialView")
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="post" style="margin-top: 15px">
-                <div class="content-post">
-                    <div class="header-post">
-                        <div class="avatar-post" style="padding-left: 5px">
-                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="">
-                        </div>
-                        <div class="infor col-md-11">
-                            <div class="row">
-                                <div class="name-user col-md-9">
-                                    <a href="javascript:void(0)" class="username_post">Nguyễn Tiến Xuân</a>
-                                    <div class="time-post">23h30 - 30/12/2019</div>
-                                </div>
-                                <div class="option-seting col-md-2">
-                                    <span class="glyphicon glyphicon-cog setting"></span>
-                                    <ul class="setting-menu list-unstyled">
-                                        <li class="setting-menu_list-item edit-post"><a href="javascript:void(0)">Sửa bài viết</a></li>
-                                        <li class="setting-menu_list-item delete-post"><a href="javascript:void(0)">Xóa bài viết</a></li>
-                                        <li class="setting-menu_list-item report-post"><a href="javascript:void(0)">Báo cáo bài viết</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-post">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, a nemo asperiores dolorum
-                            ipsam
-                            officiis saepe blanditiis repudiandae sint. Sapiente tempora nulla maiores quod
-                            praesentium,
-                            ducimus cumque vitae incidunt natus.
-                        </p>
-                        <textarea type="text" name="name" value="" class="edit-contentpost"></textarea>
-                        <div class="row edit-post-btn">
-                            <button class="btn btn-success save-edited-post">Lưu</button>
-                            <button class="btn btn-danger cancel-edited-post">Hủy</button>
-                        </div>
-
-                    </div>
-                    <div class="footer-post" style="background:#eef7f1">
-
-                        <div class="option-like">
-
-                            <div class="like col-md-4 like-post">
-                                <a href="javascript:void(0)" class="button"><span class="glyphicon glyphicon-thumbs-up"></span>Thích</a>
-                            </div>
-                            <div class="comment col-md-8 numberOfLikes">
-                                <a href="javascript:void(0)" class="button"><span class="countLike_post"> 0 </span> người thích</a>
-                            </div>
-                            <div class="save col-md-4 save-post">
-                                <a href="javascript:void(0)" class="button"><span class="glyphicon glyphicon-save"></span> Lưu</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="show-comment btnShowComment">
-                        <a href="javascript:void(0)">
-                            <span>Xem thêm bình luận</span>
-                            <span><i class="fas fa-angle-down"></i></span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="comment-post">
-                    <div class="comment-post-wrapper">
-
-                    </div>
-                    <div class="demo" style="display: none">
-                        <div class="comment-level" style="padding-bottom: 10px">
-                            <div class="row">
-                                <div class="col-md-1 img-comment" style="display: inline-block">
-                                    <img src="~/Content/SignIn/images/bacho.png" />
-                                </div>
-
-                                <div class="comment-content">
-                                    <div class="comment-content_wrapper">
-                                        <a href="javascript:void(0)" class="name-comment"></a>
-                                        <span>
-                                            xin chào các bạn, các bạn đang làm gì đó
-                                        </span>
-                                        <textarea type="text" name="name" value="" class="edit-clone"></textarea>
-                                    </div>
-                                    <div class="comment-content_setting">
-                                        <span class="glyphicon glyphicon-option-horizontal setting-comment"></span>
-                                        <ul class="setting-comment_list list-unstyled">
-                                            <li class="setting-comment_list-item edit-comment"><a href="javascript:void(0)">Sửa</a></li>
-                                            <li class="setting-comment_list-item delete-comment"><a href="javascript:void(0)">Xóa</a></li>
-                                        </ul>
-                                    </div>
-                                    <br />
-                                    <div class="reply-button" style="margin-left: -7px; font-size: 9pt; margin-top: 2px">
-                                        <div class="col-md-1 btnLikeComment" style="padding-right: 30px">
-                                            <a href="javascript:void(0)" class="button"><span>Thích</span></a>
-                                        </div>
-                                        <div class="col-md-1">
-                                            <a class="btnReply" href="javascript:void(0)">Reply</a>
-                                        </div>
-                                        <div style="margin-left: 100px; display:none">
-                                            <a class="countLikeComment" href="javascript:void(0)"><span class="countLike_comment"> 0 </span> lượt thích</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="comment-wrapper2">
-
-                            </div>
-                            <div class="demo2" style="display: none">
-                                <div class="comment-level2" style="padding-left: 45px">
-                                    <div class="row">
-                                        <div class="col-md-1" style="display:inline-block;margin-top:12px;">
-                                            <img src="~/Content/SignIn/images/bacho.png" />
-                                        </div>
-                                        <div class="reply-content">
-                                            <div class="reply-content-wrapper">
-                                                <a href="javascript:void(0)" class="name-reply"></a>
-                                                <span>
-                                                    xin chào các bạn, các bạn đang làm gì đó
-                                                </span>
-                                                <textarea type="text" name="name" value="" class="edit-clone"></textarea>
-                                            </div>
-                                            <div class="reply-content_setting">
-                                                <span class="glyphicon glyphicon-option-horizontal setting-reply"></span>
-                                                <ul class="setting-reply_list list-unstyled">
-                                                    <li class="setting-reply_list-item edit-reply"><a href="javascript:void(0)">Sửa</a></li>
-                                                    <li class="setting-reply_list-item delete-reply"><a href="javascript:void(0)">Xóa</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="subcomment-button">
-                                            <div class="col-md-1 btnLikeReply" style="padding-right: 30px">
-                                                <a href="javascript:void(0)" class="button">Thích</a>
-                                            </div>
-                                            <div class="col-md-8" style="display:none">
-                                                <a class="countLikeReply" href="javascript:void(0)"><span class="countLike_reply"> 0 </span> lượt thích</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="textbox-reply row">
-                                <div class="reply-img col-md-1" style="padding-top: 8px">
-                                    <img src="~/Content/SignIn/images/bacho.png" style="width: 25px" />
-                                </div>
-                                <div class="reply-box col-md-9" style="margin-left: 20px">
-                                    <input class="inputReply" type="text" placeholder="Viết phản hồi....">
-                                    <div class="pick-emoji-reply">
-                                        😊
-                                    </div>
-                                    <div class="list-icon-reply" style="display:none;">
-                                        @Html.Partial("_IconPartialView")
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row textbox-comment">
-                        <div class="comment-img col-md-2">
-                            <img src="~/Content/SignIn/images/bacho.png" style="width:50px;height:50px" />
-                        </div>
-                        <div class="comment-box col-md-9">
-                            <input class="inputComment" type="text" placeholder="Viết bình luận....">
+                            <input id="inputComment" type="text" placeholder="Viết bình luận....">
                             <div class="pick-emoji">
                                 😊
                             </div>
@@ -515,8 +235,108 @@
             </div>
         </div>
     </div>
+
+
+
 </div>
 
+<!-- Comment -->
+<div id="demo" style="display: none">
+    <div class="comment-level" style="padding-bottom: 10px">
+        <div class="row">
+            <div class="col-md-1" style="display: inline-block">
+                <img src="~/Content/SignIn/images/bacho.png" />
+            </div>
+
+            <div class="comment-content">
+                <div class="comment-content_wrapper">
+                    <a href="javascript:void(0)" class="name-reply">Nguyễn Tiến Xuân</a>
+                    <span>
+                        xin chào các bạn, các bạn đang làm gì đó
+                    </span>
+                    <textarea type="text" name="name" value="" id="edit-clone"></textarea>
+                </div>
+                <div class="comment-content_setting">
+                    <span class="glyphicon glyphicon-option-horizontal" id="setting-comment"></span>
+                    <ul class="setting-comment_list list-unstyled">
+                        <li class="setting-comment_list-item" id="edit-comment"><a href="javascript:void(0)">Sửa</a></li>
+                        <li class="setting-comment_list-item" id="delete-comment"><a href="javascript:void(0)">Xóa</a></li>
+                    </ul>
+                </div>
+                <br />
+                <div class="reply-button" style="margin-left: -7px; font-size: 9pt; margin-top: 2px">
+                    <div class="col-md-1" style="padding-right: 30px" id="btnLikeComment">
+                        <a href="javascript:void(0)" class="button"><span>Thích</span></a>
+                    </div>
+                    <div class="col-md-1">
+                        <a id="btnReply" href="javascript:void(0)">Reply</a>
+                    </div>
+                    <div style="margin-left: 100px; display:none">
+                        <a id="countLikeComment" href="javascript:void(0)"><span class="countLike_comment"> 0 </span> lượt thích</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="comment-wrapper2">
+
+        </div>
+        <div class="textbox-reply row">
+            <div class="reply-img col-md-1" style="padding-top: 8px">
+                <img src="~/Content/SignIn/images/bacho.png" />
+            </div>
+            <div class="reply-box col-md-9" style="margin-left: 20px">
+                <input id="inputReply" type="text" placeholder="Viết phản hồi....">
+                <div class="pick-emoji-reply">
+                    😊
+                </div>
+                <div class="list-icon-reply" style="display:none;">
+                    @Html.Partial("_IconPartialView")
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Comment2 -->
+<div id="demo2" style="display: none">
+    <div class="comment-level2" style="padding-left: 45px">
+        <div class="row">
+            <div class="col-md-1" style="display:inline-block;margin-top:12px;">
+                <img src="~/Content/SignIn/images/bacho.png" />
+            </div>
+            <div class="reply-content">
+                <div class="reply-content-wrapper">
+                    <a href="javascript:void(0)" class="name-reply">Nguyễn Tiến Xuân</a>
+                    <span>
+                        xin chào các bạn, các bạn đang làm gì đó
+                    </span>
+                    <textarea type="text" name="name" value="" id="edit-clone"></textarea>
+                </div>
+                <div class="reply-content_setting">
+                    <span class="glyphicon glyphicon-option-horizontal" id="setting-reply"></span>
+                    <ul class="setting-reply_list list-unstyled">
+                        <li class="setting-reply_list-item" id="edit-reply"><a href="javascript:void(0)">Sửa</a></li>
+                        <li class="setting-reply_list-item" id="delete-reply"><a href="javascript:void(0)">Xóa</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="subcomment-button">
+                <div class="col-md-1" style="padding-right: 30px" id="btnLikeReply">
+                    <a href="javascript:void(0)" class="button">Thích</a>
+                </div>
+                <div class="col-md-8" style="display:none">
+                    <a id="countLikeReply" href="javascript:void(0)"><span class="countLike_reply"> 0 </span> lượt thích</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
 <div class="new-modal" style="display:none">
     <div class="modal-dialog modal-sm modal-confirm">
         <div class="modal-content">

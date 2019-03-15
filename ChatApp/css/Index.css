@@ -53,9 +53,9 @@ input.form-control {
 }
 
     .btn.btn-primary.add-friend:hover {
-        transition: all .3s ease-in-out;
+        transition: all .2s ease-in-out;
         transform: scale(1.1);
-        box-shadow: 1px 1px 10px white;
+        box-shadow: 1px 1px 10px red;
     }
 
 .row.infor {
@@ -64,7 +64,15 @@ input.form-control {
 
 .btn.btn-danger.delete-suggest {
     margin-bottom: 5px;
+    background-color: #ef4242;
+    border-color: #0000ff3d;
 }
+
+    .btn.btn-danger.delete-suggest:hover {
+        transition: all .2s ease-in-out;
+        transform: scale(1.1);
+        box-shadow: 1px 1px 10px blue;
+    }
 
 h4.headSuggest {
     color: blue;
@@ -92,11 +100,12 @@ h4.headSuggest {
 }
 
     .row.suggest-friend h5 {
-        font-size: 15px;
-        font-family: initial;
+        font-size: 1.3em;
+        font-family: monospace;
         text-align: center;
         cursor: pointer;
         color: #000000b5;
+        margin-bottom: 5%;
     }
 
         .row.suggest-friend h5:hover {

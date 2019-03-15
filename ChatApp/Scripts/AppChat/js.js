@@ -46,6 +46,9 @@
     //$("#submited").click(function () {
     //    $(".modal").hide();
     //});
+    $(".think").click(function () {
+        $(".bot #huy").show();
+    })
 
 });
 

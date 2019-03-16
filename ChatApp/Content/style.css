@@ -5,6 +5,31 @@
     -moz-box-sizing: border-box; /* Firefox, other Gecko */
     box-sizing: border-box;
 }
+.edit-background {
+    background: #00000082;
+    border: 1px solid #999;
+    padding: 6px;
+    transition: 0.4s;
+    border-radius: 1px;
+}
+.background .update-background {
+    position: absolute;
+    z-index: 999;
+    top: 10%;
+    left: 6%;
+}
+
+.update-background i {
+    color: #ccc;
+    font-size: 20px;
+}
+
+.update-background span {
+    color: #ccc;
+    padding-left: 10px;
+    font-family: sans-serif;
+    font-size: medium;
+}
 
 .showInfoFriend {
     margin-left: 5%;
@@ -4130,7 +4155,12 @@ i.fas.fa-list-ul {
     box-shadow: 1px 1px 20px;
     margin-top: 3px;
     border-radius: 15px;
+    position: relative;
 }
+
+    .background:hover {
+        cursor: pointer;
+    }
 
     .background img {
         width: 100%;

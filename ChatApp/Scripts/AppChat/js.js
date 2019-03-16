@@ -63,7 +63,10 @@
     $(".showInfoFriend .dropdown .dropbtn").on("click", (function () {
         $(this).next().toggle();
     }));
-
+    $(".background").hover(function () {
+        $(".update-background span").toggle();
+        $(".update-background").toggleClass('edit-background');
+    })
 });
 
 

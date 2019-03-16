@@ -18,7 +18,7 @@ namespace ChatApp.Controllers
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
             ViewBag.Img = user.Avatar;
             ViewBag.Bg = user.PicUrl;
-            return View(GetFriendSuggest());
+            return View();
         }
 
         [HttpGet]
@@ -121,7 +121,6 @@ namespace ChatApp.Controllers
                 var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
                 string fileName = Path.GetFileNameWithoutExtension(UploadImage.FileName);
                 string extension = Path.GetExtension(UploadImage.FileName);
-                // fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
                 fileName = fileName + extension;
                 UploadImage.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images"), fileName));
 

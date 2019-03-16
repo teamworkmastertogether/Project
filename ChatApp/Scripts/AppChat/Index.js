@@ -106,7 +106,6 @@ $(function () {
     load();
 
     $('.three-dot span').click(function () {
-        // body...
         $('.timeline-setting').toggleClass('show1');
         $('.arrow-up').toggleClass('show2');
     });
@@ -122,10 +121,10 @@ $(function () {
         "moreText": "Xem thêm...",
         "lessText": "Rút gọn"
     });
-    count = 1
+    count = 1;
     $("#edit-info").click(function () {
         count++;
-        if (count % 2 == 0) {
+        if (count % 2 === 0) {
             $(".edit-user").css("display", "block", "transition", "1s");
             $(".info-user").css("display", "none", "transition", "1s");
         }
@@ -149,19 +148,19 @@ $(function () {
     //đổi nút chọn file sang buttion avatar
     $("#selectFile").click(function () {
         $("#UploadImage").trigger('click');
-    })
+    });
     //đổi nút chọn file sang buttion background
     $("#selectFileBg").click(function () {
         $("#UploadBg").trigger('click');
-    })
+    });
 
 
     $(".think").click(function () {
         $(".bot #huy").show();
-    })
+    });
     $("#gioithieu").click(function () {
         $(".modalGioiThieu").show();
-    })
+    });
     $(".showInfoFriend .dropdown .dropbtn").click(function () {
         $(this).next().toggle();
     });
@@ -407,7 +406,7 @@ function Update() {
     var object = {
         UserName: MyUserName,
         Password: $('#PassWord').val(),
-        Name: $('#Name').val(),
+        Name: $('#Name').val()
     };
     
     $.ajax({

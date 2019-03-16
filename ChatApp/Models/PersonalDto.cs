@@ -13,8 +13,5 @@ namespace ChatApp.Models
         public string PassWord { get; set; }
         public string Avatar { get; set; }
         public string PicUrl { get; set; }
-
-        public HttpPostedFileBase UploadImg { get; set; }
-        public HttpPostedFileBase UploadBg { get; set; }
     }
 }

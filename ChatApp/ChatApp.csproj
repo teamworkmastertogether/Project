@@ -279,12 +279,6 @@
     <Content Include="Views\Home\Subject.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\_IconPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -4,16 +4,16 @@
 }
 <!-- Main -->
 <div class="main">
-    <div class="background">
-        <img src="~/AppFile/Images/coverphoto.jpg" />
+    <div class="background" data-toggle="modal" data-target="#myModal">
+        <img src="@Url.Content(@ViewBag.Bg)" />
         <div class="update-background">
             <i class="fa fa-camera"></i>
             <span style="display:none;">Cập nhật ảnh bìa</span>
         </div>
     </div>
-    <div class="avatar">
-        <div class="img-responsive" data-toggle="modal" data-target="#myModal">
-            <img src="@ViewBag.Img" />
+    <div class="avatar" data-toggle="modal" data-target="#myModal">
+        <div class="img-responsive">
+            <img src="@Url.Content(@ViewBag.Img)" />
             <div class="update-img">
                 <i class="fa fa-camera"></i>
                 <p>Cập nhật</p>
@@ -34,7 +34,7 @@
         </div>
     </div>
 </div>
-<!-- Modal chỉnh sửa ảnh trang cái nhân -->
+
 <div class="modal fade" id="myModal">
     <div class="modal-dialog mod">
         <div class="modal-content">
@@ -48,10 +48,10 @@
             <!-- Modal body -->
             <div class="modal-body">
                 <form id="FormAvatar" method="post" enctype="multipart/form-data" onsubmit="return UploadAvatar(this)" runat="server">
-                    <img id="blah" src="@ViewBag.Img" />
+                    <img id="blah" src="" />
                     <input type="file" id="UploadImage" accept="image/gif, image/jpeg, image/png" name="UploadImage" class="form-control" style="display:none" ; /><br />
                     <a href="#" id="selectFile" class="btn btn-primary">Chọn ảnh</a>
-                    <button class="btn btn-danger" id="upImg" style="display:none;">Lưu chỉnh sửa</button>
+                    <button class="btn btn-danger" id="upImg" style="display:none;" >Lưu chỉnh sửa</button>
                 </form>
             </div>
 
@@ -63,6 +63,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Thanh menu trang cá nhân -->
 <nav class="navbar navbar-default fbTimeline" role="navigation">

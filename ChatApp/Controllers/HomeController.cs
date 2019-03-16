@@ -17,6 +17,7 @@ namespace ChatApp.Controllers
             var userName = Session["userName"] as string;
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
             ViewBag.Img = user.Avatar;
+            ViewBag.Bg = user.PicUrl;
             return View(GetFriendSuggest());
         }
 
@@ -76,7 +77,7 @@ namespace ChatApp.Controllers
             .ListFriends.First().MemberOfListFriends.Select(s => s.User.UserName).ToList();
             Random rnd = new Random();
             //int from = rnd.Next(1, 100);
-            int from = 1;
+            //int from = 1;
             List<InforFriendDto> listUser = db.Users.Where(s => !listUserName1.Contains(s.UserName) && !s.UserName.Equals(userName))
            .Select(s => new InforFriendDto { UserName = s.UserName, Avatar = s.Avatar, Name = s.Name }).Take(4).ToList();
             return listUser;
@@ -110,16 +111,8 @@ namespace ChatApp.Controllers
             
             return Json(personDto, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult GetImg()
-        {
-            var userName = Session["userName"] as string;
-            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
-            PersonalDto personalDto = new PersonalDto();
-            personalDto.Avatar = user.Avatar;
-            return Json(personalDto, JsonRequestBehavior.AllowGet);
-        }
         [HttpPost]
-        public ActionResult UploadAvatar(HttpPostedFileBase UploadImage)
+        public ActionResult UploadAvatar(int id,HttpPostedFileBase UploadImage)
 
         {
             if(UploadImage!=null)
@@ -131,14 +124,25 @@ namespace ChatApp.Controllers
                 // fileName = fileName + DateTime.Now.ToString("yymmssff") + extension;
                 fileName = fileName + extension;
                 UploadImage.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images"), fileName));
-                user.Avatar = "http://localhost:54576/AppFile/Images/" + fileName;
+
+                if (id == 1)
+                {
+                    user.Avatar = "http://localhost:54576/AppFile/Images/" + fileName;
+                }
+                else
+                {
+                    user.PicUrl = "http://localhost:54576/AppFile/Images/" + fileName;
+                }
                 db.SaveChanges();
-                var userDto = new PersonalDto { Avatar = user.Avatar };
+                var userDto = new PersonalDto { Avatar = user.Avatar, PicUrl = user.PicUrl };
                 return Json(userDto, JsonRequestBehavior.AllowGet);
             }
 
             return Json("Vui lòng chọn ảnh thích hợp !", JsonRequestBehavior.AllowGet);
         }
+
+
+
         [HttpPost]
         public JsonResult SaveData(PersonalDto personalDto)
         {
@@ -163,6 +167,6 @@ namespace ChatApp.Controllers
 
             return View();
         }
-        
+       
     }
 }

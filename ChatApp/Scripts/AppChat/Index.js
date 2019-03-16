@@ -2,6 +2,7 @@
 var QuantityMessage = -1;
 var QuantityMessageNew = 0;
 var checkOpenBoxMess = false;
+var checkAvarta = true;
 $(function () {
     hub.client.setStatus = function (LstAllConnections) {
         $(".status").html("<i class='fa fa-circle offline'></i> offline");
@@ -9,7 +10,7 @@ $(function () {
             $("[id=" + LstAllConnections[key] + "]").html("<i class='fa fa-circle online'></i> online");
         }
     };
-
+    
     hub.client.changeStatusSendRequest = function (suggestUser, check) {
         if (check) {
             $("[id=" + suggestUser + "]").parent().find(".add-friend").text("Đã gửi lời mời");
@@ -103,6 +104,91 @@ $(function () {
         });
     });
     load();
+
+    $('.three-dot span').click(function () {
+        // body...
+        $('.timeline-setting').toggleClass('show1');
+        $('.arrow-up').toggleClass('show2');
+    });
+    notify = false;
+    $('.icon-notify').off().click(function () {
+        $('#notifi').toggle(150);
+    });
+    $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
+        $('#notifi').hide();
+    });
+    $(".textNoti p").shorten({
+        "showChars": 120,
+        "moreText": "Xem thêm...",
+        "lessText": "Rút gọn"
+    });
+    count = 1
+    $("#edit-info").click(function () {
+        count++;
+        if (count % 2 == 0) {
+            $(".edit-user").css("display", "block", "transition", "1s");
+            $(".info-user").css("display", "none", "transition", "1s");
+        }
+        else {
+            $(".edit-user").css("display", "none", "transition", "1s");
+            $(".info-user").css("display", "block", "transition", "1s");
+        }
+    });
+    $(".avatar .img-responsive").mouseover(function () {
+        $(this).css("cursor", "pointer");
+        $(".update-img").addClass(function () {
+            $(this).css("display", "block", "cursor", "pointer");
+        });
+    });
+    $(".avatar .img-responsive").mouseout(function () {
+        $(this).css("cursor", "pointer");
+        $(".update-img").addClass(function () {
+            $(this).css("display", "none", "cursor", "pointer");
+        });
+    });
+    //đổi nút chọn file sang buttion avatar
+    $("#selectFile").click(function () {
+        $("#UploadImage").trigger('click');
+    })
+    //đổi nút chọn file sang buttion background
+    $("#selectFileBg").click(function () {
+        $("#UploadBg").trigger('click');
+    })
+
+
+    $(".think").click(function () {
+        $(".bot #huy").show();
+    })
+    $("#gioithieu").click(function () {
+        $(".modalGioiThieu").show();
+    })
+    $(".showInfoFriend .dropdown .dropbtn").click(function () {
+        $(this).next().toggle();
+    });
+    $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
+        $('.showInfoFriend .dropdown .dropbtn').next().hide();
+    });
+    $(".background").hover(function () {
+        $(".update-background span").toggle();
+        $(".update-background").toggleClass('edit-background');
+    });
+  
+    $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
+        $(".update-background span").hide();
+        $(".update-background").removeClass('edit-background');
+    });
+
+
+    $(".background,.avatar").click(function () {
+        src = $(this).find("img").attr("src");
+        $("#FormAvatar img").attr("src", src);
+        if ($(this).hasClass("avatar")) {
+            checkAvarta = true;
+        } else {
+            checkAvarta = false;
+        }
+    });
+
 });
 
 function OpenChatBox(item) {
@@ -340,13 +426,19 @@ function Update() {
 }
 
 function UploadAvatar(formData) {
-    
+    url = "";
+    if (checkAvarta) {
+        url = "/Home/UploadAvatar?id=1";
+    } else {
+        url = "/Home/UploadAvatar?id=2";
+    }
     var ajaxConfig = {
         type: "POST",
-        url: "/Home/UploadAvatar",
+        url: url,
         data: new FormData(formData),
         success: function (result) {
             $(".avatar .img-responsive img").attr("src", result.Avatar);
+            $(".background img").attr("src", result.PicUrl);
 
             $(".modal-backdrop").remove();
             $("#myModal #close").click();
@@ -360,6 +452,8 @@ function UploadAvatar(formData) {
     
     return false;
 }
+
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -374,20 +468,4 @@ function readURL(input) {
 
 $("#UploadImage").change(function () {
     readURL(this);
-});
-$("#close").click(function() {
-    $.ajax({
-        type: "GET",
-        url: "/Home/GetImg",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            $('#blah').attr('src', result.Avatar);
-            $("#upImg").hide();
-        },
-        error: function (message) {
-            alert(message.responseText);
-        }
-
-    });
 });

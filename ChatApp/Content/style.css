@@ -91,12 +91,14 @@
     position: absolute;
     top: 10%;
     left: 30%;
+    margin: 0;
 }
 
 #modalNoiQuy .modal-dialog {
     position: absolute;
     top: 10%;
     left: 30%;
+    margin: 0;
 }
 
 .ToolLeft.pull-left {
@@ -3710,6 +3712,11 @@ i.fa.fa-bell:hover {
     .icon.icon-notify {
         position: relative;
     }
+
+.menu-bar .icon:hover {
+    background: #6b6bff;
+    transition: 0.4s;
+}
 
 .MenuOption .menu-bar {
     display: flex;

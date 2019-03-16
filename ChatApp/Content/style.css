@@ -5,6 +5,7 @@
     -moz-box-sizing: border-box; /* Firefox, other Gecko */
     box-sizing: border-box;
 }
+
 .edit-background {
     background: #00000082;
     border: 1px solid #999;
@@ -12,6 +13,7 @@
     transition: 0.4s;
     border-radius: 1px;
 }
+
 .background .update-background {
     position: absolute;
     z-index: 999;
@@ -159,7 +161,6 @@ textarea.think {
     height: 10em;
     border: none;
     outline: none;
-
 }
 
 input#think {
@@ -1243,10 +1244,6 @@ a#edit-info {
     padding: 0;
 }
 
-.icon:hover {
-    transition: 0.4s;
-}
-
 .content-option .col-lg-12.col-md-12.col-sm-12.col-xs-12 {
     padding-top: 5%;
 }
@@ -1635,10 +1632,6 @@ i.fa.fa-bell:hover {
         position: relative;
     }
 
-    .icon:hover {
-        transition: 0.4s;
-        background-color: #5167cc;
-    }
 
 .MenuOption .menu-bar {
     display: flex;
@@ -2238,6 +2231,7 @@ textarea.think {
     height: 8em;
     border: none;
     outline: none;
+    color: black;
 }
 
 input#think {
@@ -2447,7 +2441,7 @@ img.img-responsive {
     border: 1px solid #00000024;
     /* border-top-left-radius: 35px; */
     /* border-top-right-radius: 35px; */
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     padding-bottom: 3%;
     box-shadow: 1px 1px 10px;
     position: relative;
@@ -3327,9 +3321,7 @@ a#edit-info {
     padding: 0;
 }
 
-.icon:hover {
-    transition: 0.4s;
-}
+
 
 .content-option .col-lg-12.col-md-12.col-sm-12.col-xs-12 {
     padding-top: 5%;
@@ -3717,11 +3709,6 @@ i.fa.fa-bell:hover {
 
     .icon.icon-notify {
         position: relative;
-    }
-
-    .icon:hover {
-        transition: 0.4s;
-        background-color: #5167cc;
     }
 
 .MenuOption .menu-bar {
@@ -4315,10 +4302,9 @@ i.fas.fa-list-ul {
 }
 
 .identify-icon {
-	position: absolute;
-	top: -15px;
-	left: -10px;
-	font-size: 19px;
-	color: #1c20c582;
+    position: absolute;
+    top: -15px;
+    left: -10px;
+    font-size: 19px;
+    color: #1c20c582;
 }
-

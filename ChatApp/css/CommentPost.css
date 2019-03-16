@@ -7,24 +7,24 @@ a.username_post, a.name-reply {
 }
 
 
-input#inputComment, input#inputReply {
+input.inputComment, input.inputReply {
     width: 90%;
     margin-left: 5px;
     height: 36px;
     display: inline-block;
 }
 
-.name-user, .name-reply {
+.name-user, .name-reply, .name-comment {
     font-weight: bold;
     color: #f703ed;
     padding-left: 20px;
 }
 
-.name-reply {
+.name-reply, .name-comment {
     padding-left: 0px;
 }
 
-    .username_post:hover, .name-reply:hover {
+    .username_post:hover, .name-reply:hover, .name-comment:hover {
         text-decoration: none;
         color: blue;
     }
@@ -82,7 +82,7 @@ span.glyphicon.glyphicon-thumbs-up {
         cursor: pointer;
     }
 
-    .like a:hover, .comment a:hover, .save a:hover, #btnLikeComment a:hover, #btnReply:hover, #countLikeComment {
+    .like a:hover, .comment a:hover, .save a:hover, .btnLikeComment a:hover, .btnReply:hover, .countLikeComment {
         text-decoration: none;
     }
 
@@ -134,12 +134,8 @@ span.glyphicon.glyphicon-thumbs-up {
     margin-top: 2px;
 }
 
-#inputComment, #inputReply, #inputEditComment {
+.inputComment, .inputReply {
     border: none;
-    outline: none;
-}
-
-#edit-clone {
     outline: none;
 }
 
@@ -193,7 +189,7 @@ span.icon {
     border-bottom: 1px solid;
 }
 
-    .setting-comment_list-item:hover, #setting-comment, .setting-reply_list-item:hover, #setting-reply {
+    .setting-comment_list-item:hover, .setting-comment, .setting-reply_list-item:hover, .setting-reply {
         cursor: pointer;
     }
 
@@ -314,7 +310,7 @@ span.icon {
     margin-bottom: 6%;
 }
 
-#edit-clone {
+.edit-clone {
     display: none;
     position: absolute;
     border-radius: 15px;
@@ -327,7 +323,7 @@ span.icon {
     overflow: hidden;
 }
 
-#edit-contentpost {
+.edit-contentpost {
     display: none;
     border-radius: 15px;
     padding: 5px;
@@ -341,12 +337,23 @@ span.icon {
     margin-top: 10px;
 }
 
-.btn#save-edited-post, .btn#cancel-edited-post {
+.btn.save-edited-post, .btn.cancel-edited-post {
     padding: 3px 6px;
 }
 
-.modal-confirm {
-    position: absolute;
-    left: 36%;
-    top: 40%;
+.confirm {
+	position: fixed;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999;
+	background: #80808087;
+	display: none;
+}
+
+.modal-dialog {
+	margin: 183px auto;
+	position:unset;
 }

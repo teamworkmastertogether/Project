@@ -4312,3 +4312,12 @@ i.fas.fa-list-ul {
 .showEdit {
     display: block;
 }
+
+.identify-icon {
+	position: absolute;
+	top: -15px;
+	left: -10px;
+	font-size: 19px;
+	color: #1c20c582;
+}
+

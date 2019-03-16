@@ -1,4 +1,5 @@
-﻿using ChatApp.Models;
+﻿using ChatApp.Models.Entities;
+using ChatApp.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -122,15 +123,15 @@ namespace ChatApp.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(UploadImage.FileName);
                 string extension = Path.GetExtension(UploadImage.FileName);
                 fileName = fileName + extension;
-                UploadImage.SaveAs(Path.Combine(Server.MapPath("~/AppFile/Images"), fileName));
+                UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Assets/ImagesUpload"), fileName));
 
                 if (id == 1)
                 {
-                    user.Avatar = "http://localhost:54576/AppFile/Images/" + fileName;
+                    user.Avatar = "http://localhost:54576/Assets/ImagesUpload/" + fileName;
                 }
                 else
                 {
-                    user.PicUrl = "http://localhost:54576/AppFile/Images/" + fileName;
+                    user.PicUrl = "http://localhost:54576/Assets/ImagesUpload/" + fileName;
                 }
                 db.SaveChanges();
                 var userDto = new PersonalDto { Avatar = user.Avatar, PicUrl = user.PicUrl };

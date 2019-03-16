@@ -1,4 +1,4 @@
-﻿using ChatApp.Models;
+﻿using ChatApp.Models.Entities;
 using Microsoft.AspNet.SignalR;
 using System;
 using System.Collections.Generic;

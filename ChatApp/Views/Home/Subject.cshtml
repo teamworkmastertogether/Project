@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutAppChat.cshtml";
 }
 
-<link href="~/css/CommentPost.css" rel="stylesheet" />
+@Styles.Render("~/comment/css")
 
 <div class="main">
     <div class="background">
@@ -131,12 +131,12 @@
             </div>
             <div class="box clearfix">
                 <div class="textbox">
-                    <textarea class="think" placeholder="Nhập vào đây để đăng bài viết..."  ></textarea>
+                    <textarea class="think" placeholder="Nhập vào đây để đăng bài viết..."></textarea>
                 </div>
                 <hr>
                 <div class="bot">
                     <button id="chiase" class="btn btn-primary">Đăng bài</button>
-                    
+
                 </div>
             </div>
         </div>
@@ -213,7 +213,7 @@
                         <div class="comment-level" style="padding-bottom: 10px">
                             <div class="row">
                                 <div class="col-md-1 img-comment" style="display: inline-block">
-                                    <img src="~/Content/SignIn/images/bacho.png" />
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" />
                                 </div>
 
                                 <div class="comment-content">
@@ -255,7 +255,7 @@
                                 <div class="comment-level2" style="padding-left: 45px">
                                     <div class="row">
                                         <div class="col-md-1" style="display:inline-block;margin-top:12px;">
-                                            <img src="~/Content/SignIn/images/bacho.png" />
+                                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" />
                                         </div>
                                         <div class="reply-content">
                                             <div class="reply-content-wrapper">
@@ -286,7 +286,7 @@
                             </div>
                             <div class="textbox-reply row">
                                 <div class="reply-img col-md-1" style="padding-top: 8px">
-                                    <img src="~/Content/SignIn/images/bacho.png" style="width: 25px" />
+                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" style="width: 25px" />
                                 </div>
                                 <div class="reply-box col-md-9" style="margin-left: 20px">
                                     <input class="inputReply" type="text" placeholder="Viết phản hồi....">
@@ -302,7 +302,7 @@
                     </div>
                     <div class="row textbox-comment">
                         <div class="comment-img col-md-2">
-                            <img src="~/Content/SignIn/images/bacho.png" style="width:50px;height:50px" />
+                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" style="width:50px;height:50px" />
                         </div>
                         <div class="comment-box col-md-9">
                             <input class="inputComment" type="text" placeholder="Viết bình luận....">
@@ -322,7 +322,7 @@
         <div class="content-listFriendSuggest">
             <div class="row suggest-friend">
                 <div class="col-sm-12">
-                    <img class="img-responvsive" src="~/Content/SignIn/images/bacho.png" alt="Alternate Text" />
+                    <img class="img-responvsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
                 </div>
                 <div class="col-sm-12">
                     <div class="row infor">
@@ -341,7 +341,7 @@
         <div class="content-listFriendSuggest">
             <div class="row suggest-friend">
                 <div class="col-sm-12">
-                    <img class="img-responvsive" src="~/Content/SignIn/images/bacho.png" alt="Alternate Text" />
+                    <img class="img-responvsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
                 </div>
                 <div class="col-sm-12">
                     <div class="row infor">
@@ -360,7 +360,7 @@
         <div class="content-listFriendSuggest">
             <div class="row suggest-friend">
                 <div class="col-sm-12">
-                    <img class="img-responvsive" src="~/Content/SignIn/images/bacho.png" alt="Alternate Text" />
+                    <img class="img-responvsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
                 </div>
                 <div class="col-sm-12">
                     <div class="row infor">
@@ -396,4 +396,7 @@
     </div>
 </div>
 
-<script src="~/Scripts/AppChat/CommentPost.js"></script>
+@section Scripts
+{
+    @Scripts.Render("~/comment/js")
+}

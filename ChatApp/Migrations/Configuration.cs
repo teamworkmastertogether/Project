@@ -5,14 +5,14 @@ namespace ChatApp.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ChatApp.Models.ChatDbcontext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ChatApp.Models.Entities.ChatDbcontext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ChatApp.Models.ChatDbcontext context)
+        protected override void Seed(ChatApp.Models.Entities.ChatDbcontext context)
         {
             //  This method will be called after migrating to the latest version.
 

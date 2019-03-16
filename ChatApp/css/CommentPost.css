@@ -12,8 +12,8 @@ input.inputComment, input.inputReply {
     margin-left: 5px;
     height: 36px;
     display: inline-block;
-	outline:none;
-	border:none;
+    outline: none;
+    border: none;
 }
 
 .name-user, .name-reply, .name-comment {
@@ -67,7 +67,7 @@ span.glyphicon.glyphicon-thumbs-up {
     border: 1px solid #0000002e;
     border-radius: 10px;
     box-shadow: 1px 1px 10px;
-	margin-bottom: 15px;
+    margin-bottom: 2em;
 }
 
 .like, .comment, .save {
@@ -105,6 +105,7 @@ span.glyphicon.glyphicon-thumbs-up {
 
 .content-post {
     margin: 10px;
+    word-break: break-all;
 }
 
 .header-post {
@@ -143,14 +144,14 @@ span.glyphicon.glyphicon-thumbs-up {
 }
 
 .list-icon-comment, .list-icon-reply, .list-icon-edit-comment, .list-icon-post {
-	overflow: auto;
-	width: 190px;
-	height: 130px;
-	position: absolute;
-	right: 0;
-	bottom: 100%;
-	background: #f5f7f6;
-	border: 1px solid #b9adab;
+    overflow: auto;
+    width: 190px;
+    height: 130px;
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    background: #f5f7f6;
+    border: 1px solid #b9adab;
 }
 
 span.icon {
@@ -245,12 +246,14 @@ span.icon {
     display: inline-block;
     margin-top: -6px;
     max-width: 370px;
+    word-break: break-all;
 }
 
 .reply-content-wrapper {
     display: inline-block;
     margin-top: -6px;
     max-width: 320px;
+    word-break: break-all;
 }
 
 .reply-button, .subcomment-button {
@@ -310,7 +313,7 @@ span.icon {
 
 .edit-clone {
     display: none;
-	outline:none;
+    outline: none;
     position: absolute;
     border-radius: 15px;
     padding: 5px;
@@ -328,7 +331,7 @@ span.icon {
     padding: 5px;
     width: 460px;
     height: 200px;
-	outline: none;
+    outline: none;
 }
 
 .edit-post-btn {
@@ -342,18 +345,18 @@ span.icon {
 }
 
 .confirm {
-	position: fixed;
-	margin: auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 9999;
-	background: #80808087;
-	display: none;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: #80808087;
+    display: none;
 }
 
 .modal-dialog {
-	margin: 183px auto;
-	position:unset;
+    margin: 183px auto;
+    position: unset;
 }

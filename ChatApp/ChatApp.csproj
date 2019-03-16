@@ -234,7 +234,6 @@
     <Content Include="Scripts\AppChat\CommentPost.js" />
     <Content Include="Scripts\AppChat\Index.js" />
     <Content Include="Scripts\AppChat\jquery.shorten.1.0.js" />
-    <Content Include="Scripts\AppChat\js.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -255,7 +254,7 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AppFile\Display\" />
+    <Folder Include="AppFile\Backgrounds\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

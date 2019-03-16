@@ -15,5 +15,6 @@ namespace ChatApp.Models
         public string PicUrl { get; set; }
 
         public HttpPostedFileBase UploadImg { get; set; }
+        public HttpPostedFileBase UploadBg { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace ChatApp.Controllers
             var userName = Session["userName"] as string;
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
             ViewBag.Img = user.Avatar;
-            ViewBag.Bg = user.PicUrl;
+            ViewBag.Bg = user.CoverPhoto;
             return View();
         }
 
@@ -131,10 +131,10 @@ namespace ChatApp.Controllers
                 }
                 else
                 {
-                    user.PicUrl = "http://localhost:54576/Assets/ImagesUpload/" + fileName;
+                    user.CoverPhoto = "http://localhost:54576/Assets/ImagesUpload/" + fileName;
                 }
                 db.SaveChanges();
-                var userDto = new PersonalDto { Avatar = user.Avatar, PicUrl = user.PicUrl };
+                var userDto = new PersonalDto { Avatar = user.Avatar, CoverPhoto = user.CoverPhoto };
                 return Json(userDto, JsonRequestBehavior.AllowGet);
             }
 
@@ -154,19 +154,7 @@ namespace ChatApp.Controllers
             
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
-        [HttpGet]
-        public ActionResult Subject(int id)
-        {
-            Subject sub = db.Subjects.FirstOrDefault(s => s.Id == id);
-            if (sub == null)
-            {
-                return RedirectToAction("Index");
-            }
-            ViewBag.photo = sub.Photo;
-            ViewBag.name = sub.Name;
-
-            return View();
-        }
+        
        
     }
 }

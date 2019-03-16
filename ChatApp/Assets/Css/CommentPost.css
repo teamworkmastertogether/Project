@@ -360,3 +360,11 @@ span.icon {
     margin: 183px auto;
     position: unset;
 }
+.avatar-post img {
+    width: 60px;
+    height: 60px;
+}
+.comment-post img {
+    width: 42px;
+    height: 42px;
+}

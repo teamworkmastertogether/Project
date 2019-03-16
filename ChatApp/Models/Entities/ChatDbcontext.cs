@@ -13,5 +13,8 @@ namespace ChatApp.Models.Entities
         public DbSet<ListFriend> ListFriends { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<SubComment> SubComments { get; set; }
     }
 }

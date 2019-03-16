@@ -1,17 +1,35 @@
 ﻿$(document).ready(function () {
     $('.post-space').on('keypress','.inputComment', function (e) {
         if (e.which === 13 && $(this).val() !== "") {
-            var username = "Nguyễn Tiến Xuân";
-            var message = $(this).val();
-            $(this).val('');
-            $(this).closest('.textbox-comment').prev().children().find('img').attr('src', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg');
-            $(this).closest('.textbox-comment').prev().children().find('img').eq(0).css('width', '35px');
-            $(this).closest('.textbox-comment').prev().children().find('img').eq(1).css('width', '25px');
-            $(this).closest('.textbox-comment').prev().find('.name-comment').text(username);
-            $(this).closest('.textbox-comment').prev().find('span').eq(0).text(message);
 
-            var demo = $(this).closest('.textbox-comment').prev().html();
-            $(this).closest('.textbox-comment').prev().prev().append(demo);
+            var CommentDto = {
+                PostId: $(this).closest('.post').data("id"),
+                Text: $(this).val()
+            };
+            $(this).val('');
+
+            current = $(this);
+         
+            $.ajax({
+                type: "POST",
+                url: "/Subject/SaveComment",
+                data: JSON.stringify(CommentDto),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    current.closest('.textbox-comment').prev().children().find('img').attr('src', result.Avatar);
+                    current.closest('.textbox-comment').prev().children().find('img').eq(0).css('width', '35px');
+                    current.closest('.textbox-comment').prev().children().find('img').eq(1).css('width', '25px');
+                    current.closest('.textbox-comment').prev().find('.name-comment').text(result.NameOfUser);
+                    current.closest('.textbox-comment').prev().find('span').eq(0).text(result.Text);
+                    current.closest('.textbox-comment').prev().children().attr('data-id', result.CommentId);
+                    var demo = current.closest('.textbox-comment').prev().html();
+                    current.closest('.textbox-comment').prev().prev().append(demo);
+                },
+                error: function (message) {
+                    alert(message.responseText);
+                }
+            });
         }
     });
 
@@ -255,19 +273,38 @@
         $(this).parent().prev().prev().show();
     });
 
-    $('.post-space').on('click', '#chiase', function () {
+    $('.post-space').on('click', '#postNew', function () {
         if ($(this).closest('.box').find('textarea').val() !== "") {
-            var username = "Nguyễn Văn An";
-            var message = $(this).closest('.box').find('textarea').val();
-            $(this).closest('.box').find('textarea').val('');
-            var timePost = "21h30 - 30/12/2019";
-            $(this).closest('.rig').next().next().find('.avatar-post img').attr('src', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg');
-            $(this).closest('.rig').next().next().find('.name-user a').text(username);
-            $(this).closest('.rig').next().next().find('.time-post').text(timePost);
-            $(this).closest('.rig').next().next().find('.content-post').eq(1).find('p').text(message);
+            var PostDto = {
+                GroupName: $(".ToolFb .ToolLeft h2:eq(0)").text().trim(),
+                PostText: $(this).closest('.box').find('textarea').val(),
+                TimePost: GetDateNow()
+            };
 
-            var demo = $(this).closest('.rig').next().next().html();
-            $(this).closest('.rig').next().prepend(demo);
+            $(this).closest('.box').find('textarea').val('');
+            $.ajax({
+                type: "POST",
+                url: "/Subject/SavePost",
+                data: JSON.stringify(PostDto),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    $(".post-clone").find('img').attr('src', result.avatar);
+                    $(".post-clone").find('.name-user a').text(result.NameOfUser);
+                    $(".post-clone").find('.time-post').text(result.TimePost);
+                    $(".post-clone").find('.content-post').eq(1).find('p').text(result.PostText);
+                    $(".post-clone").find('.countLike_post').text(result.LikeNumber);
+                    $(".post-clone .post").attr('data-id', result.PostId);
+                    var demo = $(".post-clone").html();
+                    $(".post-append").prepend(demo);
+                    //id = $(".post-clone .post").data("id");
+                },
+                error: function (message) {
+                    alert(message.responseText);
+                }
+
+            });
+            
         }
     });
 

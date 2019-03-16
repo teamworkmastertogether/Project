@@ -11,9 +11,7 @@ namespace ChatApp.Models.Dto
         public string UserName { get; set; }
         public string Name { get; set; }
         public string Avatar { get; set; }
-		public string PicUrl { get; set; }
+		public string CoverPhoto { get; set; }
         public bool SeenMessage { get; set; }
-		[NotMapped]
-		public HttpPostedFileBase UploadImg { get; set; }
 	}
 }

@@ -9,5 +9,7 @@ namespace ChatApp.Models.Entities
     {
         public string Name { get; set; }
         public string Photo { get; set; }
+
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace ChatApp.Models.Dto
         public string Name { get; set; }
         public string PassWord { get; set; }
         public string Avatar { get; set; }
-        public string PicUrl { get; set; }
+        public string CoverPhoto { get; set; }
     }
 }

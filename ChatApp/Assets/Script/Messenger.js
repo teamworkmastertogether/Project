@@ -354,7 +354,7 @@ function UploadAvatar(formData) {
         data: new FormData(formData),
         success: function (result) {
             $(".avatar .img-responsive img").attr("src", result.Avatar);
-            $(".background img").attr("src", result.PicUrl);
+            $(".background img").attr("src", result.CoverPhoto);
 
             $(".modal-backdrop").remove();
             $("#myModal #close").click();

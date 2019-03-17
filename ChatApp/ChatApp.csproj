@@ -185,11 +185,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ChatHub.cs" />
+    <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Migrations\201903161408081_add_comment.cs" />
     <Compile Include="Migrations\201903161408081_add_comment.Designer.cs">
       <DependentUpon>201903161408081_add_comment.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Dto\SubCommentDto.cs" />
     <Compile Include="Models\Dto\CommentDto.cs" />
     <Compile Include="Models\Dto\InforFriendDto.cs" />
     <Compile Include="Models\Dto\PersonalDto.cs" />
@@ -227,8 +229,9 @@
     <Content Include="Assets\Plugin\jquery.shorten.1.0.js" />
     <Content Include="Assets\Plugin\jquery.signalR-2.2.2.min.js" />
     <Content Include="Assets\Script\CommentPost.js" />
+    <Content Include="Assets\Script\CommentRealTime.js" />
     <Content Include="Assets\Script\Index.js" />
-    <Content Include="Assets\Script\Messenger.js" />
+    <Content Include="Assets\Script\MessengerRealTime.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

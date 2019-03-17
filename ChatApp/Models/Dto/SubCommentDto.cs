@@ -5,14 +5,13 @@ using System.Web;
 
 namespace ChatApp.Models.Dto
 {
-    public class CommentDto
+    public class SubCommentDto
     {
         public string NameOfUser { get; set; }
         public string Text { get; set; }
         public int LikeNumber { get; set; }
-        public int PostId { get; set; }
         public string Avatar { get; set; }
         public int CommentId { get; set; }
-        public List<SubCommentDto> listSubComment;
+        public int SubCommentId { get; set; }
     }
 }

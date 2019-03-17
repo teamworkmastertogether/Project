@@ -12,8 +12,6 @@ namespace ChatApp.Controllers
     {
         ChatDbcontext db = new ChatDbcontext();
 
-       
-
         [HttpGet]
         public ActionResult GetSubject(int? id)
         {
@@ -42,12 +40,22 @@ namespace ChatApp.Controllers
                         NameOfUser = k.User.Name,
                         Text = k.Text,
                         Avatar = k.User.Avatar,
-                        CommentId = k.Id
-                    }).ToList()
+                        CommentId = k.Id,
+                        listSubComment = db.SubComments.Where(p => p.CommentId == k.Id)
+                        .Select(p => new SubCommentDto
+                        {
+                            LikeNumber = p.LikeNumber,
+                            NameOfUser = p.User.Name,
+                            Text = p.Text,
+                            Avatar = p.User.Avatar,
+                            SubCommentId = p.Id
+                        }).ToList()
+                    }).OrderBy(k => k.CommentId).ToList()
                 }).OrderByDescending(s => s.PostId).ToList();
 
             ViewBag.photo = sub.Photo;
             ViewBag.name = sub.Name;
+            ViewBag.Avatar = user.Avatar;
 
             return View(listPostDto);
         }
@@ -100,6 +108,31 @@ namespace ChatApp.Controllers
                 Text = commentDto.Text,
                 Avatar = user.Avatar,
                 CommentId = CommentId
+            };
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult SaveSubComment(SubCommentDto subCommentDto)
+        {
+            var userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            SubComment subComment = new SubComment
+            {
+                Text = subCommentDto.Text,
+                LikeNumber = 0,
+                CommentId = subCommentDto.CommentId,
+                UserId = user.Id
+            };
+            db.SubComments.Add(subComment);
+            db.SaveChanges();
+            int SubCommentId = db.SubComments.Max(s => s.Id);
+            SubCommentDto result = new SubCommentDto
+            {
+                LikeNumber = 0,
+                NameOfUser = user.Name,
+                Text = subCommentDto.Text,
+                Avatar = user.Avatar,
+                SubCommentId = SubCommentId
             };
             return Json(result, JsonRequestBehavior.AllowGet);
         }

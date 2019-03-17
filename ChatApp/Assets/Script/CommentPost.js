@@ -66,7 +66,7 @@ $(document).ready(function () {
 
     $('.post-space').on('click', '.list-icon-post span', function () {
         var input = $(this).parents('.tool').next().find('textarea');
-        input.val(input.val() + $(this).html());
+        input.val(input.val() + $(this).text());
     });
 
     $(document).mouseup(function (e) {
@@ -149,7 +149,7 @@ $(document).ready(function () {
 
     $(".post-space").on('click', '.icon', function () {
         var input = $(this).parent().prev().prev();
-        input.val(input.val() + $(this).html());
+        input.val(input.val() + $(this).text());
     });
 
     $('.post-space').on('click','.like-post',function () {

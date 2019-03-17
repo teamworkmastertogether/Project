@@ -10,9 +10,15 @@ $(function () {
     $('.icon-notify').off().click(function () {
         $('#notifi').toggle(150);
     });
+
+    $('.icon-friend').off().click(function () {
+        $('#add-friend_invitation').toggle(150);
+    });
+
     $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
         $('#notifi').hide();
     });
+
     $(".textNoti p").shorten({
         "showChars": 120,
         "moreText": "Xem thêm...",
@@ -42,11 +48,11 @@ $(function () {
             $(this).css("display", "none", "cursor", "pointer");
         });
     });
-    //đổi nút chọn file sang buttion avatar
+    //đổi nút chọn file sang button avatar
     $("#selectFile").click(function () {
         $("#UploadImage").trigger('click');
     });
-    //đổi nút chọn file sang buttion background
+    //đổi nút chọn file sang button background
     $("#selectFileBg").click(function () {
         $("#UploadBg").trigger('click');
     });

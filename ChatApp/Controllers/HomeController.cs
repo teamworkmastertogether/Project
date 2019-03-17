@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ChatApp.Extensions;
+using System.Net.Mail;
 
 namespace ChatApp.Controllers
 {
@@ -42,8 +44,10 @@ namespace ChatApp.Controllers
         {
             // Lấy username từ form
             string username = form["username"].ToString().Trim();
+			string password = form["password"].ToString().Trim();
+			string hashedPassword = HashPassword.ComputeSha256Hash(password);
             // Lấy user có username và password trùng với form submit
-            User user = db.Users.FirstOrDefault(x => x.UserName.Equals(username));
+            User user = db.Users.FirstOrDefault(x => x.UserName.Equals(username) && x.PassWord.Equals(hashedPassword));
             // Kiểm tra xem user có tồn tại không
             if (user != null)
             {
@@ -155,7 +159,56 @@ namespace ChatApp.Controllers
             
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
-        
-       
-    }
+
+		[HttpPost]
+		public JsonResult GetPassWord(FormCollection form)
+		{
+			// Lấy username và email từ form submit
+			string username = form["Username"].ToString().Trim();
+			string email = form["Email"].ToString().Trim();
+
+			// Lấy ra username có tên và email thỏa mãn
+			User user = db.Users.FirstOrDefault(s => s.UserName.Equals(username) && s.Email.Equals(email));
+			if (user != null)
+			{
+				Random random = new Random();
+				int length = 6;
+				var str = "";
+				for(var i = 0; i < length; i++)
+				{
+					str += ((char)(random.Next(1, 26) + 64)).ToString();
+				}
+
+				string emailAddress = user.Email;
+				user.PassWord = HashPassword.ComputeSha256Hash(str);
+				db.SaveChanges();
+				string content = "<h1>Thông tin tài khoản là : </h1></br> ";
+				content += "<h1> Tên đăng nhập:  " + username + "</h1></br> ";
+				content += "<h1> Mật khẩu: " + str + "</h1></br> ";
+				GuiEmail("Thông tin tài khoản", emailAddress, "teamworkmastertogether@gmail.com",
+					"teamworkmastertogether@123", content);
+				return Json(new { status = 1 }, JsonRequestBehavior.AllowGet);
+			}
+			return Json(new { status = 0 }, JsonRequestBehavior.AllowGet);
+		}
+
+		public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
+		{
+			// goi email
+			MailMessage mail = new MailMessage();
+			mail.To.Add(ToEmail); // Địa chỉ nhận
+			mail.From = new MailAddress(ToEmail); // Địa chửi gửi
+			mail.Subject = Title; // tiêu đề gửi
+			mail.Body = Content; // Nội dung
+			mail.IsBodyHtml = true;
+			SmtpClient smtp = new SmtpClient();
+			smtp.Host = "smtp.gmail.com"; // host gửi của Gmail
+			smtp.Port = 587; //port của Gmail
+			smtp.UseDefaultCredentials = false;
+			smtp.Credentials = new System.Net.NetworkCredential
+			(FromEmail, PassWord);//Tài khoản password người gửi
+			smtp.EnableSsl = true; //kích hoạt giao tiếp an toàn SSL
+			smtp.Send(mail); //Gửi mail đi
+		}
+	}
 }

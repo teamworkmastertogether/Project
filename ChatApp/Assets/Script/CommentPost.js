@@ -18,8 +18,8 @@
                 dataType: "json",
                 success: function (result) {
                     current.closest('.textbox-comment').prev().children().find('img').attr('src', result.Avatar);
-                    current.closest('.textbox-comment').prev().children().find('img').eq(0).css('width', '35px');
-                    current.closest('.textbox-comment').prev().children().find('img').eq(1).css('width', '25px');
+                    current.closest('.textbox-comment').prev().children().find('img').eq(0).css('width', '35px').css('height','35px');
+                    current.closest('.textbox-comment').prev().children().find('img').eq(1).css('width', '25px').css('height','25px');
                     current.closest('.textbox-comment').prev().find('.name-comment').text(result.NameOfUser);
                     current.closest('.textbox-comment').prev().find('span').eq(0).text(result.Text);
                     current.closest('.textbox-comment').prev().children().attr('data-id', result.CommentId);
@@ -163,6 +163,15 @@
     }); 
 
     $('.confirm').on('click','#modal-btn-si',function () {
+        $('.confirm').hide();
+        //$(this).parents('.confirm').prev().find('.save-post a').css('font-weight', 'bold').css('color', 'red');
+    });
+
+    $('.confirm').on('click', '#modal-btn-no', function () {
+        $('.confirm').hide();
+    });
+
+    $('.confirm').on('click', 'span', function () {
         $('.confirm').hide();
     });
 

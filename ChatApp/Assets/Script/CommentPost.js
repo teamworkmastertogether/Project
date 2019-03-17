@@ -10,9 +10,6 @@ $(document).ready(function () {
                 Text: $(this).val()
             };
             $(this).val('');
-
-            current = $(this);
-         
             $.ajax({
                 type: "POST",
                 url: "/Subject/SaveComment",
@@ -66,7 +63,7 @@ $(document).ready(function () {
 
     $('.post-space').on('click', '.list-icon-post span', function () {
         var input = $(this).parents('.tool').next().find('textarea');
-        input.val(input.val() + $(this).html());
+        input.val(input.val() + $(this).text());
     });
 
     $(document).mouseup(function (e) {
@@ -149,7 +146,7 @@ $(document).ready(function () {
 
     $(".post-space").on('click', '.icon', function () {
         var input = $(this).parent().prev().prev();
-        input.val(input.val() + $(this).html());
+        input.val(input.val() + $(this).text());
     });
 
     $('.post-space').on('click','.like-post',function () {
@@ -216,15 +213,57 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.delete-comment', function () {
-        $(this).closest('.comment-level').remove();
+        commentId = parseInt($(this).closest('.comment-level').attr("id"));
+        url = "/Subject/DeleteComment?commentId=" + commentId;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                hub.server.deleteComment(GroupNameCurrent, commentId);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
+
     });
 
     $('.post-space').on('click', '.delete-reply', function () {
-        $(this).closest('.row').remove();
+        subcommentId = parseInt($(this).closest('.comment-level2').attr("id"));
+        url = "/Subject/DeleteSubComment?subcommentId=" + subcommentId;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                hub.server.deleteSubComment(GroupNameCurrent, subcommentId);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
     });
 
     $('.post-space').on('click', '.delete-post', function () {
-        $(this).closest('.post').remove();
+
+        postId = parseInt($(this).closest('.post').attr("id"));
+        url = "/Subject/DeletePost?postId=" + postId;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                hub.server.deletePost(GroupNameCurrent, postId);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
+
     });
 
     $('.post-space').on('click','.edit-post', function () {
@@ -260,6 +299,46 @@ $(document).ready(function () {
             $(this).prev().show();
             $(this).parents('.comment-content').children().eq(3).show();
             $(this).parents('.reply-content').next().show();
+            textEdit = $(this).val();
+            if ($(this).hasClass("check-edit-comment")) {
+                commentId = parseInt($(this).closest('.comment-level').attr("id"));
+                CommentDto = {
+                    CommentId: commentId,
+                    Text: textEdit
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/Subject/EditComment",
+                    data: JSON.stringify(CommentDto),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        hub.server.editComment(GroupNameCurrent, CommentDto);
+                    },
+                    error: function (message) {
+                        alert(message.responseText);
+                    }
+                });
+            } else {
+                subcommentId = parseInt($(this).closest('.comment-level2').attr("id"));
+                SubCommentDto = {
+                    SubCommentId: subcommentId,
+                    Text: textEdit
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/Subject/EditSubComment",
+                    data: JSON.stringify(SubCommentDto),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        hub.server.editSubComment(GroupNameCurrent, SubCommentDto);
+                    },
+                    error: function (message) {
+                        alert(message.responseText);
+                    }
+                });
+            }
         }
     });
 
@@ -269,6 +348,26 @@ $(document).ready(function () {
             $(this).parent().hide();
             $(this).parent().prev().hide();
             $(this).parent().prev().prev().show();
+            textEdit = $(this).parent().prev().val();
+            postId = parseInt($(this).closest('.post').attr("id"));
+            PostDto = {
+                PostId: postId,
+                PostText: textEdit
+            };
+            $.ajax({
+                type: "POST",
+                url: "/Subject/EditPost",
+                data: JSON.stringify(PostDto),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    hub.server.editPost(GroupNameCurrent, PostDto);
+                },
+                error: function (message) {
+                    alert(message.responseText);
+                }
+            });
+
         }
     });
 

@@ -8,7 +8,7 @@ $(function () {
             $(".post-clone").find('.time-post').text(postDto.TimePost);
             $(".post-clone").find('.content-post').eq(1).find('p').text(postDto.PostText);
             $(".post-clone").find('.countLike_post').text(postDto.LikeNumber);
-            $(".post-clone .post").attr('data-id', postDto.PostId);
+            $(".post-clone .post").attr('id', postDto.PostId);
             var demo = $(".post-clone").html();
             $(".post-append").prepend(demo);
         }

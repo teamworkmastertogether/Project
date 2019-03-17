@@ -181,6 +181,7 @@ namespace ChatApp.Controllers
 
 				string emailAddress = user.Email;
 				user.PassWord = HashPassword.ComputeSha256Hash(str);
+				db.SaveChanges();
 				string content = "<h1>Thông tin tài khoản là : </h1></br> ";
 				content += "<h1> Tên đăng nhập:  " + username + "</h1></br> ";
 				content += "<h1> Mật khẩu: " + str + "</h1></br> ";

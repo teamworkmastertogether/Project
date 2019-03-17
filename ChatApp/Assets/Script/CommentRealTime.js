@@ -42,7 +42,4 @@ $(function () {
             Comment.find('.comment-wrapper2').append(demo2);
         }
     };
-
-   
-
 });

@@ -1,9 +1,12 @@
-﻿$(document).ready(function () {
+﻿var GroupNameCurrent = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+
+$(document).ready(function () {
+   
     $('.post-space').on('keypress','.inputComment', function (e) {
         if (e.which === 13 && $(this).val() !== "") {
 
             var CommentDto = {
-                PostId: $(this).closest('.post').data("id"),
+                PostId: parseInt($(this).closest('.post').attr("id")),
                 Text: $(this).val()
             };
             $(this).val('');
@@ -17,14 +20,7 @@
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 success: function (result) {
-                    current.closest('.textbox-comment').prev().children().find('img').attr('src', result.Avatar);
-                    current.closest('.textbox-comment').prev().children().find('img').eq(0).css('width', '35px').css('height','35px');
-                    current.closest('.textbox-comment').prev().children().find('img').eq(1).css('width', '25px').css('height','25px');
-                    current.closest('.textbox-comment').prev().find('.name-comment').text(result.NameOfUser);
-                    current.closest('.textbox-comment').prev().find('span').eq(0).text(result.Text);
-                    current.closest('.textbox-comment').prev().children().attr('data-id', result.CommentId);
-                    var demo = current.closest('.textbox-comment').prev().html();
-                    current.closest('.textbox-comment').prev().prev().append(demo);
+                    hub.server.createCommentNew(GroupNameCurrent, CommentDto.PostId, result);
                 },
                 error: function (message) {
                     alert(message.responseText);
@@ -40,16 +36,27 @@
 
     $('.post-space').on('keypress', '.inputReply', function (e) {
         if (e.which === 13 && $(this).val() !== "") {
-            var username = "Nigga";
-            var message = $(this).val();
+            var SubCommentDto = {
+                CommentId: parseInt($(this).closest('.comment-level').attr("id")),
+                Text: $(this).val()
+            };
             $(this).val('');
-            $(this).closest('.textbox-reply').prev().children().find('img').attr('src', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg');
-            $(this).closest('.textbox-reply').prev().children().find('img').css('width', '25px');
-            $(this).closest('.textbox-reply').prev().find('.name-reply').eq(0).text(username);
-            $(this).closest('.textbox-reply').prev().find('span').eq(0).text(message);
 
-            var demo2 = $(this).closest('.textbox-reply').prev().html();
-            $(this).closest('.textbox-reply').prev().prev().append(demo2);
+            current = $(this);
+
+            $.ajax({
+                type: "POST",
+                url: "/Subject/SaveSubComment",
+                data: JSON.stringify(SubCommentDto),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    hub.server.createSubCommentNew(GroupNameCurrent, SubCommentDto.CommentId, result);
+                },
+                error: function (message) {
+                    alert(message.responseText);
+                }
+            });
         }
     });
 
@@ -158,20 +165,10 @@
     });
 
     $('.post-space').on('click','.save-post',function () {
-        //$(this).children().css('font-weight', 'bold').css('text-decoration', 'none').css('color', 'red');
         $('.confirm').show();
     }); 
 
     $('.confirm').on('click','#modal-btn-si',function () {
-        $('.confirm').hide();
-        //$(this).parents('.confirm').prev().find('.save-post a').css('font-weight', 'bold').css('color', 'red');
-    });
-
-    $('.confirm').on('click', '#modal-btn-no', function () {
-        $('.confirm').hide();
-    });
-
-    $('.confirm').on('click', 'span', function () {
         $('.confirm').hide();
     });
 
@@ -285,7 +282,7 @@
     $('.post-space').on('click', '#postNew', function () {
         if ($(this).closest('.box').find('textarea').val() !== "") {
             var PostDto = {
-                GroupName: $(".ToolFb .ToolLeft h2:eq(0)").text().trim(),
+                GroupName: GroupNameCurrent,
                 PostText: $(this).closest('.box').find('textarea').val(),
                 TimePost: GetDateNow()
             };
@@ -298,15 +295,7 @@
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 success: function (result) {
-                    $(".post-clone").find('img').attr('src', result.avatar);
-                    $(".post-clone").find('.name-user a').text(result.NameOfUser);
-                    $(".post-clone").find('.time-post').text(result.TimePost);
-                    $(".post-clone").find('.content-post').eq(1).find('p').text(result.PostText);
-                    $(".post-clone").find('.countLike_post').text(result.LikeNumber);
-                    $(".post-clone .post").attr('data-id', result.PostId);
-                    var demo = $(".post-clone").html();
-                    $(".post-append").prepend(demo);
-                    //id = $(".post-clone .post").data("id");
+                    hub.server.createPostNew(GroupNameCurrent, result);
                 },
                 error: function (message) {
                     alert(message.responseText);

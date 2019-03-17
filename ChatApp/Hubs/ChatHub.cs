@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChatApp.Hubs
 {
-    public class ChatHub : Hub
+    public partial class ChatHub : Hub
     {
         private ChatDbcontext db = new ChatDbcontext();
         public static Dictionary<string, string> LstAllConnections = new Dictionary<string, string>();
@@ -138,5 +138,9 @@ namespace ChatApp.Hubs
                 Clients.Clients(listId).ChangeStatusSendRequest(suggestUser,0);
             }
         }
+
+
+
+
     }
 }

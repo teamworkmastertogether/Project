@@ -19,6 +19,7 @@ namespace ChatApp.Controllers
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
             ViewBag.Img = user.Avatar;
             ViewBag.Bg = user.CoverPhoto;
+            ViewBag.Name = user.Name;
             return View();
         }
 

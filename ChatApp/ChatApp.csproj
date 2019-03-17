@@ -181,6 +181,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
+    <Compile Include="Extensions\HashPassword.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,6 +232,7 @@
     <Content Include="Assets\Script\CommentPost.js" />
     <Content Include="Assets\Script\CommentRealTime.js" />
     <Content Include="Assets\Script\Index.js" />
+    <Content Include="Assets\Script\Login.js" />
     <Content Include="Assets\Script\MessengerRealTime.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

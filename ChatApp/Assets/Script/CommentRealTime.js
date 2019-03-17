@@ -8,8 +8,9 @@ $(function () {
             $(".post-clone").find('.time-post').text(postDto.TimePost);
             $(".post-clone").find('.content-post').eq(1).find('p').text(postDto.PostText);
             $(".post-clone").find('.countLike_post').text(postDto.LikeNumber);
-            $(".post-clone .post").attr('data-id', postDto.PostId);
+            $(".post-clone .post").attr('id', postDto.PostId);
             var demo = $(".post-clone").html();
+            $(".post-clone .post").attr('id', 0);
             $(".post-append").prepend(demo);
         }
     };
@@ -23,6 +24,7 @@ $(function () {
             $('.post-clone .name-comment').next().text(commentDto.Text);
             $('.post-clone .comment-level').attr('id', commentDto.CommentId);
             var demo = $('.post-clone .comment-level').parent().html();
+            $('.post-clone .comment-level').attr('id',0);
             Post.find('.comment-post-wrapper').append(demo);
         }
     };
@@ -36,6 +38,7 @@ $(function () {
             $('.post-clone .comment-level2').find('.name-reply').eq(0).next().text(subCommentDto.Text);
             $('.post-clone .comment-level2').attr('id', subCommentDto.SubCommentId);
             var demo2 = $('.post-clone .comment-level2').parent().html();
+            $('.post-clone .comment-level2').attr('id',0);
             Comment.find('.comment-wrapper2').append(demo2);
         }
     };

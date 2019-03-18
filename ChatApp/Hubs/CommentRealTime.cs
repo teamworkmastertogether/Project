@@ -28,5 +28,10 @@ namespace ChatApp.Hubs
         {
             Clients.All.DeletePost(groupName, postId);
         }
+
+        public void DeleteComment(string groupName, int commentId)
+        {
+            Clients.All.DeleteComment(groupName, commentId);
+        }
     }
 }

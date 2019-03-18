@@ -214,6 +214,22 @@ $(document).ready(function () {
 
     $('.post-space').on('click', '.delete-comment', function () {
         $(this).closest('.comment-level').remove();
+
+        commentId = parseInt($(this).closest('.comment-level').attr("id"));
+        url = "/Subject/DeleteComment?commentId=" + commentId;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                hub.server.deleteComment(GroupNameCurrent, commentId);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
+
     });
 
     $('.post-space').on('click', '.delete-reply', function () {

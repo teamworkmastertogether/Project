@@ -10,9 +10,6 @@ $(document).ready(function () {
                 Text: $(this).val()
             };
             $(this).val('');
-
-            current = $(this);
-         
             $.ajax({
                 type: "POST",
                 url: "/Subject/SaveComment",
@@ -224,7 +221,23 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.delete-post', function () {
-        $(this).closest('.post').remove();
+
+        postId = parseInt($(this).closest('.post').attr("id"));
+        url = "/Subject/DeletePost?postId=" + postId;
+        $.ajax({
+            type: "POST",
+            url: url,
+            //data: { postId: postId },
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                hub.server.deletePost(GroupNameCurrent, postId);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
+
     });
 
     $('.post-space').on('click','.edit-post', function () {

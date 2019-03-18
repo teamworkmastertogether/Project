@@ -84,6 +84,23 @@ namespace ChatApp.Controllers
                 avatar = user.Avatar,
                 PostId = Postid
             };
+            List<User> users = db.Users.ToList();
+            foreach (var item in users)
+            {
+                if (item.Id != user.Id)
+                {
+                    Notification noti = new Notification
+                    {
+                        UserId = item.Id,
+                        PostId = Postid,
+                        TextNoti = "Đã đăng",
+                        ClassIconName = "far fa-clock",
+                        NotificationState = false
+                    };
+                    db.Notifications.Add(noti);
+                }
+            }
+            db.SaveChanges();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -135,6 +152,68 @@ namespace ChatApp.Controllers
                 SubCommentId = SubCommentId
             };
             return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult DeletePost(int? postId)
+        {
+            Post post = db.Posts.FirstOrDefault(s => s.Id == postId);
+            List<Comment> comments = db.Comments.Where(s => s.PostId == postId).ToList();
+            foreach (var item in comments)
+            {
+                List<SubComment> subcomments = db.SubComments.Where(s => s.CommentId == item.Id).ToList();
+                db.SubComments.RemoveRange(subcomments);
+            }
+            db.Comments.RemoveRange(comments);
+            db.Posts.Remove(post);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteComment(int? commentId)
+        {
+            Comment comment = db.Comments.FirstOrDefault(s => s.Id == commentId);
+            List<SubComment> subcomments = db.SubComments.Where(s => s.CommentId == commentId).ToList();
+            db.SubComments.RemoveRange(subcomments);
+            db.Comments.Remove(comment);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteSubComment(int? subcommentId)
+        {
+            SubComment subcomment = db.SubComments.FirstOrDefault(s => s.Id == subcommentId);
+            db.SubComments.Remove(subcomment);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult EditPost(PostDto postDto)
+        {
+            Post post = db.Posts.FirstOrDefault(s => s.Id == postDto.PostId);
+            post.Text = postDto.PostText;
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult EditComment(CommentDto commentDto)
+        {
+            Comment comment = db.Comments.FirstOrDefault(s => s.Id == commentDto.CommentId);
+            comment.Text = commentDto.Text;
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult EditSubComment(SubCommentDto subcommentDto)
+        {
+            SubComment subcomment = db.SubComments.FirstOrDefault(s => s.Id == subcommentDto.SubCommentId);
+            subcomment.Text = subcommentDto.Text;
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
         }
     }
 }

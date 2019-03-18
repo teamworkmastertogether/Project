@@ -84,6 +84,23 @@ namespace ChatApp.Controllers
                 avatar = user.Avatar,
                 PostId = Postid
             };
+            List<User> users = db.Users.ToList();
+            foreach (var item in users)
+            {
+                if (item.Id != user.Id)
+                {
+                    Notification noti = new Notification
+                    {
+                        UserId = item.Id,
+                        PostId = Postid,
+                        TextNoti = "Đã đăng",
+                        ClassIconName = "far fa-clock",
+                        NotificationState = false
+                    };
+                    db.Notifications.Add(noti);
+                }
+            }
+            db.SaveChanges();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]

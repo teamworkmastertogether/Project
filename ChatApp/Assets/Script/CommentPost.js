@@ -213,8 +213,6 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.delete-comment', function () {
-        $(this).closest('.comment-level').remove();
-
         commentId = parseInt($(this).closest('.comment-level').attr("id"));
         url = "/Subject/DeleteComment?commentId=" + commentId;
         $.ajax({
@@ -233,7 +231,22 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.delete-reply', function () {
-        $(this).closest('.row').remove();
+        //$(this).closest('.row').remove();
+
+        subcommentId = parseInt($(this).closest('.comment-level2').attr("id"));
+        url = "/Subject/DeleteSubComment?subcommentId=" + subcommentId;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                hub.server.deleteSubComment(GroupNameCurrent, subcommentId);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
     });
 
     $('.post-space').on('click', '.delete-post', function () {
@@ -243,7 +256,6 @@ $(document).ready(function () {
         $.ajax({
             type: "POST",
             url: url,
-            //data: { postId: postId },
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {

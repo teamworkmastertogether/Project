@@ -58,4 +58,12 @@ $(function () {
             Comment.remove();
         }
     };
+
+    hub.client.deleteSubComment = function (groupName, subcommentId) {
+        name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+        SubComment = $(".comment-level2[id=" + subcommentId + "]");
+        if (name === groupName) {
+            SubComment.remove();
+        }
+    };
 });

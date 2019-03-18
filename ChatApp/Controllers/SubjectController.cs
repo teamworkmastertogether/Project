@@ -162,5 +162,14 @@ namespace ChatApp.Controllers
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult DeleteSubComment(int? subcommentId)
+        {
+            SubComment subcomment = db.SubComments.FirstOrDefault(s => s.Id == subcommentId);
+            db.SubComments.Remove(subcomment);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
     }
 }

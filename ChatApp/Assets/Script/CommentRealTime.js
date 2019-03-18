@@ -2,7 +2,7 @@
 $(function () {
     hub.client.createPost = function (GroupName, postDto) {
         name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
-        if (name == GroupName) {
+        if (name === GroupName) {
             $(".post-clone .avatar-post").find('img').attr('src', postDto.avatar);
             $(".post-clone").find('.name-user a').text(postDto.NameOfUser);
             $(".post-clone").find('.time-post').text(postDto.TimePost);
@@ -18,7 +18,7 @@ $(function () {
     hub.client.createComment = function (groupName, postId, commentDto) {
         name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
         Post = $(".post[id=" + postId + "]");
-        if (name == groupName) {
+        if (name === groupName) {
             $('.post-clone .comment-level .img-comment img').attr('src', commentDto.Avatar);
             $('.post-clone .name-comment').text(commentDto.NameOfUser);
             $('.post-clone .name-comment').next().text(commentDto.Text);
@@ -32,7 +32,7 @@ $(function () {
     hub.client.createSubComment = function (groupName, commentId, subCommentDto) {
         name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
         Comment = $(".comment-level[id=" + commentId + "]");
-        if (name == groupName) {
+        if (name === groupName) {
             $('.post-clone .comment-level2 img:eq(0)').attr('src', subCommentDto.Avatar);
             $('.post-clone .comment-level2').find('.name-reply').eq(0).text(subCommentDto.NameOfUser);
             $('.post-clone .comment-level2').find('.name-reply').eq(0).next().text(subCommentDto.Text);
@@ -40,6 +40,14 @@ $(function () {
             var demo2 = $('.post-clone .comment-level2').parent().html();
             $('.post-clone .comment-level2').attr('id',0);
             Comment.find('.comment-wrapper2').append(demo2);
+        }
+    };
+
+    hub.client.deletePost = function (groupName, postId) {
+        name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+        Post = $(".post[id=" + postId + "]");
+        if (name === groupName) {
+            Post.remove();
         }
     };
 });

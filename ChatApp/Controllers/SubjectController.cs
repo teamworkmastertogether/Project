@@ -136,5 +136,20 @@ namespace ChatApp.Controllers
             };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public ActionResult DeletePost(int? postId)
+        {
+            Post post = db.Posts.FirstOrDefault(s => s.Id == postId);
+            List<Comment> comments = db.Comments.Where(s => s.PostId == postId).ToList();
+            foreach (var item in comments)
+            {
+                List<SubComment> subcomments = db.SubComments.Where(s => s.CommentId == item.Id).ToList();
+                db.SubComments.RemoveRange(subcomments);
+            }
+            db.Comments.RemoveRange(comments);
+            db.Posts.Remove(post);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
     }
 }

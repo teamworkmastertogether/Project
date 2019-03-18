@@ -231,8 +231,6 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.delete-reply', function () {
-        //$(this).closest('.row').remove();
-
         subcommentId = parseInt($(this).closest('.comment-level2').attr("id"));
         url = "/Subject/DeleteSubComment?subcommentId=" + subcommentId;
         $.ajax({
@@ -301,6 +299,46 @@ $(document).ready(function () {
             $(this).prev().show();
             $(this).parents('.comment-content').children().eq(3).show();
             $(this).parents('.reply-content').next().show();
+            textEdit = $(this).val();
+            if ($(this).hasClass("check-edit-comment")) {
+                commentId = parseInt($(this).closest('.comment-level').attr("id"));
+                CommentDto = {
+                    CommentId: commentId,
+                    Text: textEdit
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/Subject/EditComment",
+                    data: JSON.stringify(CommentDto),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        hub.server.editComment(GroupNameCurrent, CommentDto);
+                    },
+                    error: function (message) {
+                        alert(message.responseText);
+                    }
+                });
+            } else {
+                subcommentId = parseInt($(this).closest('.comment-level2').attr("id"));
+                SubCommentDto = {
+                    SubCommentId: subcommentId,
+                    Text: textEdit
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/Subject/EditSubComment",
+                    data: JSON.stringify(SubCommentDto),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        hub.server.editSubComment(GroupNameCurrent, SubCommentDto);
+                    },
+                    error: function (message) {
+                        alert(message.responseText);
+                    }
+                });
+            }
         }
     });
 

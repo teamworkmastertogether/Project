@@ -151,5 +151,16 @@ namespace ChatApp.Controllers
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult DeleteComment(int? commentId)
+        {
+            Comment comment = db.Comments.FirstOrDefault(s => s.Id == commentId);
+            List<SubComment> subcomments = db.SubComments.Where(s => s.CommentId == commentId).ToList();
+            db.SubComments.RemoveRange(subcomments);
+            db.Comments.Remove(comment);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
     }
 }

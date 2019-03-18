@@ -50,4 +50,12 @@ $(function () {
             Post.remove();
         }
     };
+
+    hub.client.deleteComment = function (groupName, commentId) {
+        name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+        Comment = $(".comment-level[id=" + commentId + "]");
+        if (name === groupName) {
+            Comment.remove();
+        }
+    };
 });

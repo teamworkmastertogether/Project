@@ -243,6 +243,8 @@ $(document).ready(function () {
         res.val(oldData).show();
         $(this).parent().hide();
         $(this).parents('.comment-content_setting').next().next().hide();
+
+        $(".edit-comment").not($(this)).addClass('hide');
     }); 
 
     $('.post-space').on('click', '.edit-reply', function () {

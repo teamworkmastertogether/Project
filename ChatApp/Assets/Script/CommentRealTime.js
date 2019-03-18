@@ -66,4 +66,12 @@ $(function () {
             SubComment.remove();
         }
     };
+
+    hub.client.editPost = function (groupName, postDto) {
+        name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+        Post = $(".post[id=" + postDto.PostId + "]");
+        if (name === groupName) {
+            Post.find(".content-post p:eq(0)").text(postDto.PostText);
+        }
+    };
 });

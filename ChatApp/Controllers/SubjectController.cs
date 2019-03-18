@@ -171,5 +171,14 @@ namespace ChatApp.Controllers
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult EditPost(PostDto postDto)
+        {
+            Post post = db.Posts.FirstOrDefault(s => s.Id == postDto.PostId);
+            post.Text = postDto.PostText;
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
     }
 }

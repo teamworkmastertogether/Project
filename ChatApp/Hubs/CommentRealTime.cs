@@ -38,5 +38,10 @@ namespace ChatApp.Hubs
         {
             Clients.All.DeleteSubComment(groupName, subcommentId);
         }
+
+        public void EditPost(string groupName, PostDto postDto)
+        {
+            Clients.All.EditPost(groupName, postDto);
+        }
     }
 }

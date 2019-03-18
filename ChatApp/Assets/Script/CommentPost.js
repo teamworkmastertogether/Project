@@ -310,6 +310,26 @@ $(document).ready(function () {
             $(this).parent().hide();
             $(this).parent().prev().hide();
             $(this).parent().prev().prev().show();
+            textEdit = $(this).parent().prev().val();
+            postId = parseInt($(this).closest('.post').attr("id"));
+            PostDto = {
+                PostId: postId,
+                PostText: textEdit
+            };
+            $.ajax({
+                type: "POST",
+                url: "/Subject/EditPost",
+                data: JSON.stringify(PostDto),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    hub.server.editPost(GroupNameCurrent, PostDto);
+                },
+                error: function (message) {
+                    alert(message.responseText);
+                }
+            });
+
         }
     });
 

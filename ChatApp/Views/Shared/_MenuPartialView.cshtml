@@ -4,7 +4,7 @@
     <div class="menu-bar">
         <div title="Thông báo" class="icon icon-notify">
             <i class="fa fa-bell"></i>
-            <span class="badge">8</span>
+            <span class="badge">@ViewBag.SumNoti</span>
         </div>
         <div title="Trang cá nhân" class="icon icon-home">
             <a href="/Home/Index" style="color:white"><i class="fa fa-user-circle"></i></a>
@@ -12,11 +12,30 @@
         <div title="Lời mời kết bạn" class="icon icon-friend">
             <i class="fa fa-users"></i>
         </div>
-
     </div>
+
+    <div class="notifi-clone" style="display:none">
+        <a id="0" class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
+            <div class="col-lg-2 col-md-2">
+                <div class="identify-icon">
+                    
+                </div>
+                <div class="imgMenu">
+                    <img src="" alt="Alternate Text" />
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8">
+                <div class="textNoti">
+                    <h3>Nguyễn Tiến Xuân</h3> <em> </em> trong <span>Toán học</span>
+                    <h4>21h30 - 24/12/2019</h4>
+                </div>
+            </div>
+        </a>
+    </div>
+
     <div id="notifi" style="display:none;">
         <div class="row notifyClass">
-            <a class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
+            @*<a class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
                 <div class="col-lg-2 col-md-2">
                     <div class="identify-icon">
                         <i class="far fa-comments"></i>
@@ -143,7 +162,7 @@
                         <h4>20h30 - 23/12/2019</h4>
                     </div>
                 </div>
-            </a>
+            </a>*@
         </div>
     </div>
 

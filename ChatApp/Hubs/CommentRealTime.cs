@@ -14,14 +14,24 @@ namespace ChatApp.Hubs
             Clients.All.CreatePost(GroupName, postDto);
         }
 
-        public void CreateCommentNew(string groupName,int postId, CommentDto commentDto)
+        public void CreateCommentNew(string myuserName,string groupName,int postId, CommentDto commentDto)
         {
             Clients.All.CreateComment(groupName, postId, commentDto);
+            if (myuserName != commentDto.UserName)
+            {
+                List<string> listId = GetListConnectIdByUserName("No value", commentDto.UserName);
+                Clients.Clients(listId).UpdateNotiRealtime(commentDto.UserName);
+            }
         }
 
-        public void CreateSubCommentNew(string groupName, int commentId, SubCommentDto subCommentDto)
+        public void CreateSubCommentNew(string myuserName,string groupName, int commentId, SubCommentDto subCommentDto)
         {
             Clients.All.CreateSubComment(groupName, commentId, subCommentDto);
+            if (myuserName != subCommentDto.UserName)
+            {
+                List<string> listId = GetListConnectIdByUserName("No value", subCommentDto.UserName);
+                Clients.Clients(listId).UpdateNotiRealtime(subCommentDto.UserName);
+            }
         }
 
         public void DeletePost(string groupName, int postId)

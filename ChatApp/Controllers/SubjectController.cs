@@ -26,6 +26,7 @@ namespace ChatApp.Controllers
             List<PostDto> listPostDto = db.Posts.Where(s => s.SubjectId == sub.Id)
                 .Select(s => new PostDto
                 {
+                    UserName = user.UserName,
                     Myavatar = user.Avatar,
                     TimePost = s.CreatedDate,
                     LikeNumber = s.LikeNumber,
@@ -77,6 +78,7 @@ namespace ChatApp.Controllers
             int Postid = db.Posts.Max(s => s.Id);
             PostDto result = new PostDto
             {
+                UserName = userName,
                 TimePost = postDto.TimePost,
                 LikeNumber = postDto.LikeNumber,
                 NameOfUser = user.Name,
@@ -84,6 +86,25 @@ namespace ChatApp.Controllers
                 avatar = user.Avatar,
                 PostId = Postid
             };
+            List<User> users = db.Users.ToList();
+            foreach (var item in users)
+            {
+                if (item.Id != user.Id)
+                {
+                    Notification noti = new Notification
+                    {
+                        UserId = item.Id,
+                        PostId = Postid,
+                        Avatar = user.Avatar,
+                        NameOfUser = user.Name,
+                        TextNoti = "Đã đăng",
+                        ClassIconName = "far fa-clock",
+                        NotificationState = false
+                    };
+                    db.Notifications.Add(noti);
+                }
+            }
+            db.SaveChanges();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -91,6 +112,7 @@ namespace ChatApp.Controllers
         {
             var userName = Session["userName"] as string;
             User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            Post post = db.Posts.FirstOrDefault(s => s.Id == commentDto.PostId);
             Comment comment = new Comment
             {
                 Text = commentDto.Text,
@@ -103,12 +125,28 @@ namespace ChatApp.Controllers
             int CommentId = db.Comments.Max(s => s.Id);
             CommentDto result = new CommentDto
             {
+                UserName = post.User.UserName,
                 LikeNumber = 0,
                 NameOfUser = user.Name,
                 Text = commentDto.Text,
                 Avatar = user.Avatar,
                 CommentId = CommentId
             };
+            if (user.Id != post.User.Id)
+            {
+                Notification noti = new Notification
+                {
+                    UserId = comment.Post.User.Id,
+                    PostId = commentDto.PostId,
+                    NameOfUser = user.Name,
+                    Avatar = user.Avatar,
+                    TextNoti = "Đã bình luận bài viết của bạn",
+                    ClassIconName = "far fa-comments",
+                    NotificationState = false
+                };
+                db.Notifications.Add(noti);
+            }
+            db.SaveChanges();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
@@ -116,6 +154,7 @@ namespace ChatApp.Controllers
         {
             var userName = Session["userName"] as string;
             User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            Comment comment = db.Comments.FirstOrDefault(s => s.Id == subCommentDto.CommentId);
             SubComment subComment = new SubComment
             {
                 Text = subCommentDto.Text,
@@ -128,25 +167,41 @@ namespace ChatApp.Controllers
             int SubCommentId = db.SubComments.Max(s => s.Id);
             SubCommentDto result = new SubCommentDto
             {
+                UserName = comment.User.UserName,
                 LikeNumber = 0,
                 NameOfUser = user.Name,
                 Text = subCommentDto.Text,
                 Avatar = user.Avatar,
                 SubCommentId = SubCommentId
             };
+            if (user.Id != comment.User.Id)
+            {
+                Notification noti = new Notification
+                {
+                    UserId = comment.User.Id,
+                    PostId = comment.Post.Id,
+                    NameOfUser = user.Name,
+                    Avatar = user.Avatar,
+                    TextNoti = "Đã trả lời bình luận của bạn",
+                    ClassIconName = "far fa-comments",
+                    NotificationState = false
+                };
+                db.Notifications.Add(noti);
+            }
+            db.SaveChanges();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult DeletePost(int? postId)
         {
             Post post = db.Posts.FirstOrDefault(s => s.Id == postId);
-            List<Comment> comments = db.Comments.Where(s => s.PostId == postId).ToList();
-            foreach (var item in comments)
-            {
-                List<SubComment> subcomments = db.SubComments.Where(s => s.CommentId == item.Id).ToList();
-                db.SubComments.RemoveRange(subcomments);
-            }
-            db.Comments.RemoveRange(comments);
+            //List<Comment> comments = db.Comments.Where(s => s.PostId == postId).ToList();
+            //foreach (var item in comments)
+            //{
+            //    List<SubComment> subcomments = db.SubComments.Where(s => s.CommentId == item.Id).ToList();
+            //    db.SubComments.RemoveRange(subcomments);
+            //}
+            //db.Comments.RemoveRange(comments);
             db.Posts.Remove(post);
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
@@ -156,8 +211,8 @@ namespace ChatApp.Controllers
         public ActionResult DeleteComment(int? commentId)
         {
             Comment comment = db.Comments.FirstOrDefault(s => s.Id == commentId);
-            List<SubComment> subcomments = db.SubComments.Where(s => s.CommentId == commentId).ToList();
-            db.SubComments.RemoveRange(subcomments);
+            //List<SubComment> subcomments = db.SubComments.Where(s => s.CommentId == commentId).ToList();
+            //db.SubComments.RemoveRange(subcomments);
             db.Comments.Remove(comment);
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);

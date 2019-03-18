@@ -43,5 +43,15 @@ namespace ChatApp.Hubs
         {
             Clients.All.EditPost(groupName, postDto);
         }
+
+        public void EditComment(string groupName, CommentDto commentDto)
+        {
+            Clients.All.EditComment(groupName, commentDto);
+        }
+
+        public void EditSubComment(string groupName, SubCommentDto subcommentDto)
+        {
+            Clients.All.EditSubComment(groupName, subcommentDto);
+        }
     }
 }

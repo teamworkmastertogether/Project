@@ -180,5 +180,23 @@ namespace ChatApp.Controllers
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult EditComment(CommentDto commentDto)
+        {
+            Comment comment = db.Comments.FirstOrDefault(s => s.Id == commentDto.CommentId);
+            comment.Text = commentDto.Text;
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult EditSubComment(SubCommentDto subcommentDto)
+        {
+            SubComment subcomment = db.SubComments.FirstOrDefault(s => s.Id == subcommentDto.SubCommentId);
+            subcomment.Text = subcommentDto.Text;
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
     }
 }

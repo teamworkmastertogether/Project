@@ -74,4 +74,20 @@ $(function () {
             Post.find(".content-post p:eq(0)").text(postDto.PostText);
         }
     };
+
+    hub.client.editComment = function (groupName, commentDto) {
+        name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+        Comment = $(".comment-level[id=" + commentDto.CommentId + "]");
+        if (name === groupName) {
+            Comment.find(".comment-content span:eq(0)").text(commentDto.Text);
+        }
+    };
+
+    hub.client.editSubComment = function (groupName, subcommentDto) {
+        name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+        SubComment = $(".comment-level2[id=" + subcommentDto.SubCommentId + "]");
+        if (name === groupName) {
+            SubComment.find(".reply-content span:eq(0)").text(subcommentDto.Text);
+        }
+    };
 });

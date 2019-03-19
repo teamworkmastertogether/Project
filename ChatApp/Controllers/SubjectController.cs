@@ -154,6 +154,7 @@ namespace ChatApp.Controllers
         {
             var userName = Session["userName"] as string;
             User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            Comment comment = db.Comments.FirstOrDefault(s => s.Id == subCommentDto.CommentId);
             SubComment subComment = new SubComment
             {
                 Text = subCommentDto.Text,
@@ -166,13 +167,13 @@ namespace ChatApp.Controllers
             int SubCommentId = db.SubComments.Max(s => s.Id);
             SubCommentDto result = new SubCommentDto
             {
+                UserName = comment.User.UserName,
                 LikeNumber = 0,
                 NameOfUser = user.Name,
                 Text = subCommentDto.Text,
                 Avatar = user.Avatar,
                 SubCommentId = SubCommentId
             };
-            Comment comment = db.Comments.FirstOrDefault(s => s.Id == subCommentDto.CommentId);
             if (user.Id != comment.User.Id)
             {
                 Notification noti = new Notification

@@ -233,6 +233,7 @@
     <Content Include="Assets\Css\style.css" />
     <Content Include="Assets\ImagesUpload\bacho.png" />
     <Content Include="Assets\Images\Layout\book.png" />
+    <Content Include="Assets\Images\Layout\logo.png" />
     <Content Include="Assets\Images\Login\background.png" />
     <Content Include="Assets\Images\Subject\anhvatly.PNG" />
     <Content Include="Assets\Images\Subject\dialy.PNG" />

@@ -8,10 +8,6 @@ $(function () {
     } else {
         $(".badge").hide();
     }
-    $('.three-dot span').click(function () {
-        $('.timeline-setting').toggleClass('show1');
-        $('.arrow-up').toggleClass('show2');
-    });
     notify = false;
     $('.icon-notify').off().click(function () {
         $.ajax({
@@ -87,11 +83,6 @@ $(function () {
         $('#add-friend_invitation').hide();
     });
 
-    $(".textNoti p").shorten({
-        "showChars": 120,
-        "moreText": "Xem thêm...",
-        "lessText": "Rút gọn"
-    });
     count = 1;
     $("#edit-info").click(function () {
         count++;
@@ -103,6 +94,26 @@ $(function () {
             $(".edit-user").css("display", "none", "transition", "1s");
             $(".info-user").css("display", "block", "transition", "1s");
         }
+        //get dữ liệu
+        $.ajax({
+            type: "GET",
+            url: "/Home/Edit",
+            contentType: "application/json;charset=utf-8",
+            dataType: "JSON",
+            success: function (res) {
+                $(".edit-user #Name").val(res.Name);
+                $(".edit-user #SchoolName").val(res.SchoolName);
+                var date = res.Birthday;
+                var ress = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
+                date = ress.getFullYear() + "-" + ress.getMonth() + "-" + ress.getDate();
+                alert(date);
+                $(".edit-user #Birthday").val(date);
+                $(".edit-user #Class").val(res.Class);
+                $(".edit-user #PhoneNumber").val(res.PhoneNumber);
+                $(".edit-user #Address").val(res.Address);
+            }
+
+        })
     });
     $(".avatar .img-responsive").mouseover(function () {
         $(this).css("cursor", "pointer");
@@ -175,3 +186,8 @@ function readURL(input) {
 $("#UploadImage").change(function () {
     readURL(this);
 });
+//click vào giới thiệu trang cá nhân
+$("#gioithieu").click(function () {
+    $(".lef-1").show();
+    $(".lef-2").hide();
+})

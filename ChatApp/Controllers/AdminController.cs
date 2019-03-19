@@ -63,13 +63,6 @@ namespace ChatApp.Controllers
 			string username = Session["userName"] as string;
 			User user = db.Users.FirstOrDefault(x => x.UserName.Equals(username));
 
-
-			return View();
-		}
-
-		[HttpGet]
-		public ActionResult GetMembers(int? id)
-		{
 			return View();
 		}
 	}

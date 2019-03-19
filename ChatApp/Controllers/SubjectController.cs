@@ -169,6 +169,22 @@ namespace ChatApp.Controllers
                 Avatar = user.Avatar,
                 SubCommentId = SubCommentId
             };
+            Comment comment = db.Comments.FirstOrDefault(s => s.Id == subCommentDto.CommentId);
+            if (user.Id != comment.User.Id)
+            {
+                Notification noti = new Notification
+                {
+                    UserId = comment.User.Id,
+                    PostId = comment.Post.Id,
+                    NameOfUser = user.Name,
+                    Avatar = user.Avatar,
+                    TextNoti = "Đã trả lời bình luận của bạn",
+                    ClassIconName = "far fa-comments",
+                    NotificationState = false
+                };
+                db.Notifications.Add(noti);
+            }
+            db.SaveChanges();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]

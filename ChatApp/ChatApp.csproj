@@ -236,9 +236,11 @@
     <Content Include="Assets\Images\Login\background.png" />
     <Content Include="Assets\Images\Subject\anhvatly.PNG" />
     <Content Include="Assets\Images\Subject\dialy.PNG" />
+    <Content Include="Assets\Images\Subject\gioithieu.png" />
     <Content Include="Assets\Images\Subject\hoahoc.PNG" />
     <Content Include="Assets\Images\Subject\lichsu.PNG" />
     <Content Include="Assets\Images\Subject\nguvan.PNG" />
+    <Content Include="Assets\Images\Subject\noiquy.png" />
     <Content Include="Assets\Images\Subject\sinhhoc.PNG" />
     <Content Include="Assets\Images\Subject\tienganh.PNG" />
     <Content Include="Assets\Images\Subject\toanhoc.PNG" />

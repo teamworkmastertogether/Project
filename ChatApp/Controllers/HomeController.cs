@@ -114,7 +114,7 @@ namespace ChatApp.Controllers
         {
             var userName = Session["userName"] as string;
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
-            var personDto = new PersonalDto { UserName = user.UserName, Name = user.Name };
+            var personDto = new PersonalDto { Name = user.Name,SchoolName=user.SchoolName,DoB=user.DoB,Address=user.Address,PhoneNumber=user.PhoneNumber };
             
             return Json(personDto, JsonRequestBehavior.AllowGet);
         }
@@ -154,8 +154,11 @@ namespace ChatApp.Controllers
         {
             var userName = Session["userName"] as string;
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
-            user.PassWord = personalDto.PassWord;
             user.Name = personalDto.Name;
+            user.SchoolName = personalDto.SchoolName;
+            user.DoB = personalDto.DoB;
+            user.Address = personalDto.Address;
+            user.PhoneNumber = personalDto.PhoneNumber;
             db.SaveChanges();
             
             return Json("Success", JsonRequestBehavior.AllowGet);

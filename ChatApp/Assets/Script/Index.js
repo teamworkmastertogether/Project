@@ -1,5 +1,6 @@
 ﻿
 var checkAvarta = true;
+var count = 1;
 $(function () {
 
     countNoti = parseInt($(".badge").text());
@@ -83,16 +84,16 @@ $(function () {
         $('#add-friend_invitation').hide();
     });
 
-    count = 1;
+    
     $("#edit-info").click(function () {
         count++;
         if (count % 2 === 0) {
-            $(".edit-user").css("display", "block", "transition", "1s");
-            $(".info-user").css("display", "none", "transition", "1s");
+            $(".edit-user").show();
+            $(".info-user").hide();
         }
         else {
-            $(".edit-user").css("display", "none", "transition", "1s");
-            $(".info-user").css("display", "block", "transition", "1s");
+            $(".edit-user").hide();
+            $(".info-user").show();
         }
         //get dữ liệu
         $.ajax({
@@ -100,15 +101,22 @@ $(function () {
             url: "/Home/Edit",
             contentType: "application/json;charset=utf-8",
             dataType: "JSON",
-            success: function (res) {
+            success: function (res) {          
                 $(".edit-user #Name").val(res.Name);
                 $(".edit-user #SchoolName").val(res.SchoolName);
-                var date = res.Birthday;
-                var ress = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
-                date = ress.getFullYear() + "-" + ress.getMonth() + "-" + ress.getDate();
-                alert(date);
-                $(".edit-user #Birthday").val(date);
-                $(".edit-user #Class").val(res.Class);
+                var date = res.DoB;
+                
+                var resTime = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
+                var month = resTime.getMonth()+1, dates = resTime.getDate();
+                if (month < 10) {
+                    month = "0" + month;
+                }
+                if (dates < 10) {
+                    dates = "0" + dates;
+                }
+                var dateTime = resTime.getFullYear()+"-" + month + "-" + dates  ;
+                
+                $(".edit-user #DoB").val(dateTime);
                 $(".edit-user #PhoneNumber").val(res.PhoneNumber);
                 $(".edit-user #Address").val(res.Address);
             }
@@ -190,4 +198,7 @@ $("#UploadImage").change(function () {
 $("#gioithieu").click(function () {
     $(".lef-1").show();
     $(".lef-2").hide();
+})
+$("#close,.close").on("click", function () {
+    $("#upImg").hide();
 })

@@ -54,6 +54,14 @@ $(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
+                if (result) {
+                    countNoti = parseInt($(".badge").text()) - 1;
+                    if (countNoti) {
+                        $(".badge").text(countNoti).show();
+                    } else {
+                        $(".badge").text(countNoti).hide();
+                    }
+                }
             },
             error: function (message) {
                 alert(message.responseText);
@@ -158,3 +166,10 @@ function readURL(input) {
 $("#UploadImage").change(function () {
     readURL(this);
 });
+
+countNoti = parseInt($(".badge").text());
+if (countNoti) {
+    $(".badge").show();
+} else {
+    $(".badge").hide();
+}

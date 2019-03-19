@@ -26,6 +26,7 @@ namespace ChatApp.Controllers
             List<PostDto> listPostDto = db.Posts.Where(s => s.SubjectId == sub.Id)
                 .Select(s => new PostDto
                 {
+                    UserName = user.UserName,
                     Myavatar = user.Avatar,
                     TimePost = s.CreatedDate,
                     LikeNumber = s.LikeNumber,
@@ -77,6 +78,7 @@ namespace ChatApp.Controllers
             int Postid = db.Posts.Max(s => s.Id);
             PostDto result = new PostDto
             {
+                UserName = userName,
                 TimePost = postDto.TimePost,
                 LikeNumber = postDto.LikeNumber,
                 NameOfUser = user.Name,
@@ -123,6 +125,7 @@ namespace ChatApp.Controllers
             int CommentId = db.Comments.Max(s => s.Id);
             CommentDto result = new CommentDto
             {
+                UserName = post.User.UserName,
                 LikeNumber = 0,
                 NameOfUser = user.Name,
                 Text = commentDto.Text,

@@ -745,13 +745,24 @@ border-color: red;
 	box-sizing: border-box;
 }
 
-#notifi, .add-friend_invitation {
+#notifi {
+	position: absolute;
+	background-color: #f7f7ff;
+	width: 100%;
+	height: 93.7%;
+	z-index: 9998;
+	overflow: auto;
+}
+
+#add-friend_invitation {
 	position: absolute;
 	background-color: #f7f7ff;
 	width: 100%;
 	height: 93.7%;
 	z-index: 1;
 	overflow: auto;
+	top: 42px;
+	display: none;
 }
 
 i.fas.fa-tools {
@@ -2825,7 +2836,7 @@ border-color: red;
 	box-sizing: border-box;
 }
 
-#notifi, #add-friend_invitation {
+#notifi {
 	position: absolute;
 	background-color: #f7f7ff;
 	width: 100%;

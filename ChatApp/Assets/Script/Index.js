@@ -2,6 +2,12 @@
 var checkAvarta = true;
 $(function () {
 
+    countNoti = parseInt($(".badge").text());
+    if (countNoti) {
+        $(".badge").show();
+    } else {
+        $(".badge").hide();
+    }
     $('.three-dot span').click(function () {
         $('.timeline-setting').toggleClass('show1');
         $('.arrow-up').toggleClass('show2');
@@ -68,12 +74,17 @@ $(function () {
 
     });
 
-    $('.icon-friend').off().click(function () {
+   
+    $('body').on('click',' .icon-friend ', function (e) {
         $('#add-friend_invitation').toggle(150);
     });
 
     $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-friend ', function (e) {
         $('#notifi').hide();
+    });
+
+    $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-notify ', function (e) {
+        $('#add-friend_invitation').hide();
     });
 
     $(".textNoti p").shorten({
@@ -164,10 +175,3 @@ function readURL(input) {
 $("#UploadImage").change(function () {
     readURL(this);
 });
-
-countNoti = parseInt($(".badge").text());
-if (countNoti) {
-    $(".badge").show();
-} else {
-    $(".badge").hide();
-}

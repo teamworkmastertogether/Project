@@ -16,7 +16,7 @@ $(document).ready(function () {
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 success: function (result) {
-                    hub.server.createCommentNew(GroupNameCurrent, CommentDto.PostId, result);
+                        hub.server.createCommentNew(MyUserName,GroupNameCurrent, CommentDto.PostId, result);
                 },
                 error: function (message) {
                     alert(message.responseText);
@@ -47,7 +47,7 @@ $(document).ready(function () {
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 success: function (result) {
-                    hub.server.createSubCommentNew(GroupNameCurrent, SubCommentDto.CommentId, result);
+                        hub.server.createSubCommentNew(MyUserName,GroupNameCurrent, SubCommentDto.CommentId, result);
                 },
                 error: function (message) {
                     alert(message.responseText);

@@ -10,7 +10,7 @@ $(function () {
             $(".post-clone .avatar-post").find('img').attr('src', postDto.avatar);
             $(".post-clone").find('.name-user a').text(postDto.NameOfUser);
             $(".post-clone").find('.time-post').text(postDto.TimePost);
-            $(".post-clone").find('.content-post').eq(1).find('p').text(postDto.PostText);
+            $(".post-clone").find('.content-post').eq(1).find('p').html(postDto.PostText);
             $(".post-clone").find('.countLike_post').text(postDto.LikeNumber);
             $(".post-clone .post").attr('id', postDto.PostId);
             var demo = $(".post-clone").html();

@@ -151,7 +151,7 @@
                         </div>
                         <div class="content-post">
                             <p>
-                                @item.PostText
+                               @Html.Raw(item.PostText)
                             </p>
                             <textarea type="text" class="edit-contentpost"></textarea>
                             <div class="row edit-post-btn">
@@ -287,7 +287,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="subcomment-button">
-                                                    <div class="col-md-1 btnLikeReply" style="padding-right: 30px">
+                                                    <div class="col-md-1 btnLikeReply" style="padding-right: 30px;margin-left: 10px;">
                                                         <a href="javascript:void(0)" class="button">Thích</a>
                                                     </div>
                                                     <div class="col-md-8" style="display:none">

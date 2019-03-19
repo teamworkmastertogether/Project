@@ -1,6 +1,7 @@
 ﻿using ChatApp.Extensions;
 using ChatApp.Models.Dto;
 using ChatApp.Models.Entities;
+using ChatApp.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,11 +37,11 @@ namespace ChatApp.Controllers
 			string password = form["password"].ToString().Trim();
 			string hashedPassword = HashPassword.ComputeSha256Hash(password);
 
-			User user = db.Users.FirstOrDefault(x => x.UserName.Equals("admin") && x.PassWord.Equals("91b4d142823f7d20c5f08df69122de43f35f057a988d9619f6d3138485c9a203"));
+			Admin admin = db.Admins.FirstOrDefault(x => x.Username.Equals("admin") && x.Password.Equals("91b4d142823f7d20c5f08df69122de43f35f057a988d9619f6d3138485c9a203"));
 			// Kiểm tra xem user có tồn tại không
-			if (user != null)
+			if (admin != null)
 			{
-				Session["username"] = user.UserName;
+				Session["username"] = admin.Username;
 				return RedirectToAction("Index");
 			}
 			ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không chính xác";
@@ -64,6 +65,13 @@ namespace ChatApp.Controllers
 			User user = db.Users.FirstOrDefault(x => x.UserName.Equals(username));
 
 			return View();
+		}
+
+		public ActionResult GetMembers ()
+		{
+			var listMembers = db.Users.ToList();
+			var listMemberVMs = AutoMapper.Mapper.Map<IEnumerable<UserViewModel>>(listMembers);
+			return View(listMemberVMs);
 		}
 	}
 }

@@ -266,7 +266,7 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click','.edit-post', function () {
-        var oldData = $(this).parents('.header-post').next().children().eq(0).text();
+        var oldData = $(this).parents('.header-post').next().children().eq(0).text().trim();
         $(this).parents('.header-post').next().children().eq(0).hide();
         var res = $(this).parents('.header-post').next().find('textarea');
         res.next().show();
@@ -275,18 +275,30 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.edit-comment', function () {
-        var oldData = $(this).parents('.comment-content_setting').prev().find('span').text();
+        $('.edit-clone').hide();
+        $('.comment-level span').show();
+        $('.reply-button').show();
+        $('.subcomment-button').show();
+        var oldData = $(this).parents('.comment-content_setting').prev().find('span').text().trim();
         $(this).closest('.comment-content_setting').prev().find('span').hide();
         var res = $(this).closest('.comment-content_setting').prev().find('textarea');
         res.val(oldData).show();
         $(this).parent().hide();
         $(this).parents('.comment-content_setting').next().next().hide();
-
-        $(".edit-comment").not($(this)).addClass('hide');
+        //$('.edit-clone').hide();
+        //$('.comment-content span').show();
+        //$(this).parents('.comment-content').find('textarea').show();
+        //$(this).closest('.comment-content_setting').prev().find('span').show();
+        //$(this).parents('.comment-content_setting').next().next().show();
     }); 
 
     $('.post-space').on('click', '.edit-reply', function () {
-        var oldData = $(this).parents('.reply-content_setting').prev().find('span').text();
+        $('.edit-clone').hide();
+        $('.comment-level span').show();
+        $('.reply-button').show();
+        $('.subcomment-button').show();
+
+        var oldData = $(this).parents('.reply-content_setting').prev().find('span').text().trim();
         $(this).closest('.reply-content_setting').prev().find('span').hide();
         $(this).parents('.reply-content_setting').prev().find('textarea').val(oldData).show();
         $(this).parent().hide();
@@ -380,10 +392,12 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '#postNew', function () {
+        $('.think').height(50);
+        $('.rig').height(200);
         if ($(this).closest('.box').find('textarea').val() !== "") {
             var PostDto = {
                 GroupName: GroupNameCurrent,
-                PostText: $(this).closest('.box').find('textarea').val(),
+                PostText: $(this).closest('.box').find('textarea').val().replace(/\n/g,'<br>'),
                 TimePost: GetDateNow()
             };
 
@@ -407,11 +421,15 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('keyup', '.think', function () {
+        $(this).height(50);
         $(this).height(this.scrollHeight);
+        $(this).closest('.rig').height(this.scrollHeight + 150);
         $(this).css('overflow', 'auto');
     });
 
     $('.post-space').find('.think').keyup();
+
+
 });
 
 

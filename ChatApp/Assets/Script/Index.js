@@ -11,11 +11,9 @@ $(function () {
         $.ajax({
             type: "POST",
             url: "/Notifi/GetNotifi",
-            //data: JSON.stringify(SubCommentDto),
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (array) {
-                //hub.server.createSubCommentNew(GroupNameCurrent, SubCommentDto.CommentId, result);
                 $(".notifyClass").html("");
                 for (var i = 0; i < array.length; i++) {
                     tagIcon = '<i class="' + array[i].ClassIconName + '"></i>';
@@ -50,7 +48,6 @@ $(function () {
         $.ajax({
             type: "POST",
             url: url,
-            //data: JSON.stringify(SubCommentDto),
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
@@ -62,6 +59,7 @@ $(function () {
                         $(".badge").text(countNoti).hide();
                     }
                 }
+                $('#notifi').hide();
             },
             error: function (message) {
                 alert(message.responseText);
@@ -74,7 +72,7 @@ $(function () {
         $('#add-friend_invitation').toggle(150);
     });
 
-    $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
+    $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-friend ', function (e) {
         $('#notifi').hide();
     });
 

@@ -20,6 +20,7 @@ namespace ChatApp.Models.Entities
 
         public virtual ICollection<ListFriend> ListFriends { get; set; }
         public virtual ICollection<MemberOfListFriend> MemberOfListFriends { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
 
         public User():base()
         {

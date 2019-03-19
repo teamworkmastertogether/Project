@@ -8,7 +8,58 @@ $(function () {
     });
     notify = false;
     $('.icon-notify').off().click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Notifi/GetNotifi",
+            //data: JSON.stringify(SubCommentDto),
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (array) {
+                //hub.server.createSubCommentNew(GroupNameCurrent, SubCommentDto.CommentId, result);
+                $(".notifyClass").html("");
+                for (var i = 0; i < array.length; i++) {
+                    tagIcon = '<i class="' + array[i].ClassIconName + '"></i>';
+                    $(".notifi-clone .identify-icon").html(tagIcon);
+                    $(".notifi-clone img").attr("src", array[i].Avatar);
+                    $(".notifi-clone h3").text(array[i].NameOfUser);
+                    $(".notifi-clone h4").text(array[i].TimeNotifi);
+                    $(".notifi-clone em").text(array[i].TextNoti);
+                    $(".notifi-clone span").text(array[i].SubjectName);
+                    href = "/Subject/GetSubject?id=" + array[i].SubjectId + "#" + array[i].PostId;
+                    $(".notifi-clone a").attr("href", href);
+                    $(".notifi-clone a").attr("id", array[i].NotificationId);
+                    if (array[i].NotificationState) {
+                        $(".notifi-clone a").addClass("notifi-seen");
+                    }
+                    item = $(".notifi-clone").html();
+                    $(".notifyClass").prepend(item);
+                    $(".notifi-clone a").removeClass("notifi-seen");
+                }
+                $(".notifi-clone a").attr("id", 0);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
         $('#notifi').toggle(150);
+    });
+
+    $(".notifyClass").on('mouseup', 'a', function (e) {
+        Id = parseInt($(this).attr("id"));
+        url = "/Notifi/SaveSeenNotifi?Id=" + Id;
+        $.ajax({
+            type: "POST",
+            url: url,
+            //data: JSON.stringify(SubCommentDto),
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
+
     });
 
     $('.icon-friend').off().click(function () {

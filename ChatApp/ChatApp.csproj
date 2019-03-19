@@ -180,6 +180,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NotifiController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Extensions\HashPassword.cs" />
     <Compile Include="Global.asax.cs">
@@ -191,7 +192,20 @@
     <Compile Include="Migrations\201903161408081_add_comment.Designer.cs">
       <DependentUpon>201903161408081_add_comment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903181215577_createNotifi.cs" />
+    <Compile Include="Migrations\201903181215577_createNotifi.Designer.cs">
+      <DependentUpon>201903181215577_createNotifi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903181343544_createNotifi2.cs" />
+    <Compile Include="Migrations\201903181343544_createNotifi2.Designer.cs">
+      <DependentUpon>201903181343544_createNotifi2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903181529118_createNotifi3.cs" />
+    <Compile Include="Migrations\201903181529118_createNotifi3.Designer.cs">
+      <DependentUpon>201903181529118_createNotifi3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Dto\NotifiDto.cs" />
     <Compile Include="Models\Dto\SubCommentDto.cs" />
     <Compile Include="Models\Dto\CommentDto.cs" />
     <Compile Include="Models\Dto\InforFriendDto.cs" />
@@ -205,6 +219,7 @@
     <Compile Include="Models\Entities\ListFriend.cs" />
     <Compile Include="Models\Entities\MemberOfListFriend.cs" />
     <Compile Include="Models\Entities\Message.cs" />
+    <Compile Include="Models\Entities\Notification.cs" />
     <Compile Include="Models\Entities\Post.cs" />
     <Compile Include="Models\Entities\SubComment.cs" />
     <Compile Include="Models\Entities\Subject.cs" />
@@ -255,6 +270,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Notifi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -280,6 +296,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903161408081_add_comment.resx">
       <DependentUpon>201903161408081_add_comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903181215577_createNotifi.resx">
+      <DependentUpon>201903181215577_createNotifi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903181343544_createNotifi2.resx">
+      <DependentUpon>201903181343544_createNotifi2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903181529118_createNotifi3.resx">
+      <DependentUpon>201903181529118_createNotifi3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -7,8 +7,8 @@ namespace ChatApp.Models.Dto
 {
     public class PostDto
     {
-
         public string NameOfUser { get; set; }
+        public string UserName { get; set; }
         public string Myavatar { get; set; }
         public string avatar { get; set; }
         public string PostText { get; set; }

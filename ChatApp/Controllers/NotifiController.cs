@@ -33,10 +33,15 @@ namespace ChatApp.Controllers
         [HttpPost]
         public JsonResult SaveSeenNotifi(int? Id)
         {
+            int CheckSeen = 0;
             Notification noti = db.Notifications.FirstOrDefault(s => s.Id == Id);
-            noti.NotificationState = true;
+            if (!noti.NotificationState)
+            {
+                CheckSeen = 1;
+                noti.NotificationState = true;
+            }
             db.SaveChanges();
-            return Json(1, JsonRequestBehavior.AllowGet);
+            return Json(CheckSeen, JsonRequestBehavior.AllowGet);
         }
     }
 }

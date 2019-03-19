@@ -17,6 +17,8 @@ namespace ChatApp.Hubs
         public void CreateCommentNew(string groupName,int postId, CommentDto commentDto)
         {
             Clients.All.CreateComment(groupName, postId, commentDto);
+            List<string> listId = GetListConnectIdByUserName("No value", commentDto.UserName);
+            Clients.Clients(listId).UpdateNotiRealtime();
         }
 
         public void CreateSubCommentNew(string groupName, int commentId, SubCommentDto subCommentDto)

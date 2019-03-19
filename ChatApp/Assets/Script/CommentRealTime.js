@@ -2,6 +2,10 @@
 $(function () {
     hub.client.createPost = function (GroupName, postDto) {
         name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+        if (postDto.UserName !== MyUserName) {
+            countNoti = parseInt($(".badge").text()) + 1;
+            $(".badge").text(countNoti).show();
+        }
         if (name === GroupName) {
             $(".post-clone .avatar-post").find('img').attr('src', postDto.avatar);
             $(".post-clone").find('.name-user a').text(postDto.NameOfUser);
@@ -27,6 +31,11 @@ $(function () {
             $('.post-clone .comment-level').attr('id',0);
             Post.find('.comment-post-wrapper').append(demo);
         }
+    };
+
+    hub.client.updateNotiRealtime = function () {
+            countNoti = parseInt($(".badge").text()) + 1;
+            $(".badge").text(countNoti).show();
     };
 
     hub.client.createSubComment = function (groupName, commentId, subCommentDto) {

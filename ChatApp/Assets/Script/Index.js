@@ -32,7 +32,7 @@ $(function () {
                         $(".notifi-clone a").addClass("notifi-seen");
                     }
                     item = $(".notifi-clone").html();
-                    $(".notifyClass").append(item);
+                    $(".notifyClass").prepend(item);
                     $(".notifi-clone a").removeClass("notifi-seen");
                 }
                 $(".notifi-clone a").attr("id", 0);

@@ -4,7 +4,6 @@ $(document).ready(function () {
    
     $('.post-space').on('keypress','.inputComment', function (e) {
         if (e.which === 13 && $(this).val() !== "") {
-
             var CommentDto = {
                 PostId: parseInt($(this).closest('.post').attr("id")),
                 Text: $(this).val()

@@ -17,9 +17,9 @@ namespace ChatApp.Controllers
             List<NotifiDto> listNotifi = db.Notifications.Where(s => s.UserId == user.Id)
                 .Select(s => new NotifiDto
                 {
-                    NameOfUser = s.Post.User.Name,
+                    NameOfUser = s.NameOfUser,
                     SubjectName = s.Post.Subject.Name,
-                    Avatar = s.Post.User.Avatar,
+                    Avatar = s.Avatar,
                     SubjectId = s.Post.SubjectId,
                     TimeNotifi = s.Post.CreatedDate,
                     PostId = s.PostId,

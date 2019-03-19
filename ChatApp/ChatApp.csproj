@@ -200,6 +200,10 @@
     <Compile Include="Migrations\201903181343544_createNotifi2.Designer.cs">
       <DependentUpon>201903181343544_createNotifi2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903181529118_createNotifi3.cs" />
+    <Compile Include="Migrations\201903181529118_createNotifi3.Designer.cs">
+      <DependentUpon>201903181529118_createNotifi3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\NotifiDto.cs" />
     <Compile Include="Models\Dto\SubCommentDto.cs" />
@@ -298,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903181343544_createNotifi2.resx">
       <DependentUpon>201903181343544_createNotifi2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903181529118_createNotifi3.resx">
+      <DependentUpon>201903181529118_createNotifi3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

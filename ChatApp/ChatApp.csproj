@@ -211,6 +211,10 @@
     <Compile Include="Migrations\201903181343544_createNotifi2.Designer.cs">
       <DependentUpon>201903181343544_createNotifi2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903181529118_createNotifi3.cs" />
+    <Compile Include="Migrations\201903181529118_createNotifi3.Designer.cs">
+      <DependentUpon>201903181529118_createNotifi3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\NotifiDto.cs" />
     <Compile Include="Models\Dto\SubCommentDto.cs" />
@@ -242,12 +246,15 @@
     <Content Include="Assets\Css\style.css" />
     <Content Include="Assets\ImagesUpload\bacho.png" />
     <Content Include="Assets\Images\Layout\book.png" />
+    <Content Include="Assets\Images\Layout\logo.png" />
     <Content Include="Assets\Images\Login\background.png" />
     <Content Include="Assets\Images\Subject\anhvatly.PNG" />
     <Content Include="Assets\Images\Subject\dialy.PNG" />
+    <Content Include="Assets\Images\Subject\gioithieu.png" />
     <Content Include="Assets\Images\Subject\hoahoc.PNG" />
     <Content Include="Assets\Images\Subject\lichsu.PNG" />
     <Content Include="Assets\Images\Subject\nguvan.PNG" />
+    <Content Include="Assets\Images\Subject\noiquy.png" />
     <Content Include="Assets\Images\Subject\sinhhoc.PNG" />
     <Content Include="Assets\Images\Subject\tienganh.PNG" />
     <Content Include="Assets\Images\Subject\toanhoc.PNG" />
@@ -6820,6 +6827,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903181343544_createNotifi2.resx">
       <DependentUpon>201903181343544_createNotifi2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903181529118_createNotifi3.resx">
+      <DependentUpon>201903181529118_createNotifi3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

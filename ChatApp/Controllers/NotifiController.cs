@@ -17,9 +17,9 @@ namespace ChatApp.Controllers
             List<NotifiDto> listNotifi = db.Notifications.Where(s => s.UserId == user.Id)
                 .Select(s => new NotifiDto
                 {
-                    NameOfUser = s.Post.User.Name,
+                    NameOfUser = s.NameOfUser,
                     SubjectName = s.Post.Subject.Name,
-                    Avatar = s.Post.User.Avatar,
+                    Avatar = s.Avatar,
                     SubjectId = s.Post.SubjectId,
                     TimeNotifi = s.Post.CreatedDate,
                     PostId = s.PostId,
@@ -33,10 +33,15 @@ namespace ChatApp.Controllers
         [HttpPost]
         public JsonResult SaveSeenNotifi(int? Id)
         {
+            int CheckSeen = 0;
             Notification noti = db.Notifications.FirstOrDefault(s => s.Id == Id);
-            noti.NotificationState = true;
+            if (!noti.NotificationState)
+            {
+                CheckSeen = 1;
+                noti.NotificationState = true;
+            }
             db.SaveChanges();
-            return Json(1, JsonRequestBehavior.AllowGet);
+            return Json(CheckSeen, JsonRequestBehavior.AllowGet);
         }
     }
 }

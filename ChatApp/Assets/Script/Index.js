@@ -11,11 +11,9 @@ $(function () {
         $.ajax({
             type: "POST",
             url: "/Notifi/GetNotifi",
-            //data: JSON.stringify(SubCommentDto),
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (array) {
-                //hub.server.createSubCommentNew(GroupNameCurrent, SubCommentDto.CommentId, result);
                 $(".notifyClass").html("");
                 for (var i = 0; i < array.length; i++) {
                     tagIcon = '<i class="' + array[i].ClassIconName + '"></i>';
@@ -32,7 +30,7 @@ $(function () {
                         $(".notifi-clone a").addClass("notifi-seen");
                     }
                     item = $(".notifi-clone").html();
-                    $(".notifyClass").append(item);
+                    $(".notifyClass").prepend(item);
                     $(".notifi-clone a").removeClass("notifi-seen");
                 }
                 $(".notifi-clone a").attr("id", 0);
@@ -50,10 +48,18 @@ $(function () {
         $.ajax({
             type: "POST",
             url: url,
-            //data: JSON.stringify(SubCommentDto),
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
+                if (result) {
+                    countNoti = parseInt($(".badge").text()) - 1;
+                    if (countNoti) {
+                        $(".badge").text(countNoti).show();
+                    } else {
+                        $(".badge").text(countNoti).hide();
+                    }
+                }
+                $('#notifi').hide();
             },
             error: function (message) {
                 alert(message.responseText);
@@ -66,7 +72,7 @@ $(function () {
         $('#add-friend_invitation').toggle(150);
     });
 
-    $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
+    $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-friend ', function (e) {
         $('#notifi').hide();
     });
 
@@ -158,3 +164,10 @@ function readURL(input) {
 $("#UploadImage").change(function () {
     readURL(this);
 });
+
+countNoti = parseInt($(".badge").text());
+if (countNoti) {
+    $(".badge").show();
+} else {
+    $(".badge").hide();
+}

@@ -74,6 +74,7 @@ namespace ChatApp.Controllers
             .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
             .Select(s => new InforFriendDto { Avatar = s.User.Avatar, Name = s.User.Name, UserName = s.User.UserName, SeenMessage = s.SeenMessage })
             .Take(20).ToList();
+            ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
             return PartialView(listUser);
         }
         public List<InforFriendDto> GetFriendSuggest()

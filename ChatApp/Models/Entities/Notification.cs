@@ -19,5 +19,7 @@ namespace ChatApp.Models.Entities
         public string TextNoti { get; set; }
         public string ClassIconName { get; set; }
         public bool NotificationState { get; set; }
+        public string NameOfUser { get; set; }
+        public string Avatar { get; set; }
     }
 }

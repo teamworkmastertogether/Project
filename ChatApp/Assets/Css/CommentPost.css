@@ -368,3 +368,20 @@ span.icon {
     width: 42px;
     height: 42px;
 }
+.content-listFriendSuggest img {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    margin-left: 33%;
+}
+.content-listFriendSuggest .infor h5 {
+    font-size: 15px;
+    color: #071b84;
+}
+.btn.btn-primary.add-friend {
+    margin-bottom: 5px;
+    background-color: #42ca57;
+    padding: 6px;
+    border-color: #0000ff00;
+    margin-right: 6%;
+}

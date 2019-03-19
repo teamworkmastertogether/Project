@@ -1,16 +1,4 @@
-/* Minification failed. Returning unminified contents.
-(380,8): run-time error CSS1035: Expected colon, found ';'
-(625,7): run-time error CSS1035: Expected colon, found '.'
-(1145,7): run-time error CSS1035: Expected colon, found '.'
-(1476,7): run-time error CSS1035: Expected colon, found '.'
-(2457,8): run-time error CSS1035: Expected colon, found ';'
-(2702,7): run-time error CSS1035: Expected colon, found '.'
-(3214,7): run-time error CSS1035: Expected colon, found '.'
-(3547,7): run-time error CSS1035: Expected colon, found '.'
-(4310,1): run-time error CSS1019: Unexpected token, found '@import'
-(4310,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4401,17): run-time error CSS1036: Expected expression, found '#'
- */
+
 * {
     margin: 0px;
     padding: 0px;
@@ -4129,7 +4117,7 @@ i.fas.fa-list-ul {
 
 .avatar {
     position: absolute;
-    top: 12.5em;
+    top: 15.5em;
     left: 2em;
     float: left;
     z-index: 1;
@@ -4533,7 +4521,7 @@ body {
 
 .chat {
     position: fixed;
-    width: 27%;
+    width: 25%;
     right: 0;
     top: 0;
     bottom: 0;
@@ -4838,6 +4826,11 @@ li:hover .message-data-time {
 .notifi-seen {
     background: #cfe0e6;
 }
+
 #modalGioiThieu img {
     border-radius: 0;
+}
+
+li.clearfix img {
+    border-radius: 50%;
 }

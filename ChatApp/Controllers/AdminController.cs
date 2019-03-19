@@ -1,4 +1,5 @@
 ﻿using ChatApp.Extensions;
+using ChatApp.Models.Dto;
 using ChatApp.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,23 @@ namespace ChatApp.Controllers
 			Session.Remove("username");
 			// Chuyển hướng đến trang login
 			return RedirectToAction("Login");
+		}
+
+		[HttpGet]
+		public ActionResult GetPosts(int? id)
+		{
+			Subject subject = db.Subjects.FirstOrDefault(x => x.Id == id);
+			string username = Session["userName"] as string;
+			User user = db.Users.FirstOrDefault(x => x.UserName.Equals(username));
+
+
+			return View();
+		}
+
+		[HttpGet]
+		public ActionResult GetMembers(int? id)
+		{
+			return View();
 		}
 	}
 }

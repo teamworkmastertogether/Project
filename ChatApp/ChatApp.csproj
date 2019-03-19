@@ -215,6 +215,10 @@
     <Compile Include="Migrations\201903181529118_createNotifi3.Designer.cs">
       <DependentUpon>201903181529118_createNotifi3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903190725129_add-admins-tbl.cs" />
+    <Compile Include="Migrations\201903190725129_add-admins-tbl.Designer.cs">
+      <DependentUpon>201903190725129_add-admins-tbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\NotifiDto.cs" />
     <Compile Include="Models\Dto\SubCommentDto.cs" />
@@ -223,6 +227,7 @@
     <Compile Include="Models\Dto\PersonalDto.cs" />
     <Compile Include="Models\Dto\PostDto.cs" />
     <Compile Include="Models\Dto\UserDto.cs" />
+    <Compile Include="Models\Entities\Admin.cs" />
     <Compile Include="Models\Entities\BaseEntity.cs" />
     <Compile Include="Models\Entities\ChatDbcontext.cs" />
     <Compile Include="Models\Entities\Comment.cs" />
@@ -6830,6 +6835,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903181529118_createNotifi3.resx">
       <DependentUpon>201903181529118_createNotifi3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903190725129_add-admins-tbl.resx">
+      <DependentUpon>201903190725129_add-admins-tbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

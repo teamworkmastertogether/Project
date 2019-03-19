@@ -17,5 +17,6 @@ namespace ChatApp.Models.Entities
         public DbSet<Comment> Comments { get; set; }
         public DbSet<SubComment> SubComments { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+		public DbSet<Admin> Admins { get; set; }
     }
 }

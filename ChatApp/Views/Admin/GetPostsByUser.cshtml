@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ChatApp.Models.ViewModels.PostViewModel>
+
+@{
+    ViewBag.Title = "GetPostsByUser";
+    Layout = "~/Views/Admin/_AdminPartialView.cshtml";
+}
+
+<style>
+    .content-wrapper {
+        padding-bottom: 25px;
+    }
+</style>
+
+
+<div class="content-wrapper" style="padding-left: 10px">
+    <section class="content-header">
+        <h1>
+            Danh sách bài đăng của @ViewBag.Name
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">MemberPosts</li>
+        </ol>
+    </section>
+    <div class="add-student" style="padding-bottom: 15px; border-bottom: 1px solid gray; margin-bottom: 10px">
+    </div>
+    <table class="table table-striped table-hover" id="table-student">
+        <thead>
+            <tr>
+                <th>Mã bài đăng</th>
+                <th>
+                    Nội dung bài đăng
+                </th>
+                <th>
+                    Thời gian đăng
+                </th>
+                <th>Số lượng like</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LikeNumber)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @using (Html.BeginForm())
+    {
+        <div style="padding-left: 20px;">
+            <a href="/Admin/GetMembers">Quay lại trang danh sách học sinh</a>
+        </div>
+    }
+</div>

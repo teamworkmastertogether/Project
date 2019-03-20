@@ -1,4 +1,6 @@
-﻿var GroupNameCurrent = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+﻿
+
+var GroupNameCurrent = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
 
 $(document).ready(function () {
 
@@ -282,8 +284,8 @@ $(document).ready(function () {
 
     });
 
-    $('.post-space').on('click','.edit-post', function () {
-        var oldData = $(this).parents('.header-post').next().children().eq(0).text().trim();
+    $('.post-space').on('click', '.edit-post', function () {
+        var oldData = $(this).parents('.header-post').next().children().eq(0).html().trim().replace(/\<br>/g, '\n');
         $(this).parents('.header-post').next().children().eq(0).hide();
         var res = $(this).parents('.header-post').next().find('textarea');
         res.next().show();
@@ -440,8 +442,6 @@ $(document).ready(function () {
     });
 
     $('.post-space').find('.think').keyup();
-
-
 });
 
 

@@ -5,6 +5,13 @@
     Layout = "~/Views/Admin/_AdminPartialView.cshtml";
 }
 
+<style>
+    .add-student {
+        padding-bottom: 10px;
+        border-bottom: 1px solid gray;
+        margin: 10px 0px;
+    }
+</style>
 
 <div class="content-wrapper" style="padding-left: 10px">
     <section class="content-header">
@@ -16,14 +23,48 @@
             <li class="active">Members</li>
         </ol>
     </section>
-    <div class="add-student" style="padding-bottom: 15px; border-bottom: 1px solid gray; margin-bottom: 10px">
+
+    <div class="add-student row">
+        <p style="padding-left: 18px; padding-top: 10px">
+            <a href="#"><button class="btn btn-primary">Thêm mới thành viên</button></a>
+        </p>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Nhập dữ liệu từ File Excel
+                </div>
+                <form action="/Admin/ImportUserFromExcel" method="post" enctype="multipart/form-data"
+                      style="padding: 15px">
+                    <input type="file" name="fileUpload" />
+                    <br />
+                    <button type="submit" value="Import" class="btn btn-success" />Import Data</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Xuất dữ liệu ra File Excel
+                </div>
+                <form action="/Admin/ExportUserToExcel" method="post" enctype="multipart/form-data"
+                      style="padding: 15px">
+                    <button type="submit" class="btn btn-success" />Export File</button>
+                    <i>@ViewBag.Message</i>
+                </form>
+            </div>
+        </div>
     </div>
+
     <table class="table table-striped table-hover" id="table-student">
         <thead>
             <tr>
-                <th>Mã thành viên</th>
+                <th>Số thứ tự</th>
                 <th>
                     Tên thành viên
+                </th>
+                <th>
+                    Avatar
                 </th>
                 <th>
                     Email
@@ -32,39 +73,38 @@
             </tr>
         </thead>
         <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Id)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td>
-                            <a href="#"><button class="btn btn-primary">Thông tin cá nhân</button></a>
-                            <a href="#"><button class="btn btn-primary">Danh sách bạn bè</button></a>
-                            <a href="#"><button class="btn btn-primary">Các bài đã đăng</button></a>
-                            <a href="#"><button class="btn btn-danger">Khóa thành viên</button></a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
+            @{ int i = 0; }
+            @foreach (var item in Model)
+            {
+                i = i + 1;
+                <tr>
+                    <td>
+                        @i
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <img src="@Html.DisplayFor(modelItem => item.Avatar)" alt="Alternate Text" style="width:50px;height:50px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <a href="/Admin/GetMemberDetail/@item.Id">
+                            <button class="btn btn-primary">Thông tin cá nhân</button>
+                        </a>
+                        <a href="/Admin/GetListFriend/@item.Id">
+                            <button class="btn btn-primary">Danh sách bạn bè</button>
+                        </a>
+                        <a href="/Admin/GetPostsByUser/@item.Id">
+                            <button class="btn btn-primary">Các bài đã đăng</button>
+                        </a>
+                        <a href="#"><button class="btn btn-danger">Khóa</button></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
-
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            Nhập dữ liệu từ File Excel
-        </div>
-        <form action="#" method="post" enctype="multipart/form-data"
-              style="padding: 15px">
-            <input type="file" name="fileUpload" />
-            <br />
-            <button type="submit" value="Import" class="btn btn-success" />Import Data</button>
-        </form>
-    </div>
 </div>
 

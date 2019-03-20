@@ -8,7 +8,7 @@ $(function () {
         }
         if (name === GroupName) {
             $(".post-clone .avatar-post").find('img').attr('src', postDto.avatar);
-            $(".post-clone").find('.name-user a').text(postDto.NameOfUser);
+            $(".post-clone").find('.name-user a').text(postDto.NameOfUser).attr("href",postDto.UrlProfile);
             $(".post-clone").find('.time-post').text(postDto.TimePost);
             $(".post-clone").find('.content-post').eq(1).find('p').html(postDto.PostText);
             $(".post-clone").find('.countLike_post').text(postDto.LikeNumber);
@@ -24,7 +24,7 @@ $(function () {
         Post = $(".post[id=" + postId + "]");
         if (name === groupName) {
             $('.post-clone .comment-level .img-comment img').attr('src', commentDto.Avatar);
-            $('.post-clone .name-comment').text(commentDto.NameOfUser);
+            $('.post-clone .name-comment').text(commentDto.NameOfUser).attr("href", commentDto.UrlProfile);
             $('.post-clone .name-comment').next().text(commentDto.Text);
             $('.post-clone .comment-level').attr('id', commentDto.CommentId);
             var demo = $('.post-clone .comment-level').parent().html();
@@ -43,7 +43,7 @@ $(function () {
         Comment = $(".comment-level[id=" + commentId + "]");
         if (name === groupName) {
             $('.post-clone .comment-level2 img:eq(0)').attr('src', subCommentDto.Avatar);
-            $('.post-clone .comment-level2').find('.name-reply').eq(0).text(subCommentDto.NameOfUser);
+            $('.post-clone .comment-level2').find('.name-reply').eq(0).text(subCommentDto.NameOfUser).attr("href", subCommentDto.UrlProfile);;
             $('.post-clone .comment-level2').find('.name-reply').eq(0).next().text(subCommentDto.Text);
             $('.post-clone .comment-level2').attr('id', subCommentDto.SubCommentId);
             var demo2 = $('.post-clone .comment-level2').parent().html();

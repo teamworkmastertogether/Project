@@ -199,11 +199,6 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Migrations\201903190950070_adddb.cs" />
-    <Compile Include="Migrations\201903190950070_adddb.Designer.cs">
-      <DependentUpon>201903190950070_adddb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\NotifiDto.cs" />
     <Compile Include="Models\Dto\SubCommentDto.cs" />
     <Compile Include="Models\Dto\CommentDto.cs" />
@@ -7336,11 +7331,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\GetMembers.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903190950070_adddb.resx">
-      <DependentUpon>201903190950070_adddb.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

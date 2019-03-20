@@ -7,6 +7,7 @@ namespace ChatApp.Models.Dto
 {
     public class SubCommentDto
     {
+        public bool CheckLiked { get; set; }
         public string UserName { get; set; }
         public string NameOfUser { get; set; }
         public string Text { get; set; }

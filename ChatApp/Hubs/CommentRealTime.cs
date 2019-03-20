@@ -20,7 +20,7 @@ namespace ChatApp.Hubs
             if (myuserName != commentDto.UserName)
             {
                 List<string> listId = GetListConnectIdByUserName("No value", commentDto.UserName);
-                Clients.Clients(listId).UpdateNotiRealtime(commentDto.UserName);
+                Clients.Clients(listId).UpdateNotiRealtime();
             }
         }
 
@@ -30,7 +30,7 @@ namespace ChatApp.Hubs
             if (myuserName != subCommentDto.UserName)
             {
                 List<string> listId = GetListConnectIdByUserName("No value", subCommentDto.UserName);
-                Clients.Clients(listId).UpdateNotiRealtime(subCommentDto.UserName);
+                Clients.Clients(listId).UpdateNotiRealtime();
             }
         }
 
@@ -62,6 +62,36 @@ namespace ChatApp.Hubs
         public void EditSubComment(string groupName, SubCommentDto subcommentDto)
         {
             Clients.All.EditSubComment(groupName, subcommentDto);
+        }
+
+        public void SaveLikePost(string myuserName,LikeDto likeDto, int postId, string groupName)
+        {
+            Clients.All.SaveLikePost(likeDto.Check, postId, groupName);
+            if (myuserName != likeDto.UserName)
+            {
+                List<string> listId = GetListConnectIdByUserName("No value", likeDto.UserName);
+                Clients.Clients(listId).UpdateNotiRealtime();
+            }
+        }
+
+        public void SaveLikeComment(string myuserName, LikeDto likeDto, int commentId, string groupName)
+        {
+            Clients.All.SaveLikeComment(likeDto.Check, commentId, groupName);
+            if (myuserName != likeDto.UserName)
+            {
+                List<string> listId = GetListConnectIdByUserName("No value", likeDto.UserName);
+                Clients.Clients(listId).UpdateNotiRealtime();
+            }
+        }
+
+        public void SaveLikeSubComment(string myuserName, LikeDto likeDto, int subCommentId, string groupName)
+        {
+            Clients.All.SaveLikeSubComment(likeDto.Check, subCommentId, groupName);
+            if (myuserName != likeDto.UserName)
+            {
+                List<string> listId = GetListConnectIdByUserName("No value", likeDto.UserName);
+                Clients.Clients(listId).UpdateNotiRealtime();
+            }
         }
     }
 }

@@ -132,6 +132,7 @@ namespace ChatApp.Controllers
             int CommentId = db.Comments.Max(s => s.Id);
             CommentDto result = new CommentDto
             {
+                UserNameComment = userName,
                 UrlProfile = "/Home/Profile?id=" + user.Id.ToString(),
                 UserName = post.User.UserName,
                 LikeNumber = 0,
@@ -175,6 +176,7 @@ namespace ChatApp.Controllers
             int SubCommentId = db.SubComments.Max(s => s.Id);
             SubCommentDto result = new SubCommentDto
             {
+                UserNameComment = userName,
                 UrlProfile = "/Home/Profile?id=" + user.Id.ToString(),
                 UserName = comment.User.UserName,
                 LikeNumber = 0,

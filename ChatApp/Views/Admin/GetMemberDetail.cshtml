@@ -1,0 +1,95 @@
+﻿@model ChatApp.Models.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "GetMemberDetail";
+    Layout = "~/Views/Admin/_AdminPartialView.cshtml";
+}
+
+<style>
+    dl dt {
+        padding-bottom: 10px;
+    }
+
+    .content-wrapper {
+        padding-bottom: 25px;
+    }
+</style>
+
+<div class="content-wrapper">
+    <section class="content-header" style="border-bottom: 1px solid gray; padding-bottom: 10px">
+        <h1>
+            Thông tin học sinh:  @Model.Name
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Students</li>
+        </ol>
+    </section>
+    <div class="student-info" style="padding-top: 20px">
+        <dl class="dl-horizontal" style="font-size: 12pt">
+            <dt>
+                Mã học sinh:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+
+            <dt>
+                Tên học sinh:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                Ngày sinh:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Dob)
+            </dd>
+
+            <dt>
+                Email:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                Số điện thoại:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+
+            <dt>
+                Học sinh trường:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SchoolName)
+            </dd>
+
+            <dt>
+                Địa chỉ:
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+
+        </dl>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        <div style="padding-left: 20px;">
+            <a href="/Admin/GetMembers">Quay lại trang danh sách học sinh</a>
+        </div>
+    }
+</div>

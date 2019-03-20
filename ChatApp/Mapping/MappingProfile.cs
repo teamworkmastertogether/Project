@@ -26,7 +26,6 @@ namespace ChatApp.Mapping
 		{
 			CreateMap<User, UserViewModel>();
 			CreateMap<Post, PostViewModel>();
-			
 		}
 	}
 }

@@ -5,6 +5,7 @@ using ChatApp.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -16,7 +17,9 @@ namespace ChatApp.Controllers
 		// GET: Admin
 		public ActionResult Index()
         {
-            return View();
+			var userName = Session["username"] as string;
+			var user = db.Admins.FirstOrDefault(ad => ad.Username.Equals(userName));
+			return View();
         }
 
 		[HttpGet]
@@ -58,20 +61,67 @@ namespace ChatApp.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult GetPosts(int? id)
-		{
-			Subject subject = db.Subjects.FirstOrDefault(x => x.Id == id);
-			string username = Session["userName"] as string;
-			User user = db.Users.FirstOrDefault(x => x.UserName.Equals(username));
-
-			return View();
-		}
-
 		public ActionResult GetMembers ()
 		{
 			var listMembers = db.Users.ToList();
 			var listMemberVMs = AutoMapper.Mapper.Map<IEnumerable<UserViewModel>>(listMembers);
 			return View(listMemberVMs);
 		}
+
+		[HttpGet]
+		public ActionResult GetMemberDetail(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			var member = db.Users.FirstOrDefault(x => x.Id == id);
+			if (member == null)
+			{
+				return HttpNotFound();
+			}
+			var memberVM = AutoMapper.Mapper.Map<UserViewModel>(member);
+			return View(memberVM);
+		}
+
+		[HttpGet]
+		public ActionResult GetListFriend(int? id)
+		{
+			if(id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			var member = db.Users.Find(id);
+			if(member == null)
+			{
+				return HttpNotFound();
+			}
+			List<FriendInfoViewModel> listFriends = db.Users.FirstOrDefault(x => x.Id == id).ListFriends.
+				First().MemberOfListFriends.Where(x => x.AccessRequest).OrderByDescending(s => s.TimeLastChat)
+				.Select(s => new FriendInfoViewModel { Id = s.User.Id, UserName = s.User.UserName, Name = s.User.Name, Email = s.User.Email, Avatar = s.User.Avatar })
+				.ToList();
+			ViewBag.Name = member.Name;
+			return View(listFriends);
+		}
+
+		[HttpGet]
+		public ActionResult GetPostsByUser(int? id)
+		{
+			if(id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			User user = db.Users.Find(id);
+			if(user == null)
+			{
+				return HttpNotFound();
+			}
+			var listPosts = db.Posts.Where(x => x.User.Id == id).ToList();
+			var listPostVms = AutoMapper.Mapper.Map<IEnumerable<PostViewModel>>(listPosts);
+			ViewBag.Name = user.Name;
+			return View(listPostVms);
+		}
+
+
 	}
 }

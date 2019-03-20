@@ -26,6 +26,9 @@
                     Tên thành viên
                 </th>
                 <th>
+                    Avatar
+                </th>
+                <th>
                     Email
                 </th>
                 <th>Thao tác</th>
@@ -42,13 +45,22 @@
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>
                         <td>
+                            <img src="@Html.DisplayFor(modelItem => item.Avatar)" alt="Alternate Text" style="width:50px;height:50px"/>        
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
-                            <a href="#"><button class="btn btn-primary">Thông tin cá nhân</button></a>
-                            <a href="#"><button class="btn btn-primary">Danh sách bạn bè</button></a>
-                            <a href="#"><button class="btn btn-primary">Các bài đã đăng</button></a>
-                            <a href="#"><button class="btn btn-danger">Khóa thành viên</button></a>
+                            <a href="/Admin/GetMemberDetail/@item.Id">
+                                <button class="btn btn-primary">Thông tin cá nhân</button>
+                            </a>
+                            <a href="/Admin/GetListFriend/@item.Id">
+                                <button class="btn btn-primary">Danh sách bạn bè</button>
+                            </a>
+                            <a href="/Admin/GetPostsByUser/@item.Id">
+                                <button class="btn btn-primary">Các bài đã đăng</button>
+                            </a>
+                            <a href="#"><button class="btn btn-danger">Khóa</button></a>
                         </td>
                     </tr>
                 }

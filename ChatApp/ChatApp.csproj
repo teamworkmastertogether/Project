@@ -57,6 +57,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus, Version=4.5.3.1, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.5.3.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="GenFu, Version=1.3.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GenFu.1.5.6\lib\net45\GenFu.dll</HintPath>
     </Reference>
@@ -82,6 +85,7 @@
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -89,6 +93,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -230,6 +235,7 @@
     <Compile Include="Models\Entities\SubComment.cs" />
     <Compile Include="Models\Entities\Subject.cs" />
     <Compile Include="Models\Entities\User.cs" />
+    <Compile Include="Models\ViewModels\FriendInfoViewModel.cs" />
     <Compile Include="Models\ViewModels\PostViewModel.cs" />
     <Compile Include="Models\ViewModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -6154,47 +6160,6 @@
     <Content Include="Content\AdminLTE\bower_components\moment\templates\default.js" />
     <Content Include="Content\AdminLTE\bower_components\moment\templates\locale-header.js" />
     <Content Include="Content\AdminLTE\bower_components\moment\templates\test-header.js" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\area-as-line.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\area.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\bar-colors.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\bar-no-axes.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\bar.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\days.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\decimal-custom-hover.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\diagonal-xlabels-bar.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\diagonal-xlabels.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\donut-colors.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\donut-formatter.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\donut.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\dst.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\events.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\goals.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\lib\example.css" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\lib\example.js" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\months-no-smooth.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\negative.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\no-grid.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\non-continuous.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\non-date.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\quarters.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\resize.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\stacked_bars.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\timestamps.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\updating.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\weeks.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\years.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\examples\_template.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\Gruntfile.js" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\morris.css" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\morris.js" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\morris.min.js" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\specs.html" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\viz\examples.js" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\viz\exemplary\area0.png" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\viz\exemplary\bar0.png" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\viz\exemplary\line0.png" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\viz\exemplary\stacked_bar0.png" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\viz\visual_specs.js" />
     <Content Include="Content\AdminLTE\bower_components\PACE\pace.js" />
     <Content Include="Content\AdminLTE\bower_components\PACE\pace.min.js" />
     <Content Include="Content\AdminLTE\bower_components\PACE\themes\black\pace-theme-barber-shop.css" />
@@ -6792,6 +6757,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ExportFiles\" />
     <Folder Include="Views\Notifi\" />
   </ItemGroup>
   <ItemGroup>
@@ -7241,35 +7207,6 @@
     <Content Include="Content\AdminLTE\bower_components\moment\LICENSE" />
     <Content Include="Content\AdminLTE\bower_components\moment\package-lock.json" />
     <Content Include="Content\AdminLTE\bower_components\moment\README.md" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\.bower.json" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\.travis.yml" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\bower.json" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\bower.travis.json" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\less\morris.core.less" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\lib\morris.area.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\lib\morris.bar.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\lib\morris.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\lib\morris.donut.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\lib\morris.grid.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\lib\morris.hover.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\lib\morris.line.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\package.json" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\README.md" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\area\area_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\bar\bar_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\bar\colours.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\commas_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\donut\donut_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\grid\auto_grid_lines_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\grid\set_data_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\grid\y_label_format_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\hover_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\label_series_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\line\line_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\pad_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\lib\parse_time_spec.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\support\placeholder.coffee" />
-    <Content Include="Content\AdminLTE\bower_components\morris.js\spec\viz\run.sh" />
     <Content Include="Content\AdminLTE\bower_components\PACE\.bower.json" />
     <Content Include="Content\AdminLTE\bower_components\PACE\bower.json" />
     <Content Include="Content\AdminLTE\bower_components\PACE\install.json" />
@@ -7334,10 +7271,16 @@
     <Content Include="Views\Admin\_AsideMenuPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\GetPosts.cshtml" />
+    <Content Include="Views\Admin\GetMembers.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\GetMembers.cshtml" />
+    <Content Include="Views\Admin\GetMemberDetail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\GetListFriend.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\GetPostsByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903190955505_CreateDB3.resx">

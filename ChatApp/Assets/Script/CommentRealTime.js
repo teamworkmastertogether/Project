@@ -99,4 +99,46 @@ $(function () {
             SubComment.find(".reply-content span:eq(0)").text(subcommentDto.Text);
         }
     };
+
+    hub.client.saveLikePost = function (check, postId, groupName) {
+        name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+        Post = $(".post[id=" + postId + "]");
+        if (name === groupName) {
+            if (check) {
+                countLike = parseInt(Post.find(".countLike_post").text()) + 1;
+                Post.find(".countLike_post").text(countLike);
+            } else {
+                countLike = parseInt(Post.find(".countLike_post").text()) - 1;
+                Post.find(".countLike_post").text(countLike);
+            }
+        }
+    };
+
+    hub.client.saveLikeComment = function (check, commentId, groupName) {
+        name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+        Comment = $(".comment-level[id=" + commentId + "]");
+        if (name === groupName) {
+            if (check) {
+                countLike = parseInt(Comment.find(".countLike_comment").text()) + 1;
+                Comment.find(".countLike_comment").text(countLike);
+            } else {
+                countLike = parseInt(Comment.find(".countLike_comment").text()) - 1;
+                Comment.find(".countLike_comment").text(countLike);
+            }
+        }
+    };
+
+    hub.client.saveLikeSubComment = function (check, subcommentId, groupName) {
+        name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
+        SubComment = $(".comment-level2[id=" + subcommentId + "]");
+        if (name === groupName) {
+            if (check) {
+                countLike = parseInt(SubComment.find(".countLike_reply").text()) + 1;
+                SubComment.find(".countLike_reply").text(countLike);
+            } else {
+                countLike = parseInt(SubComment.find(".countLike_reply").text()) - 1;
+                SubComment.find(".countLike_reply").text(countLike);
+            }
+        }
+    };
 });

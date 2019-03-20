@@ -199,25 +199,13 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Migrations\201903161408081_add_comment.cs" />
-    <Compile Include="Migrations\201903161408081_add_comment.Designer.cs">
-      <DependentUpon>201903161408081_add_comment.cs</DependentUpon>
+    <Compile Include="Migrations\201903190955505_CreateDB3.cs" />
+    <Compile Include="Migrations\201903190955505_CreateDB3.Designer.cs">
+      <DependentUpon>201903190955505_CreateDB3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903181215577_createNotifi.cs" />
-    <Compile Include="Migrations\201903181215577_createNotifi.Designer.cs">
-      <DependentUpon>201903181215577_createNotifi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903181343544_createNotifi2.cs" />
-    <Compile Include="Migrations\201903181343544_createNotifi2.Designer.cs">
-      <DependentUpon>201903181343544_createNotifi2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903181529118_createNotifi3.cs" />
-    <Compile Include="Migrations\201903181529118_createNotifi3.Designer.cs">
-      <DependentUpon>201903181529118_createNotifi3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903190725129_add-admins-tbl.cs" />
-    <Compile Include="Migrations\201903190725129_add-admins-tbl.Designer.cs">
-      <DependentUpon>201903190725129_add-admins-tbl.cs</DependentUpon>
+    <Compile Include="Migrations\201903191258486_add_table_like.cs" />
+    <Compile Include="Migrations\201903191258486_add_table_like.Designer.cs">
+      <DependentUpon>201903191258486_add_table_like.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\NotifiDto.cs" />
@@ -232,6 +220,7 @@
     <Compile Include="Models\Entities\ChatDbcontext.cs" />
     <Compile Include="Models\Entities\Comment.cs" />
     <Compile Include="Models\Entities\Contact.cs" />
+    <Compile Include="Models\Entities\Like.cs" />
     <Compile Include="Models\Entities\ListFriend.cs" />
     <Compile Include="Models\Entities\MemberOfListFriend.cs" />
     <Compile Include="Models\Entities\Message.cs" />
@@ -6824,23 +6813,6 @@
     <Content Include="Views\Shared\_IconPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903161408081_add_comment.resx">
-      <DependentUpon>201903161408081_add_comment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903181215577_createNotifi.resx">
-      <DependentUpon>201903181215577_createNotifi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903181343544_createNotifi2.resx">
-      <DependentUpon>201903181343544_createNotifi2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903181529118_createNotifi3.resx">
-      <DependentUpon>201903181529118_createNotifi3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903190725129_add-admins-tbl.resx">
-      <DependentUpon>201903190725129_add-admins-tbl.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Subject\GetSubject.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -7369,6 +7341,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\GetMembers.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903190955505_CreateDB3.resx">
+      <DependentUpon>201903190955505_CreateDB3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903191258486_add_table_like.resx">
+      <DependentUpon>201903191258486_add_table_like.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

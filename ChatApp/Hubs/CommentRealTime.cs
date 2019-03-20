@@ -63,5 +63,20 @@ namespace ChatApp.Hubs
         {
             Clients.All.EditSubComment(groupName, subcommentDto);
         }
+
+        public void SaveLikePost(bool check, int postId, string groupName)
+        {
+            Clients.All.SaveLikePost(check, postId, groupName);
+        }
+
+        public void SaveLikeComment(bool check, int commentId, string groupName)
+        {
+            Clients.All.SaveLikeComment(check, commentId, groupName);
+        }
+
+        public void SaveLikeSubComment(bool check, int subCommentId, string groupName)
+        {
+            Clients.All.SaveLikeSubComment(check, subCommentId, groupName);
+        }
     }
 }

@@ -26,10 +26,11 @@ namespace ChatApp.Controllers
             List<PostDto> listPostDto = db.Posts.Where(s => s.SubjectId == sub.Id)
                 .Select(s => new PostDto
                 {
+                    CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.PostId == s.Id),
                     UserName = user.UserName,
                     Myavatar = user.Avatar,
                     TimePost = s.CreatedDate,
-                    LikeNumber = s.LikeNumber,
+                    LikeNumber = db.Likes.Where(p => p.PostId == s.Id).ToList().Count(),
                     NameOfUser = s.User.Name,
                     PostText = s.Text,
                     avatar = s.User.Avatar,
@@ -37,7 +38,8 @@ namespace ChatApp.Controllers
                     listComment = db.Comments.Where(k => k.PostId == s.Id)
                     .Select(k => new CommentDto
                     {
-                        LikeNumber = k.LikeNumber,
+                        CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.CommentId == k.Id),
+                        LikeNumber = db.Likes.Where(p => p.CommentId == k.Id).ToList().Count(),
                         NameOfUser = k.User.Name,
                         Text = k.Text,
                         Avatar = k.User.Avatar,
@@ -45,7 +47,8 @@ namespace ChatApp.Controllers
                         listSubComment = db.SubComments.Where(p => p.CommentId == k.Id)
                         .Select(p => new SubCommentDto
                         {
-                            LikeNumber = p.LikeNumber,
+                            CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.SubCommentId == p.Id),
+                            LikeNumber = db.Likes.Where(h => h.SubCommentId == p.Id).ToList().Count(),
                             NameOfUser = p.User.Name,
                             Text = p.Text,
                             Avatar = p.User.Avatar,
@@ -195,13 +198,8 @@ namespace ChatApp.Controllers
         public ActionResult DeletePost(int? postId)
         {
             Post post = db.Posts.FirstOrDefault(s => s.Id == postId);
-            //List<Comment> comments = db.Comments.Where(s => s.PostId == postId).ToList();
-            //foreach (var item in comments)
-            //{
-            //    List<SubComment> subcomments = db.SubComments.Where(s => s.CommentId == item.Id).ToList();
-            //    db.SubComments.RemoveRange(subcomments);
-            //}
-            //db.Comments.RemoveRange(comments);
+            List<Like> list = db.Likes.Where(s => s.PostId == postId || postId == s.Comment.PostId || postId == s.SubComment.Comment.PostId).ToList();
+            db.Likes.RemoveRange(list);
             db.Posts.Remove(post);
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
@@ -211,8 +209,10 @@ namespace ChatApp.Controllers
         public ActionResult DeleteComment(int? commentId)
         {
             Comment comment = db.Comments.FirstOrDefault(s => s.Id == commentId);
-            //List<SubComment> subcomments = db.SubComments.Where(s => s.CommentId == commentId).ToList();
-            //db.SubComments.RemoveRange(subcomments);
+            List<Like> list = db.Likes.Where(s => s.CommentId == commentId ||  commentId == s.SubComment.CommentId).ToList();
+            List<SubComment> list2 = db.SubComments.Where(s => commentId == s.CommentId).ToList();
+            db.SubComments.RemoveRange(list2);
+            db.Likes.RemoveRange(list);
             db.Comments.Remove(comment);
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
@@ -222,6 +222,8 @@ namespace ChatApp.Controllers
         public ActionResult DeleteSubComment(int? subcommentId)
         {
             SubComment subcomment = db.SubComments.FirstOrDefault(s => s.Id == subcommentId);
+            List<Like> list = db.Likes.Where(s => subcommentId == s.SubCommentId).ToList();
+            db.Likes.RemoveRange(list);
             db.SubComments.Remove(subcomment);
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);

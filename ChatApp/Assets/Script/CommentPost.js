@@ -1,7 +1,7 @@
 ﻿var GroupNameCurrent = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
 
 $(document).ready(function () {
-   
+
     $('.post-space').on('keypress','.inputComment', function (e) {
         if (e.which === 13 && $(this).val() !== "") {
             var CommentDto = {
@@ -151,13 +151,24 @@ $(document).ready(function () {
     $('.post-space').on('click','.like-post',function () {
         if ($(this).hasClass('clicked')) {
             $(this).removeClass('clicked');
-            $(this).next().find('.countLike_post').html(parseInt($(this).next().find('.countLike_post').html()) - 1);
-            $(this).children().css('font-weight', 'normal').css('color', 'blue');
         } else {
             $(this).addClass('clicked');
-            $(this).next().find('.countLike_post').html(parseInt($(this).next().find('.countLike_post').html()) + 1);
-            $(this).children().css('font-weight', 'bold').css('text-decoration', 'none').css('color', 'red');
         }
+
+        postId = parseInt($(this).closest(".post").attr("id"));
+        url = "/Notifi/SaveLikePost?id=" + postId;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                hub.server.saveLikePost(result, postId, GroupNameCurrent);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
     });
 
     $('.post-space').on('click','.save-post',function () {
@@ -171,40 +182,52 @@ $(document).ready(function () {
     $('.post-space').on('click', '.btnLikeComment', function () {
         if ($(this).hasClass('clicked')) {
             $(this).removeClass('clicked');
-            $(this).next().next().find('.countLike_comment')
-                .html(parseInt($(this).next().next().find('.countLike_comment').html()) - 1);
-            $(this).find('a span').css('font-weight', 'normal').css('color', '#337ab7');
         } else {
             $(this).addClass('clicked');
-            $(this).next().next().find('.countLike_comment').html(parseInt($(this).next().next().find('.countLike_comment').html()) + 1);
-            $(this).find('a').css('text-decoration', 'none');
-            $(this).find('a span').css('font-weight', 'bold').css('color', '#ff0000');
         }
+            //$(this).next().next().find('.countLike_comment')
+            //    .html(parseInt($(this).next().next().find('.countLike_comment').html()) - 1);
+            //$(this).find('a span').css('font-weight', 'normal').css('color', '#337ab7');
+            //$(this).next().next().find('.countLike_comment').html(parseInt($(this).next().next().find('.countLike_comment').html()) + 1);
+            //$(this).find('a').css('text-decoration', 'none');
+            //$(this).find('a span').css('font-weight', 'bold').css('color', '#ff0000');
+        commentId = parseInt($(this).closest(".comment-level").attr("id"));
+        url = "/Notifi/SaveLikeComment?id=" + commentId;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                hub.server.saveLikeComment(result, commentId, GroupNameCurrent);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
 
-        if (parseInt($(this).next().next().find('.countLike_comment').html()) > 0) {
-            $(this).next().next().css('display', 'block');
-        } else {
-            $(this).next().next().css('display', 'none');
-        }
     });
 
     $('.post-space').on('click', '.btnLikeReply', function () {
         if ($(this).hasClass('clicked')) {
             $(this).removeClass('clicked');
-            $(this).next().find('.countLike_reply')
-                .html(parseInt($(this).next().find('.countLike_reply').html()) - 1);
-            $(this).find('a').css('font-weight', 'normal').css('color', '#337ab7');
         } else {
             $(this).addClass('clicked');
-            $(this).next().find('.countLike_reply').html(parseInt($(this).next().find('.countLike_reply').html()) + 1);
-            $(this).find('a').css('font-weight', 'bold').css('text-decoration', 'none').css('color', 'red');
         }
-
-        if (parseInt($(this).next().find('.countLike_reply').html()) > 0) {
-            $(this).next().css('display', 'block');
-        } else {
-            $(this).next().css('display', 'none');
-        }
+        subCommentId = parseInt($(this).closest(".comment-level2").attr("id"));
+        url = "/Notifi/SaveLikeSubComment?id=" + subCommentId;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                hub.server.saveLikeSubComment(result, subCommentId, GroupNameCurrent);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
     });
 
     $('.btnShowComment').click(function () {
@@ -285,11 +308,6 @@ $(document).ready(function () {
         res.val(oldData).show();
         $(this).parent().hide();
         $(this).parents('.comment-content_setting').next().next().hide();
-        //$('.edit-clone').hide();
-        //$('.comment-content span').show();
-        //$(this).parents('.comment-content').find('textarea').show();
-        //$(this).closest('.comment-content_setting').prev().find('span').show();
-        //$(this).parents('.comment-content_setting').next().next().show();
     }); 
 
     $('.post-space').on('click', '.edit-reply', function () {

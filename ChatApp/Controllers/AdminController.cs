@@ -2,6 +2,7 @@
 using ChatApp.Models.Dto;
 using ChatApp.Models.Entities;
 using ChatApp.Models.ViewModels;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -122,6 +123,88 @@ namespace ChatApp.Controllers
 			return View(listPostVms);
 		}
 
+		//import data from excel
+		[HttpPost]
+		public ActionResult ImportUserFromExcel(HttpPostedFileBase fileUpload)
+		{
+			int count = 0;
+			var package = new ExcelPackage(fileUpload.InputStream);
+			if (ImportData(out count, package))
+			{
+				ViewBag.message = "Bạn đã import dữ liệu học sinh thành công";
+			}
+			return RedirectToAction("GetMembers");
+		}
 
+		//get data to above function
+		public bool ImportData(out int count, ExcelPackage package)
+		{
+			count = 0;
+			var result = false;
+			try
+			{
+				//data start at column 1 and row 2
+				int startColumn = 1;
+				int startRow = 2;
+				ExcelWorksheet worksheet = package.Workbook.Worksheets[1];
+				object data = null;
+				//get DB
+				ChatDbcontext db = new ChatDbcontext();
+
+				do
+				{
+					data = worksheet.Cells[startRow, startColumn].Value;
+					//get Username
+					object Name = worksheet.Cells[startRow, startColumn + 1].Value;
+					//get email
+					object Email = worksheet.Cells[startRow, startColumn + 2].Value;
+
+					if (data != null)
+					{
+						var isImported = SaveStudent(Name.ToString()
+							, Email.ToString(), db);
+						if (isImported)
+						{
+							count++;
+							result = true;
+						}
+					}
+					startRow++;
+				} while (data != null);
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+			return result;
+		}
+
+		//check ability to save new student from excel
+		public bool SaveStudent(string fullname, string email, ChatDbcontext db)
+		{
+			var result = false;
+			try
+			{
+				//save student
+				//if students exist before, then not import again
+				//just import new student not exists in system
+				if (db.Users.Where(x => x.Email.Equals(email)).Count() == 0)
+				{
+					var user = new User();
+					user.Name = fullname;
+					user.Email = email;
+					user.DoB = DateTime.Now;
+					db.Users.Add(user);
+					db.SaveChanges();
+
+					result = true;
+				}
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+			return result;
+		}
 	}
 }

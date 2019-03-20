@@ -206,5 +206,49 @@ namespace ChatApp.Controllers
 			}
 			return result;
 		}
+
+		[HttpPost]
+		public ActionResult ExportUserToExcel(HttpPostedFileBase fileUpload)
+		{
+			var result = ExportData();
+			if(result)
+			{
+				ViewBag.Message = "Bạn đã export dữ liệu thành công";
+			}else
+			{
+				ViewBag.Message = "Bạn đã export dữ liệu thất bại. Xin vui lòng thử lại";
+			}
+			return RedirectToAction("GetMembers");
+		}
+
+		private bool ExportData()
+		{
+			bool result = false;
+			string fileName = Server.MapPath("/") + "\\ExportFiles\\UserData.xlsx";
+			ExcelPackage package = new ExcelPackage(new System.IO.FileInfo(fileName));
+			//create new sheet
+			var ws = package.Workbook.Worksheets.Add("User Sheet");
+
+			int startRow = 2;
+
+			//get data from db
+			ChatDbcontext db = new ChatDbcontext();
+			var users = db.Users.ToList();
+			int i = 0;
+			foreach (var item in users)
+			{
+				ws.Cells[1, 1].Value = "STT";
+				ws.Cells[1, 2].Value = "Tên học sinh";
+				ws.Cells[1, 3].Value = "Email";
+				ws.Cells[startRow, 1].Value = i + 1;
+				ws.Cells[startRow, 2].Value = item.Name;
+				ws.Cells[startRow, 3].Value = item.Email;
+				startRow++;
+				i++;
+			}
+			package.Save();
+			result = true;
+			return result;
+		}
 	}
 }

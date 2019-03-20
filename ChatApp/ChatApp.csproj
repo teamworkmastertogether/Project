@@ -6757,6 +6757,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ExportFiles\" />
     <Folder Include="Views\Notifi\" />
   </ItemGroup>
   <ItemGroup>

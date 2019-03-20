@@ -391,7 +391,6 @@ span.icon {
 	height: 35px;
 }
 .clicked{
-    background:#e6c3c3;
     color:red !important;
     font-weight:bold;
 }

@@ -199,13 +199,9 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Migrations\201903190955505_CreateDB3.cs" />
-    <Compile Include="Migrations\201903190955505_CreateDB3.Designer.cs">
-      <DependentUpon>201903190955505_CreateDB3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903191258486_add_table_like.cs" />
-    <Compile Include="Migrations\201903191258486_add_table_like.Designer.cs">
-      <DependentUpon>201903191258486_add_table_like.cs</DependentUpon>
+    <Compile Include="Migrations\201903200602357_adddb.cs" />
+    <Compile Include="Migrations\201903200602357_adddb.Designer.cs">
+      <DependentUpon>201903200602357_adddb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\LikeDto.cs" />
@@ -7338,11 +7334,8 @@
     <Content Include="Views\Admin\GetMembers.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903190955505_CreateDB3.resx">
-      <DependentUpon>201903190955505_CreateDB3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903191258486_add_table_like.resx">
-      <DependentUpon>201903191258486_add_table_like.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903200602357_adddb.resx">
+      <DependentUpon>201903200602357_adddb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

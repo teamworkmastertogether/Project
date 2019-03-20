@@ -149,10 +149,10 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click','.like-post',function () {
-        if ($(this).hasClass('clicked')) {
-            $(this).removeClass('clicked');
+        if ($(this).find('a').hasClass('clicked')) {
+            $(this).find('a').removeClass('clicked');
         } else {
-            $(this).addClass('clicked');
+            $(this).find('a').addClass('clicked');
         }
 
         postId = parseInt($(this).closest(".post").attr("id"));
@@ -180,10 +180,10 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.btnLikeComment', function () {
-        if ($(this).hasClass('clicked')) {
-            $(this).removeClass('clicked');
+        if ($(this).find('span').hasClass('clicked')) {
+            $(this).find('span').removeClass('clicked');
         } else {
-            $(this).addClass('clicked');
+            $(this).find('span').addClass('clicked');
         }
             //$(this).next().next().find('.countLike_comment')
             //    .html(parseInt($(this).next().next().find('.countLike_comment').html()) - 1);
@@ -209,10 +209,10 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.btnLikeReply', function () {
-        if ($(this).hasClass('clicked')) {
-            $(this).removeClass('clicked');
+        if ($(this).find('a').hasClass('clicked')) {
+            $(this).find('a').removeClass('clicked');
         } else {
-            $(this).addClass('clicked');
+            $(this).find('a').addClass('clicked');
         }
         subCommentId = parseInt($(this).closest(".comment-level2").attr("id"));
         url = "/Notifi/SaveLikeSubComment?id=" + subCommentId;

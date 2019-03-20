@@ -213,16 +213,18 @@
                                                 </span>
                                                 <textarea type="text" name="name" value="" class="edit-clone check-edit-comment"></textarea>
                                             </div>
-                                            <div class="comment-content_setting">
-                                                <span class="glyphicon glyphicon-option-horizontal setting-comment"></span>
-                                                <ul class="setting-comment_list list-unstyled">
-                                                    @if (ViewBag.MyName == item2.NameOfUser)
-                                                    {
+                                            @if (ViewBag.MyName == item2.NameOfUser)
+                                            {
+                                                <div class="comment-content_setting">
+                                                    <span class="glyphicon glyphicon-option-horizontal setting-comment"></span>
+                                                    <ul class="setting-comment_list list-unstyled">
+
                                                         <li class="setting-comment_list-item edit-comment"><a href="javascript:void(0)" class="button">Sửa</a></li>
                                                         <li class="setting-comment_list-item delete-comment"><a href="javascript:void(0)" class="button">Xóa</a></li>
-                                                    }
-                                                </ul>
-                                            </div>
+
+                                                    </ul>
+                                                </div>
+                                            }
                                             <br />
                                             <div class="reply-button" style="margin-left: -7px; font-size: 9pt; margin-top: 2px">
                                                 @if (item2.CheckLiked)
@@ -266,17 +268,18 @@
                                                             </span>
                                                             <textarea type="text" name="name" value="" class="edit-clone"></textarea>
                                                         </div>
-                                                        <div class="reply-content_setting">
-                                                            <span class="glyphicon glyphicon-option-horizontal setting-reply"></span>
-                                                            <ul class="setting-reply_list list-unstyled">
-                                                                @if (ViewBag.MyName == item3.NameOfUser)
-                                                                {
+                                                        @if (ViewBag.MyName == item3.NameOfUser)
+                                                        {
+                                                            <div class="reply-content_setting">
+                                                                <span class="glyphicon glyphicon-option-horizontal setting-reply"></span>
+                                                                <ul class="setting-reply_list list-unstyled">
                                                                     <li class="setting-reply_list-item edit-reply"><a href="javascript:void(0)">Sửa</a></li>
                                                                     <li class="setting-reply_list-item delete-reply"><a href="javascript:void(0)">Xóa</a></li>
-                                                                }
-                                                            </ul>
+                                                                   
+                                                                </ul>
+                                                            </div>
+                                                        }
                                                         </div>
-                                                    </div>
                                                     <div class="subcomment-button">
                                                         @if (item3.CheckLiked)
                                                         {
@@ -478,7 +481,7 @@
                                     <span class="glyphicon glyphicon-cog setting"></span>
                                     <ul class="setting-menu list-unstyled">
                                         <li class="setting-menu_list-item edit-post"><a href="javascript:void(0)">Sửa bài viết</a></li>
-                                        <li class="setting-menu_list-item delete-post"><a href="javascript:void(0)">Xóa bài viết</a></li>
+                                        <li class="setting-menu_list-item delete-post "><a href="javascript:void(0)">Xóa bài viết</a></li>
                                         <li class="setting-menu_list-item report-post"><a href="javascript:void(0)">Báo cáo bài viết</a></li>
                                     </ul>
                                 </div>

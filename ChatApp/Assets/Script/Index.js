@@ -82,6 +82,7 @@ $(function () {
 
     $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-notify ', function (e) {
         $('#add-friend_invitation').hide();
+
     });
 
     
@@ -154,9 +155,6 @@ $(function () {
     $(".showInfoFriend .dropdown .dropbtn").click(function () {
         $(this).next().toggle();
     });
-    $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
-        $('.showInfoFriend .dropdown .dropbtn').next().hide();
-    });
     $(".background").hover(function () {
         $(".update-background span").toggle();
         $(".update-background").toggleClass('edit-background');
@@ -165,13 +163,14 @@ $(function () {
     $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
         $(".update-background span").hide();
         $(".update-background").removeClass('edit-background');
+        $('.showInfoFriend .dropdown .dropbtn').next().hide();
     });
 
 
-    $(".background,.avatar").click(function () {
-        src = $(this).find("img").attr("src");
+    $(".update-background,.update-img").click(function () {
+        src = $(this).prev().attr("src");
         $("#FormAvatar img").attr("src", src);
-        if ($(this).hasClass("avatar")) {
+        if ($(this).hasClass("update-img")) {
             checkAvarta = true;
         } else {
             checkAvarta = false;
@@ -201,4 +200,18 @@ $("#gioithieu").click(function () {
 })
 $("#close,.close").on("click", function () {
     $("#upImg").hide();
+})
+$('#banbe').click(function () {
+    // body...
+    if ($(".show-notify").hasClass('transform')) {
+        $(".show-notify").removeClass('transform');
+
+    }
+    else {
+        $(".show-notify").addClass('transform');
+    }
+
+});
+$(".EditPostStore").click(function () {
+    $(this).next().toggle();
 })

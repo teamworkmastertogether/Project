@@ -326,38 +326,73 @@ function load() {
 }
 
 $("#UpdateUser").on("click", function () {
-
-
+    check = false;
     var object = {
         Name: $('#Name').val(),
         SchoolName: $('#SchoolName').val(),
         DoB: $('#DoB').val(),
         Address: $('#Address').val(),
-        PhoneNumber: $('#PhoneNumber').val().trim()
+        PhoneNumber: $('#PhoneNumber').val().trim(),
+        Password: $('#Password').val().trim(),
+        NewPassword: $('#NewPassword').val().trim()
     };
     res = ValidatePhone(object.PhoneNumber);
     if (!res) {
 
-        $("PhoneNumber").focus();
+        $("#PhoneNumber").focus();
+        return false;
+    }
+    if (object.Password == '') {
+        $("#Password").focus();
+        $('#Password').css("border-color", "red");
+        return false;
+    }
+    if (object.NewPassword == '') {
+        $("#NewPassword").focus();
+        $('#NewPassword').css("border-color", "red");
         return false;
     }
     $.ajax({
         type: "POST",
-        url: "/Home/SaveData",
+        url: "/Home/ConfirmPassword",
         data: JSON.stringify(object),
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            load();
-            alert("Cập nhật thành công");
-            $(".edit-user").hide();
-            $(".info-user").show();
-            count++;
+            alert("result la " + result.isvalid);
+            if (result.isvalid) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/SaveData",
+                    data: JSON.stringify(object),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        load();
+                        alert("Cập nhật thành công");
+                        $(".edit-user").hide();
+                        $(".info-user").show();
+                        count++;
+                    },
+                    error: function (errormessage) {
+                        alert(errormessage.responseText);
+                    }
+                });
+            }
+            else {
+                alert("Mật khẩu cũ không chính xác")
+                $('#Password').focus();
+                $('#Password').css("border-color", "red");
+                return false;
+            }
         },
-        error: function (errormessage) {
-            alert(errormessage.responseText);
+        error: function (message) {
+            alert(message.responseText);
         }
+
     });
+    
+    
 })
 
 function UploadAvatar(formData) {

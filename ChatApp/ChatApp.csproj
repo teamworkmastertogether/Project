@@ -199,6 +199,12 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
+    <Compile Include="Migrations\201903200651575_addDb.cs" />
+    <Compile Include="Migrations\201903200651575_addDb.Designer.cs">
+      <DependentUpon>201903200651575_addDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Dto\LikeDto.cs" />
     <Compile Include="Models\Dto\NotifiDto.cs" />
     <Compile Include="Models\Dto\SubCommentDto.cs" />
     <Compile Include="Models\Dto\CommentDto.cs" />
@@ -211,6 +217,7 @@
     <Compile Include="Models\Entities\ChatDbcontext.cs" />
     <Compile Include="Models\Entities\Comment.cs" />
     <Compile Include="Models\Entities\Contact.cs" />
+    <Compile Include="Models\Entities\Like.cs" />
     <Compile Include="Models\Entities\ListFriend.cs" />
     <Compile Include="Models\Entities\MemberOfListFriend.cs" />
     <Compile Include="Models\Entities\Message.cs" />
@@ -7331,6 +7338,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\GetMembers.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903200651575_addDb.resx">
+      <DependentUpon>201903200651575_addDb.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

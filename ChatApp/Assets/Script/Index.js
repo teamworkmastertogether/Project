@@ -149,10 +149,10 @@ $(function () {
     });
 
 
-    $(".background,.avatar").click(function () {
-        src = $(this).find("img").attr("src");
+    $(".update-background,.update-img").click(function () {
+        src = $(this).prev().attr("src");
         $("#FormAvatar img").attr("src", src);
-        if ($(this).hasClass("avatar")) {
+        if ($(this).hasClass("update-img")) {
             checkAvarta = true;
         } else {
             checkAvarta = false;

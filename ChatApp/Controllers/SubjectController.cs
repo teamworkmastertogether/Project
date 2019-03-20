@@ -26,6 +26,7 @@ namespace ChatApp.Controllers
             List<PostDto> listPostDto = db.Posts.Where(s => s.SubjectId == sub.Id)
                 .Select(s => new PostDto
                 {
+                    UrlProfile = "/Home/Index?id=" + s.UserId.ToString(),
                     CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.PostId == s.Id),
                     UserName = user.UserName,
                     Myavatar = user.Avatar,
@@ -38,6 +39,7 @@ namespace ChatApp.Controllers
                     listComment = db.Comments.Where(k => k.PostId == s.Id)
                     .Select(k => new CommentDto
                     {
+                        UrlProfile = "/Home/Index?id=" + k.UserId.ToString(),
                         CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.CommentId == k.Id),
                         LikeNumber = db.Likes.Where(p => p.CommentId == k.Id).ToList().Count(),
                         NameOfUser = k.User.Name,
@@ -47,6 +49,7 @@ namespace ChatApp.Controllers
                         listSubComment = db.SubComments.Where(p => p.CommentId == k.Id)
                         .Select(p => new SubCommentDto
                         {
+                            UrlProfile = "/Home/Index?id=" + p.UserId.ToString(),
                             CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.SubCommentId == p.Id),
                             LikeNumber = db.Likes.Where(h => h.SubCommentId == p.Id).ToList().Count(),
                             NameOfUser = p.User.Name,

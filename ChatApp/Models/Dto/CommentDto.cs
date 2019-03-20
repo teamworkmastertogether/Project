@@ -7,6 +7,7 @@ namespace ChatApp.Models.Dto
 {
     public class CommentDto
     {
+        public string UrlProfile { get; set; }
         public bool CheckLiked { get; set; }
         public string UserName { get; set; }
         public string NameOfUser { get; set; }
@@ -16,5 +17,6 @@ namespace ChatApp.Models.Dto
         public string Avatar { get; set; }
         public int CommentId { get; set; }
         public List<SubCommentDto> listSubComment;
+        
     }
 }

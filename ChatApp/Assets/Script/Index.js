@@ -76,7 +76,7 @@ $(function () {
 
    
     $('body').on('click',' .icon-friend ', function (e) {
-        $('#add-friend_invitation').toggle(150);
+        $('#add-friend_invitation').toggle();
     });
 
     $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-friend ', function (e) {

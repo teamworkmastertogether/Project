@@ -1,68 +1,4 @@
-/* Minification failed. Returning unminified contents.
-(432,5): run-time error CSS1035: Expected colon, found ';'
-(677,4): run-time error CSS1035: Expected colon, found '.'
-(1197,4): run-time error CSS1035: Expected colon, found '.'
-(1528,4): run-time error CSS1035: Expected colon, found '.'
-(2512,5): run-time error CSS1035: Expected colon, found ';'
-(2757,4): run-time error CSS1035: Expected colon, found '.'
-(3267,4): run-time error CSS1035: Expected colon, found '.'
-(3600,4): run-time error CSS1035: Expected colon, found '.'
-(4365,1): run-time error CSS1019: Unexpected token, found '@import'
-(4365,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4456,14): run-time error CSS1036: Expected expression, found '#'
- */
-/* Minification failed. Returning unminified contents.
-(419,5): run-time error CSS1035: Expected colon, found ';'
-(664,4): run-time error CSS1035: Expected colon, found '.'
-(1184,4): run-time error CSS1035: Expected colon, found '.'
-(1515,4): run-time error CSS1035: Expected colon, found '.'
-(2496,5): run-time error CSS1035: Expected colon, found ';'
-(2741,4): run-time error CSS1035: Expected colon, found '.'
-(3251,4): run-time error CSS1035: Expected colon, found '.'
-(3584,4): run-time error CSS1035: Expected colon, found '.'
-(4349,1): run-time error CSS1019: Unexpected token, found '@import'
-(4349,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4440,14): run-time error CSS1036: Expected expression, found '#'
- */
-/* Minification failed. Returning unminified contents.
-(406,8): run-time error CSS1035: Expected colon, found ';'
-(651,7): run-time error CSS1035: Expected colon, found '.'
-(1171,7): run-time error CSS1035: Expected colon, found '.'
-(1502,7): run-time error CSS1035: Expected colon, found '.'
-(2483,8): run-time error CSS1035: Expected colon, found ';'
-(2728,7): run-time error CSS1035: Expected colon, found '.'
-(3238,7): run-time error CSS1035: Expected colon, found '.'
-(3571,7): run-time error CSS1035: Expected colon, found '.'
-(4335,1): run-time error CSS1019: Unexpected token, found '@import'
-(4335,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4426,17): run-time error CSS1036: Expected expression, found '#'
- */
-/* Minification failed. Returning unminified contents.
-(393,8): run-time error CSS1035: Expected colon, found ';'
-(638,7): run-time error CSS1035: Expected colon, found '.'
-(1158,7): run-time error CSS1035: Expected colon, found '.'
-(1489,7): run-time error CSS1035: Expected colon, found '.'
-(2470,8): run-time error CSS1035: Expected colon, found ';'
-(2715,7): run-time error CSS1035: Expected colon, found '.'
-(3225,7): run-time error CSS1035: Expected colon, found '.'
-(3558,7): run-time error CSS1035: Expected colon, found '.'
-(4322,1): run-time error CSS1019: Unexpected token, found '@import'
-(4322,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4413,17): run-time error CSS1036: Expected expression, found '#'
- */
-/* Minification failed. Returning unminified contents.
-(380,8): run-time error CSS1035: Expected colon, found ';'
-(625,7): run-time error CSS1035: Expected colon, found '.'
-(1145,7): run-time error CSS1035: Expected colon, found '.'
-(1476,7): run-time error CSS1035: Expected colon, found '.'
-(2457,8): run-time error CSS1035: Expected colon, found ';'
-(2702,7): run-time error CSS1035: Expected colon, found '.'
-(3214,7): run-time error CSS1035: Expected colon, found '.'
-(3547,7): run-time error CSS1035: Expected colon, found '.'
-(4310,1): run-time error CSS1019: Unexpected token, found '@import'
-(4310,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4401,17): run-time error CSS1036: Expected expression, found '#'
- */
+
 * {
 	margin: 0px;
 	padding: 0px;
@@ -4918,3 +4854,28 @@ li:hover .message-data-time {
 	width: 100%;
 }
 
+.col-md-9.invitation-content a {
+    font-size: 17px;
+    font-weight: normal;
+    color: #082975;
+}
+button.btn.btn-default.add-friend_invitation_btnDelete {
+    background: #e20c2870;
+    padding: 6px;
+}
+button.btn.btn-primary.add-friend_invitation_btnAdd {
+    padding: 6px;
+    background: #056f18c7;
+}
+.invitation-info.col-md-12.col-xs-12.col-sm-12 {
+    margin-left: 14px;
+}
+.invitation_space:hover {
+    background: #eadada;
+    cursor: pointer;
+}
+.col-md-8.invitation-content {
+    margin-left: -22px;
+    font-size: 17px;
+    font-weight:100;
+}

@@ -15,10 +15,20 @@ namespace ChatApp.Controllers
     {
         ChatDbcontext db = new ChatDbcontext();
 
-        public ActionResult Index()
+        public ActionResult Index(int? id = 0)
         {
-            var userName = Session["userName"] as string;
-            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            string userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            bool checkUser = false;
+            if (id == user.Id || id == 0)
+            {
+                checkUser = true;
+            }
+            else
+            {
+                 user = db.Users.FirstOrDefault(us => us.Id == id);
+            }
+            ViewBag.checkUser = checkUser;
             ViewBag.Img = user.Avatar;
             ViewBag.Bg = user.CoverPhoto;
             ViewBag.Name = user.Name;
@@ -74,6 +84,7 @@ namespace ChatApp.Controllers
             .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
             .Select(s => new InforFriendDto { Avatar = s.User.Avatar, Name = s.User.Name, UserName = s.User.UserName, SeenMessage = s.SeenMessage })
             .Take(20).ToList();
+            ViewBag.UrlProfile = "/Home/Index?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
             ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
             return PartialView(listUser);
         }

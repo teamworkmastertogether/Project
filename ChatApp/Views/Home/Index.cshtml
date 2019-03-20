@@ -3,20 +3,26 @@
 }
 <!-- Main -->
 <div class="main">
-    <div class="background" data-toggle="modal" data-target="#myModal">
+    <div class="background" >
         <img src="@Url.Content(@ViewBag.Bg)" />
-        <div class="update-background">
-            <i class="fa fa-camera"></i>
-            <span style="display:none;">Cập nhật ảnh bìa</span>
-        </div>
+        @if (ViewBag.checkUser)
+        {
+            <div class="update-background" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-camera"></i>
+                <span style="display:none;">Cập nhật ảnh bìa</span>
+            </div>
+        }
     </div>
-    <div class="avatar" data-toggle="modal" data-target="#myModal">
+    <div class="avatar" >
         <div class="img-responsive">
             <img src="@Url.Content(@ViewBag.Img)" />
-            <div class="update-img">
-                <i class="fa fa-camera"></i>
-                <p>Cập nhật</p>
-            </div>
+            @if (ViewBag.checkUser)
+            {
+                <div class="update-img" data-toggle="modal" data-target="#myModal">
+                    <i class="fa fa-camera"></i>
+                    <p>Cập nhật</p>
+                </div>
+            }
         </div>
 
         <div class="name">
@@ -25,7 +31,6 @@
             </h3>
         </div>
         <div class="inviteFriend">
-
             <p>
                 <i class="fas fa-user-plus"></i>
                 <span>Kết bạn</span>

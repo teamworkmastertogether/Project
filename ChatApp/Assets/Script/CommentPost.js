@@ -163,7 +163,7 @@ $(document).ready(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                hub.server.saveLikePost(result, postId, GroupNameCurrent);
+                hub.server.saveLikePost(MyUserName,result, postId, GroupNameCurrent);
             },
             error: function (message) {
                 alert(message.responseText);
@@ -199,7 +199,7 @@ $(document).ready(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                hub.server.saveLikeComment(result, commentId, GroupNameCurrent);
+                hub.server.saveLikeComment(MyUserName,result, commentId, GroupNameCurrent);
             },
             error: function (message) {
                 alert(message.responseText);
@@ -222,7 +222,7 @@ $(document).ready(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                hub.server.saveLikeSubComment(result, subCommentId, GroupNameCurrent);
+                hub.server.saveLikeSubComment(MyUserName,result, subCommentId, GroupNameCurrent);
             },
             error: function (message) {
                 alert(message.responseText);

@@ -208,6 +208,7 @@
       <DependentUpon>201903191258486_add_table_like.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Dto\LikeDto.cs" />
     <Compile Include="Models\Dto\NotifiDto.cs" />
     <Compile Include="Models\Dto\SubCommentDto.cs" />
     <Compile Include="Models\Dto\CommentDto.cs" />

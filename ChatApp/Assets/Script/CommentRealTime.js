@@ -33,7 +33,7 @@ $(function () {
         }
     };
 
-    hub.client.updateNotiRealtime = function (userName) {
+    hub.client.updateNotiRealtime = function () {
             countNoti = parseInt($(".badge").text()) + 1;
             $(".badge").text(countNoti).show();
     };

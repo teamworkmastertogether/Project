@@ -15,7 +15,7 @@ namespace ChatApp.Controllers
     {
         ChatDbcontext db = new ChatDbcontext();
 
-        public ActionResult Index(int? id = 0)
+        public ActionResult Profile(int? id = 0)
         {
             string userName = Session["userName"] as string;
             User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
@@ -43,7 +43,7 @@ namespace ChatApp.Controllers
 
             if (userName != null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Profile");
             }
             return View();
         }
@@ -62,7 +62,7 @@ namespace ChatApp.Controllers
             if (user != null)
             {
                 Session["userName"] = user.UserName;
-                return RedirectToAction("Index");
+                return RedirectToAction("Profile");
             }
             ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không chính xác";
             return View();
@@ -84,7 +84,7 @@ namespace ChatApp.Controllers
             .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
             .Select(s => new InforFriendDto { Avatar = s.User.Avatar, Name = s.User.Name, UserName = s.User.UserName, SeenMessage = s.SeenMessage })
             .Take(20).ToList();
-            ViewBag.UrlProfile = "/Home/Index?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
+            ViewBag.UrlProfile = "/Home/Profile?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
             ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
             return PartialView(listUser);
         }
@@ -118,9 +118,6 @@ namespace ChatApp.Controllers
                  .Take(sumMess - userDto.QuantityMessage * 10 - userDto.QuantityMessageNew);
             return Json(listMess, JsonRequestBehavior.AllowGet);
         }
-
-
-
         public ActionResult Edit()
         {
             var userName = Session["userName"] as string;

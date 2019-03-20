@@ -185,12 +185,6 @@ $(document).ready(function () {
         } else {
             $(this).find("span").addClass('clicked');
         }
-            //$(this).next().next().find('.countLike_comment')
-            //    .html(parseInt($(this).next().next().find('.countLike_comment').html()) - 1);
-            //$(this).find('a span').css('font-weight', 'normal').css('color', '#337ab7');
-            //$(this).next().next().find('.countLike_comment').html(parseInt($(this).next().next().find('.countLike_comment').html()) + 1);
-            //$(this).find('a').css('text-decoration', 'none');
-            //$(this).find('a span').css('font-weight', 'bold').css('color', '#ff0000');
         commentId = parseInt($(this).closest(".comment-level").attr("id"));
         url = "/Notifi/SaveLikeComment?id=" + commentId;
         $.ajax({

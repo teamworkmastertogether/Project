@@ -21,12 +21,12 @@ namespace ChatApp.Controllers
 
             if (sub == null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Profile");
             }
             List<PostDto> listPostDto = db.Posts.Where(s => s.SubjectId == sub.Id)
                 .Select(s => new PostDto
                 {
-                    UrlProfile = "/Home/Index?id=" + s.UserId.ToString(),
+                    UrlProfile = "/Home/Profile?id=" + s.UserId.ToString(),
                     CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.PostId == s.Id),
                     UserName = user.UserName,
                     Myavatar = user.Avatar,
@@ -39,7 +39,7 @@ namespace ChatApp.Controllers
                     listComment = db.Comments.Where(k => k.PostId == s.Id)
                     .Select(k => new CommentDto
                     {
-                        UrlProfile = "/Home/Index?id=" + k.UserId.ToString(),
+                        UrlProfile = "/Home/Profile?id=" + k.UserId.ToString(),
                         CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.CommentId == k.Id),
                         LikeNumber = db.Likes.Where(p => p.CommentId == k.Id).ToList().Count(),
                         NameOfUser = k.User.Name,
@@ -49,7 +49,7 @@ namespace ChatApp.Controllers
                         listSubComment = db.SubComments.Where(p => p.CommentId == k.Id)
                         .Select(p => new SubCommentDto
                         {
-                            UrlProfile = "/Home/Index?id=" + p.UserId.ToString(),
+                            UrlProfile = "/Home/Profile?id=" + p.UserId.ToString(),
                             CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.SubCommentId == p.Id),
                             LikeNumber = db.Likes.Where(h => h.SubCommentId == p.Id).ToList().Count(),
                             NameOfUser = p.User.Name,
@@ -59,7 +59,7 @@ namespace ChatApp.Controllers
                         }).ToList()
                     }).OrderBy(k => k.CommentId).ToList()
                 }).OrderByDescending(s => s.PostId).ToList();
-
+            ViewBag.MyName = user.Name;
             ViewBag.photo = sub.Photo;
             ViewBag.name = sub.Name;
             ViewBag.Avatar = user.Avatar;
@@ -84,6 +84,7 @@ namespace ChatApp.Controllers
             int Postid = db.Posts.Max(s => s.Id);
             PostDto result = new PostDto
             {
+                UrlProfile = "/Home/Profile?id=" + user.Id.ToString(),
                 UserName = userName,
                 TimePost = postDto.TimePost,
                 LikeNumber = postDto.LikeNumber,
@@ -131,6 +132,7 @@ namespace ChatApp.Controllers
             int CommentId = db.Comments.Max(s => s.Id);
             CommentDto result = new CommentDto
             {
+                UrlProfile = "/Home/Profile?id=" + user.Id.ToString(),
                 UserName = post.User.UserName,
                 LikeNumber = 0,
                 NameOfUser = user.Name,
@@ -173,6 +175,7 @@ namespace ChatApp.Controllers
             int SubCommentId = db.SubComments.Max(s => s.Id);
             SubCommentDto result = new SubCommentDto
             {
+                UrlProfile = "/Home/Profile?id=" + user.Id.ToString(),
                 UserName = comment.User.UserName,
                 LikeNumber = 0,
                 NameOfUser = user.Name,

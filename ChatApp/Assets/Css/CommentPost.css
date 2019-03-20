@@ -394,3 +394,7 @@ span.icon {
     color:red !important;
     font-weight:bold;
 }
+
+.hiden-class{
+    display:none;
+}

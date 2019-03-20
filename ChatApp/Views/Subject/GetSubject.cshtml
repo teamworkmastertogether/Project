@@ -141,8 +141,11 @@
                                     <div class="option-seting col-md-2">
                                         <span class="glyphicon glyphicon-cog setting"></span>
                                         <ul class="setting-menu list-unstyled">
-                                            <li class="setting-menu_list-item edit-post"><a href="javascript:void(0)">Sửa bài viết</a></li>
-                                            <li class="setting-menu_list-item delete-post"><a href="javascript:void(0)">Xóa bài viết</a></li>
+                                            @if (ViewBag.MyName == item.NameOfUser)
+                                            {
+                                                <li class="setting-menu_list-item edit-post"><a href="javascript:void(0)">Sửa bài viết</a></li>
+                                                <li class="setting-menu_list-item delete-post"><a href="javascript:void(0)">Xóa bài viết</a></li>
+                                            }
                                             <li class="setting-menu_list-item report-post"><a href="javascript:void(0)">Báo cáo bài viết</a></li>
                                         </ul>
                                     </div>
@@ -213,8 +216,11 @@
                                             <div class="comment-content_setting">
                                                 <span class="glyphicon glyphicon-option-horizontal setting-comment"></span>
                                                 <ul class="setting-comment_list list-unstyled">
-                                                    <li class="setting-comment_list-item edit-comment"><a href="javascript:void(0)" class="button">Sửa</a></li>
-                                                    <li class="setting-comment_list-item delete-comment"><a href="javascript:void(0)" class="button">Xóa</a></li>
+                                                    @if (ViewBag.MyName == item2.NameOfUser)
+                                                    {
+                                                        <li class="setting-comment_list-item edit-comment"><a href="javascript:void(0)" class="button">Sửa</a></li>
+                                                        <li class="setting-comment_list-item delete-comment"><a href="javascript:void(0)" class="button">Xóa</a></li>
+                                                    }
                                                 </ul>
                                             </div>
                                             <br />
@@ -263,8 +269,11 @@
                                                         <div class="reply-content_setting">
                                                             <span class="glyphicon glyphicon-option-horizontal setting-reply"></span>
                                                             <ul class="setting-reply_list list-unstyled">
-                                                                <li class="setting-reply_list-item edit-reply"><a href="javascript:void(0)">Sửa</a></li>
-                                                                <li class="setting-reply_list-item delete-reply"><a href="javascript:void(0)">Xóa</a></li>
+                                                                @if (ViewBag.MyName == item3.NameOfUser)
+                                                                {
+                                                                    <li class="setting-reply_list-item edit-reply"><a href="javascript:void(0)">Sửa</a></li>
+                                                                    <li class="setting-reply_list-item delete-reply"><a href="javascript:void(0)">Xóa</a></li>
+                                                                }
                                                             </ul>
                                                         </div>
                                                     </div>

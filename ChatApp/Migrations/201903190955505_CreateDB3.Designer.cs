@@ -7,13 +7,13 @@ namespace ChatApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class addadminstbl : IMigrationMetadata
+    public sealed partial class CreateDB3 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addadminstbl));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateDB3));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903190725129_add-admins-tbl"; }
+            get { return "201903190955505_CreateDB3"; }
         }
         
         string IMigrationMetadata.Source

@@ -390,3 +390,7 @@ span.icon {
 	width: 35px;
 	height: 35px;
 }
+.clicked{
+    color:red !important;
+    font-weight:bold;
+}

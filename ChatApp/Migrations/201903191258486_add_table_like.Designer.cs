@@ -7,13 +7,13 @@ namespace ChatApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class createNotifi : IMigrationMetadata
+    public sealed partial class add_table_like : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(createNotifi));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(add_table_like));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903181215577_createNotifi"; }
+            get { return "201903191258486_add_table_like"; }
         }
         
         string IMigrationMetadata.Source

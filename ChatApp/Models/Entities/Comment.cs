@@ -20,5 +20,6 @@ namespace ChatApp.Models.Entities
         public virtual User User { get; set; }
 
         public virtual ICollection<SubComment> SubComments { get; set; }
+        public virtual ICollection<Like> Likes { get; set; }
     }
 }

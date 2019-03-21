@@ -96,17 +96,19 @@ $(function () {
             $(".edit-user").hide();
             $(".info-user").show();
         }
+
+        Id = parseInt($(".MyId").attr("id"));
+        url = "/Home/Edit?id=" + Id;
         //get dữ liệu
         $.ajax({
-            type: "GET",
-            url: "/Home/Edit",
+            type: "POST",
+            url: url,
             contentType: "application/json;charset=utf-8",
             dataType: "JSON",
             success: function (res) {          
                 $(".edit-user #Name").val(res.Name);
                 $(".edit-user #SchoolName").val(res.SchoolName);
                 var date = res.DoB;
-                
                 var resTime = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
                 var month = resTime.getMonth()+1, dates = resTime.getDate();
                 if (month < 10) {

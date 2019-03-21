@@ -32,6 +32,7 @@ namespace ChatApp.Controllers
             ViewBag.Img = user.Avatar;
             ViewBag.Bg = user.CoverPhoto;
             ViewBag.Name = user.Name;
+            ViewBag.Id = user.Id;
             return View();
         }
 
@@ -127,19 +128,19 @@ namespace ChatApp.Controllers
                  .Take(sumMess - userDto.QuantityMessage * 10 - userDto.QuantityMessageNew);
             return Json(listMess, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Edit()
+
+        [HttpPost]
+        public ActionResult Edit(int? id)
         {
-            var userName = Session["userName"] as string;
-            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            var user = db.Users.FirstOrDefault(us => us.Id == id);
             var personDto = new PersonalDto { Name = user.Name,SchoolName=user.SchoolName,DoB=user.DoB,Address=user.Address,PhoneNumber=user.PhoneNumber };
-            
             return Json(personDto, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
-        public ActionResult ConfirmPassword(PersonalDto personalDto)
+        public ActionResult ConfirmPassword(int? id, PersonalDto personalDto)
         {
-            var userName = Session["userName"] as string;
-            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            var user = db.Users.FirstOrDefault(us => us.Id == id);
             personalDto.PassWord = HashPassword.ComputeSha256Hash(personalDto.PassWord);
             
             if(string.Compare(personalDto.PassWord,user.PassWord)==0)
@@ -178,13 +179,10 @@ namespace ChatApp.Controllers
             return Json("Vui lòng chọn ảnh thích hợp !", JsonRequestBehavior.AllowGet);
         }
 
-
-
         [HttpPost]
-        public JsonResult SaveData(PersonalDto personalDto)
+        public JsonResult SaveData(int? id, PersonalDto personalDto)
         {
-            var userName = Session["userName"] as string;
-            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            var user = db.Users.FirstOrDefault(us => us.Id == id);
             user.Name = personalDto.Name;
             user.PassWord = HashPassword.ComputeSha256Hash(personalDto.NewPassword);
             user.SchoolName = personalDto.SchoolName;

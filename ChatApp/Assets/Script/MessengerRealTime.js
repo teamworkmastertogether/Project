@@ -110,9 +110,10 @@ $(function () {
             }
         });
     });
-   
-    load();
-
+    IdCheck = parseInt($(".MyId").attr("id"));
+    if (!isNaN(IdCheck)) {
+        load();
+    }
     $(".people-list input").keyup(function () {
         keySearch = $(this).val().trim().toLowerCase();
         array2 = [];
@@ -214,7 +215,6 @@ function GetDateNow() {
 }
 
 $(".fa.fa-close").click(function () {
-
     QuantityMessageNew = -1;
     QuantityMessage = 0;
     $("#partnerUserName").val("");
@@ -308,9 +308,11 @@ $(".add-friend").click(function () {
     }
 });
 function load() {
+    Id = parseInt($(".MyId").attr("id"));
+    url = "/Home/Edit?id=" + Id;
     $.ajax({
-        type: "GET",
-        url: "/Home/Edit",
+        type: "POST",
+        url: url,
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
@@ -386,12 +388,10 @@ $("#UpdateUser").on("click", function () {
     if (object.PhoneNumber !== '') {
         res = ValidatePhone(object.PhoneNumber);
         if (!res) {
-
             $("#PhoneNumber").focus();
             return false;
         }
     }
-    
     if (object.Password === '') {
         $("#Password").focus();
         $('#Password').css("border-color", "red");
@@ -402,18 +402,20 @@ $("#UpdateUser").on("click", function () {
         $('#NewPassword').css("border-color", "red");
         return false;
     }
+    Id = parseInt($(".MyId").attr("id"));
+    url = "/Home/ConfirmPassword?id=" + Id;
     $.ajax({
         type: "POST",
-        url: "/Home/ConfirmPassword",
+        url: url,
         data: JSON.stringify(object),
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            alert("result la " + result.isvalid);
             if (result.isvalid) {
+                url = "/Home/SaveData?id=" + Id;
                 $.ajax({
                     type: "POST",
-                    url: "/Home/SaveData",
+                    url: url,
                     data: JSON.stringify(object),
                     contentType: "application/json;charset=utf-8",
                     dataType: "json",

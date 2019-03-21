@@ -202,6 +202,7 @@ ul.nav.navbar-nav.navbar-left {
 
 .col-lg-4.col-md-4.lef-2 {
 	padding: 0;
+    display:none;       
 }
 
 .lef-2 .col-lg-12.col-md-12 {
@@ -1603,7 +1604,6 @@ border-color: red;
 .col-xs-4.col-sm-4.col-md-4.col-lg-4.lef-1 {
 	background: #00000003;
 	border: 1px solid #0000000f;
-	display: none;
 }
 
 .col-lg-7.col-md-7 {
@@ -3672,11 +3672,6 @@ border-color: red;
 	padding-left: 15px;
 }
 
-.col-xs-4.col-sm-4.col-md-4.col-lg-4.lef-1 {
-	background: #00000003;
-	border: 1px solid #0000000f;
-	display: none;
-}
 
 .col-lg-7.col-md-7 {
 	padding: 0;
@@ -4999,3 +4994,22 @@ i.glyphicon.glyphicon-cog.setting.pull-right {
         opacity: 0;
         transition: 0.2s;
     }
+}
+span.group-joined {
+    font-weight: 600;
+    color: blueviolet;
+    font-family: sans-serif;
+}
+    span.group-joined:hover {
+        color: red;
+        transition: 0.4s;
+    }
+span.name-postStore {
+    color: coral;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+    span.name-postStore:hover {
+        color: #0058ff;
+        transition: 0.4s;

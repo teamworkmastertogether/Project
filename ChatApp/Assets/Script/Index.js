@@ -164,6 +164,7 @@ $(function () {
         $(".update-background span").hide();
         $(".update-background").removeClass('edit-background');
         $('.showInfoFriend .dropdown .dropbtn').next().hide();
+        $(".edit-poststore").hide();
     });
 
 
@@ -194,6 +195,10 @@ $("#UploadImage").change(function () {
     readURL(this);
 });
 //click vào giới thiệu trang cá nhân
+$("#banbe").click(function () {
+    $(".lef-1").hide();
+    $(".lef-2").show();
+})
 $("#gioithieu").click(function () {
     $(".lef-1").show();
     $(".lef-2").hide();

@@ -11,6 +11,14 @@
         border-bottom: 1px solid gray;
         margin: 10px 0px;
     }
+
+    #create-user td, th {
+        padding: 5px;
+    }
+
+    #create-user input {
+        width: 462px;
+    }
 </style>
 
 <div class="content-wrapper" style="padding-left: 10px">
@@ -26,7 +34,7 @@
 
     <div class="add-student row">
         <p style="padding-left: 18px; padding-top: 10px">
-            <a href="#"><button class="btn btn-primary">Thêm mới thành viên</button></a>
+            <a href="#"><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Thêm mới thành viên</button></a>
         </p>
         <div class="col-md-6">
             <div class="panel panel-primary">
@@ -35,9 +43,11 @@
                 </div>
                 <form action="/Admin/ImportUserFromExcel" method="post" enctype="multipart/form-data"
                       style="padding: 15px">
-                    <input type="file" name="fileUpload" />
+                    <input type="file" name="fileUpload" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" />
                     <br />
-                    <button type="submit" value="Import" class="btn btn-success" />Import Data</button>
+                    <button type="submit" value="Import" class="btn btn-success import-data">Import Data</button>
+                    <i>@ViewBag.message</i>
+
                 </form>
             </div>
         </div>
@@ -108,3 +118,55 @@
     </table>
 </div>
 
+<div id="myModal" class="modal fade create-user" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Thêm mới thành viên</h4>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <form action="/Admin/CreateUser" method="post" id="add-user">
+                        <table class="table-table-striped" id="create-user">
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight:bold">Họ và tên</td>
+                                    <td><input name="Name" type="text" data-toggle="tooltip" data-placement="bottom" title="Nhập tên từ 5 - 200 kí tự" class="input-information input2 name" value="" maxlength="200" id="userName" required=""></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold">Email</td>
+                                    <td><input name="Email" type="email" data-toggle="tooltip" data-placement="bottom" title="Vui lòng nhập email dạng x@gmail.com" class="input-information input2" value="" id="userEmail" required=""></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold">Trường học</td>
+                                    <td><input name="SchoolName" type="text" data-toggle="tooltip" data-placement="bottom" title="Nhập tên trường từ 5 - 200 kí tự" class="input-information input2" value="" id="schoolName" required=""></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold">Địa chỉ</td>
+                                    <td><input name="Address" type="text" data-toggle="tooltip" data-placement="bottom" title="Địa chỉ" class="input-information input2" value="" id="userAddress" required=""></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold">Số điện thoại</td>
+                                    <td><input name="PhoneNumber" type="number" data-toggle="tooltip" data-placement="bottom" title="Số điện thoại có 10 chữ số" class="input-information input2" value="" id="phoneNumber" required=""></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" name="userId" id="user-id" hidden />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-success btn-submit btn-create-user">Thêm mới</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>

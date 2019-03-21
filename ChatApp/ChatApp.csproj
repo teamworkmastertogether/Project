@@ -204,9 +204,9 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Migrations\201903200651575_addDb.cs" />
-    <Compile Include="Migrations\201903200651575_addDb.Designer.cs">
-      <DependentUpon>201903200651575_addDb.cs</DependentUpon>
+    <Compile Include="Migrations\201903210349597_remove-likenumber.cs" />
+    <Compile Include="Migrations\201903210349597_remove-likenumber.Designer.cs">
+      <DependentUpon>201903210349597_remove-likenumber.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\LikeDto.cs" />
@@ -259,6 +259,7 @@
     <Content Include="Assets\Plugin\jquery-3.3.1.min.js" />
     <Content Include="Assets\Plugin\jquery.shorten.1.0.js" />
     <Content Include="Assets\Plugin\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Assets\Script\Admin.js" />
     <Content Include="Assets\Script\CommentPost.js" />
     <Content Include="Assets\Script\CommentRealTime.js" />
     <Content Include="Assets\Script\Index.js" />
@@ -6737,8 +6738,8 @@
     <Content Include="Views\Admin\GetPostsByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903200651575_addDb.resx">
-      <DependentUpon>201903200651575_addDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903210349597_remove-likenumber.resx">
+      <DependentUpon>201903210349597_remove-likenumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

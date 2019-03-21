@@ -7,13 +7,13 @@ namespace ChatApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class addDb : IMigrationMetadata
+    public sealed partial class removelikenumber : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addDb));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(removelikenumber));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903200651575_addDb"; }
+            get { return "201903210349597_remove-likenumber"; }
         }
         
         string IMigrationMetadata.Source

@@ -181,6 +181,14 @@ $(document).ready(function () {
         $('.confirm').hide();
     });
 
+    $('.confirm').on('click', '#modal-btn-no', function () {
+        $('.confirm').hide();
+    });
+
+    $('.confirm').on('click', 'span', function () {
+        $('.confirm').hide();
+    });
+
     $('.post-space').on('click', '.btnLikeComment', function () {
         if ($(this).find("span").hasClass('clicked')) {
             $(this).find("span").removeClass('clicked');

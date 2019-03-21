@@ -336,12 +336,15 @@ $("#UpdateUser").on("click", function () {
         Password: $('#Password').val().trim(),
         NewPassword: $('#NewPassword').val().trim()
     };
-    res = ValidatePhone(object.PhoneNumber);
-    if (!res) {
+    if (object.PhoneNumber != '') {
+        res = ValidatePhone(object.PhoneNumber);
+        if (!res) {
 
-        $("#PhoneNumber").focus();
-        return false;
+            $("#PhoneNumber").focus();
+            return false;
+        }
     }
+    
     if (object.Password == '') {
         $("#Password").focus();
         $('#Password').css("border-color", "red");
@@ -397,10 +400,13 @@ $("#UpdateUser").on("click", function () {
 
 function UploadAvatar(formData) {
     url = "";
-    if (checkAvarta) {
+    if (checkAvarta == 1) {
         url = "/Home/UploadAvatar?id=1";
-    } else {
+    } else if (checkAvarta == 2) {
         url = "/Home/UploadAvatar?id=2";
+    }
+    else {
+        url = "/Home/UploadAvatar?id=3";
     }
     var ajaxConfig = {
         type: "POST",
@@ -409,6 +415,7 @@ function UploadAvatar(formData) {
         success: function (result) {
             $(".avatar .img-responsive img").attr("src", result.Avatar);
             $(".background img").attr("src", result.CoverPhoto);
+
             $("#upImg").hide();
             $(".modal-backdrop").remove();
             $("#myModal #close").click();

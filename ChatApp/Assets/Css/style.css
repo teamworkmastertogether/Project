@@ -4875,8 +4875,6 @@ button.btn.btn-primary.add-friend_invitation_btnAdd {
     font-weight:100;
 }
 .row.post-store {
-    padding-left: 5%;
-    padding: 4%;
     border: 1px solid #99999996;
     margin-left: 2%;
     background: #99999921;
@@ -4885,6 +4883,7 @@ button.btn.btn-primary.add-friend_invitation_btnAdd {
 
     .row.post-store hr {
         border: 0.5px solid #ccc !important;
+        margin:0;
     }
 
 .top-post .editPost .edit-poststore {
@@ -4935,6 +4934,7 @@ i.glyphicon.glyphicon-cog.setting.pull-right {
 
 .top-post {
     display: flex;
+    padding:2%;
 }
 
 .col-lg-8.col-md-8.content-store {
@@ -5013,3 +5013,27 @@ span.name-postStore {
     span.name-postStore:hover {
         color: #0058ff;
         transition: 0.4s;
+    }
+.post-space .modal-dialog.mod {
+    position: absolute;
+    top: 2%;
+}
+.row.post-space {
+    position: relative;
+}
+.contentPostStored p {
+    margin: 0;
+}
+
+.contentPostStored {
+    background: #5c3efa12;
+    padding: 4%;
+}
+
+.edit-background {
+    background: #00000082;
+    border: 1px solid #999;
+    padding: 6px;
+    transition: 0.4s;
+    border-radius: 1px;
+}

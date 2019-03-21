@@ -122,9 +122,22 @@ namespace ChatApp.Controllers
         {
             var userName = Session["userName"] as string;
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
-            var personDto = new PersonalDto { UserName = user.UserName, Name = user.Name };
+            var personDto = new PersonalDto { Name = user.Name,SchoolName=user.SchoolName,DoB=user.DoB,Address=user.Address,PhoneNumber=user.PhoneNumber };
             
             return Json(personDto, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult ConfirmPassword(PersonalDto personalDto)
+        {
+            var userName = Session["userName"] as string;
+            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            personalDto.PassWord = HashPassword.ComputeSha256Hash(personalDto.PassWord);
+            
+            if(string.Compare(personalDto.PassWord,user.PassWord)==0)
+            {
+                return Json(new { isvalid=true}, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { isvalid = false }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult UploadAvatar(int id,HttpPostedFileBase UploadImage)
@@ -162,8 +175,12 @@ namespace ChatApp.Controllers
         {
             var userName = Session["userName"] as string;
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
-            user.PassWord = personalDto.PassWord;
             user.Name = personalDto.Name;
+            user.PassWord = HashPassword.ComputeSha256Hash(personalDto.NewPassword);
+            user.SchoolName = personalDto.SchoolName;
+            user.DoB = personalDto.DoB;
+            user.Address = personalDto.Address;
+            user.PhoneNumber = personalDto.PhoneNumber;
             db.SaveChanges();
             
             return Json("Success", JsonRequestBehavior.AllowGet);

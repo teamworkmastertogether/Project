@@ -64,34 +64,34 @@ namespace ChatApp.Hubs
             Clients.All.EditSubComment(groupName, subcommentDto);
         }
 
-        public void SaveLikePost(string myuserName,LikeDto likeDto, int postId, string groupName)
-        {
-            Clients.All.SaveLikePost(likeDto.Check, postId, groupName);
-            if (myuserName != likeDto.UserName)
-            {
-                List<string> listId = GetListConnectIdByUserName("No value", likeDto.UserName);
-                Clients.Clients(listId).UpdateNotiRealtime();
-            }
-        }
+        //public void SaveLikePost(string myuserName,LikeDto likeDto, int postId, string groupName)
+        //{
+        //    Clients.All.SaveLikePost(likeDto.Check, postId, groupName);
+        //    if (myuserName != likeDto.UserName)
+        //    {
+        //        List<string> listId = GetListConnectIdByUserName("No value", likeDto.UserName);
+        //        Clients.Clients(listId).UpdateNotiRealtime();
+        //    }
+        //}
 
-        public void SaveLikeComment(string myuserName, LikeDto likeDto, int commentId, string groupName)
-        {
-            Clients.All.SaveLikeComment(likeDto.Check, commentId, groupName);
-            if (myuserName != likeDto.UserName)
-            {
-                List<string> listId = GetListConnectIdByUserName("No value", likeDto.UserName);
-                Clients.Clients(listId).UpdateNotiRealtime();
-            }
-        }
+        //public void SaveLikeComment(string myuserName, LikeDto likeDto, int commentId, string groupName)
+        //{
+        //    Clients.All.SaveLikeComment(likeDto.Check, commentId, groupName);
+        //    if (myuserName != likeDto.UserName)
+        //    {
+        //        List<string> listId = GetListConnectIdByUserName("No value", likeDto.UserName);
+        //        Clients.Clients(listId).UpdateNotiRealtime();
+        //    }
+        //}
 
-        public void SaveLikeSubComment(string myuserName, LikeDto likeDto, int subCommentId, string groupName)
-        {
-            Clients.All.SaveLikeSubComment(likeDto.Check, subCommentId, groupName);
-            if (myuserName != likeDto.UserName)
-            {
-                List<string> listId = GetListConnectIdByUserName("No value", likeDto.UserName);
-                Clients.Clients(listId).UpdateNotiRealtime();
-            }
-        }
+        //public void SaveLikeSubComment(string myuserName, LikeDto likeDto, int subCommentId, string groupName)
+        //{
+        //    Clients.All.SaveLikeSubComment(likeDto.Check, subCommentId, groupName);
+        //    if (myuserName != likeDto.UserName)
+        //    {
+        //        List<string> listId = GetListConnectIdByUserName("No value", likeDto.UserName);
+        //        Clients.Clients(listId).UpdateNotiRealtime();
+        //    }
+        //}
     }
 }

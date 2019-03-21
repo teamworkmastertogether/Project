@@ -13,5 +13,10 @@ namespace ChatApp.Models.Dto
         public string PassWord { get; set; }
         public string Avatar { get; set; }
         public string CoverPhoto { get; set; }
+        public string SchoolName { get; set; }
+        public DateTime DoB { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public string NewPassword { get; set; }
     }
 }

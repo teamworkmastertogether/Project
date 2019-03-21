@@ -74,9 +74,9 @@ namespace ChatApp.Controllers
             User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
             Subject subject = db.Subjects.FirstOrDefault(us => us.Name.Equals(postDto.GroupName));
             Post post = new Post();
-            post.LikeNumber = 0;
             post.SubjectId = subject.Id;
             post.Text = postDto.PostText;
+            post.Photo = "";
             post.UserId = user.Id;
             post.CreatedDate = postDto.TimePost;
             db.Posts.Add(post);
@@ -123,7 +123,6 @@ namespace ChatApp.Controllers
             Comment comment = new Comment
             {
                 Text = commentDto.Text,
-                LikeNumber = 0,
                 PostId = commentDto.PostId,
                 UserId = user.Id
             };
@@ -167,7 +166,6 @@ namespace ChatApp.Controllers
             SubComment subComment = new SubComment
             {
                 Text = subCommentDto.Text,
-                LikeNumber = 0,
                 CommentId = subCommentDto.CommentId,
                 UserId = user.Id
             };

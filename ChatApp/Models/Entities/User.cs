@@ -17,7 +17,6 @@ namespace ChatApp.Models.Entities
 		public string Email { get; set; }
 		public string Address { get; set; }
 		public string PhoneNumber { get; set; }
-        public string MyPhotos { get; set; }
 
         public virtual ICollection<ListFriend> ListFriends { get; set; }
         public virtual ICollection<MemberOfListFriend> MemberOfListFriends { get; set; }

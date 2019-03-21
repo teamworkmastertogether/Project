@@ -1,33 +1,4 @@
-/* Minification failed. Returning unminified contents.
-(406,8): run-time error CSS1035: Expected colon, found ';'
-(651,7): run-time error CSS1035: Expected colon, found '.'
-(1182,7): run-time error CSS1035: Expected colon, found '.'
-(1513,7): run-time error CSS1035: Expected colon, found '.'
-(2499,8): run-time error CSS1035: Expected colon, found ';'
-(2745,7): run-time error CSS1035: Expected colon, found '.'
-(3258,7): run-time error CSS1035: Expected colon, found '.'
-(3591,7): run-time error CSS1035: Expected colon, found '.'
-(4351,1): run-time error CSS1019: Unexpected token, found '@import'
-(4351,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4442,17): run-time error CSS1036: Expected expression, found '#'
-(5006,1): run-time error CSS1019: Unexpected token, found '@keyframes'
-(5007,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
- */
-/* Minification failed. Returning unminified contents.
-(383,5): run-time error CSS1035: Expected colon, found ';'
-(628,4): run-time error CSS1035: Expected colon, found '.'
-(1159,4): run-time error CSS1035: Expected colon, found '.'
-(1490,4): run-time error CSS1035: Expected colon, found '.'
-(2473,5): run-time error CSS1035: Expected colon, found ';'
-(2718,4): run-time error CSS1035: Expected colon, found '.'
-(3228,4): run-time error CSS1035: Expected colon, found '.'
-(3561,4): run-time error CSS1035: Expected colon, found '.'
-(4321,1): run-time error CSS1019: Unexpected token, found '@import'
-(4321,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4412,14): run-time error CSS1036: Expected expression, found '#'
-(4970,1): run-time error CSS1019: Unexpected token, found '@keyframes'
-(4971,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
- */
+
 
 * {
     margin: 0px;
@@ -5072,4 +5043,38 @@ h4.title-save {
     font-style: italic;
     text-decoration: underline;
     font-size: 17px;
+}
+span.name-postStore:hover {
+    color: #0058ff;
+    transition: 0.4s;
+}
+
+.post-space .modal-dialog.mod {
+    position: absolute;
+    top: 2%;
+}
+
+.row.post-space {
+    position: relative;
+}
+
+.contentPostStored p {
+    margin: 0;
+}
+
+.contentPostStored {
+    background: #5c3efa12;
+    padding: 4%;
+}
+
+.edit-background {
+    background: #00000082;
+    border: 1px solid #999;
+    padding: 6px;
+    transition: 0.4s;
+    border-radius: 1px;
+}
+.contentPostStored {
+    background: #5cefe261;
+    padding: 4%;
 }

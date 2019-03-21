@@ -204,13 +204,9 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Migrations\201903201642253_CreateDB.cs" />
-    <Compile Include="Migrations\201903201642253_CreateDB.Designer.cs">
-      <DependentUpon>201903201642253_CreateDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903210222533_AddFieldToUser.cs" />
-    <Compile Include="Migrations\201903210222533_AddFieldToUser.Designer.cs">
-      <DependentUpon>201903210222533_AddFieldToUser.cs</DependentUpon>
+    <Compile Include="Migrations\201903210359548_CreateDB.cs" />
+    <Compile Include="Migrations\201903210359548_CreateDB.Designer.cs">
+      <DependentUpon>201903210359548_CreateDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\LikeDto.cs" />
@@ -7289,11 +7285,8 @@
     <Content Include="Views\Admin\GetPostsByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903201642253_CreateDB.resx">
-      <DependentUpon>201903201642253_CreateDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903210222533_AddFieldToUser.resx">
-      <DependentUpon>201903210222533_AddFieldToUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903210359548_CreateDB.resx">
+      <DependentUpon>201903210359548_CreateDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

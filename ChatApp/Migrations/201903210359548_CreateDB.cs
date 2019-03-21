@@ -23,7 +23,6 @@ namespace ChatApp.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Text = c.String(),
-                        LikeNumber = c.Int(nullable: false),
                         PostId = c.Int(nullable: false),
                         UserId = c.Int(),
                     })
@@ -60,7 +59,7 @@ namespace ChatApp.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Text = c.String(),
                         CreatedDate = c.String(),
-                        LikeNumber = c.Int(nullable: false),
+                        Photo = c.String(),
                         UserId = c.Int(),
                         SubjectId = c.Int(nullable: false),
                     })
@@ -151,7 +150,6 @@ namespace ChatApp.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Text = c.String(),
-                        LikeNumber = c.Int(nullable: false),
                         UserId = c.Int(),
                         CommentId = c.Int(nullable: false),
                     })

@@ -1,5 +1,6 @@
 ﻿
 var checkAvarta = true;
+var count = 1;
 $(function () {
 
     countNoti = parseInt($(".badge").text());
@@ -8,10 +9,6 @@ $(function () {
     } else {
         $(".badge").hide();
     }
-    $('.three-dot span').click(function () {
-        $('.timeline-setting').toggleClass('show1');
-        $('.arrow-up').toggleClass('show2');
-    });
     notify = false;
     $('.icon-notify').off().click(function () {
         $.ajax({
@@ -76,7 +73,7 @@ $(function () {
 
    
     $('body').on('click',' .icon-friend ', function (e) {
-        $('#add-friend_invitation').toggle(150);
+        $('#add-friend_invitation').toggle();
     });
 
     $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-friend ', function (e) {
@@ -85,24 +82,47 @@ $(function () {
 
     $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-notify ', function (e) {
         $('#add-friend_invitation').hide();
+
     });
 
-    $(".textNoti p").shorten({
-        "showChars": 120,
-        "moreText": "Xem thêm...",
-        "lessText": "Rút gọn"
-    });
-    count = 1;
+    
     $("#edit-info").click(function () {
         count++;
         if (count % 2 === 0) {
-            $(".edit-user").css("display", "block", "transition", "1s");
-            $(".info-user").css("display", "none", "transition", "1s");
+            $(".edit-user").show();
+            $(".info-user").hide();
         }
         else {
-            $(".edit-user").css("display", "none", "transition", "1s");
-            $(".info-user").css("display", "block", "transition", "1s");
+            $(".edit-user").hide();
+            $(".info-user").show();
         }
+        //get dữ liệu
+        $.ajax({
+            type: "GET",
+            url: "/Home/Edit",
+            contentType: "application/json;charset=utf-8",
+            dataType: "JSON",
+            success: function (res) {          
+                $(".edit-user #Name").val(res.Name);
+                $(".edit-user #SchoolName").val(res.SchoolName);
+                var date = res.DoB;
+                
+                var resTime = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
+                var month = resTime.getMonth()+1, dates = resTime.getDate();
+                if (month < 10) {
+                    month = "0" + month;
+                }
+                if (dates < 10) {
+                    dates = "0" + dates;
+                }
+                var dateTime = resTime.getFullYear()+"-" + month + "-" + dates  ;
+                
+                $(".edit-user #DoB").val(dateTime);
+                $(".edit-user #PhoneNumber").val(res.PhoneNumber);
+                $(".edit-user #Address").val(res.Address);
+            }
+
+        })
     });
     $(".avatar .img-responsive").mouseover(function () {
         $(this).css("cursor", "pointer");
@@ -135,9 +155,6 @@ $(function () {
     $(".showInfoFriend .dropdown .dropbtn").click(function () {
         $(this).next().toggle();
     });
-    $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
-        $('.showInfoFriend .dropdown .dropbtn').next().hide();
-    });
     $(".background").hover(function () {
         $(".update-background span").toggle();
         $(".update-background").toggleClass('edit-background');
@@ -146,13 +163,14 @@ $(function () {
     $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
         $(".update-background span").hide();
         $(".update-background").removeClass('edit-background');
+        $('.showInfoFriend .dropdown .dropbtn').next().hide();
     });
 
 
-    $(".background,.avatar").click(function () {
-        src = $(this).find("img").attr("src");
+    $(".update-background,.update-img").click(function () {
+        src = $(this).prev().attr("src");
         $("#FormAvatar img").attr("src", src);
-        if ($(this).hasClass("avatar")) {
+        if ($(this).hasClass("update-img")) {
             checkAvarta = true;
         } else {
             checkAvarta = false;
@@ -175,3 +193,25 @@ function readURL(input) {
 $("#UploadImage").change(function () {
     readURL(this);
 });
+//click vào giới thiệu trang cá nhân
+$("#gioithieu").click(function () {
+    $(".lef-1").show();
+    $(".lef-2").hide();
+})
+$("#close,.close").on("click", function () {
+    $("#upImg").hide();
+})
+$('#banbe').click(function () {
+    // body...
+    if ($(".show-notify").hasClass('transform')) {
+        $(".show-notify").removeClass('transform');
+
+    }
+    else {
+        $(".show-notify").addClass('transform');
+    }
+
+});
+$(".EditPostStore").click(function () {
+    $(this).next().toggle();
+})

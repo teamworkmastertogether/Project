@@ -15,10 +15,20 @@ namespace ChatApp.Controllers
     {
         ChatDbcontext db = new ChatDbcontext();
 
-        public ActionResult Index()
+        public ActionResult Profile(int? id = 0)
         {
-            var userName = Session["userName"] as string;
-            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            string userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            bool checkUser = false;
+            if (id == user.Id || id == 0)
+            {
+                checkUser = true;
+            }
+            else
+            {
+                 user = db.Users.FirstOrDefault(us => us.Id == id);
+            }
+            ViewBag.checkUser = checkUser;
             ViewBag.Img = user.Avatar;
             ViewBag.Bg = user.CoverPhoto;
             ViewBag.Name = user.Name;
@@ -33,7 +43,7 @@ namespace ChatApp.Controllers
 
             if (userName != null)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Profile");
             }
             return View();
         }
@@ -52,7 +62,7 @@ namespace ChatApp.Controllers
             if (user != null)
             {
                 Session["userName"] = user.UserName;
-                return RedirectToAction("Index");
+                return RedirectToAction("Profile");
             }
             ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không chính xác";
             return View();
@@ -74,6 +84,7 @@ namespace ChatApp.Controllers
             .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
             .Select(s => new InforFriendDto { Avatar = s.User.Avatar, Name = s.User.Name, UserName = s.User.UserName, SeenMessage = s.SeenMessage })
             .Take(20).ToList();
+            ViewBag.UrlProfile = "/Home/Profile?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
             ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
             return PartialView(listUser);
         }
@@ -107,16 +118,26 @@ namespace ChatApp.Controllers
                  .Take(sumMess - userDto.QuantityMessage * 10 - userDto.QuantityMessageNew);
             return Json(listMess, JsonRequestBehavior.AllowGet);
         }
-
-
-
         public ActionResult Edit()
         {
             var userName = Session["userName"] as string;
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
-            var personDto = new PersonalDto { UserName = user.UserName, Name = user.Name };
+            var personDto = new PersonalDto { Name = user.Name,SchoolName=user.SchoolName,DoB=user.DoB,Address=user.Address,PhoneNumber=user.PhoneNumber };
             
             return Json(personDto, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult ConfirmPassword(PersonalDto personalDto)
+        {
+            var userName = Session["userName"] as string;
+            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            personalDto.PassWord = HashPassword.ComputeSha256Hash(personalDto.PassWord);
+            
+            if(string.Compare(personalDto.PassWord,user.PassWord)==0)
+            {
+                return Json(new { isvalid=true}, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { isvalid = false }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult UploadAvatar(int id,HttpPostedFileBase UploadImage)
@@ -154,8 +175,12 @@ namespace ChatApp.Controllers
         {
             var userName = Session["userName"] as string;
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
-            user.PassWord = personalDto.PassWord;
             user.Name = personalDto.Name;
+            user.PassWord = HashPassword.ComputeSha256Hash(personalDto.NewPassword);
+            user.SchoolName = personalDto.SchoolName;
+            user.DoB = personalDto.DoB;
+            user.Address = personalDto.Address;
+            user.PhoneNumber = personalDto.PhoneNumber;
             db.SaveChanges();
             
             return Json("Success", JsonRequestBehavior.AllowGet);

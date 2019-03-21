@@ -165,7 +165,6 @@ span.icon {
     display: none;
     position: absolute;
     width: 109px;
-    height: 101px;
     right: -66px;
     background: #f2f3f4;
     z-index: 9999;
@@ -393,4 +392,8 @@ span.icon {
 .clicked{
     color:red !important;
     font-weight:bold;
+}
+
+.hiden-class{
+    display:none;
 }

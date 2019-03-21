@@ -204,13 +204,9 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Migrations\201903190955505_CreateDB3.cs" />
-    <Compile Include="Migrations\201903190955505_CreateDB3.Designer.cs">
-      <DependentUpon>201903190955505_CreateDB3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903191258486_add_table_like.cs" />
-    <Compile Include="Migrations\201903191258486_add_table_like.Designer.cs">
-      <DependentUpon>201903191258486_add_table_like.cs</DependentUpon>
+    <Compile Include="Migrations\201903200651575_addDb.cs" />
+    <Compile Include="Migrations\201903200651575_addDb.Designer.cs">
+      <DependentUpon>201903200651575_addDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\LikeDto.cs" />
@@ -6308,7 +6304,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -6338,6 +6334,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Subject\GetSubject.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />
@@ -6735,11 +6737,8 @@
     <Content Include="Views\Admin\GetPostsByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903190955505_CreateDB3.resx">
-      <DependentUpon>201903190955505_CreateDB3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903191258486_add_table_like.resx">
-      <DependentUpon>201903191258486_add_table_like.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903200651575_addDb.resx">
+      <DependentUpon>201903200651575_addDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -154,12 +154,16 @@ namespace ChatApp.Controllers
                 {
                     user.Avatar = "http://localhost:54576/Assets/ImagesUpload/" + fileName;
                 }
-                else
+                else if(id==2)
                 {
                     user.CoverPhoto = "http://localhost:54576/Assets/ImagesUpload/" + fileName;
                 }
+                else
+                {
+                    user.MyPhotos = "http://localhost:54576/Assets/ImagesUpload/" + fileName;
+                }
                 db.SaveChanges();
-                var userDto = new PersonalDto { Avatar = user.Avatar, CoverPhoto = user.CoverPhoto };
+                var userDto = new PersonalDto { Avatar = user.Avatar, CoverPhoto = user.CoverPhoto ,MyPhotos=user.MyPhotos};
                 return Json(userDto, JsonRequestBehavior.AllowGet);
             }
 

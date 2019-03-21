@@ -1,5 +1,5 @@
 ﻿
-var checkAvarta = true;
+var checkAvarta = 0;
 var count = 1;
 $(function () {
 
@@ -168,13 +168,16 @@ $(function () {
     });
 
 
-    $(".update-background,.update-img").click(function () {
+    $(".update-background,.update-img,.UpPhoto").click(function () {
         src = $(this).prev().attr("src");
         $("#FormAvatar img").attr("src", src);
         if ($(this).hasClass("update-img")) {
-            checkAvarta = true;
-        } else {
-            checkAvarta = false;
+            checkAvarta = 1;
+        } else if ($(this).hasClass(".update-background")) {
+            checkAvarta = 2;
+        }
+        else {
+            checkAvarta = 3;
         }
     });
 
@@ -219,4 +222,15 @@ $('#banbe').click(function () {
 });
 $(".EditPostStore").click(function () {
     $(this).next().toggle();
+})
+$("#Huy").click(function () {
+    count++;
+    if (count % 2 === 0) {
+        $(".edit-user").show();
+        $(".info-user").hide();
+    }
+    else {
+        $(".edit-user").hide();
+        $(".info-user").show();
+    }
 })

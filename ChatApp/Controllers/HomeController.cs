@@ -80,14 +80,25 @@ namespace ChatApp.Controllers
         public PartialViewResult _MenuPartialView()
         {
             var userName = Session["userName"] as string;
+            //List<InforFriendDto> listUser = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
+            //.ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
+            //.Select(s => new InforFriendDto { Avatar = s.User.Avatar, Name = s.User.Name, UserName = s.User.UserName, SeenMessage = s.SeenMessage })
+            //.Take(20).ToList();
+            ViewBag.UrlProfile = "/Home/Profile?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
+            ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
+            return PartialView();
+        }
+
+        public JsonResult GetListFriend()
+        {
+            var userName = Session["userName"] as string;
             List<InforFriendDto> listUser = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
             .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
             .Select(s => new InforFriendDto { Avatar = s.User.Avatar, Name = s.User.Name, UserName = s.User.UserName, SeenMessage = s.SeenMessage })
             .Take(20).ToList();
-            ViewBag.UrlProfile = "/Home/Profile?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
-            ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
-            return PartialView(listUser);
+            return Json(listUser, JsonRequestBehavior.AllowGet);
         }
+
         public List<InforFriendDto> GetFriendSuggest()
         {
             var userName = Session["userName"] as string;

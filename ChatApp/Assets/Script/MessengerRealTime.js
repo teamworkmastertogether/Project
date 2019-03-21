@@ -2,11 +2,18 @@
 var QuantityMessage = -1;
 var QuantityMessageNew = 0;
 var checkOpenBoxMess = false;
+var ListFriend;
+var ListOnline = [];
 
 $(function () {
+
+    loadListFriend();
+
     hub.client.setStatus = function (LstAllConnections) {
+        ListOnline = [];
         $(".status").html("<i class='fa fa-circle offline'></i> offline");
         for (var key in LstAllConnections) {
+            ListOnline.push(LstAllConnections[key]);
             $("[id=" + LstAllConnections[key] + "]").html("<i class='fa fa-circle online'></i> online");
         }
     };
@@ -103,9 +110,28 @@ $(function () {
             }
         });
     });
+   
     load();
 
+    $(".people-list input").keyup(function () {
+        keySearch = $(this).val().trim().toLowerCase();
+        array2 = [];
+        for (var i = 0; i < ListFriend.length; i++) {
+            if (ListFriend[i].Name.toLowerCase().includes(keySearch)) {
+                array2.push(ListFriend[i]);
+            }
+        }
+        RenderListFriend(array2);
+        SetStatusOnline(ListOnline);
+    });
 });
+
+function SetStatusOnline(array) {
+    $(".status").html("<i class='fa fa-circle offline'></i> offline");
+    for (var i = 0; i < array.length; i++) {
+        $("[id=" + array[i] + "]").html("<i class='fa fa-circle online'></i> online");
+    }
+}
 
 function OpenChatBox(item) {
     $(".list-icon").hide();
@@ -187,26 +213,6 @@ function GetDateNow() {
     return today;
 }
 
-var searchFilter = {
-    options: {
-        valueNames: ['name1']
-    },
-    init: function () {
-        var userList = new List('people-list', this.options);
-        var noItems = $('<li id="no-items-found">Không tìm thấy</li>');
-
-        userList.on('updated', function (list) {
-            if (list.matchingItems.length === 0) {
-                $(list.list).append(noItems);
-            } else {
-                noItems.detach();
-            }
-        });
-    }
-};
-
-searchFilter.init();
-
 $(".fa.fa-close").click(function () {
 
     QuantityMessageNew = -1;
@@ -267,6 +273,9 @@ function LoadData(item) {
         }
     }
 }
+
+
+
 var checkOpenIcon = true;
 $(".chat-message .icon").click(function () {
     $("#message-to-send").val($("#message-to-send").val() + $(this).text());
@@ -325,6 +334,44 @@ function load() {
     });
 }
 
+function loadListFriend() {
+    $.ajax({
+        type: "GET",
+        url: "/Home/GetListFriend",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (array) {
+            ListFriend = array;
+            RenderListFriend(array);
+        },
+        error: function (message) {
+            alert(message.responseText);
+        }
+
+    });
+}
+
+function RenderListFriend(array) {
+    $(".people-list .list").html("");
+    iconSeenMessage = $('<i class="fa fa-comment-o"></i>');
+    for (var i = 0; i < array.length; i++) {
+        $(".item-friend-clone img").attr("src", array[i].Avatar);
+        $(".item-friend-clone .name1").text(array[i].Name);
+        $(".item-friend-clone .status").attr("id", array[i].UserName);
+        if (!array[i].SeenMessage) {
+            $(".item-friend-clone .message").html(iconSeenMessage);
+        } else {
+            $(".item-friend-clone .message").html("");
+        }
+        itemClone = $(".item-friend-clone ul").html();
+        $(".people-list .list").append(itemClone);
+    }
+    $(".item-friend-clone img").attr("src", "");
+    $(".item-friend-clone .name1").text("");
+    $(".item-friend-clone .status").attr("id", "");
+    $(".item-friend-clone .message").html("");
+}
+
 $("#UpdateUser").on("click", function () {
     check = false;
     var object = {
@@ -336,7 +383,7 @@ $("#UpdateUser").on("click", function () {
         Password: $('#Password').val().trim(),
         NewPassword: $('#NewPassword').val().trim()
     };
-    if (object.PhoneNumber != '') {
+    if (object.PhoneNumber !== '') {
         res = ValidatePhone(object.PhoneNumber);
         if (!res) {
 
@@ -345,12 +392,12 @@ $("#UpdateUser").on("click", function () {
         }
     }
     
-    if (object.Password == '') {
+    if (object.Password === '') {
         $("#Password").focus();
         $('#Password').css("border-color", "red");
         return false;
     }
-    if (object.NewPassword == '') {
+    if (object.NewPassword === '') {
         $("#NewPassword").focus();
         $('#NewPassword').css("border-color", "red");
         return false;
@@ -400,14 +447,12 @@ $("#UpdateUser").on("click", function () {
 
 function UploadAvatar(formData) {
     url = "";
-    if (checkAvarta == 1) {
+    if (checkAvarta === 1) {
         url = "/Home/UploadAvatar?id=1";
-    } else if (checkAvarta == 2) {
+    } else if (checkAvarta === 2) {
         url = "/Home/UploadAvatar?id=2";
     }
-    else {
-        url = "/Home/UploadAvatar?id=3";
-    }
+   
     var ajaxConfig = {
         type: "POST",
         url: url,

@@ -168,16 +168,13 @@ $(function () {
     });
 
 
-    $(".update-background,.update-img,.UpPhoto").click(function () {
+    $(".update-background,.update-img").click(function () {
         src = $(this).prev().attr("src");
         $("#FormAvatar img").attr("src", src);
         if ($(this).hasClass("update-img")) {
             checkAvarta = 1;
         } else if ($(this).hasClass(".update-background")) {
             checkAvarta = 2;
-        }
-        else {
-            checkAvarta = 3;
         }
     });
 

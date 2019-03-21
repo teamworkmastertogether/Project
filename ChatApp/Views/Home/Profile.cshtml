@@ -85,9 +85,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Giới Thiệu</a></li>
+            <li><a href="#"  id="gioithieu">Giới Thiệu</a></li>
             <li>
-                <a href="#">Bạn bè<span class="friends">250</span></a>
+                <a href="#"  id="banbe">Bạn bè<span class="friends">250</span></a>
 
             </li>
         </ul>
@@ -106,7 +106,7 @@
                 </a>
             </span>
         </div>
-      
+
     </div>
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 lef-1">
         <div class="col-md-12 col-lg-12 info">
@@ -123,14 +123,27 @@
         <div class="col-lg-12 col-md-12 edit-user" style="display:none;">
             <form method="post">
                 <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" id="PassWord" placeholder="Password" />
+                    <input type="text" class="form-control" id="Name" />
                 </div>
                 <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" class="form-control" id="Name" placeholder="Name" />
+                    <input type="text" class="form-control" id="SchoolName" />
                 </div>
-                <button class="btn btn-danger" onclick="Update();">Update</button>
+                <div class="form-group">
+                    <input type="date" class="form-control" id="DoB" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="Address" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="PhoneNumber" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="Password" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="NewPassword" />
+                </div>
+                <input type="button" value="Cập nhật" id="UpdateUser" />
             </form>
         </div>
         <div class="col-lg-12 col-md-12">
@@ -244,5 +257,110 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-8 col-md-8">Các bài viết</div>
+    <div class="col-lg-8 col-md-8">Các bài viết đã lưu</div>
+    <!--Code lưu các bài viết-->
+    <div class="col-lg-8 col-md-8 content-store">
+        <div class="row post-store">
+            <div class="top-post">
+                <img src="~/Assets/Images/Login/background.png" />
+                <div class="info-userpost">
+                    <span>Nguyễn Xuân Quang đã đăng trong nhóm Toán học</span>
+                    <p>12h54 - 20/03/2019</p>
+                </div>
+                <div class="editPost">
+                    <i class="glyphicon glyphicon-cog setting pull-right EditPostStore"></i>
+                    <div class="edit-poststore">Xóa</div>
+                </div>
+            </div>
+            <hr />
+            <div class="contentPostStored">
+                <p>
+                    what is the lorem what is the lorem what is the lorem what is the lorem what is the lorem what is the loremwhat is the lorem
+                    what is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the lorem
+                </p>
+            </div>
+        </div>
+        <div class="row post-store">
+            <div class="top-post">
+                <img src="~/Assets/Images/Login/background.png" />
+                <div class="info-userpost">
+                    <span>Nguyễn Xuân Quang đã đăng trong nhóm Toán học</span>
+                    <p>12h54 - 20/03/2019</p>
+                </div>
+                <div class="editPost">
+                    <i class="glyphicon glyphicon-cog setting pull-right EditPostStore"></i>
+                    <div class="edit-poststore">Xóa</div>
+                </div>
+            </div>
+            <hr />
+            <div class="contentPostStored">
+                <p>
+                    what is the lorem what is the lorem what is the lorem what is the lorem what is the lorem what is the loremwhat is the lorem
+                    what is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the lorem
+                </p>
+            </div>
+        </div>
+        <div class="row post-store">
+            <div class="top-post">
+                <img src="~/Assets/Images/Login/background.png" />
+                <div class="info-userpost">
+                    <span>Nguyễn Xuân Quang đã đăng trong nhóm Toán học</span>
+                    <p>12h54 - 20/03/2019</p>
+                </div>
+                <div class="editPost">
+                    <i class="glyphicon glyphicon-cog setting pull-right EditPostStore"></i>
+                    <div class="edit-poststore">Xóa</div>
+                </div>
+            </div>
+            <hr />
+            <div class="contentPostStored">
+                <p>
+                    what is the lorem what is the lorem what is the lorem what is the lorem what is the lorem what is the loremwhat is the lorem
+                    what is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the lorem
+                </p>
+            </div>
+        </div>
+        <div class="row post-store">
+            <div class="top-post">
+                <img src="~/Assets/Images/Login/background.png" />
+                <div class="info-userpost">
+                    <span>Nguyễn Xuân Quang đã đăng trong nhóm Toán học</span>
+                    <p>12h54 - 20/03/2019</p>
+                </div>
+                <div class="editPost">
+                    <i class="glyphicon glyphicon-cog setting pull-right EditPostStore"></i>
+                    <div class="edit-poststore">Xóa</div>
+                </div>
+            </div>
+            <hr />
+            <div class="contentPostStored">
+                <p>
+                    what is the lorem what is the lorem what is the lorem what is the lorem what is the lorem what is the loremwhat is the lorem
+                    what is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the lorem
+                </p>
+            </div>
+        </div>
+        <div class="row post-store">
+            <div class="top-post">
+                <img src="~/Assets/Images/Login/background.png" />
+                <div class="info-userpost">
+                    <span>Nguyễn Xuân Quang đã đăng trong nhóm Toán học</span>
+                    <p>12h54 - 20/03/2019</p>
+                </div>
+                <div class="editPost">
+                    <i class="glyphicon glyphicon-cog setting pull-right EditPostStore"></i>
+                    <div class="edit-poststore">Xóa</div>
+                </div>
+            </div>
+            <hr />
+            <div class="contentPostStored">
+                <p>
+                    what is the lorem what is the lorem what is the lorem what is the lorem what is the lorem what is the loremwhat is the lorem
+                    what is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the lorem
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
 </div>

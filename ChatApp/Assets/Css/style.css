@@ -4879,3 +4879,123 @@ button.btn.btn-primary.add-friend_invitation_btnAdd {
     font-size: 17px;
     font-weight:100;
 }
+.row.post-store {
+    padding-left: 5%;
+    padding: 4%;
+    border: 1px solid #99999996;
+    margin-left: 2%;
+    background: #99999921;
+    margin-bottom: 4%;
+}
+
+    .row.post-store hr {
+        border: 0.5px solid #ccc !important;
+    }
+
+.top-post .editPost .edit-poststore {
+    position: absolute;
+    top: 45%;
+    right: 5%;
+    background: #ddd;
+    padding: 4px;
+    border: 1px solid #999;
+    padding-left: 70%;
+    padding-right: 70%;
+    font-size: 13px;
+    font-family: -webkit-body;
+    display: none;
+}
+
+    .top-post .editPost .edit-poststore:hover {
+        background: rgba(255, 94, 99, 0.74);
+        transition: 0.4s;
+        cursor: pointer;
+    }
+
+.top-post .editPost {
+    position: relative;
+}
+
+i.glyphicon.glyphicon-cog.setting.pull-right {
+    font-size: 20px;
+    padding-top: 1%;
+    color: #0000007a;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+.info-userpost {
+    margin-left: 2%;
+    padding-top: 1%;
+    width: 100%;
+}
+
+    .info-userpost p {
+        color: #00000085;
+        font-weight: 600;
+        font-size: 11px;
+        margin-top: 5px;
+    }
+
+
+.top-post {
+    display: flex;
+}
+
+.col-lg-8.col-md-8.content-store {
+    max-height: 20%;
+    padding-right: 4%;
+}
+
+.top-post img {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #0e050569;
+    border-radius: 50%;
+}
+
+.show-notify {
+    width: 65%;
+    height: 10%;
+    background: red;
+    z-index: 9999;
+    position: absolute;
+    bottom: 0;
+    right: 40%;
+    border: 1px solid #00000042;
+    border-radius: 4px;
+    opacity: 0;
+}
+
+.transform {
+    -webkit-animation: mymove 8s;
+    animation: mymove 8s ease-out;
+}
+
+@keyframes mymove {
+    0% {
+        opacity: 0;
+        transform: translateY(0px);
+    }
+
+    25% {
+        opacity: 0;
+        transform: translateY(-100px);
+        transition: 2s;
+    }
+
+    40% {
+        opacity: 1;
+        transform: translateY(-100px);
+        transition: 5s;
+    }
+
+    60% {
+        opacity: 1;
+        transition: 5s;
+    }
+
+    100% {
+        opacity: 0;
+        transition: 0.2s;
+    }

@@ -1,0 +1,366 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAppChat.cshtml";
+}
+<!-- Main -->
+<div class="main">
+    <div class="background" >
+        <img src="@Url.Content(@ViewBag.Bg)" />
+        @if (ViewBag.checkUser)
+        {
+            <div class="update-background" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-camera"></i>
+                <span style="display:none;">Cập nhật ảnh bìa</span>
+            </div>
+        }
+    </div>
+    <div class="avatar" >
+        <div class="img-responsive">
+            <img src="@Url.Content(@ViewBag.Img)" />
+            @if (ViewBag.checkUser)
+            {
+                <div class="update-img" data-toggle="modal" data-target="#myModal">
+                    <i class="fa fa-camera"></i>
+                    <p>Cập nhật</p>
+                </div>
+            }
+        </div>
+
+        <div class="name">
+            <h3>
+                <a href="#">@ViewBag.Name</a>
+            </h3>
+        </div>
+        <div class="inviteFriend">
+            <p>
+                <i class="fas fa-user-plus"></i>
+                <span>Kết bạn</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog mod">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="FormAvatar" method="post" enctype="multipart/form-data" onsubmit="return UploadAvatar(this)" runat="server">
+                    <img id="blah" src="" />
+                    <input type="file" id="UploadImage" accept="image/gif, image/jpeg, image/png" name="UploadImage" class="form-control" style="display:none" ; /><br />
+                    <a href="#" id="selectFile" class="btn btn-primary">Chọn ảnh</a>
+                    <button class="btn btn-danger" id="upImg" style="display:none;" >Lưu chỉnh sửa</button>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Thanh menu trang cá nhân -->
+<nav class="navbar navbar-default fbTimeline" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"  id="gioithieu">Giới Thiệu</a></li>
+            <li>
+                <a href="#"  id="banbe">Bạn bè<span class="friends">250</span></a>
+
+            </li>
+        </ul>
+    </div><!-- /.navbar-collapse -->
+</nav>
+
+<!-- Chỉnh sửa hiển thị thông tin -->
+<div class="row content">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 lef">
+        <div class="card-header">
+            <i class="far fa-question-circle"></i>
+            <span>Did You Know</span>
+            <span class="pull-right">
+                <a href="#">
+                    Add Answer
+                </a>
+            </span>
+        </div>
+
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 lef-1">
+        <div class="col-md-12 col-lg-12 info">
+            <div class="info-top">
+                <span>
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    Giới thiệu
+                </span>
+                <span>
+                    <a id="edit-info" class=" pull-right">Chỉnh sửa<i class="fas fa-tools"></i></a>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12 edit-user" style="display:none;">
+            <form method="post">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="Name" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="SchoolName" />
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" id="DoB" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="Address" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="PhoneNumber" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="Password" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="NewPassword" />
+                </div>
+                <input type="button" value="Cập nhật" id="UpdateUser" />
+            </form>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="info-user"></div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 lef-2">
+        <div class="col-lg-12 col-md-12">
+            <div class="avatarFriend">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
+            </div>
+            <div class="nameFriend">
+                <p>Nguyễn Văn A</p>
+            </div>
+            <div class="showInfoFriend">
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <span>Bạn bè</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="#">Thông tin</a></li>
+                            <li><a href="#">Hủy kết bạn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="avatarFriend">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
+            </div>
+            <div class="nameFriend">
+                <p>Nguyễn Văn A</p>
+            </div>
+            <div class="showInfoFriend">
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <span>Bạn bè</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="#">Thông tin</a></li>
+                            <li><a href="#">Hủy kết bạn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="avatarFriend">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
+            </div>
+            <div class="nameFriend">
+                <p>Nguyễn Văn A</p>
+            </div>
+            <div class="showInfoFriend">
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <span>Bạn bè</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="#">Thông tin</a></li>
+                            <li><a href="#">Hủy kết bạn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="avatarFriend">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
+            </div>
+            <div class="nameFriend">
+                <p>Nguyễn Văn A</p>
+            </div>
+            <div class="showInfoFriend">
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <span>Bạn bè</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="#">Thông tin</a></li>
+                            <li><a href="#">Hủy kết bạn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="avatarFriend">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
+            </div>
+            <div class="nameFriend">
+                <p>Nguyễn Văn A</p>
+            </div>
+            <div class="showInfoFriend">
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <span>Bạn bè</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="#">Thông tin</a></li>
+                            <li><a href="#">Hủy kết bạn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-8">Các bài viết đã lưu</div>
+    <!--Code lưu các bài viết-->
+    <div class="col-lg-8 col-md-8 content-store">
+        <div class="row post-store">
+            <div class="top-post">
+                <img src="~/Assets/Images/Login/background.png" />
+                <div class="info-userpost">
+                    <span>Nguyễn Xuân Quang đã đăng trong nhóm Toán học</span>
+                    <p>12h54 - 20/03/2019</p>
+                </div>
+                <div class="editPost">
+                    <i class="glyphicon glyphicon-cog setting pull-right EditPostStore"></i>
+                    <div class="edit-poststore">Xóa</div>
+                </div>
+            </div>
+            <hr />
+            <div class="contentPostStored">
+                <p>
+                    what is the lorem what is the lorem what is the lorem what is the lorem what is the lorem what is the loremwhat is the lorem
+                    what is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the lorem
+                </p>
+            </div>
+        </div>
+        <div class="row post-store">
+            <div class="top-post">
+                <img src="~/Assets/Images/Login/background.png" />
+                <div class="info-userpost">
+                    <span>Nguyễn Xuân Quang đã đăng trong nhóm Toán học</span>
+                    <p>12h54 - 20/03/2019</p>
+                </div>
+                <div class="editPost">
+                    <i class="glyphicon glyphicon-cog setting pull-right EditPostStore"></i>
+                    <div class="edit-poststore">Xóa</div>
+                </div>
+            </div>
+            <hr />
+            <div class="contentPostStored">
+                <p>
+                    what is the lorem what is the lorem what is the lorem what is the lorem what is the lorem what is the loremwhat is the lorem
+                    what is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the lorem
+                </p>
+            </div>
+        </div>
+        <div class="row post-store">
+            <div class="top-post">
+                <img src="~/Assets/Images/Login/background.png" />
+                <div class="info-userpost">
+                    <span>Nguyễn Xuân Quang đã đăng trong nhóm Toán học</span>
+                    <p>12h54 - 20/03/2019</p>
+                </div>
+                <div class="editPost">
+                    <i class="glyphicon glyphicon-cog setting pull-right EditPostStore"></i>
+                    <div class="edit-poststore">Xóa</div>
+                </div>
+            </div>
+            <hr />
+            <div class="contentPostStored">
+                <p>
+                    what is the lorem what is the lorem what is the lorem what is the lorem what is the lorem what is the loremwhat is the lorem
+                    what is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the lorem
+                </p>
+            </div>
+        </div>
+        <div class="row post-store">
+            <div class="top-post">
+                <img src="~/Assets/Images/Login/background.png" />
+                <div class="info-userpost">
+                    <span>Nguyễn Xuân Quang đã đăng trong nhóm Toán học</span>
+                    <p>12h54 - 20/03/2019</p>
+                </div>
+                <div class="editPost">
+                    <i class="glyphicon glyphicon-cog setting pull-right EditPostStore"></i>
+                    <div class="edit-poststore">Xóa</div>
+                </div>
+            </div>
+            <hr />
+            <div class="contentPostStored">
+                <p>
+                    what is the lorem what is the lorem what is the lorem what is the lorem what is the lorem what is the loremwhat is the lorem
+                    what is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the lorem
+                </p>
+            </div>
+        </div>
+        <div class="row post-store">
+            <div class="top-post">
+                <img src="~/Assets/Images/Login/background.png" />
+                <div class="info-userpost">
+                    <span>Nguyễn Xuân Quang đã đăng trong nhóm Toán học</span>
+                    <p>12h54 - 20/03/2019</p>
+                </div>
+                <div class="editPost">
+                    <i class="glyphicon glyphicon-cog setting pull-right EditPostStore"></i>
+                    <div class="edit-poststore">Xóa</div>
+                </div>
+            </div>
+            <hr />
+            <div class="contentPostStored">
+                <p>
+                    what is the lorem what is the lorem what is the lorem what is the lorem what is the lorem what is the loremwhat is the lorem
+                    what is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the loremwhat is the lorem
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>

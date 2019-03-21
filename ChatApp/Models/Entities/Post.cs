@@ -23,5 +23,6 @@ namespace ChatApp.Models.Entities
         public int SubjectId { get; set; }
         public virtual Subject Subject { get; set; }
 
+        public virtual ICollection<Like> Likes { get; set; }
     }
 }

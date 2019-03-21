@@ -18,5 +18,7 @@ namespace ChatApp.Models.Entities
         [ForeignKey("Comment")]
         public int CommentId { get; set; }
         public virtual Comment Comment { get; set; }
+
+        public virtual ICollection<Like> Likes { get; set; }
     }
 }

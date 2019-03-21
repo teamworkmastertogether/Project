@@ -46,7 +46,7 @@ input.inputComment, input.inputReply {
 
     .option-seting .glyphicon {
         margin-top: 11px;
-        margin-left: 40px;
+        margin-left: 57px;
         color: gray;
     }
 
@@ -165,7 +165,6 @@ span.icon {
     display: none;
     position: absolute;
     width: 109px;
-    height: 101px;
     right: -66px;
     background: #f2f3f4;
     z-index: 9999;
@@ -329,7 +328,7 @@ span.icon {
     display: none;
     border-radius: 15px;
     padding: 5px;
-    width: 460px;
+    width: 516px;
     height: 200px;
     outline: none;
 }
@@ -364,9 +363,9 @@ span.icon {
     width: 60px;
     height: 60px;
 }
-.comment-post img {
-    width: 42px;
-    height: 42px;
+.comment-wrapper2.comment-post img {
+    width: 25px;
+    height: 25px;
 }
 .content-listFriendSuggest img {
     height: 50px;
@@ -384,4 +383,17 @@ span.icon {
     padding: 6px;
     border-color: #0000ff00;
     margin-right: 6%;
+}
+
+.comment-level img {
+	width: 35px;
+	height: 35px;
+}
+.clicked{
+    color:red !important;
+    font-weight:bold;
+}
+
+.hiden-class{
+    display:none;
 }

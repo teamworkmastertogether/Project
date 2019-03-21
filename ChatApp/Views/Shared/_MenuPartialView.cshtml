@@ -7,7 +7,7 @@
             <span class="badge">@ViewBag.SumNoti</span>
         </div>
         <div title="Trang cá nhân" class="icon icon-home">
-            <a href="/Home/Index" style="color:white"><i class="fa fa-user-circle"></i></a>
+            <a href="@ViewBag.UrlProfile" style="color:white"><i class="fa fa-user-circle"></i></a>
         </div>
         <div title="Lời mời kết bạn" class="icon icon-friend">
             <i class="fa fa-users"></i>
@@ -35,38 +35,7 @@
 
     <div id="notifi" style="display:none;">
         <div class="row notifyClass">
-            @*<a class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
-                <div class="col-lg-2 col-md-2">
-                    <div class="identify-icon">
-                        <i class="far fa-comments"></i>
-                    </div>
-                    <div class="imgMenu">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <div class="textNoti">
-                        <h3>Nguyễn Tiến Xuân</h3>Đã bình luận về bài viết của Nguyễn Văn Trọng trong <span>Toán học</span>
-                        <h4>21h30 - 24/12/2019</h4>
-                    </div>
-                </div>
-            </a>
-            <a class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
-                <div class="col-lg-2 col-md-2">
-                    <div class="identify-icon">
-                        <i class="far fa-thumbs-up"></i>
-                    </div>
-                    <div class="imgMenu">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <div class="textNoti">
-                        <h3>Nguyễn Tiến Xuân</h3>Đã thích bài viết trong <span>Toán học</span>
-                        <h4>20h30 - 23/12/2019</h4>
-                    </div>
-                </div>
-            </a>
+            @*
             <a class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
                 <div class="col-lg-2 col-md-2">
                     <div class="identify-icon">
@@ -83,86 +52,8 @@
                     </div>
                 </div>
             </a>
-            <a class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
-                <div class="col-lg-2 col-md-2">
-                    <div class="identify-icon">
-                        <i class="far fa-thumbs-up"></i>
-                    </div>
-                    <div class="imgMenu">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <div class="textNoti">
-                        <h3>Nguyễn Tiến Xuân và 8 người khác</h3>đã thích bài viết của bạn trong <span>Toán học</span>
-                        <h4>20h30 - 23/12/2019</h4>
-                    </div>
-                </div>
-            </a>
-            <a class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
-                <div class="col-lg-2 col-md-2">
-                    <div class="identify-icon">
-                        <i class="far fa-clock"></i>
-                    </div>
-                    <div class="imgMenu">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <div class="textNoti">
-                        <h3>Nguyễn Tiến Xuân</h3>Đã đăng trong nhóm <span>Toán học</span>
-                        <h4>20h30 - 23/12/2019</h4>
-                    </div>
-                </div>
-            </a>
-            <a class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
-                <div class="col-lg-2 col-md-2">
-                    <div class="identify-icon">
-                        <i class="far fa-thumbs-up"></i>
-                    </div>
-                    <div class="imgMenu">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <div class="textNoti">
-                        <h3>Lê Huy</h3>Đã thích bài viết trong nhóm <span>Toán học</span>
-                        <h4>20h30 - 23/12/2019</h4>
-                    </div>
-                </div>
-            </a>
-            <a class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
-                <div class="col-lg-2 col-md-2">
-                    <div class="identify-icon">
-                        <i class="far fa-comments"></i>
-                    </div>
-                    <div class="imgMenu">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <div class="textNoti">
-                        <h3>Cao Thi Thanh Hoa </h3> đã trả lời bình luận của bạn trong <span>Toán học</span>
-                        <h4>20h30 - 23/12/2019</h4>
-                    </div>
-                </div>
-            </a>
-            <a class="col-lg-12 col-md-12" style="position:relative" href="javascript:void(0)">
-                <div class="col-lg-2 col-md-2">
-                    <div class="identify-icon">
-                        <i class="far fa-comments"></i>
-                    </div>
-                    <div class="imgMenu">
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8">
-                    <div class="textNoti">
-                        <h3>Cao Thi Thanh Hoa và 23 người khác  </h3> đã bình luận bài viết của bạn trong <span>Toán học</span>
-                        <h4>20h30 - 23/12/2019</h4>
-                    </div>
-                </div>
-            </a>*@
+           
+            *@
         </div>
     </div>
 
@@ -252,49 +143,67 @@
     <div id="add-friend_invitation">
         <div class="row invitation_space">
             <div class="invitation-info col-md-12 col-xs-12 col-sm-12">
-                <div class="invitation-info_avatar col-md-3">
-                    <img src="~/Assets/ImagesUpload/bacho.png" alt="Alternate Text"
-                         style="width:50px;height:50px;border-radius: 50%" />
+                <div class="invitation-info_avatar col-md-4">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="Alternate Text"
+                         style="width:60px;height:60px;border-radius: 50%" />
                 </div>
-                <div class="col-md-9 invitation-content" style="margin-left: -10px">
-                    <a href="javascript:void(0)" class="invitation-content_username">Bùi Quang Hưng</a>
+                <div class="col-md-8 invitation-content" style="margin-left: -10px">
+                    <a href="javascript:void(0)" class="invitation-content_username">Nguyễn Tiến Xuân</a>
                     <div class="invitation-button" style="margin-top: 5px">
-                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Thêm bạn bè</button>
-                        <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa, gỡ bỏ</button>
+                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Chấp nhận</button>
+                        <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row invitation_space">
             <div class="invitation-info col-md-12 col-xs-12 col-sm-12">
-                <div class="invitation-info_avatar col-md-3">
-                    <img src="~/Assets/ImagesUpload/bacho.png" alt="Alternate Text"
-                         style="width:50px;height:50px;border-radius: 50%" />
+                <div class="invitation-info_avatar col-md-4">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="Alternate Text"
+                         style="width:60px;height:60px;border-radius: 50%" />
                 </div>
-                <div class="col-md-9 invitation-content" style="margin-left: -10px">
-                    <a href="javascript:void(0)" class="invitation-content_username">Hưng oppa</a>
+                <div class="col-md-8 invitation-content" style="margin-left: -10px">
+                    <a href="javascript:void(0)" class="invitation-content_username">Nguyễn Bình Dương</a>
                     <div class="invitation-button" style="margin-top: 5px">
-                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Thêm bạn bè</button>
-                        <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa, gỡ bỏ</button>
+                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Chấp nhận</button>
+                        <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row invitation_space">
             <div class="invitation-info col-md-12 col-xs-12 col-sm-12">
-                <div class="invitation-info_avatar col-md-3">
-                    <img src="~/Assets/ImagesUpload/bacho.png" alt="Alternate Text"
-                         style="width:50px;height:50px;border-radius: 50%" />
+                <div class="invitation-info_avatar col-md-4">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="Alternate Text"
+                         style="width:60px;height:60px;border-radius: 50%" />
                 </div>
-                <div class="col-md-9 invitation-content" style="margin-left: -10px">
-                    <a href="javascript:void(0)" class="invitation-content_username">Hưng senpai</a>
+                <div class="col-md-8 invitation-content" style="margin-left: -10px">
+                    <a href="javascript:void(0)" class="invitation-content_username">Cao Đức Mạnh</a>
                     <div class="invitation-button" style="margin-top: 5px">
-                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Thêm bạn bè</button>
-                        <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa, gỡ bỏ</button>
+                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Chấp nhận</button>
+                        <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa</button>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="row invitation_space">
+            <div class="invitation-info col-md-12 col-xs-12 col-sm-12">
+                <div class="invitation-info_avatar col-md-4">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="Alternate Text"
+                         style="width:60px;height:60px;border-radius: 50%" />
+                </div>
+                <div class="col-md-8 invitation-content" style="margin-left: -10px">
+                    <a href="javascript:void(0)" class="invitation-content_username">Ngô Kiên Tuấn</a>
+                    <div class="invitation-button" style="margin-top: 5px">
+                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Chấp nhận</button>
+                        <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="show-notify">
+
     </div>
 </div>
 
@@ -339,10 +248,10 @@
         <ul></ul>
     </div> <!-- end chat-history -->
     <div class="chat-message clearfix">
-        <textarea name="message-to-send" id="message-to-send" placeholder="Type your message" rows="3"></textarea>
+        <textarea name="message-to-send" id="message-to-send" placeholder="Nhập tin nhắn ...." rows="3"></textarea>
         <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
         <i class="fa fa-smile-o"></i>
-        <button id="SendClick">Send</button>
+        <button id="SendClick">Gửi</button>
         <div class="list-icon" style="display:none;">
             @Html.Partial("_IconPartialView")
         </div>

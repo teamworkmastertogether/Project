@@ -306,9 +306,15 @@ function load() {
         dataType: "json",
         success: function (result) {
             var html = '';
+            var date = result.DoB;
+            var ress = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
+            var dateTime = ress.getDate() + "-" + (ress.getMonth() + 1) + "-" + ress.getFullYear();
             html += '<ul>';
-            html += '<li>' + '<span class="ht-left">Nick Name</span>' + '<span class="ht-right">' + result.UserName + '</span>' + '</li>';
-            html += '<li>' + '<span class="ht-left">Họ tên</span>' + '<span class="ht-right">' + result.Name + '</span>' + '</li>';
+            html += '<li>' + '<span class="ht-left">Nick Name</span>' + '<span class="ht-right">' + result.Name + '</span>' + '</li>';
+            html += '<li>' + '<span class="ht-left">Trường</span>' + '<span class="ht-right">' + result.SchoolName + '</span>' + '</li>';
+            html += '<li>' + '<span class="ht-left">Ngày sinh</span>' + '<span class="ht-right">' + dateTime + '</span>' + '</li>';
+            html += '<li>' + '<span class="ht-left">Địa chỉ</span>' + '<span class="ht-right">' + result.Address + '</span>' + '</li>';
+            html += '<li>' + '<span class="ht-left">Số điện thoại</span>' + '<span class="ht-right">' + result.PhoneNumber + '</span>' + '</li>';
             html += '</ul>';
             $('.info-user').html(html);
         },
@@ -319,27 +325,75 @@ function load() {
     });
 }
 
-function Update() {
+$("#UpdateUser").on("click", function () {
+    check = false;
     var object = {
-        UserName: MyUserName,
-        Password: $('#PassWord').val(),
-        Name: $('#Name').val()
+        Name: $('#Name').val(),
+        SchoolName: $('#SchoolName').val(),
+        DoB: $('#DoB').val(),
+        Address: $('#Address').val(),
+        PhoneNumber: $('#PhoneNumber').val().trim(),
+        Password: $('#Password').val().trim(),
+        NewPassword: $('#NewPassword').val().trim()
     };
+    res = ValidatePhone(object.PhoneNumber);
+    if (!res) {
 
+        $("#PhoneNumber").focus();
+        return false;
+    }
+    if (object.Password == '') {
+        $("#Password").focus();
+        $('#Password').css("border-color", "red");
+        return false;
+    }
+    if (object.NewPassword == '') {
+        $("#NewPassword").focus();
+        $('#NewPassword').css("border-color", "red");
+        return false;
+    }
     $.ajax({
         type: "POST",
-        url: "/Home/SaveData",
+        url: "/Home/ConfirmPassword",
         data: JSON.stringify(object),
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            load();
+            alert("result la " + result.isvalid);
+            if (result.isvalid) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/SaveData",
+                    data: JSON.stringify(object),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        load();
+                        alert("Cập nhật thành công");
+                        $(".edit-user").hide();
+                        $(".info-user").show();
+                        count++;
+                    },
+                    error: function (errormessage) {
+                        alert(errormessage.responseText);
+                    }
+                });
+            }
+            else {
+                alert("Mật khẩu cũ không chính xác")
+                $('#Password').focus();
+                $('#Password').css("border-color", "red");
+                return false;
+            }
         },
-        error: function (errormessage) {
-            alert(errormessage.responseText);
+        error: function (message) {
+            alert(message.responseText);
         }
+
     });
-}
+    
+    
+})
 
 function UploadAvatar(formData) {
     url = "";
@@ -355,7 +409,7 @@ function UploadAvatar(formData) {
         success: function (result) {
             $(".avatar .img-responsive img").attr("src", result.Avatar);
             $(".background img").attr("src", result.CoverPhoto);
-
+            $("#upImg").hide();
             $(".modal-backdrop").remove();
             $("#myModal #close").click();
         }
@@ -367,4 +421,15 @@ function UploadAvatar(formData) {
     $.ajax(ajaxConfig);
 
     return false;
+}
+function ValidatePhone(phone) {
+    regex = new RegExp("^[0-9]{10,11}$");
+    res = regex.test(phone);
+    if (!res) {
+        $("#PhoneNumber").css("border-color", "red");
+    }
+    else {
+        $("#PhoneNumber").css('border-color', 'lightgrey');
+    }
+    return res;
 }

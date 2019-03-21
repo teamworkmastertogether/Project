@@ -1,0 +1,74 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/Content/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminLTE/bower_components/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminLTE/dist/css/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminLTE/plugins/iCheck/square/blue.css" rel="stylesheet" />
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>SocialNetwork</b> Admin</a>
+        </div>
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to access Admin Page</p>
+                <form action="/Admin/Login" method="post">
+                    <div class="form-group has-feedback row">
+                        <div class="col-md-1">
+                            <span class="fa fa-user form-control-feedback"></span>
+                        </div>
+                        <div class="col-md-11">
+                            <input type="text" class="form-control" placeholder="Email" name="username">
+                        </div>
+
+                    </div>
+                    <div class="form-group has-feedback row">
+                        <div class="col-md-1">
+                            <span class="fa fa-lock form-control-feedback"></span>
+                        </div>
+                        <div class="col-md-11">
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="checkbox icheck">
+                                <label>
+                                    <input type="checkbox"> Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Content/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/Content/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/AdminLTE/plugins/iCheck/icheck.min.js"></script>
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            })
+        })
+    </script>
+</body>
+</html>

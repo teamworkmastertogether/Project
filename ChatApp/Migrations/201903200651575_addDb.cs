@@ -3,7 +3,7 @@ namespace ChatApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class CreateDB3 : DbMigration
+    public partial class addDb : DbMigration
     {
         public override void Up()
         {
@@ -32,6 +32,26 @@ namespace ChatApp.Migrations
                 .ForeignKey("dbo.Users", t => t.UserId)
                 .Index(t => t.PostId)
                 .Index(t => t.UserId);
+            
+            CreateTable(
+                "dbo.Likes",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(),
+                        PostId = c.Int(),
+                        CommentId = c.Int(),
+                        SubCommentId = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Comments", t => t.CommentId)
+                .ForeignKey("dbo.Posts", t => t.PostId)
+                .ForeignKey("dbo.SubComments", t => t.SubCommentId)
+                .ForeignKey("dbo.Users", t => t.UserId)
+                .Index(t => t.UserId)
+                .Index(t => t.PostId)
+                .Index(t => t.CommentId)
+                .Index(t => t.SubCommentId);
             
             CreateTable(
                 "dbo.Posts",
@@ -182,9 +202,12 @@ namespace ChatApp.Migrations
             DropForeignKey("dbo.Messages", "ContactId", "dbo.Users");
             DropForeignKey("dbo.Contacts", "FromUserId", "dbo.Users");
             DropForeignKey("dbo.Comments", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Comments", "PostId", "dbo.Posts");
+            DropForeignKey("dbo.Likes", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Likes", "SubCommentId", "dbo.SubComments");
             DropForeignKey("dbo.SubComments", "UserId", "dbo.Users");
             DropForeignKey("dbo.SubComments", "CommentId", "dbo.Comments");
-            DropForeignKey("dbo.Comments", "PostId", "dbo.Posts");
+            DropForeignKey("dbo.Likes", "PostId", "dbo.Posts");
             DropForeignKey("dbo.Posts", "UserId", "dbo.Users");
             DropForeignKey("dbo.Notifications", "UserId", "dbo.Users");
             DropForeignKey("dbo.Notifications", "PostId", "dbo.Posts");
@@ -192,6 +215,7 @@ namespace ChatApp.Migrations
             DropForeignKey("dbo.MemberOfListFriends", "UserId", "dbo.Users");
             DropForeignKey("dbo.MemberOfListFriends", "ListFriendId", "dbo.ListFriends");
             DropForeignKey("dbo.Posts", "SubjectId", "dbo.Subjects");
+            DropForeignKey("dbo.Likes", "CommentId", "dbo.Comments");
             DropIndex("dbo.Messages", new[] { "UserId" });
             DropIndex("dbo.Messages", new[] { "ContactId" });
             DropIndex("dbo.Contacts", new[] { "ToUserId" });
@@ -205,6 +229,10 @@ namespace ChatApp.Migrations
             DropIndex("dbo.ListFriends", new[] { "UserId" });
             DropIndex("dbo.Posts", new[] { "SubjectId" });
             DropIndex("dbo.Posts", new[] { "UserId" });
+            DropIndex("dbo.Likes", new[] { "SubCommentId" });
+            DropIndex("dbo.Likes", new[] { "CommentId" });
+            DropIndex("dbo.Likes", new[] { "PostId" });
+            DropIndex("dbo.Likes", new[] { "UserId" });
             DropIndex("dbo.Comments", new[] { "UserId" });
             DropIndex("dbo.Comments", new[] { "PostId" });
             DropTable("dbo.Messages");
@@ -216,6 +244,7 @@ namespace ChatApp.Migrations
             DropTable("dbo.Users");
             DropTable("dbo.Subjects");
             DropTable("dbo.Posts");
+            DropTable("dbo.Likes");
             DropTable("dbo.Comments");
             DropTable("dbo.Admins");
         }

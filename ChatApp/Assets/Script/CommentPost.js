@@ -444,4 +444,10 @@ $(document).ready(function () {
     $('.post-space').find('.think').keyup();
 });
 
+$('.confirm').on('click', '#modal-btn-no', function () {
+    $('.confirm').hide();
+});
 
+$('.confirm').on('click', 'span', function () {
+    $('.confirm').hide();
+});

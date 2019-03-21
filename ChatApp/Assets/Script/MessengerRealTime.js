@@ -189,7 +189,7 @@ function GetDateNow() {
 
 var searchFilter = {
     options: {
-        valueNames: ['name']
+        valueNames: ['name1']
     },
     init: function () {
         var userList = new List('people-list', this.options);
@@ -310,7 +310,7 @@ function load() {
             var ress = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
             var dateTime = ress.getDate() + "-" + (ress.getMonth() + 1) + "-" + ress.getFullYear();
             html += '<ul>';
-            html += '<li>' + '<span class="ht-left">Nick Name</span>' + '<span class="ht-right">' + result.Name + '</span>' + '</li>';
+            html += '<li>' + '<span class="ht-left">Họ tên</span>' + '<span class="ht-right">' + result.Name + '</span>' + '</li>';
             html += '<li>' + '<span class="ht-left">Trường</span>' + '<span class="ht-right">' + result.SchoolName + '</span>' + '</li>';
             html += '<li>' + '<span class="ht-left">Ngày sinh</span>' + '<span class="ht-right">' + dateTime + '</span>' + '</li>';
             html += '<li>' + '<span class="ht-left">Địa chỉ</span>' + '<span class="ht-right">' + result.Address + '</span>' + '</li>';

@@ -261,5 +261,20 @@ namespace ChatApp.Controllers
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public ActionResult CreatePostSaved(int id)
+        {
+            var userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            PostSave postSave = new PostSave
+            {
+                PostId = id,
+                UserId = user.Id
+            };
+            db.PostSaves.Add(postSave);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
     }
 }

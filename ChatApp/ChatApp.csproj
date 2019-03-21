@@ -208,9 +208,14 @@
     <Compile Include="Migrations\201903210359548_CreateDB.Designer.cs">
       <DependentUpon>201903210359548_CreateDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903211221496_Add-PostSave.cs" />
+    <Compile Include="Migrations\201903211221496_Add-PostSave.Designer.cs">
+      <DependentUpon>201903211221496_Add-PostSave.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\LikeDto.cs" />
     <Compile Include="Models\Dto\NotifiDto.cs" />
+    <Compile Include="Models\Dto\PostSaveDto.cs" />
     <Compile Include="Models\Dto\SubCommentDto.cs" />
     <Compile Include="Models\Dto\CommentDto.cs" />
     <Compile Include="Models\Dto\InforFriendDto.cs" />
@@ -228,6 +233,7 @@
     <Compile Include="Models\Entities\Message.cs" />
     <Compile Include="Models\Entities\Notification.cs" />
     <Compile Include="Models\Entities\Post.cs" />
+    <Compile Include="Models\Entities\PostSave.cs" />
     <Compile Include="Models\Entities\SubComment.cs" />
     <Compile Include="Models\Entities\Subject.cs" />
     <Compile Include="Models\Entities\User.cs" />
@@ -7287,6 +7293,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903210359548_CreateDB.resx">
       <DependentUpon>201903210359548_CreateDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211221496_Add-PostSave.resx">
+      <DependentUpon>201903211221496_Add-PostSave.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

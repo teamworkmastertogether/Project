@@ -110,10 +110,13 @@ $(function () {
             }
         });
     });
+
     IdCheck = parseInt($(".MyId").attr("id"));
     if (!isNaN(IdCheck)) {
         load();
+        GetListPostSave();
     }
+
     $(".people-list input").keyup(function () {
         keySearch = $(this).val().trim().toLowerCase();
         array2 = [];
@@ -126,6 +129,35 @@ $(function () {
         SetStatusOnline(ListOnline);
     });
 });
+
+function GetListPostSave() {
+    Id = parseInt($(".MyId").attr("id"));
+    url = "/Home/GetListPostSave?id=" + Id;
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (array) {
+            for (var i = 0; i < array.length; i++) {
+                $(".post-saved-clone img").attr("src", array[i].Avatar);
+                $(".post-saved-clone .name-postStore").text(array[i].NameUser);
+                $(".post-saved-clone .group-joined").text(array[i].SubjectName);
+                $(".post-saved-clone .info-userpost p").text(array[i].TimePost);
+                $(".post-saved-clone .contentPostStored p").text(array[i].TextContent);
+                $(".post-saved-clone .info-userpost a").attr('href', array[i].UrlPost);
+                $(".post-saved-clone .post-store").attr('id', array[i].IdPostSave);
+                itemClone = $(".post-saved-clone").html();
+                $(".content-store").prepend(itemClone);
+            }
+            $(".post-saved-clone .post-store").attr('id', 0);
+        },
+        error: function (message) {
+            alert(message.responseText);
+        }
+
+    });
+}
 
 function SetStatusOnline(array) {
     $(".status").html("<i class='fa fa-circle offline'></i> offline");

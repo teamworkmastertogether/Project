@@ -19,5 +19,6 @@ namespace ChatApp.Models.Entities
         public DbSet<Notification> Notifications { get; set; }
 		public DbSet<Admin> Admins { get; set; }
 		public DbSet<Like> Likes { get; set; }
+		public DbSet<PostSave> PostSaves { get; set; }
     }
 }

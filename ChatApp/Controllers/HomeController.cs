@@ -36,6 +36,22 @@ namespace ChatApp.Controllers
             return View();
         }
 
+        public JsonResult GetListPostSave(int? id)
+        {
+            List<PostSaveDto> listPost = db.Users.FirstOrDefault(us => us.Id == id).PostSaves
+                .Select(s => new PostSaveDto
+                {
+                    IdPostSave = s.Id,
+                    NameUser = s.Post.User.Name,
+                    UrlPost = "/Subject/GetSubject?id=" + s.Post.SubjectId.ToString() + "#" + s.PostId.ToString(),
+                    Avatar = s.Post.User.Avatar,
+                    SubjectName = s.Post.Subject.Name,
+                    TimePost = s.Post.CreatedDate,
+                    TextContent = s.Post.Text
+                }).ToList();
+            return Json(listPost, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public ActionResult Login()
         {
@@ -81,10 +97,6 @@ namespace ChatApp.Controllers
         public PartialViewResult _MenuPartialView()
         {
             var userName = Session["userName"] as string;
-            //List<InforFriendDto> listUser = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
-            //.ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
-            //.Select(s => new InforFriendDto { Avatar = s.User.Avatar, Name = s.User.Name, UserName = s.User.UserName, SeenMessage = s.SeenMessage })
-            //.Take(20).ToList();
             ViewBag.UrlProfile = "/Home/Profile?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
             ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
             return PartialView();
@@ -226,7 +238,17 @@ namespace ChatApp.Controllers
 			return Json(new { status = 0 }, JsonRequestBehavior.AllowGet);
 		}
 
-		public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
+        public JsonResult DeletePostSaved(int? id)
+        {
+            PostSave postSave = db.PostSaves.FirstOrDefault(s => s.Id == id);
+            db.PostSaves.Remove(postSave);
+            db.SaveChanges();
+
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
 		{
 			// goi email
 			MailMessage mail = new MailMessage();
@@ -244,5 +266,7 @@ namespace ChatApp.Controllers
 			smtp.EnableSsl = true; //kích hoạt giao tiếp an toàn SSL
 			smtp.Send(mail); //Gửi mail đi
 		}
+
+
 	}
 }

@@ -219,9 +219,25 @@ $('#banbe').click(function () {
     }
 
 });
-$(".EditPostStore").click(function () {
+
+$(".content-store").on("click", ".EditPostStore", function () {
     $(this).next().toggle();
-})
+});
+
+$(".content-store").on("click", ".edit-poststore", function () {
+    IdPost = parseInt($(this).closest(".post-store").attr("id"));
+    url = "/Home/DeletePostSaved?id=" + IdPost;
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json;charset=utf-8",
+        dataType: "JSON",
+        success: function (res) {
+            $(".post-store[id=" + IdPost + "]").remove();
+        }
+    })
+});
+
 $("#Huy").click(function () {
     count++;
     if (count % 2 === 0) {

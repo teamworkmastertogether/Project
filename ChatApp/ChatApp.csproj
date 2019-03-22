@@ -257,6 +257,7 @@
     <Content Include="Assets\Images\Subject\sinhhoc.PNG" />
     <Content Include="Assets\Images\Subject\tienganh.PNG" />
     <Content Include="Assets\Images\Subject\toanhoc.PNG" />
+    <Content Include="Assets\Images\Subject\uploadfiles.png" />
     <Content Include="Assets\Plugin\bootstrap.min.js" />
     <Content Include="Assets\Plugin\jquery-3.3.1.min.js" />
     <Content Include="Assets\Plugin\jquery.shorten.1.0.js" />

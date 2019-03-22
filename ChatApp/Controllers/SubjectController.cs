@@ -2,6 +2,7 @@
 using ChatApp.Models.Entities;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -276,5 +277,22 @@ namespace ChatApp.Controllers
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }
-    }
+
+		[HttpPost]
+		public ActionResult GetUrlPostImage(HttpPostedFileBase UploadImage)
+		{
+			if (UploadImage != null)
+			{ 
+				string fileName = Path.GetFileNameWithoutExtension(UploadImage.FileName);
+				string extension = Path.GetExtension(UploadImage.FileName);
+				fileName = fileName + extension;
+				UploadImage.SaveAs(Path.Combine(Server.MapPath("~/Assets/ImagesUpload"), fileName));
+			
+				var link = "http://localhost:54576/Assets/ImagesUpload/" + fileName;
+
+				return Json(link, JsonRequestBehavior.AllowGet);
+			}
+			return Json("Vui lòng chọn ảnh thích hợp !", JsonRequestBehavior.AllowGet);
+		}
+	}
 }

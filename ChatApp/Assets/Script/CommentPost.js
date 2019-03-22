@@ -187,9 +187,19 @@ $(document).ready(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
+                Swal.fire(
+                    'Thành công!',
+                    'Bạn đã lưu bài viết thành công!',
+                    'success'
+                );
             },
             error: function (message) {
-                alert(message.responseText);
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: '<a href>Why do I have this issue?</a>'
+                })
             }
         });
     });
@@ -297,6 +307,11 @@ $(document).ready(function () {
             dataType: "json",
             success: function (result) {
                 hub.server.deletePost(GroupNameCurrent, postId);
+                Swal.fire(
+                    'Thành công!',
+                    'Bạn đã xóa bài viết thành công!',
+                    'success'
+                );
             },
             error: function (message) {
                 alert(message.responseText);
@@ -410,6 +425,11 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (result) {
                     hub.server.editPost(GroupNameCurrent, PostDto);
+                    Swal.fire(
+                        'Thành công!',
+                        'Bạn đã sửa bài viết thành công!',
+                        'success'
+                    );
                 },
                 error: function (message) {
                     alert(message.responseText);
@@ -445,9 +465,19 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (result) {
                     hub.server.createPostNew(GroupNameCurrent, result);
+                    Swal.fire(
+                        'Thành công!',
+                        'Bạn đã đăng bài thành công!',
+                        'success'
+                    );
                 },
                 error: function (message) {
-                    alert(message.responseText);
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        footer: '<a href>Why do I have this issue?</a>'
+                    })
                 }
 
             });
@@ -472,3 +502,4 @@ $('.confirm').on('click', '#modal-btn-no', function () {
 $('.confirm').on('click', 'span', function () {
     $('.confirm').hide();
 });
+

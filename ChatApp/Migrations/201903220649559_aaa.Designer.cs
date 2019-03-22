@@ -7,13 +7,13 @@ namespace ChatApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddPostSave : IMigrationMetadata
+    public sealed partial class aaa : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddPostSave));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(aaa));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903211221496_Add-PostSave"; }
+            get { return "201903220649559_aaa"; }
         }
         
         string IMigrationMetadata.Source

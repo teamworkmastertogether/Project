@@ -126,8 +126,8 @@
                                 <form id="FormAvatar" method="post" enctype="multipart/form-data" onsubmit="return GetUrlPostImage(this)" runat="server">
                                     <img id="blah" src="~/Assets/Images/Subject/uploadfiles.png" />
                                     <input multiple type="file" id="upload-post-image" accept="image/gif, image/jpeg, image/png" name="UploadImage" class="form-control" style="display:none" ; /><br />
-                                    <a href="#" id="selectFile" class="btn btn-primary">Chọn ảnh</a>
-                                    <button class="btn btn-danger" id="upImg" style="display:none;">Lưu chỉnh sửa</button>
+                                    <a href="#" id="selectFile" class="btn btn-primary">Tải ảnh lên</a>
+                                    <button class="btn btn-danger" id="upImg" style="display:none;">Chọn ảnh</button>
                                 </form>
                             </div>
 
@@ -187,6 +187,8 @@
                                     @Html.Raw(item.PostText)
                                 </p>
                                 <textarea type="text" class="edit-contentpost"></textarea>
+                               
+                                <img src="@item.Photo" class="img Post-Image" />
                                 <div class="row edit-post-btn">
                                     <button class="btn btn-success save-edited-post">Lưu</button>
                                     <button class="btn btn-danger cancel-edited-post">Hủy</button>
@@ -523,10 +525,8 @@
 
                             </p>
                             <textarea type="text" class="edit-contentpost"></textarea>
-                            <div class="row">
-    
-                                <img src="~/Assets/Images/Subject/anhvatly.PNG" alt="Alternate Text" class="img post-image" />
-                            </div>
+                            <img src="" class="img Post-Image" />
+                          
                             <div class="row edit-post-btn">
                                 <button class="btn btn-success save-edited-post">Lưu</button>
                                 <button class="btn btn-danger cancel-edited-post">Hủy</button>

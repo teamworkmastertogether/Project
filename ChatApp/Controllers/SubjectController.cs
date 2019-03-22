@@ -27,6 +27,7 @@ namespace ChatApp.Controllers
             List<PostDto> listPostDto = db.Posts.Where(s => s.SubjectId == sub.Id)
                 .Select(s => new PostDto
                 {
+                    Photo = s.Photo,
                     UrlProfile = "/Home/Profile?id=" + s.UserId.ToString(),
                     CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.PostId == s.Id),
                     UserName = user.UserName,
@@ -77,7 +78,7 @@ namespace ChatApp.Controllers
             Post post = new Post();
             post.SubjectId = subject.Id;
             post.Text = postDto.PostText;
-            post.Photo = "";
+            post.Photo = postDto.Photo;
             post.UserId = user.Id;
             post.CreatedDate = postDto.TimePost;
             db.Posts.Add(post);
@@ -85,6 +86,7 @@ namespace ChatApp.Controllers
             int Postid = db.Posts.Max(s => s.Id);
             PostDto result = new PostDto
             {
+                Photo = postDto.Photo,
                 UrlProfile = "/Home/Profile?id=" + user.Id.ToString(),
                 UserName = userName,
                 TimePost = postDto.TimePost,

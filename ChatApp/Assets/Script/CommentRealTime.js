@@ -13,9 +13,12 @@ $(function () {
             $(".post-clone").find('.content-post').eq(1).find('p').html(postDto.PostText);
             $(".post-clone").find('.countLike_post').text(postDto.LikeNumber);
             $(".post-clone .post").attr('id', postDto.PostId);
+            $(".post-clone .Post-Image").attr('src', postDto.Photo);
+
             var demo = $(".post-clone").html();
             $(".post-clone .post").attr('id', 0);
             $(".post-append").prepend(demo);
+            $(".post-clone .Post-Image").attr('src', "");
             if (postDto.UserName !== MyUserName) {
                 $(".post-append .post").eq(0).find('.edit-post').remove();
                 $(".post-append .post").eq(0).find('.delete-post').remove();

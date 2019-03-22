@@ -30,6 +30,7 @@ namespace ChatApp.Controllers
                 }).ToList();
             return Json(listNotifi, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public JsonResult SaveSeenNotifi(int? Id)
         {
@@ -42,6 +43,20 @@ namespace ChatApp.Controllers
             }
             db.SaveChanges();
             return Json(CheckSeen, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult SaveSeenAllNotifi()
+        {
+            var userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            List<Notification> listnoti = db.Notifications.Where(s => s.UserId == user.Id).ToList();
+            foreach (var item in listnoti)
+            {
+                item.NotificationState = true;
+            }
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -75,7 +90,7 @@ namespace ChatApp.Controllers
                         PostId = post.Id,
                         NameOfUser = user.Name,
                         Avatar = user.Avatar,
-                        TextNoti = "Đã bình thích bài viết của bạn",
+                        TextNoti = "Đã thích bài viết của bạn",
                         ClassIconName = "far fa-thumbs-up",
                         NotificationState = false
                     };

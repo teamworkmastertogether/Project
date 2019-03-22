@@ -63,7 +63,7 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.list-icon-post span', function () {
-        var input = $(this).parents('.tool').next().find('textarea');
+        var input = $(this).parents('.tool').next().next().find('textarea');
         input.val(input.val() + $(this).text());
     });
 
@@ -324,7 +324,7 @@ $(document).ready(function () {
         var oldData = $(this).parents('.header-post').next().children().eq(0).html().trim().replace(/\<br>/g, '\n');
         $(this).parents('.header-post').next().children().eq(0).hide();
         var res = $(this).parents('.header-post').next().find('textarea');
-        res.next().show();
+        res.next().next().show();
         res.val(oldData).show();
         $(this).parent().hide();
     });
@@ -406,12 +406,12 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.save-edited-post', function () {
-        if ($(this).parent().prev().val() !== "") {
-            $(this).parent().prev().prev().text($(this).parent().prev().val());
+        if ($(this).parent().prev().prev().val() !== "") {
+            $(this).parent().prev().prev().prev().text($(this).parent().prev().prev().val());
             $(this).parent().hide();
-            $(this).parent().prev().hide();
-            $(this).parent().prev().prev().show();
-            textEdit = $(this).parent().prev().val();
+            $(this).parent().prev().prev().hide();
+            $(this).parent().prev().prev().prev().show();
+            textEdit = $(this).parent().prev().prev().val();
             postId = parseInt($(this).closest('.post').attr("id"));
             PostDto = {
                 PostId: postId,
@@ -440,10 +440,9 @@ $(document).ready(function () {
     });
 
     $('.post-space').on('click', '.cancel-edited-post', function () {
-        $(this).parent().prev().prev().show();
+        $(this).parent().prev().prev().prev().show();
         $(this).parent().hide();
-        $(this).parent().prev().hide();
-        $(this).parent().prev().prev().show();
+        $(this).parent().prev().prev().hide();
     });
 
     $('.post-space').on('click', '#postNew', function () {
@@ -453,35 +452,39 @@ $(document).ready(function () {
             var PostDto = {
                 GroupName: GroupNameCurrent,
                 PostText: $(this).closest('.box').find('textarea').val().replace(/\n/g,'<br>'),
-                TimePost: GetDateNow()
+                TimePost: GetDateNow(),
+                Photo: $(this).closest('.box').find('img').attr("src")
             };
 
             $(this).closest('.box').find('textarea').val('');
+            $(this).closest('.box').find('img').attr("src", "");
 
-            //$.ajax({
-            //    type: "POST",
-            //    url: "/Subject/SavePost",
-            //    data: JSON.stringify(PostDto),
-            //    contentType: "application/json;charset=utf-8",
-            //    dataType: "json",
-            //    success: function (result) {
-            //        hub.server.createPostNew(GroupNameCurrent, result);
-            //        Swal.fire(
-            //            'Thành công!',
-            //            'Bạn đã đăng bài thành công!',
-            //            'success'
-            //        );
-            //    },
-            //    error: function (message) {
-            //        Swal.fire({
-            //            type: 'error',
-            //            title: 'Oops...',
-            //            text: 'Something went wrong!',
-            //            footer: '<a href>Why do I have this issue?</a>'
-            //        })
-            //    }
+            $.ajax({
+                type: "POST",
+                url: "/Subject/SavePost",
+                data: JSON.stringify(PostDto),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    hub.server.createPostNew(GroupNameCurrent, result);
+                    Swal.fire(
+                        'Thành công!',
+                        'Bạn đã đăng bài thành công!',
+                        'success'
+                    );
+                    $("#xButton").hide();
+                    $("#blah").attr("src", "~/Assets/Images/Subject/uploadfiles.png");
+                },
+                error: function (message) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'Something went wrong!',
+                        footer: '<a href>Why do I have this issue?</a>'
+                    });
+                }
 
-            //});
+            });
             
         }
     });
@@ -489,12 +492,13 @@ $(document).ready(function () {
     $('.post-space').on('keyup', '.think', function () {
         $(this).height(50);
         $(this).height(this.scrollHeight);
-        $(this).closest('.rig').height(this.scrollHeight + this.next().height() + 150);
+        $(this).closest('.rig').height(this.scrollHeight + this.next().next().height() + 150);
         $(this).css('overflow', 'auto');
     });
 
     $('.post-space').find('.think').keyup();
 });
+
 
 $('.confirm').on('click', '#modal-btn-no', function () {
     $('.confirm').hide();
@@ -549,6 +553,10 @@ $("#upload-post-image").change(function () {
 $('#xButton').click(function () {
     $('.post-image').attr('src', '');
     $(this).hide();
+    //$("#blah").attr("src", "~/Assets/Images/Subject/uploadfiles.png");
 });
 
+//$('#myModal #close').click(function () {
+//    $("#blah").attr("src", "~/Assets/Images/Subject/uploadfiles.png");
+//});
 

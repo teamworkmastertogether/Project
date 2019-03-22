@@ -518,3 +518,21 @@ function ValidatePhone(phone) {
     }
     return res;
 }
+
+$("#have-seen").click(function () {
+    $("#notifi a").addClass("notifi-seen");
+    $(".badge").text(0).hide();
+    $.ajax({
+        type: "POST",
+        url: "/Notifi/SaveSeenAllNotifi",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+           
+        },
+        error: function (message) {
+            alert(message.responseText);
+        }
+
+    });
+});

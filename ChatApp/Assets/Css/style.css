@@ -1,4 +1,19 @@
 /* Minification failed. Returning unminified contents.
+(412,8): run-time error CSS1035: Expected colon, found ';'
+(657,7): run-time error CSS1035: Expected colon, found '.'
+(1188,7): run-time error CSS1035: Expected colon, found '.'
+(1519,7): run-time error CSS1035: Expected colon, found '.'
+(2508,8): run-time error CSS1035: Expected colon, found ';'
+(2754,7): run-time error CSS1035: Expected colon, found '.'
+(3267,7): run-time error CSS1035: Expected colon, found '.'
+(3600,7): run-time error CSS1035: Expected colon, found '.'
+(4360,1): run-time error CSS1019: Unexpected token, found '@import'
+(4360,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
+(4452,17): run-time error CSS1036: Expected expression, found '#'
+(5023,1): run-time error CSS1019: Unexpected token, found '@keyframes'
+(5024,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
+ */
+/* Minification failed. Returning unminified contents.
 (397,8): run-time error CSS1035: Expected colon, found ';'
 (642,7): run-time error CSS1035: Expected colon, found '.'
 (1173,7): run-time error CSS1035: Expected colon, found '.'
@@ -5001,7 +5016,7 @@ i.glyphicon.glyphicon-cog.setting.pull-right {
     background: #f1e328;
     z-index: 9999;
     /* position: relative; */
-    bottom: 205px;
+    bottom: -36px;
     padding-bottom: 10px;
     padding-top: 5px;
     right: 16px;
@@ -5015,7 +5030,7 @@ i.glyphicon.glyphicon-cog.setting.pull-right {
     }
 
 .transform {
-    display:block;
+    display: block;
     -webkit-animation: mymove 8s;
     animation: mymove 8s ease-out;
 }
@@ -5038,6 +5053,7 @@ i.glyphicon.glyphicon-cog.setting.pull-right {
     100% {
         opacity: 0;
         top: 50px;
+        display: none;
     }
 }
 

@@ -473,7 +473,7 @@ $(document).ready(function () {
                         'success'
                     );
                     $("#xButton").hide();
-                    $("#blah").attr("src", "~/Assets/Images/Subject/uploadfiles.png");
+                    $("#blah").attr("src", "/Assets/Images/Subject/uploadfiles.png");
                 },
                 error: function (message) {
                     Swal.fire({
@@ -521,7 +521,7 @@ function GetUrlPostImage(formData) {
             $('#xButton').show();
         }
     }
-    if ($(formData).attr('enctype') === "multipart/form-data") {
+    if ($(formData).attr('enctype') == "multipart/form-data") {
         ajaxConfig["contentType"] = false;
         ajaxConfig["processData"] = false;
     }
@@ -531,7 +531,7 @@ function GetUrlPostImage(formData) {
 }
 
 $("#selectFile").click(function() {
-    $('#upload-post-image').trigger('click');
+    $("#upload-post-image").trigger('click');
 });
 
 function readURL(input) {
@@ -553,4 +553,10 @@ $("#upload-post-image").change(function () {
 $('#xButton').click(function () {
     $('.post-image').attr('src', '');
     $(this).hide();
+    //$("#blah").attr("src", "/Assets/Images/Subject/uploadfiles.png");
 });
+
+$('#myModal #close').click(function () {
+    $("#upImg").show();
+});
+

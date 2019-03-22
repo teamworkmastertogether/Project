@@ -15,5 +15,6 @@ namespace ChatApp.Models.Dto
         public string TimePost { get; set; }
         public string TextContent { get; set; }
         public string UrlPhoto { get; set; }
+        public string Photo { get; set; }
     }
 }

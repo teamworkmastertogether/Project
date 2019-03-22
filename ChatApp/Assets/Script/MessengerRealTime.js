@@ -147,8 +147,10 @@ function GetListPostSave() {
                 $(".post-saved-clone .contentPostStored p").text(array[i].TextContent);
                 $(".post-saved-clone .info-userpost a").attr('href', array[i].UrlPost);
                 $(".post-saved-clone .post-store").attr('id', array[i].IdPostSave);
+                $(".post-saved-clone .img-postsave").attr('src', array[i].Photo);
                 itemClone = $(".post-saved-clone").html();
                 $(".content-store").prepend(itemClone);
+                $(".post-saved-clone .img-postsave").attr('src',"");
             }
             $(".post-saved-clone .post-store").attr('id', 0);
         },

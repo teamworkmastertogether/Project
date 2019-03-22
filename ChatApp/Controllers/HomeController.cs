@@ -112,6 +112,7 @@ namespace ChatApp.Controllers
                 .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
                 .Select(s => new InforFriendDto
                 {
+                    IdUser = s.UserId,
                     UrlProfile = "/Home/Profile?id=" + s.UserId,
                     Avatar = s.User.Avatar,
                     Name = s.User.Name,
@@ -126,6 +127,7 @@ namespace ChatApp.Controllers
                 .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
                 .Select(s => new InforFriendDto
                 {
+                    IdUser = s.UserId,
                     UrlProfile = "/Home/Profile?id=" + s.UserId,
                     Avatar = s.User.Avatar,
                     Name = s.User.Name,
@@ -137,6 +139,16 @@ namespace ChatApp.Controllers
             return Json(listUser, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult RemoveFriend(int? id)
+        {
+            string userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            MemberOfListFriend mem = user
+            .ListFriends.First().MemberOfListFriends.FirstOrDefault(s => s.UserId == id);
+            db.MemberOfListFriends.Remove(mem);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
         public List<InforFriendDto> GetFriendSuggest()
         {
             var userName = Session["userName"] as string;

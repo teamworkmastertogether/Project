@@ -157,6 +157,22 @@ $(function () {
     $(".lef-2").on("click",".dropbtn",function () {
         $(this).next().toggle();
     });
+    $(".lef-2").on("click", ".removeFriend", function () {
+        IdUser = parseInt($(this).attr("id"));
+        url = "/Home/RemoveFriend?id=" + IdUser;
+        //get dữ liệu
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "JSON",
+            success: function (res) {
+               
+            }
+
+        });
+        $(this).closest(".col-md-12").remove();
+    });
     $(".background").hover(function () {
         $(".update-background span").toggle();
         $(".update-background").toggleClass('edit-background');
@@ -214,6 +230,7 @@ $("#banbe").click(function () {
                 $(".list-friend-clone .nameFriend p").text(array[i].Name);
                 $(".list-friend-clone .nameFriend a").attr("href", array[i].UrlProfile);
                 $(".list-friend-clone .dropdown-content a").eq(0).attr("href", array[i].UrlProfile);
+                $(".list-friend-clone .removeFriend").attr("id", array[i].IdUser);
                 itemClone =  $(".list-friend-clone").html();
                 $(".lef-2").append(itemClone);
             }

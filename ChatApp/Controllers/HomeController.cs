@@ -41,6 +41,7 @@ namespace ChatApp.Controllers
             List<PostSaveDto> listPost = db.Users.FirstOrDefault(us => us.Id == id).PostSaves
                 .Select(s => new PostSaveDto
                 {
+                    Photo = s.Post.Photo,
                     IdPostSave = s.Id,
                     NameUser = s.Post.User.Name,
                     UrlPost = "/Subject/GetSubject?id=" + s.Post.SubjectId.ToString() + "#" + s.PostId.ToString(),

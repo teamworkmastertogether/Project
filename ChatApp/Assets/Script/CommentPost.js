@@ -553,10 +553,10 @@ $("#upload-post-image").change(function () {
 $('#xButton').click(function () {
     $('.post-image').attr('src', '');
     $(this).hide();
-    $("#blah").attr("src", "/Assets/Images/Subject/uploadfiles.png");
+    //$("#blah").attr("src", "/Assets/Images/Subject/uploadfiles.png");
 });
 
 $('#myModal #close').click(function () {
-    $("#blah").attr("src", "/Assets/Images/Subject/uploadfiles.png");
+    $("#upImg").show();
 });
 

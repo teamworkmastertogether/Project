@@ -397,3 +397,19 @@ span.icon {
 .hiden-class{
     display:none;
 }
+
+.post-image {
+	border-radius: 0px;
+	width: 94%;
+	max-height: 200px;
+}
+
+#xButton {
+	width: 16px;
+	background: red;
+	color: white;
+	border: none;
+	height: 16px;
+	line-height: 16px;
+	display: none;
+}

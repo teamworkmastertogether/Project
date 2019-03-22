@@ -457,30 +457,31 @@ $(document).ready(function () {
             };
 
             $(this).closest('.box').find('textarea').val('');
-            $.ajax({
-                type: "POST",
-                url: "/Subject/SavePost",
-                data: JSON.stringify(PostDto),
-                contentType: "application/json;charset=utf-8",
-                dataType: "json",
-                success: function (result) {
-                    hub.server.createPostNew(GroupNameCurrent, result);
-                    Swal.fire(
-                        'Thành công!',
-                        'Bạn đã đăng bài thành công!',
-                        'success'
-                    );
-                },
-                error: function (message) {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                        footer: '<a href>Why do I have this issue?</a>'
-                    })
-                }
 
-            });
+            //$.ajax({
+            //    type: "POST",
+            //    url: "/Subject/SavePost",
+            //    data: JSON.stringify(PostDto),
+            //    contentType: "application/json;charset=utf-8",
+            //    dataType: "json",
+            //    success: function (result) {
+            //        hub.server.createPostNew(GroupNameCurrent, result);
+            //        Swal.fire(
+            //            'Thành công!',
+            //            'Bạn đã đăng bài thành công!',
+            //            'success'
+            //        );
+            //    },
+            //    error: function (message) {
+            //        Swal.fire({
+            //            type: 'error',
+            //            title: 'Oops...',
+            //            text: 'Something went wrong!',
+            //            footer: '<a href>Why do I have this issue?</a>'
+            //        })
+            //    }
+
+            //});
             
         }
     });
@@ -488,7 +489,7 @@ $(document).ready(function () {
     $('.post-space').on('keyup', '.think', function () {
         $(this).height(50);
         $(this).height(this.scrollHeight);
-        $(this).closest('.rig').height(this.scrollHeight + 150);
+        $(this).closest('.rig').height(this.scrollHeight + this.next().height() + 150);
         $(this).css('overflow', 'auto');
     });
 
@@ -502,4 +503,52 @@ $('.confirm').on('click', '#modal-btn-no', function () {
 $('.confirm').on('click', 'span', function () {
     $('.confirm').hide();
 });
+
+function GetUrlPostImage(formData) {
+    url = "/Subject/GetUrlPostImage";
+    var ajaxConfig = {
+        type: "POST",
+        url: url,
+        data: new FormData(formData),
+        success: function (result) {
+            //alert(result);
+            $('.textbox img').attr('src', result);
+            $('#myModal #close').click();
+            $('#xButton').show();
+        }
+    }
+    if ($(formData).attr('enctype') == "multipart/form-data") {
+        ajaxConfig["contentType"] = false;
+        ajaxConfig["processData"] = false;
+    }
+    $.ajax(ajaxConfig);
+
+    return false;
+}
+
+$("#selectFile").click(function() {
+    $("#upload-post-image").trigger('click');
+});
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+        };
+        $("#upImg").show();
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#upload-post-image").change(function () {
+    readURL(this);
+});
+
+$('#xButton').click(function () {
+    $('.post-image').attr('src', '');
+    $(this).hide();
+});
+
 

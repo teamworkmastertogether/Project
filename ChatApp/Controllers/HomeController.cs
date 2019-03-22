@@ -102,13 +102,38 @@ namespace ChatApp.Controllers
             return PartialView();
         }
 
-        public JsonResult GetListFriend()
+        public JsonResult GetListFriend(int? id)
         {
-            var userName = Session["userName"] as string;
-            List<InforFriendDto> listUser = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
-            .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
-            .Select(s => new InforFriendDto { Avatar = s.User.Avatar, Name = s.User.Name, UserName = s.User.UserName, SeenMessage = s.SeenMessage })
-            .Take(20).ToList();
+            List<InforFriendDto> listUser;
+            if (id == 0)
+            {
+                var userName = Session["userName"] as string;
+                 listUser = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
+                .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
+                .Select(s => new InforFriendDto
+                {
+                    UrlProfile = "/Home/Profile?id=" + s.UserId,
+                    Avatar = s.User.Avatar,
+                    Name = s.User.Name,
+                    UserName = s.User.UserName,
+                    SeenMessage = s.SeenMessage
+                })
+                .Take(20).ToList();
+            }
+            else
+            {
+                 listUser = db.Users.FirstOrDefault(s => s.Id == id)
+                .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
+                .Select(s => new InforFriendDto
+                {
+                    UrlProfile = "/Home/Profile?id=" + s.UserId,
+                    Avatar = s.User.Avatar,
+                    Name = s.User.Name,
+                    UserName = s.User.UserName,
+                    SeenMessage = s.SeenMessage
+                })
+                .Take(20).ToList();
+            }
             return Json(listUser, JsonRequestBehavior.AllowGet);
         }
 

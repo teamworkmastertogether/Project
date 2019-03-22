@@ -105,26 +105,26 @@ $(function () {
             url: url,
             contentType: "application/json;charset=utf-8",
             dataType: "JSON",
-            success: function (res) {          
+            success: function (res) {
                 $(".edit-user #Name").val(res.Name);
                 $(".edit-user #SchoolName").val(res.SchoolName);
                 var date = res.DoB;
                 var resTime = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
-                var month = resTime.getMonth()+1, dates = resTime.getDate();
+                var month = resTime.getMonth() + 1, dates = resTime.getDate();
                 if (month < 10) {
                     month = "0" + month;
                 }
                 if (dates < 10) {
                     dates = "0" + dates;
                 }
-                var dateTime = resTime.getFullYear()+"-" + month + "-" + dates  ;
-                
+                var dateTime = resTime.getFullYear() + "-" + month + "-" + dates;
+
                 $(".edit-user #DoB").val(dateTime);
                 $(".edit-user #PhoneNumber").val(res.PhoneNumber);
                 $(".edit-user #Address").val(res.Address);
             }
 
-        })
+        });
     });
     $(".avatar .img-responsive").mouseover(function () {
         $(this).css("cursor", "pointer");
@@ -154,7 +154,7 @@ $(function () {
     $("#gioithieu").click(function () {
         $(".modalGioiThieu").show();
     });
-    $(".showInfoFriend .dropdown .dropbtn").click(function () {
+    $(".lef-2").on("click",".dropbtn",function () {
         $(this).next().toggle();
     });
     $(".background").hover(function () {
@@ -175,7 +175,7 @@ $(function () {
         $("#FormAvatar img").attr("src", src);
         if ($(this).hasClass("update-img")) {
             checkAvarta = 1;
-        } else if ($(this).hasClass(".update-background")) {
+        } else if ($(this).hasClass("update-background")) {
             checkAvarta = 2;
         }
     });
@@ -199,25 +199,43 @@ $("#UploadImage").change(function () {
 //click vào giới thiệu trang cá nhân
 $("#banbe").click(function () {
     $(".lef-1").hide();
+    Id = parseInt($(".MyId").attr("id"));
+    url = "/Home/GetListFriend?id=" + Id;
+    //get dữ liệu
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json;charset=utf-8",
+        dataType: "JSON",
+        success: function (array) {
+            $(".lef-2").html("");
+            for (var i = 0; i < array.length; i++) {
+                $(".list-friend-clone img").attr("src", array[i].Avatar);
+                $(".list-friend-clone .nameFriend p").text(array[i].Name);
+                $(".list-friend-clone .nameFriend a").attr("href", array[i].UrlProfile);
+                $(".list-friend-clone .dropdown-content a").eq(0).attr("href", array[i].UrlProfile);
+                itemClone =  $(".list-friend-clone").html();
+                $(".lef-2").append(itemClone);
+            }
+        }
+    });
     $(".lef-2").show();
-})
+});
 $("#gioithieu").click(function () {
     $(".lef-1").show();
     $(".lef-2").hide();
-})
+});
 $("#close,.close").on("click", function () {
     $("#upImg").hide();
-})
+});
 $('#banbe').click(function () {
     // body...
     if ($(".show-notify").hasClass('transform')) {
         $(".show-notify").removeClass('transform');
-
     }
     else {
         $(".show-notify").addClass('transform');
     }
-
 });
 
 $(".content-store").on("click", ".EditPostStore", function () {

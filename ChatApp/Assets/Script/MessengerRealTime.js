@@ -371,7 +371,7 @@ function load() {
 function loadListFriend() {
     $.ajax({
         type: "GET",
-        url: "/Home/GetListFriend",
+        url: "/Home/GetListFriend?id=0",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (array) {
@@ -381,7 +381,6 @@ function loadListFriend() {
         error: function (message) {
             alert(message.responseText);
         }
-
     });
 }
 

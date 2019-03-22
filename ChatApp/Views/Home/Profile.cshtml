@@ -146,113 +146,35 @@
         </div>
     </div>
     <div class="col-lg-4 col-md-4 lef-2">
-        <div class="col-lg-12 col-md-12">
-            <div class="avatarFriend">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-            </div>
-            <div class="nameFriend">
-                <p>Nguyễn Văn A</p>
-            </div>
-            <div class="showInfoFriend">
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        <span>Bạn bè</span>
-                    </button>
-                    <div class="dropdown-content">
-                        <ul>
-                            <li><a href="#">Thông tin</a></li>
-                            <li><a href="#">Hủy kết bạn</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12 col-md-12">
-            <div class="avatarFriend">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-            </div>
-            <div class="nameFriend">
-                <p>Nguyễn Văn A</p>
-            </div>
-            <div class="showInfoFriend">
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        <span>Bạn bè</span>
-                    </button>
-                    <div class="dropdown-content">
-                        <ul>
-                            <li><a href="#">Thông tin</a></li>
-                            <li><a href="#">Hủy kết bạn</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12 col-md-12">
-            <div class="avatarFriend">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-            </div>
-            <div class="nameFriend">
-                <p>Nguyễn Văn A</p>
-            </div>
-            <div class="showInfoFriend">
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        <span>Bạn bè</span>
-                    </button>
-                    <div class="dropdown-content">
-                        <ul>
-                            <li><a href="#">Thông tin</a></li>
-                            <li><a href="#">Hủy kết bạn</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12 col-md-12">
-            <div class="avatarFriend">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-            </div>
-            <div class="nameFriend">
-                <p>Nguyễn Văn A</p>
-            </div>
-            <div class="showInfoFriend">
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        <span>Bạn bè</span>
-                    </button>
-                    <div class="dropdown-content">
-                        <ul>
-                            <li><a href="#">Thông tin</a></li>
-                            <li><a href="#">Hủy kết bạn</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12 col-md-12">
-            <div class="avatarFriend">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-            </div>
-            <div class="nameFriend">
-                <p>Nguyễn Văn A</p>
-            </div>
-            <div class="showInfoFriend">
-                <div class="dropdown">
-                    <button class="dropbtn">
-                        <span>Bạn bè</span>
-                    </button>
-                    <div class="dropdown-content">
-                        <ul>
-                            <li><a href="#">Thông tin</a></li>
-                            <li><a href="#">Hủy kết bạn</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+      
     </div>
 
+    <div class="list-friend-clone" style="display:none;">
+        <div class="col-lg-12 col-md-12">
+            <div class="avatarFriend">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
+            </div>
+            <div class="nameFriend">
+                <a href="#"> <p>Nguyễn Văn A</p></a>
+            </div>
+            @if (ViewBag.checkUser)
+            {
+            <div class="showInfoFriend">
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <span>Bạn bè</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <ul>
+                            <li><a href="#">Thông tin</a></li>
+                            <li><a href="#">Hủy kết bạn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
     <div class="post-saved-clone" style="display:none;">
         <div class="row post-store" id="">
             <div class="top-post">
@@ -282,7 +204,7 @@
 
     <div class="col-lg-8 col-md-8">
         <div class="row">
-            <h4 class="title-save">Các bài viết bạn đã lưu</h4>
+            <h4 class="title-save">Các bài viết đã lưu</h4>
         </div>
     </div>
     <!--Code lưu các bài viết-->

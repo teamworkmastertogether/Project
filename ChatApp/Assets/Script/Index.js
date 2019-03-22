@@ -167,7 +167,11 @@ $(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "JSON",
             success: function (res) {
-               
+                Swal.fire(
+                    'Thành công!',
+                    'Bạn đã hủy kết bạn thành công!',
+                    'success'
+                );
             }
 
         });
@@ -269,6 +273,11 @@ $(".content-store").on("click", ".edit-poststore", function () {
         dataType: "JSON",
         success: function (res) {
             $(".post-store[id=" + IdPost + "]").remove();
+            Swal.fire(
+                'Thành công!',
+                'Bạn đã xóa bài viết thành công!',
+                'success'
+            );
         }
     })
 });
@@ -283,4 +292,8 @@ $("#Huy").click(function () {
         $(".edit-user").hide();
         $(".info-user").show();
     }
-})
+});
+
+$('#have-seen').on('click', function () {
+    $('#have-seen').css('text-decoration', 'none');
+});

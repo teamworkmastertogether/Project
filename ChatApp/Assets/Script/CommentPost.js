@@ -473,7 +473,7 @@ $(document).ready(function () {
                         'success'
                     );
                     $("#xButton").hide();
-                    $("#blah").attr("src", "/Assets/Images/Subject/uploadfiles.png");
+                    //$("#blah").attr("src", "/Assets/Images/Subject/uploadfiles.png");
                 },
                 error: function (message) {
                     Swal.fire({

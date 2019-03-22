@@ -1,47 +1,17 @@
 /* Minification failed. Returning unminified contents.
-(426,8): run-time error CSS1035: Expected colon, found ';'
-(671,7): run-time error CSS1035: Expected colon, found '.'
-(1202,7): run-time error CSS1035: Expected colon, found '.'
-(1533,7): run-time error CSS1035: Expected colon, found '.'
-(2522,8): run-time error CSS1035: Expected colon, found ';'
-(2768,7): run-time error CSS1035: Expected colon, found '.'
-(3281,7): run-time error CSS1035: Expected colon, found '.'
-(3614,7): run-time error CSS1035: Expected colon, found '.'
-(4374,1): run-time error CSS1019: Unexpected token, found '@import'
-(4374,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4465,17): run-time error CSS1036: Expected expression, found '#'
-(5029,1): run-time error CSS1019: Unexpected token, found '@keyframes'
-(5030,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
- */
-/* Minification failed. Returning unminified contents.
-(408,8): run-time error CSS1035: Expected colon, found ';'
-(653,7): run-time error CSS1035: Expected colon, found '.'
-(1184,7): run-time error CSS1035: Expected colon, found '.'
-(1515,7): run-time error CSS1035: Expected colon, found '.'
-(2504,8): run-time error CSS1035: Expected colon, found ';'
-(2750,7): run-time error CSS1035: Expected colon, found '.'
-(3263,7): run-time error CSS1035: Expected colon, found '.'
-(3596,7): run-time error CSS1035: Expected colon, found '.'
-(4356,1): run-time error CSS1019: Unexpected token, found '@import'
-(4356,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4447,17): run-time error CSS1036: Expected expression, found '#'
-(5011,1): run-time error CSS1019: Unexpected token, found '@keyframes'
-(5012,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
- */
-/* Minification failed. Returning unminified contents.
-(392,8): run-time error CSS1035: Expected colon, found ';'
-(637,7): run-time error CSS1035: Expected colon, found '.'
-(1168,7): run-time error CSS1035: Expected colon, found '.'
-(1499,7): run-time error CSS1035: Expected colon, found '.'
-(2487,8): run-time error CSS1035: Expected colon, found ';'
-(2733,7): run-time error CSS1035: Expected colon, found '.'
-(3246,7): run-time error CSS1035: Expected colon, found '.'
-(3579,7): run-time error CSS1035: Expected colon, found '.'
-(4339,1): run-time error CSS1019: Unexpected token, found '@import'
-(4339,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4430,17): run-time error CSS1036: Expected expression, found '#'
-(4994,1): run-time error CSS1019: Unexpected token, found '@keyframes'
-(4995,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
+(397,8): run-time error CSS1035: Expected colon, found ';'
+(642,7): run-time error CSS1035: Expected colon, found '.'
+(1173,7): run-time error CSS1035: Expected colon, found '.'
+(1504,7): run-time error CSS1035: Expected colon, found '.'
+(2493,8): run-time error CSS1035: Expected colon, found ';'
+(2739,7): run-time error CSS1035: Expected colon, found '.'
+(3252,7): run-time error CSS1035: Expected colon, found '.'
+(3585,7): run-time error CSS1035: Expected colon, found '.'
+(4345,1): run-time error CSS1019: Unexpected token, found '@import'
+(4345,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
+(4437,17): run-time error CSS1036: Expected expression, found '#'
+(5006,1): run-time error CSS1019: Unexpected token, found '@keyframes'
+(5007,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
  */
 
 
@@ -4415,6 +4385,7 @@ i.fas.fa-list-ul {
 .textNoti {
     color: #260e35;
     font-weight: 100;
+    margin-top: 10px;
 }
 
 i.fa.fa-comment-o {
@@ -5025,49 +4996,48 @@ i.glyphicon.glyphicon-cog.setting.pull-right {
 }
 
 .show-notify {
-    width: 65%;
-    height: 10%;
-    background: red;
+    /* width: 99%; */
+    height: 26%;
+    background: #f1e328;
     z-index: 9999;
-    position: absolute;
-    bottom: 0;
-    right: 40%;
-    border: 1px solid #00000042;
-    border-radius: 4px;
-    opacity: 0;
+    /* position: relative; */
+    bottom: 205px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    right: 16px;
+    border: 1px solid #2806e6;
+    border-radius: 7px;
+    display: none;
 }
 
+    .show-notify img {
+        margin-top: 8px;
+    }
+
 .transform {
+    display:block;
     -webkit-animation: mymove 8s;
     animation: mymove 8s ease-out;
 }
 
 @keyframes mymove {
     0% {
-        opacity: 0;
-        transform: translateY(0px);
-    }
-
-    25% {
-        opacity: 0;
-        transform: translateY(-100px);
-        transition: 2s;
-    }
-
-    40% {
-        opacity: 1;
-        transform: translateY(-100px);
         transition: 5s;
+        opacity: 1;
+        top: -200px;
     }
 
-    60% {
+    50% {
         opacity: 1;
-        transition: 5s;
+    }
+
+    75% {
+        opacity: 0;
     }
 
     100% {
         opacity: 0;
-        transition: 0.2s;
+        top: 50px;
     }
 }
 

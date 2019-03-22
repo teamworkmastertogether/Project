@@ -76,6 +76,7 @@ namespace ChatApp.Controllers
             Post post = new Post();
             post.SubjectId = subject.Id;
             post.Text = postDto.PostText;
+            post.Photo = "";
             post.UserId = user.Id;
             post.CreatedDate = postDto.TimePost;
             db.Posts.Add(post);
@@ -257,6 +258,21 @@ namespace ChatApp.Controllers
         {
             SubComment subcomment = db.SubComments.FirstOrDefault(s => s.Id == subcommentDto.SubCommentId);
             subcomment.Text = subcommentDto.Text;
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult CreatePostSaved(int id)
+        {
+            var userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            PostSave postSave = new PostSave
+            {
+                PostId = id,
+                UserId = user.Id
+            };
+            db.PostSaves.Add(postSave);
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }

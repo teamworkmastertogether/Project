@@ -2,11 +2,18 @@
 var QuantityMessage = -1;
 var QuantityMessageNew = 0;
 var checkOpenBoxMess = false;
+var ListFriend;
+var ListOnline = [];
 
 $(function () {
+
+    loadListFriend();
+
     hub.client.setStatus = function (LstAllConnections) {
+        ListOnline = [];
         $(".status").html("<i class='fa fa-circle offline'></i> offline");
         for (var key in LstAllConnections) {
+            ListOnline.push(LstAllConnections[key]);
             $("[id=" + LstAllConnections[key] + "]").html("<i class='fa fa-circle online'></i> online");
         }
     };
@@ -103,9 +110,61 @@ $(function () {
             }
         });
     });
-    load();
 
+    IdCheck = parseInt($(".MyId").attr("id"));
+    if (!isNaN(IdCheck)) {
+        load();
+        GetListPostSave();
+    }
+
+    $(".people-list input").keyup(function () {
+        keySearch = $(this).val().trim().toLowerCase();
+        array2 = [];
+        for (var i = 0; i < ListFriend.length; i++) {
+            if (ListFriend[i].Name.toLowerCase().includes(keySearch)) {
+                array2.push(ListFriend[i]);
+            }
+        }
+        RenderListFriend(array2);
+        SetStatusOnline(ListOnline);
+    });
 });
+
+function GetListPostSave() {
+    Id = parseInt($(".MyId").attr("id"));
+    url = "/Home/GetListPostSave?id=" + Id;
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (array) {
+            for (var i = 0; i < array.length; i++) {
+                $(".post-saved-clone img").attr("src", array[i].Avatar);
+                $(".post-saved-clone .name-postStore").text(array[i].NameUser);
+                $(".post-saved-clone .group-joined").text(array[i].SubjectName);
+                $(".post-saved-clone .info-userpost p").text(array[i].TimePost);
+                $(".post-saved-clone .contentPostStored p").text(array[i].TextContent);
+                $(".post-saved-clone .info-userpost a").attr('href', array[i].UrlPost);
+                $(".post-saved-clone .post-store").attr('id', array[i].IdPostSave);
+                itemClone = $(".post-saved-clone").html();
+                $(".content-store").prepend(itemClone);
+            }
+            $(".post-saved-clone .post-store").attr('id', 0);
+        },
+        error: function (message) {
+            alert(message.responseText);
+        }
+
+    });
+}
+
+function SetStatusOnline(array) {
+    $(".status").html("<i class='fa fa-circle offline'></i> offline");
+    for (var i = 0; i < array.length; i++) {
+        $("[id=" + array[i] + "]").html("<i class='fa fa-circle online'></i> online");
+    }
+}
 
 function OpenChatBox(item) {
     $(".list-icon").hide();
@@ -187,28 +246,7 @@ function GetDateNow() {
     return today;
 }
 
-var searchFilter = {
-    options: {
-        valueNames: ['name']
-    },
-    init: function () {
-        var userList = new List('people-list', this.options);
-        var noItems = $('<li id="no-items-found">Không tìm thấy</li>');
-
-        userList.on('updated', function (list) {
-            if (list.matchingItems.length === 0) {
-                $(list.list).append(noItems);
-            } else {
-                noItems.detach();
-            }
-        });
-    }
-};
-
-searchFilter.init();
-
 $(".fa.fa-close").click(function () {
-
     QuantityMessageNew = -1;
     QuantityMessage = 0;
     $("#partnerUserName").val("");
@@ -267,6 +305,9 @@ function LoadData(item) {
         }
     }
 }
+
+
+
 var checkOpenIcon = true;
 $(".chat-message .icon").click(function () {
     $("#message-to-send").val($("#message-to-send").val() + $(this).text());
@@ -299,9 +340,11 @@ $(".add-friend").click(function () {
     }
 });
 function load() {
+    Id = parseInt($(".MyId").attr("id"));
+    url = "/Home/Edit?id=" + Id;
     $.ajax({
-        type: "GET",
-        url: "/Home/Edit",
+        type: "POST",
+        url: url,
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
@@ -310,7 +353,7 @@ function load() {
             var ress = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
             var dateTime = ress.getDate() + "-" + (ress.getMonth() + 1) + "-" + ress.getFullYear();
             html += '<ul>';
-            html += '<li>' + '<span class="ht-left">Nick Name</span>' + '<span class="ht-right">' + result.Name + '</span>' + '</li>';
+            html += '<li>' + '<span class="ht-left">Họ tên</span>' + '<span class="ht-right">' + result.Name + '</span>' + '</li>';
             html += '<li>' + '<span class="ht-left">Trường</span>' + '<span class="ht-right">' + result.SchoolName + '</span>' + '</li>';
             html += '<li>' + '<span class="ht-left">Ngày sinh</span>' + '<span class="ht-right">' + dateTime + '</span>' + '</li>';
             html += '<li>' + '<span class="ht-left">Địa chỉ</span>' + '<span class="ht-right">' + result.Address + '</span>' + '</li>';
@@ -325,6 +368,43 @@ function load() {
     });
 }
 
+function loadListFriend() {
+    $.ajax({
+        type: "GET",
+        url: "/Home/GetListFriend?id=0",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (array) {
+            ListFriend = array;
+            RenderListFriend(array);
+        },
+        error: function (message) {
+            alert(message.responseText);
+        }
+    });
+}
+
+function RenderListFriend(array) {
+    $(".people-list .list").html("");
+    iconSeenMessage = $('<i class="fa fa-comment-o"></i>');
+    for (var i = 0; i < array.length; i++) {
+        $(".item-friend-clone img").attr("src", array[i].Avatar);
+        $(".item-friend-clone .name1").text(array[i].Name);
+        $(".item-friend-clone .status").attr("id", array[i].UserName);
+        if (!array[i].SeenMessage) {
+            $(".item-friend-clone .message").html(iconSeenMessage);
+        } else {
+            $(".item-friend-clone .message").html("");
+        }
+        itemClone = $(".item-friend-clone ul").html();
+        $(".people-list .list").append(itemClone);
+    }
+    $(".item-friend-clone img").attr("src", "");
+    $(".item-friend-clone .name1").text("");
+    $(".item-friend-clone .status").attr("id", "");
+    $(".item-friend-clone .message").html("");
+}
+
 $("#UpdateUser").on("click", function () {
     check = false;
     var object = {
@@ -336,34 +416,37 @@ $("#UpdateUser").on("click", function () {
         Password: $('#Password').val().trim(),
         NewPassword: $('#NewPassword').val().trim()
     };
-    res = ValidatePhone(object.PhoneNumber);
-    if (!res) {
-
-        $("#PhoneNumber").focus();
-        return false;
+    if (object.PhoneNumber !== '') {
+        res = ValidatePhone(object.PhoneNumber);
+        if (!res) {
+            $("#PhoneNumber").focus();
+            return false;
+        }
     }
-    if (object.Password == '') {
+    if (object.Password === '') {
         $("#Password").focus();
         $('#Password').css("border-color", "red");
         return false;
     }
-    if (object.NewPassword == '') {
+    if (object.NewPassword === '') {
         $("#NewPassword").focus();
         $('#NewPassword').css("border-color", "red");
         return false;
     }
+    Id = parseInt($(".MyId").attr("id"));
+    url = "/Home/ConfirmPassword?id=" + Id;
     $.ajax({
         type: "POST",
-        url: "/Home/ConfirmPassword",
+        url: url,
         data: JSON.stringify(object),
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            alert("result la " + result.isvalid);
             if (result.isvalid) {
+                url = "/Home/SaveData?id=" + Id;
                 $.ajax({
                     type: "POST",
-                    url: "/Home/SaveData",
+                    url: url,
                     data: JSON.stringify(object),
                     contentType: "application/json;charset=utf-8",
                     dataType: "json",
@@ -397,11 +480,12 @@ $("#UpdateUser").on("click", function () {
 
 function UploadAvatar(formData) {
     url = "";
-    if (checkAvarta) {
+    if (checkAvarta === 1) {
         url = "/Home/UploadAvatar?id=1";
-    } else {
+    } else if (checkAvarta === 2) {
         url = "/Home/UploadAvatar?id=2";
     }
+   
     var ajaxConfig = {
         type: "POST",
         url: url,
@@ -409,6 +493,7 @@ function UploadAvatar(formData) {
         success: function (result) {
             $(".avatar .img-responsive img").attr("src", result.Avatar);
             $(".background img").attr("src", result.CoverPhoto);
+
             $("#upImg").hide();
             $(".modal-backdrop").remove();
             $("#myModal #close").click();

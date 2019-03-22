@@ -10,8 +10,7 @@ namespace ChatApp.Models.Entities
     {
         public string Text { get; set; }
         public string CreatedDate { get; set; }
-
-		public string Photo { get; set; }
+        public string Photo { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
 
@@ -24,5 +23,6 @@ namespace ChatApp.Models.Entities
         public virtual Subject Subject { get; set; }
 
         public virtual ICollection<Like> Likes { get; set; }
+        public virtual ICollection<PostSave> PostSaves { get; set; }
     }
 }

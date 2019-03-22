@@ -32,7 +32,24 @@ namespace ChatApp.Controllers
             ViewBag.Img = user.Avatar;
             ViewBag.Bg = user.CoverPhoto;
             ViewBag.Name = user.Name;
+            ViewBag.Id = user.Id;
             return View();
+        }
+
+        public JsonResult GetListPostSave(int? id)
+        {
+            List<PostSaveDto> listPost = db.Users.FirstOrDefault(us => us.Id == id).PostSaves
+                .Select(s => new PostSaveDto
+                {
+                    IdPostSave = s.Id,
+                    NameUser = s.Post.User.Name,
+                    UrlPost = "/Subject/GetSubject?id=" + s.Post.SubjectId.ToString() + "#" + s.PostId.ToString(),
+                    Avatar = s.Post.User.Avatar,
+                    SubjectName = s.Post.Subject.Name,
+                    TimePost = s.Post.CreatedDate,
+                    TextContent = s.Post.Text
+                }).ToList();
+            return Json(listPost, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -80,13 +97,57 @@ namespace ChatApp.Controllers
         public PartialViewResult _MenuPartialView()
         {
             var userName = Session["userName"] as string;
-            List<InforFriendDto> listUser = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
-            .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
-            .Select(s => new InforFriendDto { Avatar = s.User.Avatar, Name = s.User.Name, UserName = s.User.UserName, SeenMessage = s.SeenMessage })
-            .Take(20).ToList();
             ViewBag.UrlProfile = "/Home/Profile?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
             ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
-            return PartialView(listUser);
+            return PartialView();
+        }
+
+        public JsonResult GetListFriend(int? id)
+        {
+            List<InforFriendDto> listUser;
+            if (id == 0)
+            {
+                var userName = Session["userName"] as string;
+                 listUser = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
+                .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
+                .Select(s => new InforFriendDto
+                {
+                    IdUser = s.UserId,
+                    UrlProfile = "/Home/Profile?id=" + s.UserId,
+                    Avatar = s.User.Avatar,
+                    Name = s.User.Name,
+                    UserName = s.User.UserName,
+                    SeenMessage = s.SeenMessage
+                })
+                .Take(20).ToList();
+            }
+            else
+            {
+                 listUser = db.Users.FirstOrDefault(s => s.Id == id)
+                .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
+                .Select(s => new InforFriendDto
+                {
+                    IdUser = s.UserId,
+                    UrlProfile = "/Home/Profile?id=" + s.UserId,
+                    Avatar = s.User.Avatar,
+                    Name = s.User.Name,
+                    UserName = s.User.UserName,
+                    SeenMessage = s.SeenMessage
+                })
+                .Take(20).ToList();
+            }
+            return Json(listUser, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult RemoveFriend(int? id)
+        {
+            string userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            MemberOfListFriend mem = user
+            .ListFriends.First().MemberOfListFriends.FirstOrDefault(s => s.UserId == id);
+            db.MemberOfListFriends.Remove(mem);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
         }
         public List<InforFriendDto> GetFriendSuggest()
         {
@@ -94,8 +155,6 @@ namespace ChatApp.Controllers
             List<string> listUserName1 = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
             .ListFriends.First().MemberOfListFriends.Select(s => s.User.UserName).ToList();
             Random rnd = new Random();
-            //int from = rnd.Next(1, 100);
-            //int from = 1;
             List<InforFriendDto> listUser = db.Users.Where(s => !listUserName1.Contains(s.UserName) && !s.UserName.Equals(userName))
            .Select(s => new InforFriendDto { UserName = s.UserName, Avatar = s.Avatar, Name = s.Name }).Take(4).ToList();
             return listUser;
@@ -118,19 +177,19 @@ namespace ChatApp.Controllers
                  .Take(sumMess - userDto.QuantityMessage * 10 - userDto.QuantityMessageNew);
             return Json(listMess, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Edit()
+
+        [HttpPost]
+        public ActionResult Edit(int? id)
         {
-            var userName = Session["userName"] as string;
-            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            var user = db.Users.FirstOrDefault(us => us.Id == id);
             var personDto = new PersonalDto { Name = user.Name,SchoolName=user.SchoolName,DoB=user.DoB,Address=user.Address,PhoneNumber=user.PhoneNumber };
-            
             return Json(personDto, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
-        public ActionResult ConfirmPassword(PersonalDto personalDto)
+        public ActionResult ConfirmPassword(int? id, PersonalDto personalDto)
         {
-            var userName = Session["userName"] as string;
-            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            var user = db.Users.FirstOrDefault(us => us.Id == id);
             personalDto.PassWord = HashPassword.ComputeSha256Hash(personalDto.PassWord);
             
             if(string.Compare(personalDto.PassWord,user.PassWord)==0)
@@ -156,10 +215,11 @@ namespace ChatApp.Controllers
                 {
                     user.Avatar = "http://localhost:54576/Assets/ImagesUpload/" + fileName;
                 }
-                else
+                else if(id==2)
                 {
                     user.CoverPhoto = "http://localhost:54576/Assets/ImagesUpload/" + fileName;
                 }
+                
                 db.SaveChanges();
                 var userDto = new PersonalDto { Avatar = user.Avatar, CoverPhoto = user.CoverPhoto };
                 return Json(userDto, JsonRequestBehavior.AllowGet);
@@ -168,13 +228,10 @@ namespace ChatApp.Controllers
             return Json("Vui lòng chọn ảnh thích hợp !", JsonRequestBehavior.AllowGet);
         }
 
-
-
         [HttpPost]
-        public JsonResult SaveData(PersonalDto personalDto)
+        public JsonResult SaveData(int? id, PersonalDto personalDto)
         {
-            var userName = Session["userName"] as string;
-            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            var user = db.Users.FirstOrDefault(us => us.Id == id);
             user.Name = personalDto.Name;
             user.PassWord = HashPassword.ComputeSha256Hash(personalDto.NewPassword);
             user.SchoolName = personalDto.SchoolName;
@@ -218,7 +275,17 @@ namespace ChatApp.Controllers
 			return Json(new { status = 0 }, JsonRequestBehavior.AllowGet);
 		}
 
-		public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
+        public JsonResult DeletePostSaved(int? id)
+        {
+            PostSave postSave = db.PostSaves.FirstOrDefault(s => s.Id == id);
+            db.PostSaves.Remove(postSave);
+            db.SaveChanges();
+
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
 		{
 			// goi email
 			MailMessage mail = new MailMessage();
@@ -236,5 +303,7 @@ namespace ChatApp.Controllers
 			smtp.EnableSsl = true; //kích hoạt giao tiếp an toàn SSL
 			smtp.Send(mail); //Gửi mail đi
 		}
+
+
 	}
 }

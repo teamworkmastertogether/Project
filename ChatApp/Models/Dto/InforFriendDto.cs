@@ -8,6 +8,8 @@ namespace ChatApp.Models.Dto
 {
     public class InforFriendDto 
     {
+        public int? IdUser { get; set; }
+        public string UrlProfile { get; set; }
         public string UserName { get; set; }
         public string Name { get; set; }
         public string Avatar { get; set; }

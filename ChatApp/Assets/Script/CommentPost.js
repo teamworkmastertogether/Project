@@ -1,5 +1,5 @@
 ﻿
-
+var IdPost;
 var GroupNameCurrent = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
 
 $(document).ready(function () {
@@ -175,10 +175,23 @@ $(document).ready(function () {
 
     $('.post-space').on('click','.save-post',function () {
         $('.confirm').show();
+        IdPost = parseInt($(this).closest(".post").attr("id"));
     }); 
 
     $('.confirm').on('click','#modal-btn-si',function () {
         $('.confirm').hide();
+        url = "/Subject/CreatePostSaved?id=" + IdPost;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
     });
 
     $('.confirm').on('click', '#modal-btn-no', function () {
@@ -452,4 +465,10 @@ $(document).ready(function () {
     $('.post-space').find('.think').keyup();
 });
 
+$('.confirm').on('click', '#modal-btn-no', function () {
+    $('.confirm').hide();
+});
 
+$('.confirm').on('click', 'span', function () {
+    $('.confirm').hide();
+});

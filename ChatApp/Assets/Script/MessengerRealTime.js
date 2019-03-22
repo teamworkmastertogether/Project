@@ -521,6 +521,7 @@ function ValidatePhone(phone) {
 
 $("#have-seen").click(function () {
     $("#notifi a").addClass("notifi-seen");
+    $(".badge").text(0).hide();
     $.ajax({
         type: "POST",
         url: "/Notifi/SaveSeenAllNotifi",

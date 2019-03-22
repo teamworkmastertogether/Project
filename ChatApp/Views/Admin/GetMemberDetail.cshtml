@@ -48,7 +48,14 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Dob)
+                @if (Model.SchoolName == null)
+                {
+                    <span>Đang cập nhật</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.Dob)
+                }
             </dd>
 
             <dt>
@@ -64,7 +71,14 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.PhoneNumber)
+                @if (Model.SchoolName == null)
+                {
+                    <span>Đang cập nhật</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                }
             </dd>
 
             <dt>
@@ -72,7 +86,14 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.SchoolName)
+                @if (Model.SchoolName == null)
+                {
+                    <span>Đang cập nhật</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.SchoolName)
+                }
             </dd>
 
             <dt>
@@ -80,7 +101,14 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Address)
+                @if (Model.SchoolName == null)
+                {
+                    <span>Đang cập nhật</span>
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.Address)
+                }
             </dd>
 
         </dl>

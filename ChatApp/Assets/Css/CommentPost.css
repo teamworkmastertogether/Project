@@ -402,6 +402,7 @@ span.icon {
     border-radius: 0px;
     width: 94%;
     max-height: 200px;
+	object-fit: cover;
 }
 
 #xButton {

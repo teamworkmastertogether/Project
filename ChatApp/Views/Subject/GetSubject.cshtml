@@ -69,7 +69,7 @@
     <!-- Đăng bài viết -->
     <div class="row post-space">
         <div class="col-md-9">
-            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 rig">
+            <div class=" col-xs-12 col-sm-12 col-md-12 col-lg-12 rig" style="display: table;">
                 <div class="tool">
                     <nav class="navbar navbar-default" role="navigation">
                         <div class="container-fluid">
@@ -125,8 +125,8 @@
                             <div class="modal-body">
                                 <form id="FormAvatar" method="post" enctype="multipart/form-data" onsubmit="return GetUrlPostImage(this)" runat="server">
                                     <img id="blah" src="~/Assets/Images/Subject/uploadfiles.png" />
-                                    <input multiple type="file" id="upload-post-image" accept="image/gif, image/jpeg, image/png" name="UploadImage" class="form-control" style="display:none" ; /><br />
-                                    <a href="#" id="selectFile" class="btn btn-primary">Tải ảnh lên</a>
+                                    <input multiple type="file" accept="image/gif, image/jpeg, image/png" name="UploadImage" class="form-control" id="upload-post-image" style="display:none" ; /><br />
+                                    <a href="#" class="btn btn-primary" id="selectFile">Tải ảnh lên</a>
                                     <button class="btn btn-danger" id="upImg" style="display:none;">Chọn ảnh</button>
                                 </form>
                             </div>
@@ -141,9 +141,9 @@
                 </div>
                 <div class="box clearfix">
                     <div class="textbox">
-                        <textarea class="think" placeholder="Nhập vào đây để đăng bài viết..."></textarea>
+                        <textarea class="think" placeholder="Nhập vào đây để đăng bài viết..." style="display: table-row"></textarea>
                         <button id="xButton"> x </button>
-                        <img src="" class="img post-image" />
+                        <img src="" class="img post-image" style="display: table-row"/>
                     </div>
                     <hr>
                     <div class="bot">

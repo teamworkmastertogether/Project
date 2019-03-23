@@ -9,28 +9,28 @@ namespace ChatApp.Hubs
 {
     public partial class ChatHub : Hub
     {
-        public void CreatePostNew(string GroupName,PostDto postDto )
+        public void CreatePostNew(string GroupName,PostDto postDto ,NotifiDto notiDto)
         {
-            Clients.All.CreatePost(GroupName, postDto);
+            Clients.All.CreatePost(GroupName, postDto,notiDto);
         }
 
-        public void CreateCommentNew(string myuserName,string groupName,int postId, CommentDto commentDto)
+        public void CreateCommentNew(string myuserName,string groupName,int postId, CommentDto commentDto,NotifiDto notiDto)
         {
             Clients.All.CreateComment(groupName, postId, commentDto);
             if (myuserName != commentDto.UserName)
             {
                 List<string> listId = GetListConnectIdByUserName("No value", commentDto.UserName);
-                Clients.Clients(listId).UpdateNotiRealtime();
+                Clients.Clients(listId).UpdateNotiRealtime(notiDto);
             }
         }
 
-        public void CreateSubCommentNew(string myuserName,string groupName, int commentId, SubCommentDto subCommentDto)
+        public void CreateSubCommentNew(string myuserName,string groupName, int commentId, SubCommentDto subCommentDto,NotifiDto notiDto)
         {
             Clients.All.CreateSubComment(groupName, commentId, subCommentDto);
             if (myuserName != subCommentDto.UserName)
             {
                 List<string> listId = GetListConnectIdByUserName("No value", subCommentDto.UserName);
-                Clients.Clients(listId).UpdateNotiRealtime();
+                Clients.Clients(listId).UpdateNotiRealtime(notiDto);
             }
         }
 

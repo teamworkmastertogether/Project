@@ -142,12 +142,7 @@ $(function () {
     $("#selectFile").click(function () {
         $("#UploadImage").trigger('click');
     });
-    //đổi nút chọn file sang button background
-    $("#selectFileBg").click(function () {
-        $("#UploadBg").trigger('click');
-    });
-
-
+   
     $(".think").click(function () {
         $(".bot #huy").show();
     });
@@ -249,15 +244,8 @@ $("#gioithieu").click(function () {
 $("#close,.close").on("click", function () {
     $("#upImg").hide();
 });
-$('#banbe').click(function () {
-    // body...
-    if ($(".show-notify").hasClass('transform')) {
-        $(".show-notify").removeClass('transform');
-    }
-    else {
-        $(".show-notify").addClass('transform');
-    }
-});
+
+
 
 $(".content-store").on("click", ".EditPostStore", function () {
     $(this).next().toggle();
@@ -296,4 +284,11 @@ $("#Huy").click(function () {
 
 $('#have-seen').on('click', function () {
     $('#have-seen').css('text-decoration', 'none');
+});
+
+$('#banbe').click(function () {
+    $(".show-list-notify").html("");
+    item = $(".show-notify").clone(true).addClass('transform');
+    $(".show-list-notify").html(item);
+
 });

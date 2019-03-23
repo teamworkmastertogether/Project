@@ -354,7 +354,6 @@ $(function () {
                 .appendTo(ul);
         };*/
     $("#ChangePassword").click(function () {
-        alert("ok");
         $("#curPassword").hide();
         var html = '';
         var object = {
@@ -429,7 +428,10 @@ $(function () {
                             dataType: "json",
                             success: function (result) {
                                 $(".ChangePass").hide(150);
-                                load();
+                                $("#Password").val('');
+                                $("#NewPassword").val('');
+                                $("#ConfirmPassword").val('');
+
                             },
                             error: function (errormessage) {
                                 alert(errormessage.responseText);

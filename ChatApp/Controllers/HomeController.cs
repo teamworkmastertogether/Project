@@ -242,8 +242,15 @@ namespace ChatApp.Controllers
             
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
-
-		[HttpPost]
+        [HttpPost]
+        public ActionResult SavePassword(int? id, PersonalDto personalDto)
+        {
+            var user = db.Users.FirstOrDefault(us => us.Id == id);
+            user.PassWord = HashPassword.ComputeSha256Hash(personalDto.NewPassword);
+            db.SaveChanges();
+            return Json("Success", JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
 		public JsonResult GetPassWord(FormCollection form)
 		{
 			// Lấy username và email từ form submit

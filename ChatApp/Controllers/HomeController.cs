@@ -98,8 +98,10 @@ namespace ChatApp.Controllers
         public PartialViewResult _MenuPartialView()
         {
             var userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
             ViewBag.UrlProfile = "/Home/Profile?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
             ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
+            ViewBag.SumUserSendRequest = user.ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest == false).ToList().Count();
             return PartialView();
         }
 
@@ -140,13 +142,48 @@ namespace ChatApp.Controllers
             return Json(listUser, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public JsonResult RemoveFriend(int? id)
         {
             string userName = Session["userName"] as string;
             User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
             MemberOfListFriend mem = user
             .ListFriends.First().MemberOfListFriends.FirstOrDefault(s => s.UserId == id);
+            MemberOfListFriend mem2 = db.Users.FirstOrDefault(us => us.Id == id)
+            .ListFriends.First().MemberOfListFriends.FirstOrDefault(s => s.UserId == user.Id);
+            Contact contact = db.Contacts.FirstOrDefault(s => (s.FromUserId == id && s.ToUserId == user.Id) ||
+            (s.FromUserId == user.Id && s.ToUserId == id);
+
+            db.Contacts.Remove(contact);
             db.MemberOfListFriends.Remove(mem);
+            db.MemberOfListFriends.Remove(mem2);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AcceptRequest(int? id)
+        {
+            var userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(s => s.UserName.Equals(userName));
+            MemberOfListFriend mem = user.ListFriends.First().MemberOfListFriends.FirstOrDefault(s => s.UserId == id);
+            mem.AccessRequest = true;
+            ListFriend list = db.ListFriends.FirstOrDefault(s => s.UserId == id);
+            MemberOfListFriend mem2 = new MemberOfListFriend
+            {
+                UserId = user.Id,
+                AccessRequest = true,
+                ListFriendId = list.Id,
+                TimeLastChat = DateTime.Now,
+                SeenMessage = true
+            };
+            Contact contact = new Contact
+            {
+                FromUserId = user.Id,
+                ToUserId = id
+            };
+            db.Contacts.Add(contact);
+            db.MemberOfListFriends.Add(mem2);
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }
@@ -175,18 +212,24 @@ namespace ChatApp.Controllers
         {
             var userName = Session["userName"] as string;
             var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            
             ListFriend listFriend = db.ListFriends.FirstOrDefault(s => s.UserId == id);
-            MemberOfListFriend mem = new MemberOfListFriend
+            bool check = listFriend.MemberOfListFriends.Any(s => s.UserId == user.Id);
+            if (!check)
             {
-                AccessRequest = false,
-                SeenMessage = false,
-                TimeLastChat = DateTime.Now,
-                ListFriendId = listFriend.Id,
-                UserId = user.Id
-            };
-            db.MemberOfListFriends.Add(mem);
-            db.SaveChanges();
-            return Json(listFriend.User.UserName, JsonRequestBehavior.AllowGet);
+                MemberOfListFriend mem = new MemberOfListFriend
+                {
+                    AccessRequest = false,
+                    SeenMessage = true,
+                    TimeLastChat = DateTime.Now,
+                    ListFriendId = listFriend.Id,
+                    UserId = user.Id
+                };
+                db.MemberOfListFriends.Add(mem);
+                db.SaveChanges();
+                return Json(listFriend.User.UserName, JsonRequestBehavior.AllowGet);
+            }
+            return Json("No value", JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

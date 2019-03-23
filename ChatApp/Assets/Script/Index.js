@@ -76,12 +76,51 @@ $(function () {
                 alert(message.responseText);
             }
         });
-
+        
     });
 
    
-    $('body').on('click',' .icon-friend ', function (e) {
+    $('body').on('click', ' .icon-friend ', function (e) {
+        $.ajax({
+            type: "POST",
+            url: "/Notifi/GetListUserSendRequest",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (array) {
+                $("#add-friend_invitation").html("");
+                for (var i = 0; i < array.length; i++) {
+                    $(".list-user-sendRequest-clone img").attr("src", array[i].Avatar);
+                    $(".list-user-sendRequest-clone .invitation-content_username").text(array[i].Name);
+                    $(".list-user-sendRequest-clone .invitation-content_username").attr("href", array[i].UrlProfile);
+                    $(".list-user-sendRequest-clone .add-friend_invitation_btnAdd").attr("id", array[i].IdUser);
+                    itemClone = $(".list-user-sendRequest-clone").html();
+                    $("#add-friend_invitation").append(itemClone);
+                }
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
+
         $('#add-friend_invitation').toggle();
+    });
+
+    $('#add-friend_invitation').on("click", ".add-friend_invitation_btnAdd", function () {
+        $(this).closest(".invitation_space").remove();
+        IdUser = parseInt($(this).attr("id"));
+        url = "/Home/AcceptRequest?id=" + IdUser;
+        $.ajax({
+            type: "POST",
+            url: url ,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (array) {
+               
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
     });
 
     $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-friend ', function (e) {

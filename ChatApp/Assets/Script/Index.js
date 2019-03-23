@@ -91,7 +91,7 @@ $(function () {
                 for (var i = 0; i < array.length; i++) {
                     $(".list-user-sendRequest-clone img").attr("src", array[i].Avatar);
                     $(".list-user-sendRequest-clone .invitation-content_username").text(array[i].Name);
-                    $(".list-user-sendRequest-clone .invitation-content_username").attr("href", array[i].UrlProfile);
+                    $(".list-user-sendRequest-clone .invitation-content_username").attr("href", array[i].UrlPersonal);
                     $(".list-user-sendRequest-clone .add-friend_invitation_btnAdd").attr("id", array[i].IdUser);
                     itemClone = $(".list-user-sendRequest-clone").html();
                     $("#add-friend_invitation").append(itemClone);
@@ -274,8 +274,8 @@ $("#banbe").click(function () {
             for (var i = 0; i < array.length; i++) {
                 $(".list-friend-clone img").attr("src", array[i].Avatar);
                 $(".list-friend-clone .nameFriend p").text(array[i].Name);
-                $(".list-friend-clone .nameFriend a").attr("href", array[i].UrlProfile);
-                $(".list-friend-clone .dropdown-content a").eq(0).attr("href", array[i].UrlProfile);
+                $(".list-friend-clone .nameFriend a").attr("href", array[i].UrlPersonal);
+                $(".list-friend-clone .dropdown-content a").eq(0).attr("href", array[i].UrlPersonal);
                 $(".list-friend-clone .removeFriend").attr("id", array[i].IdUser);
                 itemClone =  $(".list-friend-clone").html();
                 $(".lef-2").append(itemClone);

@@ -43,7 +43,7 @@ namespace ChatApp.Controllers
                     UserName = s.User.UserName,
                     Avatar = s.User.Avatar,
                     Name = s.User.Name,
-                    UrlProfile = "/Home/Profile?id=" + s.UserId
+                    UrlPersonal = "/Home/Personal?id=" + s.UserId
                 }).ToList();
             return Json(inforFriendDto, JsonRequestBehavior.AllowGet);
         }

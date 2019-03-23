@@ -15,7 +15,7 @@ namespace ChatApp.Controllers
     {
         ChatDbcontext db = new ChatDbcontext();
 
-        public ActionResult Profile(int? id = 0)
+        public ActionResult Personal(int? id = 0)
         {
             string userName = Session["userName"] as string;
             User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
@@ -61,7 +61,7 @@ namespace ChatApp.Controllers
 
             if (userName != null)
             {
-                return RedirectToAction("Profile");
+                return RedirectToAction("Personal");
             }
             return View();
         }
@@ -80,7 +80,7 @@ namespace ChatApp.Controllers
             if (user != null)
             {
                 Session["userName"] = user.UserName;
-                return RedirectToAction("Profile");
+                return RedirectToAction("Personal");
             }
             ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không chính xác";
             return View();
@@ -99,7 +99,7 @@ namespace ChatApp.Controllers
         {
             var userName = Session["userName"] as string;
             User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
-            ViewBag.UrlProfile = "/Home/Profile?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
+            ViewBag.UrlPersonal = "/Home/Personal?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
             ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
             ViewBag.SumUserSendRequest = user.ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest == false).ToList().Count();
             return PartialView();
@@ -116,7 +116,7 @@ namespace ChatApp.Controllers
                 .Select(s => new InforFriendDto
                 {
                     IdUser = s.UserId,
-                    UrlProfile = "/Home/Profile?id=" + s.UserId,
+                    UrlPersonal = "/Home/Personal?id=" + s.UserId,
                     Avatar = s.User.Avatar,
                     Name = s.User.Name,
                     UserName = s.User.UserName,
@@ -131,7 +131,7 @@ namespace ChatApp.Controllers
                 .Select(s => new InforFriendDto
                 {
                     IdUser = s.UserId,
-                    UrlProfile = "/Home/Profile?id=" + s.UserId,
+                    UrlPersonal = "/Home/Personal?id=" + s.UserId,
                     Avatar = s.User.Avatar,
                     Name = s.User.Name,
                     UserName = s.User.UserName,
@@ -152,7 +152,7 @@ namespace ChatApp.Controllers
             MemberOfListFriend mem2 = db.Users.FirstOrDefault(us => us.Id == id)
             .ListFriends.First().MemberOfListFriends.FirstOrDefault(s => s.UserId == user.Id);
             Contact contact = db.Contacts.FirstOrDefault(s => (s.FromUserId == id && s.ToUserId == user.Id) ||
-            (s.FromUserId == user.Id && s.ToUserId == id);
+            (s.FromUserId == user.Id && s.ToUserId == id));
 
             db.Contacts.Remove(contact);
             db.MemberOfListFriends.Remove(mem);
@@ -202,7 +202,7 @@ namespace ChatApp.Controllers
                UserName = s.UserName,
                Avatar = s.Avatar,
                Name = s.Name,
-               UrlProfile = "/Home/Profile?id=" + s.Id
+               UrlPersonal = "/Home/Personal?id=" + s.Id
            }).OrderBy(s => s.Name).Skip(from).Take(5).ToList();
            return Json(listUser, JsonRequestBehavior.AllowGet);
         }

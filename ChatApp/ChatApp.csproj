@@ -204,9 +204,9 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Migrations\201903220649559_aaa.cs" />
-    <Compile Include="Migrations\201903220649559_aaa.Designer.cs">
-      <DependentUpon>201903220649559_aaa.cs</DependentUpon>
+    <Compile Include="Migrations\201903231759511_CreateDB.cs" />
+    <Compile Include="Migrations\201903231759511_CreateDB.Designer.cs">
+      <DependentUpon>201903231759511_CreateDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\LikeDto.cs" />
@@ -6754,7 +6754,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Home\Personal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -7290,8 +7290,8 @@
     <Content Include="Views\Admin\GetPostsByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903220649559_aaa.resx">
-      <DependentUpon>201903220649559_aaa.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903231759511_CreateDB.resx">
+      <DependentUpon>201903231759511_CreateDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,7 +13,7 @@ function loadListFriendSuggest() {
             for (var i = 0; i < array.length; i++) {
                 $(".friend-suggest-clone img").attr("src", array[i].Avatar);
                 $(".friend-suggest-clone h5").text(array[i].Name);
-                $(".friend-suggest-clone a").attr("href", array[i].UrlProfile);
+                $(".friend-suggest-clone a").attr("href", array[i].UrlPersonal);
                 $(".friend-suggest-clone .add-friend").attr("id", array[i].IdUser);
                 itemClone = $(".friend-suggest-clone").html();
                 $(".list-friend-sugggest").append(itemClone);

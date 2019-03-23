@@ -254,28 +254,15 @@ namespace ChatApp.Controllers
 			return result;
 		}
 
-		public JsonResult CreateUser (FormCollection form)
+		[HttpPost]
+		public JsonResult CreateUser (UserViewModel userVM)
 		{
-			db.Configuration.ProxyCreationEnabled = false;
-			string email = form["email"].ToString();
-			if(db.Users.Any(x => x.Email.Equals(email)))
-			{
-				return Json ( new {status = 0 },JsonRequestBehavior.AllowGet);
-			}
-			else
-			{
-				UserViewModel userVM = new UserViewModel() ;
-				userVM.Name = form["Name"].ToString();
-				userVM.Email = form["Email"].ToString();
-				userVM.Dob = DateTime.Now;
-				userVM.SchoolName = form["SchoolName"].ToString();
-				userVM.Address = form["Address"].ToString();
-				userVM.PhoneNumber = form["PhoneNumber"].ToString();
-				User user = AutoMapper.Mapper.Map<User>(userVM);
-				db.Users.Add(user);
-				db.SaveChanges();
-				return Json(new { status = 1 }, JsonRequestBehavior.AllowGet);
-			}
+			User user = AutoMapper.Mapper.Map<User>(userVM);
+			user.DoB = DateTime.Now;
+			user.Avatar = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg";
+			db.Users.Add(user);
+			db.SaveChanges();
+			return Json(userVM, JsonRequestBehavior.AllowGet);
 		}
 	}
 }

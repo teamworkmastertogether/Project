@@ -5126,3 +5126,40 @@ span.name-postStore:hover {
     width: 100%;
     max-height: 200px;
 }
+
+.confirm, .show-image {
+	position: fixed;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9999;
+	background: #80808087;
+	display: none;
+}
+
+.show-image {
+	background: #000000d9;
+}
+
+/*.modal-dialog {
+	margin: 183px auto;
+	position: unset;
+}*/
+
+.close-seen-image {
+	width: 30px;
+	height: 30px;
+	font-size: 14pt;
+	color: red;
+	float: right;
+	margin-right: 20px;
+	margin-top: 20px;
+}
+
+.modal-show-image {
+	margin: auto;
+}
+
+	

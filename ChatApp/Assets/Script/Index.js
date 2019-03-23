@@ -285,3 +285,14 @@ $("#Huy").click(function () {
 $('#have-seen').on('click', function () {
     $('#have-seen').css('text-decoration', 'none');
 });
+$('.container').on('click', '.img-postsave', function () {
+    $('.show-image img').attr('src', $(this).attr('src'));
+    $('.show-image').show();
+    if ($('.show-image img').height() < 300) {
+        $('.new-modal').css('padding-top', '150px');
+    }
+});
+
+$('.close-seen-image').click(function () {
+    $('.show-image').hide();
+});

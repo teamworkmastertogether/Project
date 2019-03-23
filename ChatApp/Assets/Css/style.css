@@ -5162,4 +5162,12 @@ span.name-postStore:hover {
 	margin: auto;
 }
 
-	
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin-left:100px;
+}
+
+.modal-show-image {
+    margin-left: 100px;
+}

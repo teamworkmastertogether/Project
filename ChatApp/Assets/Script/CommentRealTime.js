@@ -1,10 +1,11 @@
 ﻿
 $(function () {
+
     hub.client.createPost = function (GroupName, postDto, notiDto) {
         name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
         if (postDto.UserName !== MyUserName) {
-            countNoti = parseInt($(".badge").text()) + 1;
-            $(".badge").text(countNoti).show();
+            countNoti = parseInt($(".icon-notify .badge").text()) + 1;
+            $(".icon-notify .badge").text(countNoti).show();
             RenderNotifiTransform(notiDto);
         }
         if (name === GroupName) {
@@ -45,9 +46,14 @@ $(function () {
     };
 
     hub.client.updateNotiRealtime = function (notiDto) {
-            countNoti = parseInt($(".badge").text()) + 1;
-        $(".badge").text(countNoti).show();
+        countNoti = parseInt($(".icon-notify .badge").text()) + 1;
+        $(".icon-notify .badge").text(countNoti).show();
         RenderNotifiTransform(notiDto);
+    };
+
+    hub.client.updateNotiRequestAddFriend = function () {
+        countNoti = parseInt($(".icon-friend .badge").text()) + 1;
+        $(".icon-friend .badge").text(countNoti).show();
     };
 
     hub.client.createSubComment = function (groupName, commentId, subCommentDto) {
@@ -156,7 +162,12 @@ $(function () {
             }
         }
     };
+
+
 });
+
+
+
 
 function RenderNotifiTransform(notiDto) {
     href = "/Subject/GetSubject?id=" + notiDto.SubjectId + "#" + notiDto.PostId;

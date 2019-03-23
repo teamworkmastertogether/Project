@@ -3,12 +3,20 @@ var checkAvarta = 0;
 var count = 1;
 $(function () {
 
-    countNoti = parseInt($(".badge").text());
+    countNoti = parseInt($(".icon-notify .badge").text());
     if (countNoti) {
-        $(".badge").show();
+        $(".icon-notify .badge").show();
     } else {
-        $(".badge").hide();
+        $(".icon-notify .badge").hide();
     }
+
+    countNoti2 = parseInt($(".icon-friend .badge").text());
+    if (countNoti2) {
+        $(".icon-friend .badge").show();
+    } else {
+        $(".icon-friend .badge").hide();
+    }
+
     notify = false;
     $('.icon-notify').off().click(function () {
         $.ajax({
@@ -55,11 +63,11 @@ $(function () {
             dataType: "json",
             success: function (result) {
                 if (result) {
-                    countNoti = parseInt($(".badge").text()) - 1;
+                    countNoti = parseInt($(".icon-notify .badge").text()) - 1;
                     if (countNoti) {
-                        $(".badge").text(countNoti).show();
+                        $(".icon-notify .badge").text(countNoti).show();
                     } else {
-                        $(".badge").text(countNoti).hide();
+                        $(".icon-notify .badge").text(countNoti).hide();
                     }
                 }
                 $('#notifi').hide();

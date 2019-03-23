@@ -150,16 +150,45 @@ namespace ChatApp.Controllers
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }
-        public List<InforFriendDto> GetFriendSuggest()
+
+        public JsonResult GetFriendSuggest()
         {
             var userName = Session["userName"] as string;
             List<string> listUserName1 = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
             .ListFriends.First().MemberOfListFriends.Select(s => s.User.UserName).ToList();
             Random rnd = new Random();
+            int from = rnd.Next(1, 5);
             List<InforFriendDto> listUser = db.Users.Where(s => !listUserName1.Contains(s.UserName) && !s.UserName.Equals(userName))
-           .Select(s => new InforFriendDto { UserName = s.UserName, Avatar = s.Avatar, Name = s.Name }).Take(4).ToList();
-            return listUser;
+           .Select(s => new InforFriendDto
+           {
+               IdUser = s.Id,
+               UserName = s.UserName,
+               Avatar = s.Avatar,
+               Name = s.Name,
+               UrlProfile = "/Home/Profile?id=" + s.Id
+           }).OrderBy(s => s.Name).Skip(from).Take(5).ToList();
+           return Json(listUser, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult SendRequestAddFriend(int? id)
+        {
+            var userName = Session["userName"] as string;
+            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            ListFriend listFriend = db.ListFriends.FirstOrDefault(s => s.UserId == id);
+            MemberOfListFriend mem = new MemberOfListFriend
+            {
+                AccessRequest = false,
+                SeenMessage = false,
+                TimeLastChat = DateTime.Now,
+                ListFriendId = listFriend.Id,
+                UserId = user.Id
+            };
+            db.MemberOfListFriends.Add(mem);
+            db.SaveChanges();
+            return Json(listFriend.User.UserName, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult GetMessage(UserDto userDto)
         {

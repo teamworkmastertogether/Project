@@ -268,6 +268,7 @@
     <Content Include="Assets\Script\Index.js" />
     <Content Include="Assets\Script\Login.js" />
     <Content Include="Assets\Script\MessengerRealTime.js" />
+    <Content Include="Assets\Script\Subject.js" />
     <Content Include="Content\AdminLTE\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="Content\AdminLTE\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
     <Content Include="Content\AdminLTE\bower_components\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\alpha-horizontal.png" />

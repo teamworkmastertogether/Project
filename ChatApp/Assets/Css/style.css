@@ -1,4 +1,19 @@
 /* Minification failed. Returning unminified contents.
+(412,8): run-time error CSS1035: Expected colon, found ';'
+(657,7): run-time error CSS1035: Expected colon, found '.'
+(1188,7): run-time error CSS1035: Expected colon, found '.'
+(1519,7): run-time error CSS1035: Expected colon, found '.'
+(2508,8): run-time error CSS1035: Expected colon, found ';'
+(2754,7): run-time error CSS1035: Expected colon, found '.'
+(3267,7): run-time error CSS1035: Expected colon, found '.'
+(3600,7): run-time error CSS1035: Expected colon, found '.'
+(4360,1): run-time error CSS1019: Unexpected token, found '@import'
+(4360,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
+(4452,17): run-time error CSS1036: Expected expression, found '#'
+(5023,1): run-time error CSS1019: Unexpected token, found '@keyframes'
+(5024,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
+ */
+/* Minification failed. Returning unminified contents.
 (397,8): run-time error CSS1035: Expected colon, found ';'
 (642,7): run-time error CSS1035: Expected colon, found '.'
 (1173,7): run-time error CSS1035: Expected colon, found '.'
@@ -2012,6 +2027,17 @@ span {
         text-align: center;
         top: 5%;
     }
+
+.icon-friend span.badge {
+    position: absolute;
+    right: 26px;
+    padding: 5px 8px;
+    border-radius: 100%;
+    background: #ff3d00fc;
+    color: white;
+    text-align: center;
+    top: 1%;
+}
 
 i.fas.fa-list-ul {
     color: #4b4f56;
@@ -5015,7 +5041,7 @@ i.glyphicon.glyphicon-cog.setting.pull-right {
     }
 
 .transform {
-    display:block;
+    display: block;
     -webkit-animation: mymove 8s;
     animation: mymove 8s ease-out;
 }
@@ -5103,24 +5129,25 @@ span.name-postStore:hover {
 }
 
 .seen-click-link {
-	padding: 12px;
-	font-weight: 100;
-	font-size: 12px;
+    padding: 12px;
+    font-weight: 100;
+    font-size: 12px;
 }
 
-	.seen-click-link a {
-		padding-left: 15px;
-	}
+    .seen-click-link a {
+        padding-left: 15px;
+    }
 
-.seen-click-link a:hover {
-	text-decoration: none;
-}
+        .seen-click-link a:hover {
+            text-decoration: none;
+        }
 
 .seen-noti h5 {
-	color: black;
-	font-weight: 100;
-	font-size: 16px;
+    color: black;
+    font-weight: 100;
+    font-size: 16px;
 }
+
 .img-postsave {
     border-radius: 0px;
     width: 100%;
@@ -5128,44 +5155,39 @@ span.name-postStore:hover {
 }
 
 .confirm, .show-image {
-	position: fixed;
-	margin: auto;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 9999;
-	background: #80808087;
-	display: none;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9999;
+    background: #80808087;
+    display: none;
 }
 
 .show-image {
-	background: #000000d9;
+    background: #000000d9;
 }
 
-/*.modal-dialog {
-	margin: 183px auto;
-	position: unset;
-}*/
-
 .close-seen-image {
-	width: 30px;
-	height: 30px;
-	font-size: 14pt;
-	color: red;
-	float: right;
-	margin-right: 20px;
-	margin-top: 20px;
+    width: 30px;
+    height: 30px;
+    font-size: 14pt;
+    color: red;
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
 }
 
 .modal-show-image {
-	margin: auto;
+    margin: auto;
 }
 
 .modal-dialog {
     position: relative;
     width: auto;
-    margin-left:100px;
+    margin-left: 100px;
 }
 
 .modal-show-image {

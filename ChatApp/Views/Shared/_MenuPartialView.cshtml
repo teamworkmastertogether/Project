@@ -48,7 +48,10 @@
 
     <div class="content-option">
         <div class="menu-search">
-            <input type="text" placeholder="Tìm kiếm mọi người ....">
+            <form action="/Home/Search" method="get">
+                <input type="text" id="txtKeyword" placeholder="Tìm kiếm mọi người ....">
+                <p class="fa fa-search" id="submit"></p>
+            </form>
         </div>
         <div class="container theme">
             <div class="row">

@@ -87,6 +87,7 @@ $(function () {
 
     
     $("#edit-info").click(function () {
+        
         count++;
         if (count % 2 === 0) {
             $(".edit-user").show();
@@ -106,6 +107,16 @@ $(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "JSON",
             success: function (res) {
+                var text = 'Đang cập nhật';
+                if (res.PhoneNumber === text) {
+                    res.PhoneNumber = '';
+                }
+                if (res.SchoolName === text) {
+                    res.SchoolName = '';
+                }
+                if (res.Address === text) {
+                    res.Address = '';
+                };
                 $(".edit-user #Name").val(res.Name);
                 $(".edit-user #SchoolName").val(res.SchoolName);
                 var date = res.DoB;
@@ -194,105 +205,249 @@ $(function () {
             checkAvarta = 2;
         }
     });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-});
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#blah').attr('src', e.target.result);
-        }
-        $("#upImg").show();
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$("#UploadImage").change(function () {
-    readURL(this);
-});
-//click vào giới thiệu trang cá nhân
-$("#banbe").click(function () {
-    $(".lef-1").hide();
-    Id = parseInt($(".MyId").attr("id"));
-    url = "/Home/GetListFriend?id=" + Id;
-    //get dữ liệu
-    $.ajax({
-        type: "POST",
-        url: url,
-        contentType: "application/json;charset=utf-8",
-        dataType: "JSON",
-        success: function (array) {
-            $(".lef-2").html("");
-            for (var i = 0; i < array.length; i++) {
-                $(".list-friend-clone img").attr("src", array[i].Avatar);
-                $(".list-friend-clone .nameFriend p").text(array[i].Name);
-                $(".list-friend-clone .nameFriend a").attr("href", array[i].UrlProfile);
-                $(".list-friend-clone .dropdown-content a").eq(0).attr("href", array[i].UrlProfile);
-                $(".list-friend-clone .removeFriend").attr("id", array[i].IdUser);
-                itemClone =  $(".list-friend-clone").html();
-                $(".lef-2").append(itemClone);
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
             }
+            $("#upImg").show();
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#UploadImage").change(function () {
+        readURL(this);
+    });
+    //click vào giới thiệu trang cá nhân
+    $("#banbe").click(function () {
+        $(".lef-1").hide();
+        Id = parseInt($(".MyId").attr("id"));
+        url = "/Home/GetListFriend?id=" + Id;
+        //get dữ liệu
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "JSON",
+            success: function (array) {
+                $(".lef-2").html("");
+                for (var i = 0; i < array.length; i++) {
+                    $(".list-friend-clone img").attr("src", array[i].Avatar);
+                    $(".list-friend-clone .nameFriend p").text(array[i].Name);
+                    $(".list-friend-clone .nameFriend a").attr("href", array[i].UrlProfile);
+                    $(".list-friend-clone .dropdown-content a").eq(0).attr("href", array[i].UrlProfile);
+                    $(".list-friend-clone .removeFriend").attr("id", array[i].IdUser);
+                    itemClone = $(".list-friend-clone").html();
+                    $(".lef-2").append(itemClone);
+                }
+            }
+        });
+        $(".lef-2").show();
+    });
+    $("#gioithieu").click(function () {
+        $(".lef-1").show();
+        $(".lef-2").hide();
+    });
+    $("#close,.close").on("click", function () {
+        $("#upImg").hide();
+    });
+
+
+
+    $(".content-store").on("click", ".EditPostStore", function () {
+        $(this).next().toggle();
+    });
+
+    $(".content-store").on("click", ".edit-poststore", function () {
+        IdPost = parseInt($(this).closest(".post-store").attr("id"));
+        url = "/Home/DeletePostSaved?id=" + IdPost;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "JSON",
+            success: function (res) {
+                $(".post-store[id=" + IdPost + "]").remove();
+                Swal.fire(
+                    'Thành công!',
+                    'Bạn đã xóa bài viết thành công!',
+                    'success'
+                );
+            }
+        })
+    });
+
+    $("#Huy").click(function () {
+        count++;
+        if (count % 2 === 0) {
+            $(".edit-user").show();
+            $(".info-user").hide();
+        }
+        else {
+            $(".edit-user").hide();
+            $(".info-user").show();
         }
     });
-    $(".lef-2").show();
-});
-$("#gioithieu").click(function () {
-    $(".lef-1").show();
-    $(".lef-2").hide();
-});
-$("#close,.close").on("click", function () {
-    $("#upImg").hide();
-});
 
+    $('#have-seen').on('click', function () {
+        $('#have-seen').css('text-decoration', 'none');
+    });
+    $('.container').on('click', '.img-postsave', function () {
+        $('.show-image img').attr('src', $(this).attr('src'));
+        $('.show-image').show();
+        if ($('.show-image img').height() < 300) {
+            $('.new-modal').css('padding-top', '150px');
+        }
+    });
 
+    $('.close-seen-image').click(function () {
+        $('.show-image').hide();
+    });
+    $('#banbe').click(function () {
+        $(".show-list-notify").html("");
+        item = $(".show-notify").clone(true).addClass('transform');
+        $(".show-list-notify").html(item);
 
-$(".content-store").on("click", ".EditPostStore", function () {
-    $(this).next().toggle();
-});
-
-$(".content-store").on("click", ".edit-poststore", function () {
-    IdPost = parseInt($(this).closest(".post-store").attr("id"));
-    url = "/Home/DeletePostSaved?id=" + IdPost;
-    $.ajax({
-        type: "POST",
-        url: url,
-        contentType: "application/json;charset=utf-8",
-        dataType: "JSON",
-        success: function (res) {
-            $(".post-store[id=" + IdPost + "]").remove();
-            Swal.fire(
-                'Thành công!',
-                'Bạn đã xóa bài viết thành công!',
-                'success'
-            );
+    });
+    
+    $("#ChangePass").click(function () {
+        $(".ChangePass").toggle(150);
+        $("#Password").val('');
+        $("#NewPassword").val('');
+        $("#ConfirmPassword").val('');
+    });
+    $("#Cancel").click(function () {
+        $(".ChangePass").hide(150);
+    });
+    /*$("#txtKeyword").autocomplete({
+        minLength: 0,
+        source: function (request, response) {
+            $.ajax({
+                url: "/Home/Search",
+                dataType: "json",
+                data: {
+                    keyword: request.term
+                },
+                success: function (data) {
+                    response(data.data);
+                }
+            });
+        },
+        focus: function (event, ui) {
+            $("#txtKeyword").val(ui.item.label);
+            return false;
+        },
+        select: function (event, ui) {
+            $("#txtKeyword").val(ui.item.label);
+            //$("#project-id").val(ui.item.value);
+            //$("#project-description").html(ui.item.desc);
+            //$("#project-icon").attr("src", "images/" + ui.item.icon);
+    
+            return false;
         }
     })
-});
-
-$("#Huy").click(function () {
-    count++;
-    if (count % 2 === 0) {
-        $(".edit-user").show();
-        $(".info-user").hide();
-    }
-    else {
-        $(".edit-user").hide();
-        $(".info-user").show();
-    }
-});
-
-$('#have-seen').on('click', function () {
-    $('#have-seen').css('text-decoration', 'none');
-});
-$('.container').on('click', '.img-postsave', function () {
-    $('.show-image img').attr('src', $(this).attr('src'));
-    $('.show-image').show();
-    if ($('.show-image img').height() < 300) {
-        $('.new-modal').css('padding-top', '150px');
-    }
-});
-
-$('.close-seen-image').click(function () {
-    $('.show-image').hide();
+        .autocomplete("instance")._renderItem = function (ul, item) {
+            return $("<li>")
+                .append("<div class='getValueId'>" + item.label + /*"<br>" + item.desc + "</div>")
+                .appendTo(ul);
+        };*/
+    $("#ChangePassword").click(function () {
+        alert("ok");
+        $("#curPassword").hide();
+        var html = '';
+        var object = {
+            Password: $('#Password').val(),
+            NewPassword: $('#NewPassword').val(),
+            ConfirmPassword: $('#ConfirmPassword').val()
+        };
+        if (object.Password === '') {
+            html += 'Mật khẩu trống !';
+            $("#prePassword").html(html);
+            $("#prePassword").show();
+            $("#Password").focus();
+            $('#Password').css("border-color", "red");
+            return false;
+        }
+        else {
+            $("#prePassword").hide();
+            $('#Password').css("border", "none");
+        }
+        if (object.NewPassword === '') {
+            html += 'Mật khẩu mới trống !';
+            $("#preNewPassword").html(html);
+            $("#preNewPassword").show();
+            $("#NewPassword").focus();
+            $('#NewPassword').css("border-color", "red");
+            return false;
+        }
+        else {
+            $("#preNewPassword").hide();
+            $('#NewPassword').css("border", "none");
+        }
+        if (object.ConfirmPassword === '') {
+            html += 'Xác nhận mật khẩu trống !';
+            $("#preConfirmPassword").html(html);
+            $("#preConfirmPassword").show();
+            $("#ConfirmPassword").focus();
+            $('#ConfirmPassword').css("border-color", "red");
+            return false;
+        }
+        else {
+            $("#preConfirmPassword").hide();
+            $('#ConfirmPassword').css("border", "none");
+        }
+        if (object.NewPassword !== object.ConfirmPassword) {
+            html += 'Mật khẩu không khớp mật khẩu mới !';
+            $("#curConfirmPassword").html(html);
+            $("#curConfirmPassword").show();
+            $("#ConfirmPassword").focus();
+            $('#ConfirmPassword').css("border-color", "red");
+            return false;
+        }
+        else {
+            $("#curConfirmPassword").hide();
+            $('#ConfirmPassword').css("border", "none");
+        }
+        Id = parseInt($(".MyId").attr("id"));
+        if (object.Password)
+            $.ajax({
+                type: "POST",
+                url: "/Home/ConfirmPassword?id=" + Id,
+                data: JSON.stringify(object),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result.isvalid) {
+                        url = "/Home/SavePassword?id=" + Id;
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            data: JSON.stringify(object),
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            success: function (result) {
+                                $(".ChangePass").hide(150);
+                                load();
+                            },
+                            error: function (errormessage) {
+                                alert(errormessage.responseText);
+                            }
+                        });
+                    }
+                    else {
+                        html += 'Nhập sai mật khẩu cũ !';
+                        $("#curPassword").html(html);
+                        $("#curPassword").show();
+                        $('#Password').focus();
+                        $('#Password').css("border-color", "red");
+                        return false;
+                    }
+                },
+                error: function (message) {
+                    alert(message.responseText);
+                }
+            });
+    });
 });

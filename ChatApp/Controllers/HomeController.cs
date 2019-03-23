@@ -234,7 +234,6 @@ namespace ChatApp.Controllers
         {
             var user = db.Users.FirstOrDefault(us => us.Id == id);
             user.Name = personalDto.Name;
-            user.PassWord = HashPassword.ComputeSha256Hash(personalDto.NewPassword);
             user.SchoolName = personalDto.SchoolName;
             user.DoB = personalDto.DoB;
             user.Address = personalDto.Address;

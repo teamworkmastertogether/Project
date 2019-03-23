@@ -114,8 +114,18 @@ namespace ChatApp.Controllers
                     db.Notifications.Add(noti);
                 }
             }
+            NotifiDto notiDto = new NotifiDto
+            {
+                NameOfUser = user.Name,
+                SubjectName = postDto.GroupName,
+                Avatar = user.Avatar,
+                SubjectId = subject.Id,
+                TimeNotifi = postDto.TimePost,
+                PostId = Postid,
+                TextNoti = "Đã đăng"
+            };
             db.SaveChanges();
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(new { result, notiDto }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult SaveComment(CommentDto commentDto)
@@ -157,8 +167,18 @@ namespace ChatApp.Controllers
                 };
                 db.Notifications.Add(noti);
             }
+            NotifiDto notiDto = new NotifiDto
+            {
+                NameOfUser = user.Name,
+                SubjectName = post.Subject.Name,
+                Avatar = user.Avatar,
+                SubjectId = post.SubjectId,
+                TimeNotifi = post.CreatedDate,
+                PostId = post.Id,
+                TextNoti = "Đã bình luận bài viết của bạn"
+            };
             db.SaveChanges();
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(new { result, notiDto }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult SaveSubComment(SubCommentDto subCommentDto)
@@ -200,8 +220,18 @@ namespace ChatApp.Controllers
                 };
                 db.Notifications.Add(noti);
             }
+            NotifiDto notiDto = new NotifiDto
+            {
+                NameOfUser = user.Name,
+                SubjectName = comment.Post.Subject.Name,
+                Avatar = user.Avatar,
+                SubjectId = comment.Post.SubjectId,
+                TimeNotifi = comment.Post.CreatedDate,
+                PostId = comment.Post.Id,
+                TextNoti = "Đã trả lời bình luận của bạn"
+            };
             db.SaveChanges();
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(new { result, notiDto }, JsonRequestBehavior.AllowGet);
         }
         [HttpPost]
         public ActionResult DeletePost(int? postId)

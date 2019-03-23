@@ -1,10 +1,11 @@
 ﻿
 $(function () {
-    hub.client.createPost = function (GroupName, postDto) {
+    hub.client.createPost = function (GroupName, postDto, notiDto) {
         name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
         if (postDto.UserName !== MyUserName) {
             countNoti = parseInt($(".badge").text()) + 1;
             $(".badge").text(countNoti).show();
+            RenderNotifiTransform(notiDto);
         }
         if (name === GroupName) {
             $(".post-clone .avatar-post").find('img').attr('src', postDto.avatar);
@@ -43,9 +44,10 @@ $(function () {
         }
     };
 
-    hub.client.updateNotiRealtime = function () {
+    hub.client.updateNotiRealtime = function (notiDto) {
             countNoti = parseInt($(".badge").text()) + 1;
-            $(".badge").text(countNoti).show();
+        $(".badge").text(countNoti).show();
+        RenderNotifiTransform(notiDto);
     };
 
     hub.client.createSubComment = function (groupName, commentId, subCommentDto) {
@@ -155,3 +157,17 @@ $(function () {
         }
     };
 });
+
+function RenderNotifiTransform(notiDto) {
+    href = "/Subject/GetSubject?id=" + notiDto.SubjectId + "#" + notiDto.PostId;
+    $(".notifi-transform-clone img").attr("src", notiDto.Avatar);
+    $(".notifi-transform-clone a").attr("href", href);
+    $(".notifi-transform-clone h3").text(notiDto.NameOfUser);
+    $(".notifi-transform-clone em").text(notiDto.TextNoti);
+    $(".notifi-transform-clone span").text(notiDto.SubjectName);
+    $(".notifi-transform-clone h4").text(notiDto.TimeNotifi);
+
+    $(".show-list-notify").html("");
+    item = $(".notifi-transform-clone .show-notify").clone(true).addClass('transform');
+    $(".show-list-notify").html(item);
+}

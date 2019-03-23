@@ -17,8 +17,8 @@ $(document).ready(function () {
                 data: JSON.stringify(CommentDto),
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
-                success: function (result) {
-                        hub.server.createCommentNew(MyUserName,GroupNameCurrent, CommentDto.PostId, result);
+                success: function (object) {
+                    hub.server.createCommentNew(MyUserName, GroupNameCurrent, CommentDto.PostId, object.result, object.notiDto);
                 },
                 error: function (message) {
                     alert(message.responseText);
@@ -48,8 +48,8 @@ $(document).ready(function () {
                 data: JSON.stringify(SubCommentDto),
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
-                success: function (result) {
-                        hub.server.createSubCommentNew(MyUserName,GroupNameCurrent, SubCommentDto.CommentId, result);
+                success: function (object) {
+                        hub.server.createSubCommentNew(MyUserName,GroupNameCurrent, SubCommentDto.CommentId, object.result,object.notiDto);
                 },
                 error: function (message) {
                     alert(message.responseText);
@@ -465,15 +465,14 @@ $(document).ready(function () {
                 data: JSON.stringify(PostDto),
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
-                success: function (result) {
-                    hub.server.createPostNew(GroupNameCurrent, result);
+                success: function (object) {
+                    hub.server.createPostNew(GroupNameCurrent, object.result, object.notiDto);
                     Swal.fire(
                         'Thành công!',
                         'Bạn đã đăng bài thành công!',
                         'success'
                     );
                     $("#xButton").hide();
-                    //$("#blah").attr("src", "/Assets/Images/Subject/uploadfiles.png");
                 },
                 error: function (message) {
                     Swal.fire({

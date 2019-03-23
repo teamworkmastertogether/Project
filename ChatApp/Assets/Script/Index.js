@@ -292,3 +292,15 @@ $('#banbe').click(function () {
     $(".show-list-notify").html(item);
 
 });
+
+$('.container').on('click', '.img-postsave', function () {
+    $('.show-image img').attr('src', $(this).attr('src'));
+    $('.show-image').show();
+    if ($('.show-image img').height() < 300) {
+        $('.new-modal').css('padding-top', '150px');
+    }
+});
+
+$('.close-seen-image').click(function () {
+    $('.show-image').hide();
+});

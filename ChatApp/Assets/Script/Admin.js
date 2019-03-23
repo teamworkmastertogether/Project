@@ -27,6 +27,7 @@
             data: JSON.stringify(dataObj),
             contentType: "application/json;charset=utf-8",
             dataType: "json",
+            cache: false,
             success: function (result) {
                 $('#myModal').modal('hide');
                 Swal.fire(

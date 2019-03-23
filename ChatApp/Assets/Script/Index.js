@@ -285,10 +285,3 @@ $("#Huy").click(function () {
 $('#have-seen').on('click', function () {
     $('#have-seen').css('text-decoration', 'none');
 });
-
-$('#banbe').click(function () {
-    $(".show-list-notify").html("");
-    item = $(".show-notify").clone(true).addClass('transform');
-    $(".show-list-notify").html(item);
-
-});

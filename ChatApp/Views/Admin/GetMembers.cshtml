@@ -5,6 +5,7 @@
     Layout = "~/Views/Admin/_AdminPartialView.cshtml";
 }
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css" rel="stylesheet" />
 <style>
     .add-student {
         padding-bottom: 10px;
@@ -34,7 +35,7 @@
 
     <div class="add-student row">
         <p style="padding-left: 18px; padding-top: 10px">
-            <a href="#"><button class="btn btn-primary" data-toggle="modal" data-target="#myModal">Thêm mới thành viên</button></a>
+            <a href="#"><button class="btn btn-primary" id="btnClickAdd" data-toggle="modal" data-target="#myModal">Thêm mới thành viên</button></a>
         </p>
         <div class="col-md-6">
             <div class="panel panel-primary">
@@ -142,14 +143,19 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <a class="btn btn-success btn-create-user" href="#">Thêm mới</a>
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#" class="btn btn-success btn-submit btn-create-user">Thêm mới</a>
+                @*<a href="#" class="btn btn-success btn-submit btn-create-user">Thêm mới</a>*@
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
 
     </div>
 </div>
+
+<script src="~/Content/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+<script src="~/Assets/Script/Admin.js"></script>>

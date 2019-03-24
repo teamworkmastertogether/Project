@@ -75,7 +75,7 @@ namespace ChatApp.Controllers
 			string password = form["password"].ToString().Trim();
 			string hashedPassword = HashPassword.ComputeSha256Hash(password);
             // Lấy user có username và password trùng với form submit
-            User user = db.Users.FirstOrDefault(x => x.UserName.Equals(username) && x.PassWord.Equals(hashedPassword));
+            User user = db.Users.FirstOrDefault(x => x.UserName.Trim().Equals(username) && x.PassWord.Trim().Equals(hashedPassword));
             // Kiểm tra xem user có tồn tại không
             if (user != null)
             {

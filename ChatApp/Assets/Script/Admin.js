@@ -1,6 +1,12 @@
 ﻿$(document).ready(function () {
+    $('#btnClickAdd').click(function () {
+        $('#add-user').find('#userName').val('');
+        $('#add-user').find('#userEmail').val('');
+        $('.input2').removeClass('border-red');
+    });
+
     $('.btn-create-user').on('click', function () {
-        let check = true;
+        var check = true;
         $('.input2').removeClass('border-red');
         $('.input2').each(function () {
             if ($(this).val() === "" || $(this).val().length < 5 || $(this).val().length > 200) {
@@ -9,37 +15,64 @@
                 $(this).tooltip("show");
             }
         });
-        if (!isStudentEmail($("#userEmail").val())) {
-            $('#userEmail[data-toggle="tooltip"]').tooltip("show");
+
+        if (!isStudentEmail($("#userEmail").val().trim())) {
+            $('input[name="Email"]').tooltip("show");
+            $('#userEmail[data-toggle="tooltip"]').addClass('border-red');
             check = false;
         }
+
         if (check) {
-            var dataObj = {
-                Name: $('#add-user').find('#userName').val(),
+            var dataEmail = {
                 Email: $('#add-user').find('#userEmail').val()
             };
-            console.log(dataObj);
-            $('#add-user').find('#userName').val('');
-            $('#add-user').find('#userEmail').val('');
             $.ajax({
                 type: "POST",
-                url: "/Admin/CreateUser",
-                data: JSON.stringify(dataObj),
+                url: "/Admin/CheckEmail",
+                data: JSON.stringify(dataEmail),
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 cache: false,
                 success: function (result) {
-                    $('#myModal').modal('hide');
-                    Swal.fire(
-                        'Thành công!',
-                        'Bạn đã thêm thành viên thành công!',
-                        'success'
-                    );
+                    if (result) {
+                        $('input[name="Email"]').tooltip("show");
+                        check = false;
+                    }
                 }, error: function (message) {
                     alert(message.responseText);
                 }
             });
-        } 
+        }
+
+        setTimeout(function () {
+            if (check) {
+                $('#myModal').modal('hide');
+                Swal.fire(
+                    'Thành công!',
+                    'Bạn đã thêm thành viên thành công!',
+                    'success'
+                );
+                var dataObj = {
+                    Name: $('#add-user').find('#userName').val(),
+                    Email: $('#add-user').find('#userEmail').val()
+                };
+                console.log(dataObj);
+                $('#add-user').find('#userName').val('');
+                $('#add-user').find('#userEmail').val('');
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/CreateUser",
+                    data: JSON.stringify(dataObj),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    cache: false,
+                    success: function (result) {
+                    }, error: function (message) {
+                        alert(message.responseText);
+                    }
+                });
+            } 
+        }, 700);
     });
 
     $('#userName').blur(function () {
@@ -61,7 +94,7 @@
 
     // Kiểm tra email
     function isStudentEmail(e) {
-        var regex = /(^(\d{8}))((@gmail.com)$)/;
+        var regex = /(^[\w.+\-]+@gmail\.com$)/;
         if (regex.test(e)) return true;
         return false;
     }

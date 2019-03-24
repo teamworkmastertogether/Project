@@ -189,6 +189,7 @@ namespace ChatApp.Controllers
 		public bool SaveStudent(string fullname, string email, ChatDbcontext db)
 		{
 			var result = false;
+			Random rd = new Random();
 			try
 			{
 				//save student
@@ -199,6 +200,7 @@ namespace ChatApp.Controllers
 					var user = new User();
 					user.Name = fullname;
 					user.Email = email;
+					user.PassWord = HashPassword.ComputeSha256Hash(rd.Next(1000,9000).ToString());
 					user.DoB = DateTime.Now;
 					string[] emailSplitString = email.Split('@');
 					user.UserName = emailSplitString[0];
@@ -274,23 +276,18 @@ namespace ChatApp.Controllers
 			user.DoB = DateTime.Now;
 			user.Avatar = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg";
 			Random random = new Random();
-			int length = 6;
-			var str = "";
-			for (var i = 0; i < length; i++)
-			{
-				str += ((char)(random.Next(1, 26) + 64)).ToString();
-			}
+			var newpass = random.Next(1000, 9000).ToString();
 
 			string emailAddress = user.Email;
 			string[] emailSplitString = emailAddress.Split('@');
 			user.UserName = emailSplitString[0];
-			user.PassWord = HashPassword.ComputeSha256Hash(str);
+			user.PassWord = HashPassword.ComputeSha256Hash(newpass);
 			db.Users.Add(user);
 			db.SaveChanges();
 
 			string content = "<h1>Thông tin tài khoản là : </h1></br> ";
-			content += "<h1> Email:  " + user.Email + "</h1></br> ";
-			content += "<h1> Mật khẩu: " + str + "</h1></br> ";
+			content += "<h1> Username:  " + user.UserName + "</h1></br> ";
+			content += "<h1> Mật khẩu: " + newpass + "</h1></br> ";
 			GuiEmail("Thông tin tài khoản", emailAddress, "teamworkmastertogether@gmail.com",
 				"teamworkmastertogether@123", content);
 
@@ -302,6 +299,17 @@ namespace ChatApp.Controllers
 			db.ListFriends.Add(friend);
 			db.SaveChanges();
 			return Json(userVM, JsonRequestBehavior.AllowGet);
+		}
+
+		public JsonResult CheckEmail(UserViewModel userVM)
+		{
+			if(db.Users.Any(s => s.Email.Equals(userVM.Email)))
+			{
+				return Json(1, JsonRequestBehavior.AllowGet);
+			}else
+			{
+				return Json(0, JsonRequestBehavior.AllowGet);
+			}
 		}
 
 		public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
@@ -321,6 +329,5 @@ namespace ChatApp.Controllers
 			smtp.EnableSsl = true; //kích hoạt giao tiếp an toàn SSL
 			smtp.Send(mail); //Gửi mail đi
 		}
-
 	}
 }

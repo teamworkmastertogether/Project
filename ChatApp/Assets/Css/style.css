@@ -1,4 +1,19 @@
 /* Minification failed. Returning unminified contents.
+(427,8): run-time error CSS1035: Expected colon, found ';'
+(672,7): run-time error CSS1035: Expected colon, found '.'
+(1203,7): run-time error CSS1035: Expected colon, found '.'
+(1534,7): run-time error CSS1035: Expected colon, found '.'
+(2534,8): run-time error CSS1035: Expected colon, found ';'
+(2780,7): run-time error CSS1035: Expected colon, found '.'
+(3293,7): run-time error CSS1035: Expected colon, found '.'
+(3626,7): run-time error CSS1035: Expected colon, found '.'
+(4386,1): run-time error CSS1019: Unexpected token, found '@import'
+(4386,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
+(4478,17): run-time error CSS1036: Expected expression, found '#'
+(5049,1): run-time error CSS1019: Unexpected token, found '@keyframes'
+(5050,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
+ */
+/* Minification failed. Returning unminified contents.
 (412,8): run-time error CSS1035: Expected colon, found ';'
 (657,7): run-time error CSS1035: Expected colon, found '.'
 (1188,7): run-time error CSS1035: Expected colon, found '.'
@@ -261,7 +276,7 @@ ul.nav.navbar-nav.navbar-left {
 .inviteFriend {
     position: absolute;
     top: 50%;
-    left: 350%;
+    left: 335%;
     width: 70%;
     background-color: #999999eb;
     cursor: pointer;
@@ -2366,7 +2381,8 @@ ul.nav.navbar-nav.navbar-left {
 .inviteFriend {
     position: absolute;
     top: 60%;
-    width: 62%;
+    /* right: 20px; */
+    width: 88%;
     background-color: #ddd;
     cursor: pointer;
     border-radius: 1px;
@@ -2374,6 +2390,7 @@ ul.nav.navbar-nav.navbar-left {
     padding-top: 2px;
     border: 2px solid #00000070;
     box-shadow: 1px 1px 10px;
+    text-align: center;
 }
 
     .inviteFriend:hover {

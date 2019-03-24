@@ -343,3 +343,21 @@ $('.container').on('click', '.img-postsave', function () {
 $('.close-seen-image').click(function () {
     $('.show-image').hide();
 });
+
+$('.inviteFriend span').click(function () {
+    $(this).text("Đã gửi yêu cầu");
+    Id = parseInt($(".MyId").attr("id"));
+    url = "/Home/SendRequestAddFriend?id=" + Id;
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (username) {
+            hub.server.sendRequestAddFriend(username);
+        },
+        error: function (message) {
+            alert(message.responseText);
+        }
+    });
+});

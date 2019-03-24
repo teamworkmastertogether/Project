@@ -23,10 +23,13 @@ namespace ChatApp.Controllers
             if (id == user.Id || id == 0)
             {
                 checkUser = true;
+                ViewBag.checkFriend = true;
             }
             else
             {
                  user = db.Users.FirstOrDefault(us => us.Id == id);
+                 ViewBag.checkFriend = db.ListFriends.First(s => s.UserId == id).MemberOfListFriends
+                                         .Any(s => s.UserId == user.Id);
             }
             ViewBag.checkUser = checkUser;
             ViewBag.Img = user.Avatar;

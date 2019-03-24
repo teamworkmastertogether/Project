@@ -153,6 +153,16 @@ $(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "JSON",
             success: function (res) {
+                var text = 'Đang cập nhật';
+                if (res.PhoneNumber === text) {
+                    res.PhoneNumber = '';
+                }
+                if (res.SchoolName === text) {
+                    res.SchoolName = '';
+                }
+                if (res.Address === text) {
+                    res.Address = '';
+                }
                 $(".edit-user #Name").val(res.Name);
                 $(".edit-user #SchoolName").val(res.SchoolName);
                 var date = res.DoB;

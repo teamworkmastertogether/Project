@@ -268,7 +268,7 @@ namespace ChatApp.Controllers
             var user = db.Users.FirstOrDefault(us => us.Id == id);
             personalDto.PassWord = HashPassword.ComputeSha256Hash(personalDto.PassWord);
             
-            if(string.Compare(personalDto.PassWord,user.PassWord)==0)
+            if(string.Compare(personalDto.PassWord,user.PassWord,true)==0)
             {
                 return Json(new { isvalid=true}, JsonRequestBehavior.AllowGet);
             }
@@ -309,7 +309,6 @@ namespace ChatApp.Controllers
         {
             var user = db.Users.FirstOrDefault(us => us.Id == id);
             user.Name = personalDto.Name;
-            user.PassWord = HashPassword.ComputeSha256Hash(personalDto.NewPassword);
             user.SchoolName = personalDto.SchoolName;
             user.DoB = personalDto.DoB;
             user.Address = personalDto.Address;
@@ -318,8 +317,15 @@ namespace ChatApp.Controllers
             
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
-
-		[HttpPost]
+        [HttpPost]
+        public ActionResult SavePassword(int? id, PersonalDto personalDto)
+        {
+            var user = db.Users.FirstOrDefault(us => us.Id == id);
+            user.PassWord = HashPassword.ComputeSha256Hash(personalDto.NewPassword);
+            db.SaveChanges();
+            return Json("Success", JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
 		public JsonResult GetPassWord(FormCollection form)
 		{
 			// Lấy username và email từ form submit

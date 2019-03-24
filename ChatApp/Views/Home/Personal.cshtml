@@ -133,19 +133,36 @@
                 <div class="form-group">
                     <input type="text" class="form-control" id="PhoneNumber" placeholder="Số điện thoại" />
                 </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="Password" placeholder="Mật khẩu cũ" />
-                </div>
-                <div class="form-group">
-                    <input type="password" class="form-control" id="NewPassword" placeholder="Mật khẩu mới" />
-
-                </div>
                 <input type="button" class="btn btn-primary" value="Cập nhật" id="UpdateUser" />
                 <input type="button" class="btn btn-danger" value="Hủy" id="Huy" />
             </form>
         </div>
         <div class="col-lg-12 col-md-12">
-            <div class="info-user"></div>
+            <div class="info-user">
+
+            </div>
+            <button class="btn btn-primary" id="ChangePass">Thay Đổi Mật Khẩu</button>
+            <div class="ChangePass">
+                <form method="post">
+                    <p id="prePassword" style="display:none;">a</p>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="Password" placeholder="Mật khẩu cũ" />
+                    </div>
+                    <p id="curPassword" style="display:none;">a</p>
+                    <p id="preNewPassword" style="display:none;">a</p>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="NewPassword" placeholder="Mật khẩu mới" />
+                    </div>
+                    <p id="preConfirmPassword" style="display:none;">a</p>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="ConfirmPassword" placeholder="Xác nhận mật khẩu" />
+                    </div>
+                    <p id="curConfirmPassword" style="display:none;">a</p>
+                    <input type="button" class="btn btn-primary" value="Lưu thay đổi" id="ChangePassword" />
+                    <input type="button" class="btn btn-danger" value="Hủy" id="Cancel" />
+                </form>
+
+            </div>
         </div>
     </div>
     <div class="col-lg-4 col-md-4 lef-2">

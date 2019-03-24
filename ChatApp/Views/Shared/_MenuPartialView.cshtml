@@ -6,10 +6,11 @@
             <span class="badge">@ViewBag.SumNoti</span>
         </div>
         <div title="Trang cá nhân" class="icon icon-home">
-            <a href="@ViewBag.UrlProfile" style="color:white"><i class="fa fa-user-circle"></i></a>
+            <a href="@ViewBag.UrlPersonal" style="color:white"><i class="fa fa-user-circle"></i></a>
         </div>
         <div title="Lời mời kết bạn" class="icon icon-friend">
             <i class="fa fa-users"></i>
+            <span class="badge">@ViewBag.SumUserSendRequest</span>
         </div>
     </div>
 
@@ -131,7 +132,7 @@
         </div>
     </div>
 
-    <div id="add-friend_invitation">
+    <div class="list-user-sendRequest-clone" style="display:none;">
         <div class="row invitation_space">
             <div class="invitation-info col-md-12 col-xs-12 col-sm-12">
                 <div class="invitation-info_avatar col-md-4">
@@ -141,57 +142,16 @@
                 <div class="col-md-8 invitation-content" style="margin-left: -10px">
                     <a href="javascript:void(0)" class="invitation-content_username">Nguyễn Tiến Xuân</a>
                     <div class="invitation-button" style="margin-top: 5px">
-                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Chấp nhận</button>
+                        <button class="btn btn-primary add-friend_invitation_btnAdd" id="" style="font-size: 12px">Chấp nhận</button>
                         <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row invitation_space">
-            <div class="invitation-info col-md-12 col-xs-12 col-sm-12">
-                <div class="invitation-info_avatar col-md-4">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="Alternate Text"
-                         style="width:60px;height:60px;border-radius: 50%" />
-                </div>
-                <div class="col-md-8 invitation-content" style="margin-left: -10px">
-                    <a href="javascript:void(0)" class="invitation-content_username">Nguyễn Bình Dương</a>
-                    <div class="invitation-button" style="margin-top: 5px">
-                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Chấp nhận</button>
-                        <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row invitation_space">
-            <div class="invitation-info col-md-12 col-xs-12 col-sm-12">
-                <div class="invitation-info_avatar col-md-4">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="Alternate Text"
-                         style="width:60px;height:60px;border-radius: 50%" />
-                </div>
-                <div class="col-md-8 invitation-content" style="margin-left: -10px">
-                    <a href="javascript:void(0)" class="invitation-content_username">Cao Đức Mạnh</a>
-                    <div class="invitation-button" style="margin-top: 5px">
-                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Chấp nhận</button>
-                        <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row invitation_space">
-            <div class="invitation-info col-md-12 col-xs-12 col-sm-12">
-                <div class="invitation-info_avatar col-md-4">
-                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_03.jpg" alt="Alternate Text"
-                         style="width:60px;height:60px;border-radius: 50%" />
-                </div>
-                <div class="col-md-8 invitation-content" style="margin-left: -10px">
-                    <a href="javascript:void(0)" class="invitation-content_username">Ngô Kiên Tuấn</a>
-                    <div class="invitation-button" style="margin-top: 5px">
-                        <button class="btn btn-primary add-friend_invitation_btnAdd" style="font-size: 12px">Chấp nhận</button>
-                        <button class="btn btn-default add-friend_invitation_btnDelete" style="font-size: 12px">Xóa</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+
+    <div id="add-friend_invitation">
+       
     </div>
     <div class="notifi-transform-clone" style="display:none;">
         <a id="0" class="col-lg-12 col-md-12 show-notify" style="position:relative" href="javascript:void(0)">

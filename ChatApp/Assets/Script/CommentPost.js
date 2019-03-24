@@ -491,7 +491,7 @@ $(document).ready(function () {
     $('.post-space').on('keyup', '.think', function () {
         $(this).height(50);
         $(this).height(this.scrollHeight);
-        $(this).closest('.rig').height(this.scrollHeight + this.next().next().height() + 150);
+        $(this).closest('.rig').height(this.scrollHeight + $(this).next().next().height() + 150);
         $(this).css('overflow', 'auto');
     });
 

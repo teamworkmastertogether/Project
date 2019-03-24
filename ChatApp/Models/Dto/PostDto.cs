@@ -7,7 +7,7 @@ namespace ChatApp.Models.Dto
 {
     public class PostDto
     {
-        public string UrlProfile { get; set; }
+        public string UrlPersonal { get; set; }
         public string Photo { get; set; }
         public string NameOfUser { get; set; }
         public bool CheckLiked { get; set; }

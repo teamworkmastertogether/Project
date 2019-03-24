@@ -15,7 +15,7 @@ namespace ChatApp.Controllers
     {
         ChatDbcontext db = new ChatDbcontext();
 
-        public ActionResult Profile(int? id = 0)
+        public ActionResult Personal(int? id = 0)
         {
             string userName = Session["userName"] as string;
             User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
@@ -23,10 +23,13 @@ namespace ChatApp.Controllers
             if (id == user.Id || id == 0)
             {
                 checkUser = true;
+                ViewBag.checkFriend = true;
             }
             else
             {
                  user = db.Users.FirstOrDefault(us => us.Id == id);
+                 ViewBag.checkFriend = db.ListFriends.First(s => s.UserId == id).MemberOfListFriends
+                                         .Any(s => s.UserId == user.Id);
             }
             ViewBag.checkUser = checkUser;
             ViewBag.Img = user.Avatar;
@@ -61,7 +64,7 @@ namespace ChatApp.Controllers
 
             if (userName != null)
             {
-                return RedirectToAction("Profile");
+                return RedirectToAction("Personal");
             }
             return View();
         }
@@ -75,12 +78,12 @@ namespace ChatApp.Controllers
 			string password = form["password"].ToString().Trim();
 			string hashedPassword = HashPassword.ComputeSha256Hash(password);
             // Lấy user có username và password trùng với form submit
-            User user = db.Users.FirstOrDefault(x => x.UserName.Equals(username) && x.PassWord.Equals(hashedPassword));
+            User user = db.Users.FirstOrDefault(x => x.UserName.Trim().Equals(username) && x.PassWord.Trim().Equals(hashedPassword));
             // Kiểm tra xem user có tồn tại không
             if (user != null)
             {
                 Session["userName"] = user.UserName;
-                return RedirectToAction("Profile");
+                return RedirectToAction("Personal");
             }
             ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không chính xác";
             return View();
@@ -98,8 +101,10 @@ namespace ChatApp.Controllers
         public PartialViewResult _MenuPartialView()
         {
             var userName = Session["userName"] as string;
-            ViewBag.UrlProfile = "/Home/Profile?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            ViewBag.UrlPersonal = "/Home/Personal?id=" + db.Users.FirstOrDefault(s => s.UserName.Equals(userName)).Id.ToString();
             ViewBag.SumNoti = db.Notifications.Where(s => s.User.UserName.Equals(userName) && !s.NotificationState).ToList().Count();
+            ViewBag.SumUserSendRequest = user.ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest == false).ToList().Count();
             return PartialView();
         }
 
@@ -114,7 +119,7 @@ namespace ChatApp.Controllers
                 .Select(s => new InforFriendDto
                 {
                     IdUser = s.UserId,
-                    UrlProfile = "/Home/Profile?id=" + s.UserId,
+                    UrlPersonal = "/Home/Personal?id=" + s.UserId,
                     Avatar = s.User.Avatar,
                     Name = s.User.Name,
                     UserName = s.User.UserName,
@@ -129,7 +134,7 @@ namespace ChatApp.Controllers
                 .Select(s => new InforFriendDto
                 {
                     IdUser = s.UserId,
-                    UrlProfile = "/Home/Profile?id=" + s.UserId,
+                    UrlPersonal = "/Home/Personal?id=" + s.UserId,
                     Avatar = s.User.Avatar,
                     Name = s.User.Name,
                     UserName = s.User.UserName,
@@ -140,26 +145,96 @@ namespace ChatApp.Controllers
             return Json(listUser, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
         public JsonResult RemoveFriend(int? id)
         {
             string userName = Session["userName"] as string;
             User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
             MemberOfListFriend mem = user
             .ListFriends.First().MemberOfListFriends.FirstOrDefault(s => s.UserId == id);
+            MemberOfListFriend mem2 = db.Users.FirstOrDefault(us => us.Id == id)
+            .ListFriends.First().MemberOfListFriends.FirstOrDefault(s => s.UserId == user.Id);
+            Contact contact = db.Contacts.FirstOrDefault(s => (s.FromUserId == id && s.ToUserId == user.Id) ||
+            (s.FromUserId == user.Id && s.ToUserId == id));
+
+            db.Contacts.Remove(contact);
             db.MemberOfListFriends.Remove(mem);
+            db.MemberOfListFriends.Remove(mem2);
             db.SaveChanges();
             return Json(1, JsonRequestBehavior.AllowGet);
         }
-        public List<InforFriendDto> GetFriendSuggest()
+
+        [HttpPost]
+        public JsonResult AcceptRequest(int? id)
+        {
+            var userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(s => s.UserName.Equals(userName));
+            MemberOfListFriend mem = user.ListFriends.First().MemberOfListFriends.FirstOrDefault(s => s.UserId == id);
+            mem.AccessRequest = true;
+            ListFriend list = db.ListFriends.FirstOrDefault(s => s.UserId == id);
+            MemberOfListFriend mem2 = new MemberOfListFriend
+            {
+                UserId = user.Id,
+                AccessRequest = true,
+                ListFriendId = list.Id,
+                TimeLastChat = DateTime.Now,
+                SeenMessage = true
+            };
+            Contact contact = new Contact
+            {
+                FromUserId = user.Id,
+                ToUserId = id
+            };
+            db.Contacts.Add(contact);
+            db.MemberOfListFriends.Add(mem2);
+            db.SaveChanges();
+            return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetFriendSuggest()
         {
             var userName = Session["userName"] as string;
             List<string> listUserName1 = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
             .ListFriends.First().MemberOfListFriends.Select(s => s.User.UserName).ToList();
             Random rnd = new Random();
+            int from = rnd.Next(1, 30);
             List<InforFriendDto> listUser = db.Users.Where(s => !listUserName1.Contains(s.UserName) && !s.UserName.Equals(userName))
-           .Select(s => new InforFriendDto { UserName = s.UserName, Avatar = s.Avatar, Name = s.Name }).Take(4).ToList();
-            return listUser;
+           .Select(s => new InforFriendDto
+           {
+               IdUser = s.Id,
+               UserName = s.UserName,
+               Avatar = s.Avatar,
+               Name = s.Name,
+               UrlPersonal = "/Home/Personal?id=" + s.Id
+           }).OrderBy(s => s.Name).Skip(from).Take(4).ToList();
+           return Json(listUser, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult SendRequestAddFriend(int? id)
+        {
+            var userName = Session["userName"] as string;
+            var user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            
+            ListFriend listFriend = db.ListFriends.FirstOrDefault(s => s.UserId == id);
+            bool check = listFriend.MemberOfListFriends.Any(s => s.UserId == user.Id);
+            if (!check)
+            {
+                MemberOfListFriend mem = new MemberOfListFriend
+                {
+                    AccessRequest = false,
+                    SeenMessage = true,
+                    TimeLastChat = DateTime.Now,
+                    ListFriendId = listFriend.Id,
+                    UserId = user.Id
+                };
+                db.MemberOfListFriends.Add(mem);
+                db.SaveChanges();
+                return Json(listFriend.User.UserName, JsonRequestBehavior.AllowGet);
+            }
+            return Json("No value", JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult GetMessage(UserDto userDto)
         {

@@ -144,7 +144,7 @@ function GetListPostSave() {
                 $(".post-saved-clone .name-postStore").text(array[i].NameUser);
                 $(".post-saved-clone .group-joined").text(array[i].SubjectName);
                 $(".post-saved-clone .info-userpost p").text(array[i].TimePost);
-                $(".post-saved-clone .contentPostStored p").text(array[i].TextContent);
+                $(".post-saved-clone .contentPostStored p").html(array[i].TextContent);
                 $(".post-saved-clone .info-userpost a").attr('href', array[i].UrlPost);
                 $(".post-saved-clone .post-store").attr('id', array[i].IdPostSave);
                 $(".post-saved-clone .img-postsave").attr('src', array[i].Photo);
@@ -501,7 +501,7 @@ function ValidatePhone(phone) {
 
 $("#have-seen").click(function () {
     $("#notifi a").addClass("notifi-seen");
-    $(".badge").text(0).hide();
+    $(".icon-notify .badge").text(0).hide();
     $.ajax({
         type: "POST",
         url: "/Notifi/SaveSeenAllNotifi",

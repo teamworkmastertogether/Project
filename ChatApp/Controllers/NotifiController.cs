@@ -32,6 +32,23 @@ namespace ChatApp.Controllers
         }
 
         [HttpPost]
+        public JsonResult GetListUserSendRequest()
+        {
+            var userName = Session["userName"] as string;
+            User user = db.Users.FirstOrDefault(us => us.UserName.Equals(userName));
+            List<InforFriendDto> inforFriendDto = user.ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest == false)
+                .Select(s => new InforFriendDto
+                {
+                    IdUser = s.UserId,
+                    UserName = s.User.UserName,
+                    Avatar = s.User.Avatar,
+                    Name = s.User.Name,
+                    UrlPersonal = "/Home/Personal?id=" + s.UserId
+                }).ToList();
+            return Json(inforFriendDto, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
         public JsonResult SaveSeenNotifi(int? Id)
         {
             int CheckSeen = 0;

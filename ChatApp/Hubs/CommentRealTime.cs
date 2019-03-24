@@ -93,5 +93,11 @@ namespace ChatApp.Hubs
                 Clients.Clients(listId).UpdateNotiRealtime();
             }
         }
+
+        public void SendRequestAddFriend(string username)
+        {
+            List<string> listId = GetListConnectIdByUserName("No value", username);
+            Clients.Clients(listId).UpdateNotiRequestAddFriend();
+        }
     }
 }

@@ -1,15 +1,16 @@
 ﻿
 $(function () {
+
     hub.client.createPost = function (GroupName, postDto, notiDto) {
         name = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
         if (postDto.UserName !== MyUserName) {
-            countNoti = parseInt($(".badge").text()) + 1;
-            $(".badge").text(countNoti).show();
+            countNoti = parseInt($(".icon-notify .badge").text()) + 1;
+            $(".icon-notify .badge").text(countNoti).show();
             RenderNotifiTransform(notiDto);
         }
         if (name === GroupName) {
             $(".post-clone .avatar-post").find('img').attr('src', postDto.avatar);
-            $(".post-clone").find('.name-user a').text(postDto.NameOfUser).attr("href",postDto.UrlProfile);
+            $(".post-clone").find('.name-user a').text(postDto.NameOfUser).attr("href",postDto.UrlPersonal);
             $(".post-clone").find('.time-post').text(postDto.TimePost);
             $(".post-clone").find('.content-post').eq(1).find('p').html(postDto.PostText);
             $(".post-clone").find('.countLike_post').text(postDto.LikeNumber);
@@ -32,7 +33,7 @@ $(function () {
         Post = $(".post[id=" + postId + "]");
         if (name === groupName) {
             $('.post-clone .comment-level .img-comment img').attr('src', commentDto.Avatar);
-            $('.post-clone .name-comment').text(commentDto.NameOfUser).attr("href", commentDto.UrlProfile);
+            $('.post-clone .name-comment').text(commentDto.NameOfUser).attr("href", commentDto.UrlPersonal);
             $('.post-clone .name-comment').next().text(commentDto.Text);
             $('.post-clone .comment-level').attr('id', commentDto.CommentId);
             var demo = $('.post-clone .comment-level').parent().html();
@@ -45,9 +46,14 @@ $(function () {
     };
 
     hub.client.updateNotiRealtime = function (notiDto) {
-            countNoti = parseInt($(".badge").text()) + 1;
-        $(".badge").text(countNoti).show();
+        countNoti = parseInt($(".icon-notify .badge").text()) + 1;
+        $(".icon-notify .badge").text(countNoti).show();
         RenderNotifiTransform(notiDto);
+    };
+
+    hub.client.updateNotiRequestAddFriend = function () {
+        countNoti = parseInt($(".icon-friend .badge").text()) + 1;
+        $(".icon-friend .badge").text(countNoti).show();
     };
 
     hub.client.createSubComment = function (groupName, commentId, subCommentDto) {
@@ -55,7 +61,7 @@ $(function () {
         Comment = $(".comment-level[id=" + commentId + "]");
         if (name === groupName) {
             $('.post-clone .comment-level2 img:eq(0)').attr('src', subCommentDto.Avatar);
-            $('.post-clone .comment-level2').find('.name-reply').eq(0).text(subCommentDto.NameOfUser).attr("href", subCommentDto.UrlProfile);;
+            $('.post-clone .comment-level2').find('.name-reply').eq(0).text(subCommentDto.NameOfUser).attr("href", subCommentDto.UrlPersonal);;
             $('.post-clone .comment-level2').find('.name-reply').eq(0).next().text(subCommentDto.Text);
             $('.post-clone .comment-level2').attr('id', subCommentDto.SubCommentId);
             var demo2 = $('.post-clone .comment-level2').parent().html();
@@ -156,7 +162,12 @@ $(function () {
             }
         }
     };
+
+
 });
+
+
+
 
 function RenderNotifiTransform(notiDto) {
     href = "/Subject/GetSubject?id=" + notiDto.SubjectId + "#" + notiDto.PostId;

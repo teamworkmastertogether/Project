@@ -13,32 +13,33 @@
             $('#userEmail[data-toggle="tooltip"]').tooltip("show");
             check = false;
         }
-
-        var dataObj = {
-            Name: $('#add-user').find('#userName').val(),
-            Email: $('#add-user').find('#userEmail').val()
-        };
-        console.log(dataObj);
-        $('#add-user').find('#userName').val('');
-        $('#add-user').find('#userEmail').val('');
-        $.ajax({
-            type: "POST",
-            url: "/Admin/CreateUser",
-            data: JSON.stringify(dataObj),
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            cache: false,
-            success: function (result) {
-                $('#myModal').modal('hide');
-                Swal.fire(
-                    'Thành công!',
-                    'Bạn đã thêm thành viên thành công!',
-                    'success'
-                );
-            }, error: function (message) {
-                alert(message.responseText);
-            }
-        });
+        if (check) {
+            var dataObj = {
+                Name: $('#add-user').find('#userName').val(),
+                Email: $('#add-user').find('#userEmail').val()
+            };
+            console.log(dataObj);
+            $('#add-user').find('#userName').val('');
+            $('#add-user').find('#userEmail').val('');
+            $.ajax({
+                type: "POST",
+                url: "/Admin/CreateUser",
+                data: JSON.stringify(dataObj),
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                cache: false,
+                success: function (result) {
+                    $('#myModal').modal('hide');
+                    Swal.fire(
+                        'Thành công!',
+                        'Bạn đã thêm thành viên thành công!',
+                        'success'
+                    );
+                }, error: function (message) {
+                    alert(message.responseText);
+                }
+            });
+        } 
     });
 
     $('#userName').blur(function () {
@@ -64,4 +65,12 @@
         if (regex.test(e)) return true;
         return false;
     }
+
+    $('.input2').blur(function () {
+        if ($(this).val() !== "") {
+            $(this).removeClass('border-red');
+        } else {
+            $(this).addClass('border-red');
+        }
+    });
 });

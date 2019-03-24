@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 
@@ -40,14 +41,14 @@ namespace ChatApp.Controllers
 			string username = form["username"].ToString().Trim();
 			string password = form["password"].ToString().Trim();
 			string hashedPassword = HashPassword.ComputeSha256Hash(password);
-
 			Admin admin = db.Admins.FirstOrDefault(x => x.Username.Equals("admin") && x.Password.Equals("91b4d142823f7d20c5f08df69122de43f35f057a988d9619f6d3138485c9a203"));
-			// Kiểm tra xem user có tồn tại không
-			if (admin != null)
+
+			if(username == admin.Username && hashedPassword == admin.Password)
 			{
 				Session["username"] = admin.Username;
 				return RedirectToAction("Index");
 			}
+			// Kiểm tra xem user có tồn tại không
 			ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không chính xác";
 			return View();
 		}
@@ -101,6 +102,7 @@ namespace ChatApp.Controllers
 				First().MemberOfListFriends.Where(x => x.AccessRequest).OrderByDescending(s => s.TimeLastChat)
 				.Select(s => new FriendInfoViewModel { Id = s.User.Id, UserName = s.User.UserName, Name = s.User.Name, Email = s.User.Email, Avatar = s.User.Avatar })
 				.ToList();
+			ViewBag.ListFriend = listFriends.Count();
 			ViewBag.Name = member.Name;
 			return View(listFriends);
 		}
@@ -119,6 +121,7 @@ namespace ChatApp.Controllers
 			}
 			var listPosts = db.Posts.Where(x => x.User.Id == id).ToList();
 			var listPostVms = AutoMapper.Mapper.Map<IEnumerable<PostViewModel>>(listPosts);
+			ViewBag.Count = listPostVms.Count();
 			ViewBag.Name = user.Name;
 			return View(listPostVms);
 		}
@@ -197,9 +200,19 @@ namespace ChatApp.Controllers
 					user.Name = fullname;
 					user.Email = email;
 					user.DoB = DateTime.Now;
+					string[] emailSplitString = email.Split('@');
+					user.UserName = emailSplitString[0];
 					db.Users.Add(user);
 					db.SaveChanges();
 
+					int userId = db.Users.Max(x => x.Id);
+					ListFriend friend = new ListFriend()
+					{
+						UserId = userId
+					};
+
+					db.ListFriends.Add(friend);
+					db.SaveChanges();
 					result = true;
 				}
 			}
@@ -260,9 +273,54 @@ namespace ChatApp.Controllers
 			User user = AutoMapper.Mapper.Map<User>(userVM);
 			user.DoB = DateTime.Now;
 			user.Avatar = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg";
+			Random random = new Random();
+			int length = 6;
+			var str = "";
+			for (var i = 0; i < length; i++)
+			{
+				str += ((char)(random.Next(1, 26) + 64)).ToString();
+			}
+
+			string emailAddress = user.Email;
+			string[] emailSplitString = emailAddress.Split('@');
+			user.UserName = emailSplitString[0];
+			user.PassWord = HashPassword.ComputeSha256Hash(str);
 			db.Users.Add(user);
+			db.SaveChanges();
+
+			string content = "<h1>Thông tin tài khoản là : </h1></br> ";
+			content += "<h1> Email:  " + user.Email + "</h1></br> ";
+			content += "<h1> Mật khẩu: " + str + "</h1></br> ";
+			GuiEmail("Thông tin tài khoản", emailAddress, "teamworkmastertogether@gmail.com",
+				"teamworkmastertogether@123", content);
+
+			int userId = db.Users.Max(x => x.Id);
+			ListFriend friend = new ListFriend()
+			{
+				UserId = userId
+			};
+			db.ListFriends.Add(friend);
 			db.SaveChanges();
 			return Json(userVM, JsonRequestBehavior.AllowGet);
 		}
+
+		public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
+		{
+			// goi email
+			MailMessage mail = new MailMessage();
+			mail.To.Add(ToEmail); // Địa chỉ nhận
+			mail.From = new MailAddress(ToEmail); // Địa chửi gửi
+			mail.Subject = Title; // tiêu đề gửi
+			mail.Body = Content; // Nội dung
+			mail.IsBodyHtml = true;
+			SmtpClient smtp = new SmtpClient();
+			smtp.Host = "smtp.gmail.com"; // host gửi của Gmail
+			smtp.Port = 587; //port của Gmail
+			smtp.UseDefaultCredentials = false;
+			smtp.Credentials = new NetworkCredential(FromEmail, PassWord);//Tài khoản password người gửi
+			smtp.EnableSsl = true; //kích hoạt giao tiếp an toàn SSL
+			smtp.Send(mail); //Gửi mail đi
+		}
+
 	}
 }

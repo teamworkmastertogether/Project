@@ -3,7 +3,7 @@ namespace ChatApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class aaa : DbMigration
+    public partial class UpdateDatabase : DbMigration
     {
         public override void Up()
         {

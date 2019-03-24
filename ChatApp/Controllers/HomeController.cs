@@ -194,7 +194,7 @@ namespace ChatApp.Controllers
             List<string> listUserName1 = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
             .ListFriends.First().MemberOfListFriends.Select(s => s.User.UserName).ToList();
             Random rnd = new Random();
-            int from = rnd.Next(1, 5);
+            int from = rnd.Next(1, 30);
             List<InforFriendDto> listUser = db.Users.Where(s => !listUserName1.Contains(s.UserName) && !s.UserName.Equals(userName))
            .Select(s => new InforFriendDto
            {
@@ -203,7 +203,7 @@ namespace ChatApp.Controllers
                Avatar = s.Avatar,
                Name = s.Name,
                UrlPersonal = "/Home/Personal?id=" + s.Id
-           }).OrderBy(s => s.Name).Skip(from).Take(5).ToList();
+           }).OrderBy(s => s.Name).Skip(from).Take(4).ToList();
            return Json(listUser, JsonRequestBehavior.AllowGet);
         }
 

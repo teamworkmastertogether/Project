@@ -3,12 +3,20 @@ var checkAvarta = 0;
 var count = 1;
 $(function () {
 
-    countNoti = parseInt($(".badge").text());
+    countNoti = parseInt($(".icon-notify .badge").text());
     if (countNoti) {
-        $(".badge").show();
+        $(".icon-notify .badge").show();
     } else {
-        $(".badge").hide();
+        $(".icon-notify .badge").hide();
     }
+
+    countNoti2 = parseInt($(".icon-friend .badge").text());
+    if (countNoti2) {
+        $(".icon-friend .badge").show();
+    } else {
+        $(".icon-friend .badge").hide();
+    }
+
     notify = false;
     $('.icon-notify').off().click(function () {
         $.ajax({
@@ -55,11 +63,11 @@ $(function () {
             dataType: "json",
             success: function (result) {
                 if (result) {
-                    countNoti = parseInt($(".badge").text()) - 1;
+                    countNoti = parseInt($(".icon-notify .badge").text()) - 1;
                     if (countNoti) {
-                        $(".badge").text(countNoti).show();
+                        $(".icon-notify .badge").text(countNoti).show();
                     } else {
-                        $(".badge").text(countNoti).hide();
+                        $(".icon-notify .badge").text(countNoti).hide();
                     }
                 }
                 $('#notifi').hide();
@@ -68,12 +76,51 @@ $(function () {
                 alert(message.responseText);
             }
         });
-
+        
     });
 
    
-    $('body').on('click',' .icon-friend ', function (e) {
+    $('body').on('click', ' .icon-friend ', function (e) {
+        $.ajax({
+            type: "POST",
+            url: "/Notifi/GetListUserSendRequest",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (array) {
+                $("#add-friend_invitation").html("");
+                for (var i = 0; i < array.length; i++) {
+                    $(".list-user-sendRequest-clone img").attr("src", array[i].Avatar);
+                    $(".list-user-sendRequest-clone .invitation-content_username").text(array[i].Name);
+                    $(".list-user-sendRequest-clone .invitation-content_username").attr("href", array[i].UrlPersonal);
+                    $(".list-user-sendRequest-clone .add-friend_invitation_btnAdd").attr("id", array[i].IdUser);
+                    itemClone = $(".list-user-sendRequest-clone").html();
+                    $("#add-friend_invitation").append(itemClone);
+                }
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
+
         $('#add-friend_invitation').toggle();
+    });
+
+    $('#add-friend_invitation').on("click", ".add-friend_invitation_btnAdd", function () {
+        $(this).closest(".invitation_space").remove();
+        IdUser = parseInt($(this).attr("id"));
+        url = "/Home/AcceptRequest?id=" + IdUser;
+        $.ajax({
+            type: "POST",
+            url: url ,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (array) {
+               
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
     });
 
     $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-friend ', function (e) {
@@ -227,8 +274,8 @@ $("#banbe").click(function () {
             for (var i = 0; i < array.length; i++) {
                 $(".list-friend-clone img").attr("src", array[i].Avatar);
                 $(".list-friend-clone .nameFriend p").text(array[i].Name);
-                $(".list-friend-clone .nameFriend a").attr("href", array[i].UrlProfile);
-                $(".list-friend-clone .dropdown-content a").eq(0).attr("href", array[i].UrlProfile);
+                $(".list-friend-clone .nameFriend a").attr("href", array[i].UrlPersonal);
+                $(".list-friend-clone .dropdown-content a").eq(0).attr("href", array[i].UrlPersonal);
                 $(".list-friend-clone .removeFriend").attr("id", array[i].IdUser);
                 itemClone =  $(".list-friend-clone").html();
                 $(".lef-2").append(itemClone);
@@ -285,14 +332,6 @@ $("#Huy").click(function () {
 $('#have-seen').on('click', function () {
     $('#have-seen').css('text-decoration', 'none');
 });
-
-$('#banbe').click(function () {
-    $(".show-list-notify").html("");
-    item = $(".show-notify").clone(true).addClass('transform');
-    $(".show-list-notify").html(item);
-
-});
-
 $('.container').on('click', '.img-postsave', function () {
     $('.show-image img').attr('src', $(this).attr('src'));
     $('.show-image').show();
@@ -303,4 +342,22 @@ $('.container').on('click', '.img-postsave', function () {
 
 $('.close-seen-image').click(function () {
     $('.show-image').hide();
+});
+
+$('.inviteFriend span').click(function () {
+    $(this).text("Đã gửi yêu cầu");
+    Id = parseInt($(".MyId").attr("id"));
+    url = "/Home/SendRequestAddFriend?id=" + Id;
+    $.ajax({
+        type: "POST",
+        url: url,
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (username) {
+            hub.server.sendRequestAddFriend(username);
+        },
+        error: function (message) {
+            alert(message.responseText);
+        }
+    });
 });

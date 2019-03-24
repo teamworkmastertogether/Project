@@ -204,9 +204,9 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Migrations\201903231257289_UpdateDatabase.cs" />
-    <Compile Include="Migrations\201903231257289_UpdateDatabase.Designer.cs">
-      <DependentUpon>201903231257289_UpdateDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201903231759511_CreateDB.cs" />
+    <Compile Include="Migrations\201903231759511_CreateDB.Designer.cs">
+      <DependentUpon>201903231759511_CreateDB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\LikeDto.cs" />
@@ -262,12 +262,16 @@
     <Content Include="Assets\Plugin\jquery-3.3.1.min.js" />
     <Content Include="Assets\Plugin\jquery.shorten.1.0.js" />
     <Content Include="Assets\Plugin\jquery.signalR-2.2.2.min.js" />
+    <Content Include="Assets\Plugin\list.min.js" />
+    <Content Include="Assets\Plugin\sweetalert2.min.css" />
+    <Content Include="Assets\Plugin\sweetalert2.min.js" />
     <Content Include="Assets\Script\Admin.js" />
     <Content Include="Assets\Script\CommentPost.js" />
     <Content Include="Assets\Script\CommentRealTime.js" />
     <Content Include="Assets\Script\Index.js" />
     <Content Include="Assets\Script\Login.js" />
     <Content Include="Assets\Script\MessengerRealTime.js" />
+    <Content Include="Assets\Script\Subject.js" />
     <Content Include="Content\AdminLTE\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css" />
     <Content Include="Content\AdminLTE\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css" />
     <Content Include="Content\AdminLTE\bower_components\bootstrap-colorpicker\dist\img\bootstrap-colorpicker\alpha-horizontal.png" />
@@ -6753,7 +6757,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Profile.cshtml" />
+    <Content Include="Views\Home\Personal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -7289,8 +7293,8 @@
     <Content Include="Views\Admin\GetPostsByUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903231257289_UpdateDatabase.resx">
-      <DependentUpon>201903231257289_UpdateDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903231759511_CreateDB.resx">
+      <DependentUpon>201903231759511_CreateDB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -165,7 +165,7 @@
                                 <div class="infor col-md-11">
                                     <div class="row">
                                         <div class="name-user col-md-9">
-                                            <a href="@item.UrlProfile" class="username_post">@item.NameOfUser</a>
+                                            <a href="@item.UrlPersonal" class="username_post">@item.NameOfUser</a>
                                             <div class="time-post">@item.TimePost</div>
                                         </div>
                                         <div class="option-seting col-md-2">
@@ -239,7 +239,7 @@
 
                                             <div class="comment-content">
                                                 <div class="comment-content_wrapper">
-                                                    <a href="@item2.UrlProfile" class="name-comment">@item2.NameOfUser</a>
+                                                    <a href="@item2.UrlPersonal" class="name-comment">@item2.NameOfUser</a>
                                                     <span>
                                                         @item2.Text
                                                     </span>
@@ -294,7 +294,7 @@
                                                         </div>
                                                         <div class="reply-content">
                                                             <div class="reply-content-wrapper">
-                                                                <a href="@item3.UrlProfile" class="name-reply"> @item3.NameOfUser </a>
+                                                                <a href="@item3.UrlPersonal" class="name-reply"> @item3.NameOfUser </a>
                                                                 <span>
                                                                     @item3.Text
                                                                 </span>
@@ -669,7 +669,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-3" style="position:sticky;top:0;overflow-x:auto">
+
+        <div class="friend-suggest-clone" style="display:none;">
             <div class="content-listFriendSuggest">
                 <div class="row suggest-friend">
                     <div class="col-sm-12">
@@ -677,46 +678,8 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="row infor">
-                            <h5>Nguyễn Bình Dương</h5>
-                            <div class="btn btn-primary add-friend">
-                                Kết bạn
-                            </div>
-                            @*<input type="hidden" id="@item.UserName" value="@item.UserName" />*@
-                            <div class="btn btn-danger delete-suggest">
-                                Xóa
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="content-listFriendSuggest">
-                <div class="row suggest-friend">
-                    <div class="col-sm-12">
-                        <img class="img-responvsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="row infor">
-                            <h5>Nguyễn Bình Dương</h5>
-                            <div class="btn btn-primary add-friend">
-                                Kết bạn
-                            </div>
-                            @*<input type="hidden" id="@item.UserName" value="@item.UserName" />*@
-                            <div class="btn btn-danger delete-suggest">
-                                Xóa
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="content-listFriendSuggest">
-                <div class="row suggest-friend">
-                    <div class="col-sm-12">
-                        <img class="img-responvsive" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="Alternate Text" />
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="row infor">
-                            <h5>Nguyễn Bình Dương</h5>
-                            <div class="btn btn-primary add-friend">
+                            <a href="#"><h5>Nguyễn Bình Dương</h5></a>
+                            <div class="btn btn-primary add-friend" id="">
                                 Kết bạn
                             </div>
                             <div class="btn btn-danger delete-suggest">
@@ -726,6 +689,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="col-md-3 list-friend-sugggest" style="position:sticky;top:0;overflow-x:auto">
+
         </div>
     </div>
 
@@ -749,4 +716,4 @@
     @section Scripts
 {
         @Scripts.Render("~/comment/js")
-    }
+}

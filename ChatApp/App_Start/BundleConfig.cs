@@ -10,7 +10,8 @@ namespace ChatApp
         {
 
             bundles.Add(new ScriptBundle("~/comment/js").Include(
-                     "~/Assets/Script/CommentPost.js"
+                     "~/Assets/Script/CommentPost.js",
+                     "~/Assets/Script/Subject.js"
                      ));
             bundles.Add(new ScriptBundle("~/messenger/js").Include(
                      "~/Assets/Script/MessengerRealTime.js",

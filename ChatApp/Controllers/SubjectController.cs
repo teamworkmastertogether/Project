@@ -22,13 +22,13 @@ namespace ChatApp.Controllers
 
             if (sub == null)
             {
-                return RedirectToAction("Profile");
+                return RedirectToAction("Personal");
             }
             List<PostDto> listPostDto = db.Posts.Where(s => s.SubjectId == sub.Id)
                 .Select(s => new PostDto
                 {
                     Photo = s.Photo,
-                    UrlProfile = "/Home/Profile?id=" + s.UserId.ToString(),
+                    UrlPersonal = "/Home/Personal?id=" + s.UserId.ToString(),
                     CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.PostId == s.Id),
                     UserName = user.UserName,
                     Myavatar = user.Avatar,
@@ -41,7 +41,7 @@ namespace ChatApp.Controllers
                     listComment = db.Comments.Where(k => k.PostId == s.Id)
                     .Select(k => new CommentDto
                     {
-                        UrlProfile = "/Home/Profile?id=" + k.UserId.ToString(),
+                        UrlPersonal = "/Home/Personal?id=" + k.UserId.ToString(),
                         CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.CommentId == k.Id),
                         LikeNumber = db.Likes.Where(p => p.CommentId == k.Id).ToList().Count(),
                         NameOfUser = k.User.Name,
@@ -51,7 +51,7 @@ namespace ChatApp.Controllers
                         listSubComment = db.SubComments.Where(p => p.CommentId == k.Id)
                         .Select(p => new SubCommentDto
                         {
-                            UrlProfile = "/Home/Profile?id=" + p.UserId.ToString(),
+                            UrlPersonal = "/Home/Personal?id=" + p.UserId.ToString(),
                             CheckLiked = db.Likes.Any(a => a.UserId == user.Id && a.SubCommentId == p.Id),
                             LikeNumber = db.Likes.Where(h => h.SubCommentId == p.Id).ToList().Count(),
                             NameOfUser = p.User.Name,
@@ -87,7 +87,7 @@ namespace ChatApp.Controllers
             PostDto result = new PostDto
             {
                 Photo = postDto.Photo,
-                UrlProfile = "/Home/Profile?id=" + user.Id.ToString(),
+                UrlPersonal = "/Home/Personal?id=" + user.Id.ToString(),
                 UserName = userName,
                 TimePost = postDto.TimePost,
                 LikeNumber = postDto.LikeNumber,
@@ -145,7 +145,7 @@ namespace ChatApp.Controllers
             CommentDto result = new CommentDto
             {
                 UserNameComment = userName,
-                UrlProfile = "/Home/Profile?id=" + user.Id.ToString(),
+                UrlPersonal = "/Home/Personal?id=" + user.Id.ToString(),
                 UserName = post.User.UserName,
                 LikeNumber = 0,
                 NameOfUser = user.Name,
@@ -198,7 +198,7 @@ namespace ChatApp.Controllers
             SubCommentDto result = new SubCommentDto
             {
                 UserNameComment = userName,
-                UrlProfile = "/Home/Profile?id=" + user.Id.ToString(),
+                UrlPersonal = "/Home/Personal?id=" + user.Id.ToString(),
                 UserName = comment.User.UserName,
                 LikeNumber = 0,
                 NameOfUser = user.Name,

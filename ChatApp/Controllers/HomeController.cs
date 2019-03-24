@@ -268,7 +268,7 @@ namespace ChatApp.Controllers
             var user = db.Users.FirstOrDefault(us => us.Id == id);
             personalDto.PassWord = HashPassword.ComputeSha256Hash(personalDto.PassWord);
             
-            if(string.Compare(personalDto.PassWord,user.PassWord)==0)
+            if(string.Compare(personalDto.PassWord,user.PassWord,true)==0)
             {
                 return Json(new { isvalid=true}, JsonRequestBehavior.AllowGet);
             }

@@ -538,3 +538,11 @@ $("#have-seen").click(function () {
 
     });
 });
+$("#txtkeyword").keypess(function (e) {
+    if (e.which === 13) {
+        $(this).blur();
+        $("#submitTextKeyword").focus().click(function () {
+            alert($("#txtkeyword").val());
+        });
+    }
+});

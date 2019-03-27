@@ -78,13 +78,18 @@ namespace ChatApp.Controllers
 			string password = form["password"].ToString().Trim();
 			string hashedPassword = HashPassword.ComputeSha256Hash(password);
             // Lấy user có username và password trùng với form submit
-            User user = db.Users.FirstOrDefault(x => x.UserName.Trim().Equals(username) && x.PassWord.Trim().Equals(hashedPassword));
-            // Kiểm tra xem user có tồn tại không
-            if (user != null)
-            {
-                Session["userName"] = user.UserName;
-                return RedirectToAction("Personal");
-            }
+            User user = db.Users.FirstOrDefault(x => x.UserName.Trim().Equals(username) && x.PassWord.Trim().Equals(hashedPassword) && x.IsActive == true);
+			// Kiểm tra xem user có tồn tại không
+			if (user != null)
+			{
+				if (user.IsActive == false)
+				{
+					ViewBag.ThongBao = "Tài khoản của bạn đã bị khóa";
+					return View();
+				}
+				Session["userName"] = user.UserName;
+				return RedirectToAction("Personal");
+			}
             ViewBag.ThongBao = "Tên đăng nhập hoặc mật khẩu không chính xác";
             return View();
         }

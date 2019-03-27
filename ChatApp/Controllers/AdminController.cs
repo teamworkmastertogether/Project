@@ -167,8 +167,8 @@ namespace ChatApp.Controllers
 
 					if (data != null)
 					{
-						var isImported = SaveStudent(Name.ToString()
-							, Email.ToString(), db);
+						var isImported = SaveStudent(Name.ToString().Trim()
+							, Email.ToString().Trim(), db);
 						if (isImported)
 						{
 							count++;
@@ -198,9 +198,9 @@ namespace ChatApp.Controllers
 				if (db.Users.Where(x => x.Email.Equals(email)).Count() == 0)
 				{
 					var user = new User();
-					user.Name = fullname;
-					user.Email = email;
-					user.PassWord = HashPassword.ComputeSha256Hash(rd.Next(1000,9000).ToString());
+					user.Name = fullname.Trim();
+					user.Email = email.Trim();
+					user.PassWord = HashPassword.ComputeSha256Hash(rd.Next(1000,9000).ToString().Trim());
 					user.DoB = DateTime.Now;
 					string[] emailSplitString = email.Split('@');
 					user.UserName = emailSplitString[0];
@@ -328,6 +328,24 @@ namespace ChatApp.Controllers
 			smtp.Credentials = new NetworkCredential(FromEmail, PassWord);//Tài khoản password người gửi
 			smtp.EnableSsl = true; //kích hoạt giao tiếp an toàn SSL
 			smtp.Send(mail); //Gửi mail đi
+		}
+
+		[HttpPost]
+		public JsonResult LockUser (int? id)
+		{
+			User user = db.Users.FirstOrDefault(x => x.Id == id);
+
+			if (user.IsActive == true)
+			{
+				user.IsActive = false;
+				db.SaveChanges();
+				return Json(1, JsonRequestBehavior.AllowGet);
+			}else
+			{
+				user.IsActive = true;
+				db.SaveChanges();
+				return Json(0, JsonRequestBehavior.AllowGet);
+			}
 		}
 	}
 }

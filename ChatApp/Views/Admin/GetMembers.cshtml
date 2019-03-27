@@ -74,9 +74,9 @@
     <table class="table table-striped table-hover" id="table-student">
         <thead>
             <tr>
-                <th>Số thứ tự</th>
+                <th>STT</th>
                 <th>
-                    Tên thành viên
+                    Họ tên
                 </th>
                 <th>
                     Avatar
@@ -115,7 +115,7 @@
                         <a href="/Admin/GetPostsByUser/@item.Id">
                             <button class="btn btn-primary">Các bài đã đăng</button>
                         </a>
-                        <a href="#"><button class="btn btn-danger">Khóa</button></a>
+                        <a href="javascript:void(0)"><button class="btn btn-danger btn-disable-user" id="@item.Id">Khóa</button></a>
                     </td>
                 </tr>
             }

@@ -44,6 +44,8 @@
     <script>
         $(document).ready(function () {
             $('.table').DataTable();
+            var table = $('.table');
+            table.columns.adjust().draw();
         });
     </script>
 </body>

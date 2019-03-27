@@ -106,4 +106,39 @@
             $(this).addClass('border-red');
         }
     });
+
+    $('.btn-disable-user').on('click', function () {
+        var id = parseInt($(this).attr('id'));
+        var button = this;
+        $.ajax({
+            type: "POST",
+            url: "/Admin/LockUser/?id=" + id,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result === 1) {
+                    Swal.fire(
+                        'Thành công!',
+                        'Bạn đã khóa tài khoản này thành công!',
+                        'success'
+                    );
+                    $(button).text("Mở khóa");
+                    $(button).removeClass('btn-danger');
+                    $(button).addClass('btn-success');
+                }
+                else if (result === 0) {
+                    Swal.fire(
+                        'Thành công!',
+                        'Bạn đã mở khóa tài khoản này thành công!',
+                        'success'
+                    );
+                    $(button).text("Khóa");
+                    $(button).removeClass('btn-success');
+                    $(button).addClass('btn-danger');
+                }
+            }, error: function (message) {
+                alert(message.responseText);
+            }
+        });
+    });
 });

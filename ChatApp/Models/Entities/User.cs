@@ -17,6 +17,7 @@ namespace ChatApp.Models.Entities
 		public string Email { get; set; }
 		public string Address { get; set; }
 		public string PhoneNumber { get; set; }
+		public bool IsActive { get; set; }
 
         public virtual ICollection<ListFriend> ListFriends { get; set; }
         public virtual ICollection<MemberOfListFriend> MemberOfListFriends { get; set; }
@@ -27,6 +28,7 @@ namespace ChatApp.Models.Entities
         {
             Avatar = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg";
             CoverPhoto = "http://3.bp.blogspot.com/-IzYETuZ48C8/T7MQmHucwCI/AAAAAAAABEQ/jBTkIk7ObKY/s1600/hinh-nen-dep-31.jpg";
+			IsActive = true;
         }
     }
 }

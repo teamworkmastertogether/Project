@@ -2261,7 +2261,7 @@ i.fas.fa-list-ul {
     opacity: 1;
 }
 
-@media only screen and (max-width: 1370px) {
+@media only screen and (max-width: 1368px) {
     span.badge {
         right: 28%;
     }

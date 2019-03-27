@@ -239,6 +239,7 @@ $(function () {
         $(".update-background").removeClass('edit-background');
         $('.showInfoFriend .dropdown .dropbtn').next().hide();
         $(".edit-poststore").hide();
+        $(".logout #logout").hide(150);
     });
 
 
@@ -371,3 +372,6 @@ $('.inviteFriend span').click(function () {
         }
     });
 });
+$(".logout").click(function () {
+    $(".logout #logout").toggle(150);
+})

@@ -5261,3 +5261,37 @@ input#ChangePassword {
     font-size: 28px;
     padding-top: 6%;
 }
+.logout #logout {
+    font-size: 15px;
+    background: #ccc;
+    width: 80%;
+    height: 90%;
+    border: 1px solid #00000029;
+    position: absolute;
+    z-index: 100;
+    top: 100%;
+    padding-top: 7%;
+    display:none;
+}
+
+.logout {
+    position: relative;
+}
+
+    .logout #logout ul li a {
+        color: #a94442;
+        text-decoration: none;
+    }
+
+    .logout #logout ul {
+        margin-bottom: 0;
+    }
+
+        .logout #logout ul li {
+            padding-bottom: 5%;
+        }
+
+    .logout #logout :hover {
+        background: #e6e486;
+        transition: 0.4s;
+    }

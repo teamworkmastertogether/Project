@@ -1,19 +1,25 @@
 ﻿
 <div class="MenuOption">
     <div class="menu-bar">
+        <div title="Trang cá nhân" class="icon icon-home">
+            <a href="@ViewBag.UrlPersonal" style="color:white"><i class="fa fa-user-circle"></i></a>
+        </div>
         <div title="Thông báo" class="icon icon-notify">
             <i class="fa fa-bell"></i>
             <span class="badge">@ViewBag.SumNoti</span>
         </div>
-        <div title="Trang cá nhân" class="icon icon-home">
-            <a href="@ViewBag.UrlPersonal" style="color:white"><i class="fa fa-user-circle"></i></a>
-        </div>
+
         <div title="Lời mời kết bạn" class="icon icon-friend">
             <i class="fa fa-users"></i>
             <span class="badge">@ViewBag.SumUserSendRequest</span>
         </div>
-        <div title="Đăng xuất" class="icon icon-friend logout">
+        <div title="Đăng xuất" class="icon logout">
             <i class="glyphicon glyphicon-log-out"></i>
+            <div id="logout">
+                <ul>
+                    <li><a href="/Home/Logout">Đăng xuất</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 

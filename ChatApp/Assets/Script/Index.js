@@ -240,6 +240,7 @@ $(function () {
         $('.showInfoFriend .dropdown .dropbtn').next().hide();
         $(".edit-poststore").hide();
         $(".logout #logout").hide(150);
+        $(".ModalSearch").fadeOut(150);
     });
 
 
@@ -375,3 +376,33 @@ $('.inviteFriend span').click(function () {
 $(".logout").click(function () {
     $(".logout #logout").toggle(150);
 })
+$("#submitTextKeyword").click(function (e) {
+    keyword = $("#txtkeyword").val();
+    $("#txtkeyword").val('');
+    if (keyword != '') {
+        $.ajax({
+            type: "POST",
+            url: "/Home/DisplaySeach?keyword=" + keyword,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (res) {
+                var html = '';
+                var keyname = 'Kết quả tìm kiếm cho : <span>' + keyword + '</span> <hr>';
+                html += '<ul>';
+                $.each(res, function (key, item) {
+
+                    html += '<li><img src=' + item.Avatar + '><a href="' + item.UrlUser + '">' + item.Name + '</a></li>';
+                });
+                html += '</ul>';
+                $('#keyname').html(keyname);
+                $('.DisplayFriend').html(html);
+                $(".ModalSearch").fadeIn(150);
+            }
+        });
+    }
+    else {
+        $("#txtkeyword").focus();
+        return false;
+    }
+
+});

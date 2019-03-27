@@ -395,6 +395,7 @@ namespace ChatApp.Controllers
         public JsonResult DisplaySeach(string keyword)
         {
             List<PersonalDto> data = db.Users.Where(m => m.Name.Contains(keyword)).Select(s => new PersonalDto { Name = s.Name,Avatar=s.Avatar, UrlUser = "/Home/Personal?id=" + s.Id }).ToList();
+            
             return Json(data, JsonRequestBehavior.AllowGet);
         }
     }

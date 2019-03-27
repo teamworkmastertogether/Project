@@ -524,6 +524,9 @@ $("#ChangePass").click(function () {
 });
 $("#Cancel").click(function () {
     $(".ChangePass").hide(150);
+    $("#prePassword").hide();
+    $('#Password').css("border-color", "#ccc");
+
 });
 /*$("#txtKeyword").autocomplete({
     minLength: 0,

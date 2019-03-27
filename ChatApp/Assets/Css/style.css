@@ -2261,7 +2261,7 @@ i.fas.fa-list-ul {
     opacity: 1;
 }
 
-@media only screen and (max-width: 1367px) {
+@media only screen and (max-width: 1370px) {
     span.badge {
         right: 28%;
     }
@@ -2291,6 +2291,9 @@ i.fas.fa-list-ul {
     .menu-search input[type="text"] {
         margin-left: 3%;
         padding-left: 15px;
+    }
+    .main .fixModel {
+        margin-left:2%;
     }
 }
 
@@ -5344,3 +5347,26 @@ input#ChangePassword {
         width: 60px;
         height: 60px;
     }
+.DisplayFriend p {
+    color: blue;
+    font-size: 22px;
+    font-family: monospace;
+}
+.ModalSearch .closeDiv1 {
+    position: absolute;
+    bottom: 3%;
+    right: 2%;
+}
+.ModalSearch span.closeDiv {
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    font-size: 25px;
+}
+.main .fixModel {
+    position: fixed;
+    top: 0%;
+    width: 53%;
+    height: 190%;
+    z-index: 2;
+}

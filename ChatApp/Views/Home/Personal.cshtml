@@ -3,7 +3,7 @@
 }
 <!-- Main -->
 <div class="main">
-    <div class="background" >
+    <div class="background">
         <img src="@Url.Content(@ViewBag.Bg)" />
         @if (ViewBag.checkUser)
         {
@@ -41,6 +41,12 @@
         }
     </div>
     <div class="MyId" id="@ViewBag.Id" style="display:none;"></div>
+    <div class="ModalSearch">
+        <h3>Kết quả tìm kiếm cho : @ViewBag.Keyword</h3>
+        <div class="DisplayFriend">
+
+        </div>
+    </div>
 </div>
 
 <div class="modal fade" id="myModal">

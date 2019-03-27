@@ -51,13 +51,14 @@
         <div class="menu-search">
             <form action="/Home/SearchFriend" method="get">
                 <input type="text" id="txtkeyword" name="txtkeyword" placeholder="Tìm kiếm mọi người ....">
-                <p class="fa fa-search" id="submitTextKeyword"></p>
+                <input type="button" class="fa fa-search" id="submitTextKeyword"  data-toggle="modal" data-target="#ModelSearch">
             </form>
         </div>
+        
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
+        @*<script>
             $("#txtkeyword").autocomplete({
     minlength: 0,
     source: function (request, response) {
@@ -90,8 +91,8 @@
             .append("<div id='GetName'>" + item.label + /*"<br>" + item.desc +*/ "</div>")
             .appendto(ul);
     };
-            
-        </script>
+
+        </script>*@
         <div class="container theme">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -274,3 +275,4 @@
         </div>
     </div>
 </div>
+

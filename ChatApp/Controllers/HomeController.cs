@@ -380,11 +380,16 @@ namespace ChatApp.Controllers
 			smtp.Send(mail); //Gửi mail đi
 		}
 
-        public JsonResult SearchFriend(string keyword)
+        //public JsonResult SearchFriend(string keyword)
+        //{
+        //    var data = db.Users.Where(m => m.UserName.Contains(keyword)).Select(m => m.Name).ToList();
+        //    return Json(new { data = data, status = true }, JsonRequestBehavior.AllowGet);
+        //}
+        public JsonResult DisplaySeach(string keyword)
         {
-            var data = db.Users.Where(m => m.UserName.Contains(keyword)).Select(m => m.Name).ToList();
-            return Json(new { data = data, status = true }, JsonRequestBehavior.AllowGet);
+            ViewBag.Keyword = keyword;
+            var data = db.Users.Where(m => m.Name.Contains(keyword)).Select(m => m.Name).ToList();
+            return Json(new { data = data}, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

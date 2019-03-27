@@ -5210,3 +5210,24 @@ span.name-postStore:hover {
 .modal-show-image {
     margin-left: 100px;
 }
+.menu-search #submitTextKeyword {
+    position: absolute;
+    top: 35%;
+    right: 4%;
+    font-size: 20px;
+    cursor: pointer;
+    color: #00000091;
+    height: 65%;
+    width: 10%;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 8px;
+    padding-left: 6px;
+}
+.ModalSearch {
+    width:200px;
+    height:200px;
+    background:red;
+    display:none;
+    z-index:100;
+}

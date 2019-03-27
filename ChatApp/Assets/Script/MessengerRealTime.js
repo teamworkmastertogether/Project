@@ -538,11 +538,23 @@ $("#have-seen").click(function () {
 
     });
 });
-$("#txtkeyword").keypess(function (e) {
-    if (e.which === 13) {
-        $(this).blur();
-        $("#submitTextKeyword").focus().click(function () {
-            alert($("#txtkeyword").val());
-        });
-    }
+$("#submitTextKeyword").click(function (e) {
+        $.ajax({
+        type: "GET",
+        url: "/Home/DisplaySeach",
+        contentType: "application/json;charset=utf-8",
+        data:{keyword:$("#txtkeyword").val()},
+        dataType: "json",     
+            success:function(res)
+            {
+                var html = '';
+                $.each(res, function (key, item) {
+                    html += '<ul>';
+                    html += '<li>' + item + '</li>';
+                    html += '</ul>';
+                    
+                });
+                $('.DisplayFriend').html(html);
+                $(".ModalSearch").show();
+            }});
 });

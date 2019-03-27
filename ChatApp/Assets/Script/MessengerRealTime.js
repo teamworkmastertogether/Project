@@ -150,7 +150,7 @@ function GetListPostSave() {
                 $(".post-saved-clone .img-postsave").attr('src', array[i].Photo);
                 itemClone = $(".post-saved-clone").html();
                 $(".content-store").prepend(itemClone);
-                $(".post-saved-clone .img-postsave").attr('src',"");
+                $(".post-saved-clone .img-postsave").attr('src', "");
             }
             $(".post-saved-clone .post-store").attr('id', 0);
         },
@@ -476,8 +476,8 @@ $("#UpdateUser").on("click", function () {
         }
 
     });
-    
-    
+
+
 })
 
 function UploadAvatar(formData) {
@@ -487,7 +487,7 @@ function UploadAvatar(formData) {
     } else if (checkAvarta === 2) {
         url = "/Home/UploadAvatar?id=2";
     }
-   
+
     var ajaxConfig = {
         type: "POST",
         url: url,
@@ -530,7 +530,7 @@ $("#have-seen").click(function () {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-           
+
         },
         error: function (message) {
             alert(message.responseText);
@@ -538,23 +538,4 @@ $("#have-seen").click(function () {
 
     });
 });
-$("#submitTextKeyword").click(function (e) {
-        $.ajax({
-        type: "GET",
-        url: "/Home/DisplaySeach",
-        contentType: "application/json;charset=utf-8",
-        data:{keyword:$("#txtkeyword").val()},
-        dataType: "json",     
-            success:function(res)
-            {
-                var html = '';
-                $.each(res, function (key, item) {
-                    html += '<ul>';
-                    html += '<li>' + item + '</li>';
-                    html += '</ul>';
-                    
-                });
-                $('.DisplayFriend').html(html);
-                $(".ModalSearch").show();
-            }});
-});
+

@@ -229,8 +229,13 @@ $(function () {
         $(".update-background").removeClass('edit-background');
         $('.showInfoFriend .dropdown .dropbtn').next().hide();
         $(".edit-poststore").hide();
+        
     });
+    $(',#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
+        $(".ModalSearch").fadeOut(150);
 
+    });
+    
 
     $(".update-background,.update-img").click(function () {
         src = $(this).prev().attr("src");
@@ -360,4 +365,33 @@ $('.inviteFriend span').click(function () {
             alert(message.responseText);
         }
     });
+});
+$("#submitTextKeyword").click(function (e) {
+    keyword = $("#txtkeyword").val();
+    $("#txtkeyword").val('');
+    if (keyword != '') {
+        $.ajax({
+            type: "POST",
+            url: "/Home/DisplaySeach?keyword=" + keyword,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (res) {
+                var html = '';
+                var keyname = 'Kết quả tìm kiếm cho : <span>' + keyword + '</span> <hr>';
+                html += '<ul>';
+                $.each(res, function (key, item) {
+
+                    html += '<li><img src=' + item.Avatar + '><a href="#">' + item.Name + '</a></li>';
+                });
+                html += '</ul>';
+                $('#keyname').html(keyname);
+                $('.DisplayFriend').html(html);
+                $(".ModalSearch").fadeIn(150);
+            }
+        });
+    }
+    else {
+        return false;
+    }
+    
 });

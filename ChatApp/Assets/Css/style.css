@@ -5225,9 +5225,35 @@ span.name-postStore:hover {
     padding-left: 6px;
 }
 .ModalSearch {
-    width:200px;
-    height:200px;
-    background:red;
-    display:none;
-    z-index:100;
+    background: #63ffdc;
+    display: none;
+    z-index: 100;
+    top: 2%;
+    position: absolute;
+    width: 100%;
+    padding: 2%;
+    box-shadow: 1px 1px 10px;
+    border-radius: 3px;
+    height: 35%;
 }
+#keyname hr {
+    border-color: #0000006b;
+}
+.DisplayFriend ul li {
+    padding: 3%;
+    background: black;
+    margin-bottom: 1%;
+}
+
+    .DisplayFriend ul li a {
+        padding-left: 3%;
+        color: white;
+        font-size: large;
+    }
+
+    .DisplayFriend ul li img {
+        border-radius: 50%;
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+    }

@@ -115,7 +115,18 @@
                         <a href="/Admin/GetPostsByUser/@item.Id">
                             <button class="btn btn-primary">Các bài đã đăng</button>
                         </a>
-                        <a href="javascript:void(0)"><button class="btn btn-danger btn-disable-user" id="@item.Id">Khóa</button></a>
+                        <a href="javascript:void(0)">
+                            @{
+                                if (item.IsActive == true)
+                                {
+                                    <button class="btn btn-danger btn-disable-user" id="@item.Id">Khóa</button>
+                                }
+                                else if (item.IsActive == false)
+                                {
+                                    <button class="btn btn-success btn-disable-user" id="@item.Id">Mở khóa</button>
+                                }
+                            }
+                        </a>
                     </td>
                 </tr>
             }

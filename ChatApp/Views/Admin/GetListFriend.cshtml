@@ -18,12 +18,13 @@
     if (ViewBag.ListFriend == 0)
     {
         <div class="content-wrapper">
-            <section class="content-header"></section>
-            <h2>@ViewBag.Name hiện tại chưa có bạn bè nào</h2>
+            <section class="content-header" style="padding-left:20px">
+                <h2>@ViewBag.Name hiện tại chưa có bạn bè nào</h2>
 
-            <div style="padding-left: 20px;">
-                <a href="/Admin/GetMembers">Quay lại trang danh sách học sinh</a>
-            </div>
+                <div>
+                    <a href="/Admin/GetMembers">Quay lại trang danh sách học sinh</a>
+                </div>
+            </section>
         </div>
     }
     else

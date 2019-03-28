@@ -5,55 +5,78 @@
     Layout = "~/Views/Admin/_AdminPartialView.cshtml";
 }
 
-<div class="content-wrapper" style="padding-left: 10px">
-    <section class="content-header">
-        <h1>
-            Danh sách môn học
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Subjects</li>
-        </ol>
-    </section>
-    
-    <table class="table">
-        <tr>
-            <th>
-                STT
-            </th>
-            <th>
-                Nội dung
-            </th>
-            <th>
-                Thời gian đăng
-            </th>
-            <th>
-                Số lượng like
-            </th>
-            <th></th>
-        </tr>
+@{
+    if (ViewBag.Count == 0)
+    {
+        <div class="content-wrapper" style="padding-left: 10px">
+            <section class="content-header" style="padding-left: 20px;">
+                <h2>Nhóm @ViewBag.Name hiện tại chưa có bài đăng nào</h2>
 
-        @{ int i = 0;}
-        @foreach (var item in Model)
-        {
-            i = i + 1;
-            <tr>
-                <td>@i</td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Text)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreatedDate)
-                </td>
-                <td>
-                    @ViewBag.CountLike
-                </td>
-                <td>
-                    <a href="/Admin/DeletePost/@item.Id">
-                        <button class="btn btn-danger">Xóa bài viết</button>
-                    </a>
-                </td>
-            </tr>
-        }
-    </table>
-</div>
+                <div>
+                    <a href="/Admin/GetSubjects">Quay lại trang danh sách nhóm</a>
+                </div>
+            </section>
+        </div>
+    }
+    else
+    {
+        <div class="content-wrapper" style="padding-left: 10px">
+            <section class="content-header" style="border-bottom: 1px solid gray; padding-bottom: 10px">
+                <h1>
+                    Danh sách bài đăng trong nhóm @ViewBag.Name
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="active">Subjects</li>
+                </ol>
+            </section>
+
+            <table class="table">
+                <tr>
+                    <th>
+                        STT
+                    </th>
+                    <th>
+                        Nội dung
+                    </th>
+                    <th>Ảnh</th>
+                    <th>
+                        Thời gian đăng
+                    </th>
+                    <th></th>
+                </tr>
+
+                @{ int i = 0;}
+                @foreach (var item in Model)
+                {
+                    i = i + 1;
+                    <tr>
+                        <td>@i</td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Text)
+                        </td>
+                        <td>
+                            <img src="@Html.DisplayFor(modelItem => item.Photo)" alt="Alternate Text" style="width: 50px;height: 50px" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                        <td>
+                            <a href="/Admin/DeletePost/@item.Id">
+                                <button class="btn btn-danger">Xóa bài viết</button>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            @using (Html.BeginForm())
+            {
+                <div style="padding-left: 20px;">
+                    <a href="/Admin/GetSubjects">Quay lại trang danh sách nhóm</a>
+                </div>
+            }
+        </div>
+    }
+}
+

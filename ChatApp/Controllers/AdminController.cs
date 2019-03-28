@@ -366,15 +366,10 @@ namespace ChatApp.Controllers
 			{
 				return HttpNotFound();
 			}
-			var listPosts = db.Posts.Where(x => x.SubjectId == id).ToList();
+			var listPosts = db.Posts.Where(x => x.SubjectId == sub.Id).ToList();
 			var listPostVMs = AutoMapper.Mapper.Map<IEnumerable<PostViewModel>>(listPosts);
 			
-			foreach(var item in listPosts)
-			{
-				var count = item.Likes.ToList().Count();
-				ViewBag.CountLike = count;
-			}
-			ViewBag.Count = listPostVMs.Count();
+			ViewBag.Count = listPostVMs.Count();	
 			ViewBag.Name = sub.Name;
 			return View(listPostVMs);
 		}
@@ -390,11 +385,11 @@ namespace ChatApp.Controllers
 			{
 				return HttpNotFound();
 			}
-			IEnumerable<Like> listLikes = db.Likes.Where(x => x.PostId == id);
+			List<Like> listLikes = db.Likes.Where(s => s.PostId == id || id == s.Comment.PostId || id == s.SubComment.Comment.PostId).ToList();
 			db.Likes.RemoveRange(listLikes);
 			db.Posts.Remove(post);
 			db.SaveChanges();
-			return View("GetPostsBySubjects");
+			return RedirectToAction("GetSubjects");
 		}
 	}
 }

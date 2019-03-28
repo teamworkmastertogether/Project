@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ChatApp.Models.ViewModels.SubjectViewModel>
+
+@{
+    ViewBag.Title = "GetSubjects";
+    Layout = "~/Views/Admin/_AdminPartialView.cshtml";
+}
+
+<div class="content-wrapper" style="padding-left: 10px">
+    <section class="content-header">
+        <h1>
+            Danh sách môn học
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Subjects</li>
+        </ol>
+    </section>
+
+    <table class="table">
+        <tr>
+            <th>
+                Số thứ tự
+            </th>
+            <th>
+                Tên môn học
+            </th>
+            <th>
+                Ảnh bìa
+            </th>
+            <th></th>
+        </tr>
+
+        @{ int i = 0; }
+        @foreach (var item in Model)
+        {
+            i = i + 1;
+            <tr>
+                <td>@i</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Photo)" alt="Alternate Img" />
+                </td>
+                <td>
+                    <a href="/Admin/GetPostsBySubjects/@item.Id">
+                        <button class="btn btn-primary">Danh sách bài viết</button>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

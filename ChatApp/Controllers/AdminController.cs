@@ -347,5 +347,54 @@ namespace ChatApp.Controllers
 				return Json(0, JsonRequestBehavior.AllowGet);
 			}
 		}
+
+		public ActionResult GetSubjects()
+		{
+			var listSubjects = db.Subjects.ToList();
+			var listSubjectVMs = AutoMapper.Mapper.Map<IEnumerable<SubjectViewModel>>(listSubjects);
+			return View(listSubjectVMs);
+		}
+
+		public ActionResult GetPostsBySubjects(int? id)
+		{
+			if(id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Subject sub = db.Subjects.FirstOrDefault(x => x.Id == id);
+			if(sub == null)
+			{
+				return HttpNotFound();
+			}
+			var listPosts = db.Posts.Where(x => x.SubjectId == id).ToList();
+			var listPostVMs = AutoMapper.Mapper.Map<IEnumerable<PostViewModel>>(listPosts);
+			
+			foreach(var item in listPosts)
+			{
+				var count = item.Likes.ToList().Count();
+				ViewBag.CountLike = count;
+			}
+			ViewBag.Count = listPostVMs.Count();
+			ViewBag.Name = sub.Name;
+			return View(listPostVMs);
+		}
+
+		public ActionResult DeletePost(int? id)
+		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			Post post = db.Posts.FirstOrDefault(x => x.Id == id);
+			if(post == null)
+			{
+				return HttpNotFound();
+			}
+			IEnumerable<Like> listLikes = db.Likes.Where(x => x.PostId == id);
+			db.Likes.RemoveRange(listLikes);
+			db.Posts.Remove(post);
+			db.SaveChanges();
+			return View("GetPostsBySubjects");
+		}
 	}
 }

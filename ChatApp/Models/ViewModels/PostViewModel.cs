@@ -11,5 +11,7 @@ namespace ChatApp.Models.ViewModels
 		public string Text { get; set; }
 		public string CreatedDate { get; set; }
 		public int LikeNumber { get; set; }
+
+		public int SubjectId { get; set; }
 	}
 }

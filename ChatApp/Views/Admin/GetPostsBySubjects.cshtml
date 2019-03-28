@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ChatApp.Models.ViewModels.PostViewModel>
+
+@{
+    ViewBag.Title = "GetPostsBySubjects";
+    Layout = "~/Views/Admin/_AdminPartialView.cshtml";
+}
+
+<div class="content-wrapper" style="padding-left: 10px">
+    <section class="content-header">
+        <h1>
+            Danh sách môn học
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Subjects</li>
+        </ol>
+    </section>
+    
+    <table class="table">
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Nội dung
+            </th>
+            <th>
+                Thời gian đăng
+            </th>
+            <th>
+                Số lượng like
+            </th>
+            <th></th>
+        </tr>
+
+        @{ int i = 0;}
+        @foreach (var item in Model)
+        {
+            i = i + 1;
+            <tr>
+                <td>@i</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @ViewBag.CountLike
+                </td>
+                <td>
+                    <a href="/Admin/DeletePost/@item.Id">
+                        <button class="btn btn-danger">Xóa bài viết</button>
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

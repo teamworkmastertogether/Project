@@ -76,10 +76,10 @@ $(function () {
                 alert(message.responseText);
             }
         });
-        
+
     });
 
-   
+
     $('body').on('click', ' .icon-friend ', function (e) {
         $.ajax({
             type: "POST",
@@ -111,11 +111,11 @@ $(function () {
         url = "/Home/AcceptRequest?id=" + IdUser;
         $.ajax({
             type: "POST",
-            url: url ,
+            url: url,
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (array) {
-               
+
             },
             error: function (message) {
                 alert(message.responseText);
@@ -132,7 +132,7 @@ $(function () {
 
     });
 
-    
+
     $("#edit-info").click(function () {
         count++;
         if (count % 2 === 0) {
@@ -153,6 +153,16 @@ $(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "JSON",
             success: function (res) {
+                var text = 'Đang cập nhật';
+                if (res.PhoneNumber === text) {
+                    res.PhoneNumber = '';
+                }
+                if (res.SchoolName === text) {
+                    res.SchoolName = '';
+                }
+                if (res.Address === text) {
+                    res.Address = '';
+                }
                 $(".edit-user #Name").val(res.Name);
                 $(".edit-user #SchoolName").val(res.SchoolName);
                 var date = res.DoB;
@@ -189,14 +199,14 @@ $(function () {
     $("#selectFile").click(function () {
         $("#UploadImage").trigger('click');
     });
-   
+
     $(".think").click(function () {
         $(".bot #huy").show();
     });
     $("#gioithieu").click(function () {
         $(".modalGioiThieu").show();
     });
-    $(".lef-2").on("click",".dropbtn",function () {
+    $(".lef-2").on("click", ".dropbtn", function () {
         $(this).next().toggle();
     });
     $(".lef-2").on("click", ".removeFriend", function () {
@@ -223,12 +233,16 @@ $(function () {
         $(".update-background span").toggle();
         $(".update-background").toggleClass('edit-background');
     });
-  
+
     $('.maincontent,#people-list,.icon-home,.icon-friend').off().mouseup(function (e) {
         $(".update-background span").hide();
         $(".update-background").removeClass('edit-background');
         $('.showInfoFriend .dropdown .dropbtn').next().hide();
         $(".edit-poststore").hide();
+        $(".logout #logout").hide(150);
+    });
+    $('#people-list,.icon-home,.icon-friend,.closeDiv,.closeDiv1').off().mouseup(function (e) {
+        $(".ModalSearch").fadeOut(150);
     });
 
 
@@ -360,4 +374,74 @@ $('.inviteFriend span').click(function () {
             alert(message.responseText);
         }
     });
+});
+$(".logout").click(function () {
+    $(".logout #logout").toggle(150);
+})
+$("#submitTextKeyword").click(function (e) {
+    keyword = $("#txtkeyword").val();
+    $("#txtkeyword").val('');
+    if (keyword != '') {
+        $.ajax({
+            type: "POST",
+            url: "/Home/DisplaySeach?keyword=" + keyword,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (res) {
+                var html = '';
+                var keyname = 'Kết quả tìm kiếm cho : <span>' + keyword + '</span> <hr>';
+                html += '<ul>';
+                $.each(res, function (key, item) {
+
+                    html += '<li><img src=' + item.Avatar + '><a href="' + item.UrlUser + '">' + item.Name + '</a></li>';
+                });
+                html += '</ul>';
+                if (res.length === 0) {
+                    html += '<p>Không tìm thấy kết quả !</p>';
+                }
+                $('#keyname').html(keyname);
+                $('.DisplayFriend').html(html);
+                $(".ModalSearch").fadeIn(150);
+            }
+        });
+    }
+    else {
+        $("#txtkeyword").focus();
+        return false;
+    }
+
+});
+$("#txtkeyword").keypress(function (e) {
+    if (e.which === 13) {
+        keyword = $("#txtkeyword").val();
+        $("#txtkeyword").val('');
+        if (keyword != '') {
+            $.ajax({
+                type: "POST",
+                url: "/Home/DisplaySeach?keyword=" + keyword,
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (res) {
+                    var html = '';
+                    var keyname = 'Kết quả tìm kiếm cho : <span>' + keyword + '</span> <hr>';
+                    html += '<ul>';
+                    $.each(res, function (key, item) {
+
+                        html += '<li><img src=' + item.Avatar + '><a href="' + item.UrlUser + '">' + item.Name + '</a></li>';
+                    });
+                    html += '</ul>';
+                    if (res.length===0) {
+                        html += '<p>Không tìm thấy kết quả !</p>';
+                    }
+                    $('#keyname').html(keyname);
+                    $('.DisplayFriend').html(html);
+                    $(".ModalSearch").fadeIn(150);
+                }
+            });
+        }
+        else {
+            $("#txtkeyword").focus();
+            return false;
+        }
+    }
 });

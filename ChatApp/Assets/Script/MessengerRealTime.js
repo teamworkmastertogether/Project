@@ -350,6 +350,16 @@ function load() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
+            text = "Đang cập nhật";
+            if (result.PhoneNumber === null) {
+                result.PhoneNumber=text;
+            }
+            if (result.SchoolName === null) {
+                result.SchoolName = text;
+            }
+            if (result.Address === null) {
+                result.Address = text;
+            }
             var html = '';
             var date = result.DoB;
             var ress = new Date(parseInt(date.replace("/Date(", "").replace(")/")));
@@ -414,9 +424,7 @@ $("#UpdateUser").on("click", function () {
         SchoolName: $('#SchoolName').val(),
         DoB: $('#DoB').val(),
         Address: $('#Address').val(),
-        PhoneNumber: $('#PhoneNumber').val().trim(),
-        Password: $('#Password').val().trim(),
-        NewPassword: $('#NewPassword').val().trim()
+        PhoneNumber: $('#PhoneNumber').val().trim()
     };
     if (object.PhoneNumber !== '') {
         res = ValidatePhone(object.PhoneNumber);
@@ -425,26 +433,12 @@ $("#UpdateUser").on("click", function () {
             return false;
         }
     }
-    if (object.Password === '') {
-        $("#Password").focus();
-        $('#Password').css("border-color", "red");
-        return false;
+    else {
+        object.PhoneNumber = "Đang cập nhật";
     }
-    if (object.NewPassword === '') {
-        $("#NewPassword").focus();
-        $('#NewPassword').css("border-color", "red");
-        return false;
-    }
+       
     Id = parseInt($(".MyId").attr("id"));
-    url = "/Home/ConfirmPassword?id=" + Id;
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: JSON.stringify(object),
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            if (result.isvalid) {
+
                 url = "/Home/SaveData?id=" + Id;
                 $.ajax({
                     type: "POST",
@@ -454,7 +448,6 @@ $("#UpdateUser").on("click", function () {
                     dataType: "json",
                     success: function (result) {
                         load();
-                        alert("Cập nhật thành công");
                         $(".edit-user").hide();
                         $(".info-user").show();
                         count++;
@@ -463,22 +456,7 @@ $("#UpdateUser").on("click", function () {
                         alert(errormessage.responseText);
                     }
                 });
-            }
-            else {
-                alert("Mật khẩu cũ không chính xác")
-                $('#Password').focus();
-                $('#Password').css("border-color", "red");
-                return false;
-            }
-        },
-        error: function (message) {
-            alert(message.responseText);
-        }
-
-    });
-    
-    
-})
+});
 
 function UploadAvatar(formData) {
     url = "";
@@ -537,4 +515,115 @@ $("#have-seen").click(function () {
         }
 
     });
+});
+$("#ChangePass").click(function () {
+    $(".ChangePass").toggle(150);
+    $("#Password").val('');
+    $("#NewPassword").val('');
+    $("#ConfirmPassword").val('');
+});
+$("#Cancel").click(function () {
+    $(".ChangePass").hide(150);
+    $("#prePassword").hide();
+    $('#Password').css("border-color", "#ccc");
+
+});
+$("#ChangePassword").click(function () {
+    $("#curPassword").hide();
+    var html = '';
+    var object = {
+        Password: $('#Password').val(),
+        NewPassword: $('#NewPassword').val(),
+        ConfirmPassword: $('#ConfirmPassword').val()
+    };
+    if (object.Password === '') {
+        html += 'Mật khẩu trống !';
+        $("#prePassword").html(html);
+        $("#prePassword").show();
+        $("#Password").focus();
+        $('#Password').css("border-color", "red");
+        return false;
+    }
+    else {
+        $("#prePassword").hide();
+        $('#Password').css("border", "none");
+    }
+    if (object.NewPassword === '') {
+        html += 'Mật khẩu mới trống !';
+        $("#preNewPassword").html(html);
+        $("#preNewPassword").show();
+        $("#NewPassword").focus();
+        $('#NewPassword').css("border-color", "red");
+        return false;
+    }
+    else {
+        $("#preNewPassword").hide();
+        $('#NewPassword').css("border", "none");
+    }
+    if (object.ConfirmPassword === '') {
+        html += 'Xác nhận mật khẩu trống !';
+        $("#preConfirmPassword").html(html);
+        $("#preConfirmPassword").show();
+        $("#ConfirmPassword").focus();
+        $('#ConfirmPassword').css("border-color", "red");
+        return false;
+    }
+    else {
+        $("#preConfirmPassword").hide();
+        $('#ConfirmPassword').css("border", "none");
+    }
+    if (object.NewPassword !== object.ConfirmPassword) {
+        html += 'Mật khẩu không khớp mật khẩu mới !';
+        $("#curConfirmPassword").html(html);
+        $("#curConfirmPassword").show();
+        $("#ConfirmPassword").focus();
+        $('#ConfirmPassword').css("border-color", "red");
+        return false;
+    }
+    else {
+        $("#curConfirmPassword").hide();
+        $('#ConfirmPassword').css("border", "none");
+    }
+    Id = parseInt($(".MyId").attr("id"));
+    if (object.Password)
+        $.ajax({
+            type: "POST",
+            url: "/Home/ConfirmPassword?id=" + Id,
+            data: JSON.stringify(object),
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                if (result.isvalid) {
+                    url = "/Home/SavePassword?id=" + Id;
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: JSON.stringify(object),
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            $(".ChangePass").hide(150);
+                            $("#Password").val('');
+                            $("#NewPassword").val('');
+                            $("#ConfirmPassword").val('');
+
+                        },
+                        error: function (errormessage) {
+                            alert(errormessage.responseText);
+                        }
+                    });
+                }
+                else {
+                    html += 'Nhập sai mật khẩu cũ !';
+                    $("#curPassword").html(html);
+                    $("#curPassword").show();
+                    $('#Password').focus();
+                    $('#Password').css("border-color", "red");
+                    return false;
+                }
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
 });

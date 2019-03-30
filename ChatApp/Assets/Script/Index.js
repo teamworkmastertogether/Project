@@ -2,7 +2,6 @@
 var checkAvarta = 0;
 var count = 1;
 $(function () {
-
     countNoti = parseInt($(".icon-notify .badge").text());
     if (countNoti) {
         $(".icon-notify .badge").show();
@@ -243,6 +242,7 @@ $(function () {
     });
     $('#people-list,.icon-home,.icon-friend,.closeDiv,.closeDiv1').off().mouseup(function (e) {
         $(".ModalSearch").fadeOut(150);
+        $(".main .fixModel").css("z-index", "0");
     });
 
 
@@ -255,129 +255,129 @@ $(function () {
             checkAvarta = 2;
         }
     });
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-});
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#blah').attr('src', e.target.result);
-        }
-        $("#upImg").show();
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$("#UploadImage").change(function () {
-    readURL(this);
-});
-//click vào giới thiệu trang cá nhân
-$("#banbe").click(function () {
-    $(".lef-1").hide();
-    Id = parseInt($(".MyId").attr("id"));
-    url = "/Home/GetListFriend?id=" + Id;
-    //get dữ liệu
-    $.ajax({
-        type: "POST",
-        url: url,
-        contentType: "application/json;charset=utf-8",
-        dataType: "JSON",
-        success: function (array) {
-            $(".lef-2").html("");
-            for (var i = 0; i < array.length; i++) {
-                $(".list-friend-clone img").attr("src", array[i].Avatar);
-                $(".list-friend-clone .nameFriend p").text(array[i].Name);
-                $(".list-friend-clone .nameFriend a").attr("href", array[i].UrlPersonal);
-                $(".list-friend-clone .dropdown-content a").eq(0).attr("href", array[i].UrlPersonal);
-                $(".list-friend-clone .removeFriend").attr("id", array[i].IdUser);
-                itemClone =  $(".list-friend-clone").html();
-                $(".lef-2").append(itemClone);
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
             }
+            $("#upImg").show();
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#UploadImage").change(function () {
+        readURL(this);
+    });
+    //click vào giới thiệu trang cá nhân
+    $("#banbe").click(function () {
+        $(".lef-1").hide();
+        Id = parseInt($(".MyId").attr("id"));
+        url = "/Home/GetListFriend?id=" + Id;
+        //get dữ liệu
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "JSON",
+            success: function (array) {
+                $(".lef-2").html("");
+                for (var i = 0; i < array.length; i++) {
+                    $(".list-friend-clone img").attr("src", array[i].Avatar);
+                    $(".list-friend-clone .nameFriend p").text(array[i].Name);
+                    $(".list-friend-clone .nameFriend a").attr("href", array[i].UrlPersonal);
+                    $(".list-friend-clone .dropdown-content a").eq(0).attr("href", array[i].UrlPersonal);
+                    $(".list-friend-clone .removeFriend").attr("id", array[i].IdUser);
+                    itemClone = $(".list-friend-clone").html();
+                    $(".lef-2").append(itemClone);
+                }
+            }
+        });
+        $(".lef-2").show();
+    });
+    $("#gioithieu").click(function () {
+        $(".lef-1").show();
+        $(".lef-2").hide();
+    });
+    $("#close,.close").on("click", function () {
+        $("#upImg").hide();
+    });
+
+
+
+    $(".content-store").on("click", ".EditPostStore", function () {
+        $(this).next().toggle();
+    });
+
+    $(".content-store").on("click", ".edit-poststore", function () {
+        IdPost = parseInt($(this).closest(".post-store").attr("id"));
+        url = "/Home/DeletePostSaved?id=" + IdPost;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "JSON",
+            success: function (res) {
+                $(".post-store[id=" + IdPost + "]").remove();
+                Swal.fire(
+                    'Thành công!',
+                    'Bạn đã xóa bài viết thành công!',
+                    'success'
+                );
+            }
+        })
+    });
+
+    $("#Huy").click(function () {
+        count++;
+        if (count % 2 === 0) {
+            $(".edit-user").show();
+            $(".info-user").hide();
+        }
+        else {
+            $(".edit-user").hide();
+            $(".info-user").show();
         }
     });
-    $(".lef-2").show();
-});
-$("#gioithieu").click(function () {
-    $(".lef-1").show();
-    $(".lef-2").hide();
-});
-$("#close,.close").on("click", function () {
-    $("#upImg").hide();
-});
 
-
-
-$(".content-store").on("click", ".EditPostStore", function () {
-    $(this).next().toggle();
-});
-
-$(".content-store").on("click", ".edit-poststore", function () {
-    IdPost = parseInt($(this).closest(".post-store").attr("id"));
-    url = "/Home/DeletePostSaved?id=" + IdPost;
-    $.ajax({
-        type: "POST",
-        url: url,
-        contentType: "application/json;charset=utf-8",
-        dataType: "JSON",
-        success: function (res) {
-            $(".post-store[id=" + IdPost + "]").remove();
-            Swal.fire(
-                'Thành công!',
-                'Bạn đã xóa bài viết thành công!',
-                'success'
-            );
+    $('#have-seen').on('click', function () {
+        $('#have-seen').css('text-decoration', 'none');
+    });
+    $('.container').on('click', '.img-postsave', function () {
+        $('.show-image img').attr('src', $(this).attr('src'));
+        $('.show-image').show();
+        if ($('.show-image img').height() < 300) {
+            $('.new-modal').css('padding-top', '150px');
         }
+    });
+
+    $('.close-seen-image').click(function () {
+        $('.show-image').hide();
+    });
+
+    $('.inviteFriend span').click(function () {
+        $(this).text("Đã gửi yêu cầu");
+        Id = parseInt($(".MyId").attr("id"));
+        url = "/Home/SendRequestAddFriend?id=" + Id;
+        $.ajax({
+            type: "POST",
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (username) {
+                hub.server.sendRequestAddFriend(username);
+            },
+            error: function (message) {
+                alert(message.responseText);
+            }
+        });
+    });
+    $(".logout").click(function () {
+        $(".logout #logout").toggle(150);
     })
 });
 
-$("#Huy").click(function () {
-    count++;
-    if (count % 2 === 0) {
-        $(".edit-user").show();
-        $(".info-user").hide();
-    }
-    else {
-        $(".edit-user").hide();
-        $(".info-user").show();
-    }
-});
-
-$('#have-seen').on('click', function () {
-    $('#have-seen').css('text-decoration', 'none');
-});
-$('.container').on('click', '.img-postsave', function () {
-    $('.show-image img').attr('src', $(this).attr('src'));
-    $('.show-image').show();
-    if ($('.show-image img').height() < 300) {
-        $('.new-modal').css('padding-top', '150px');
-    }
-});
-
-$('.close-seen-image').click(function () {
-    $('.show-image').hide();
-});
-
-$('.inviteFriend span').click(function () {
-    $(this).text("Đã gửi yêu cầu");
-    Id = parseInt($(".MyId").attr("id"));
-    url = "/Home/SendRequestAddFriend?id=" + Id;
-    $.ajax({
-        type: "POST",
-        url: url,
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (username) {
-            hub.server.sendRequestAddFriend(username);
-        },
-        error: function (message) {
-            alert(message.responseText);
-        }
-    });
-});
-$(".logout").click(function () {
-    $(".logout #logout").toggle(150);
-})
 $("#submitTextKeyword").click(function (e) {
     keyword = $("#txtkeyword").val();
     $("#txtkeyword").val('');
@@ -402,6 +402,7 @@ $("#submitTextKeyword").click(function (e) {
                 $('#keyname').html(keyname);
                 $('.DisplayFriend').html(html);
                 $(".ModalSearch").fadeIn(150);
+                $(".main .fixModel").css("z-index", "2");
             }
         });
     }
@@ -430,12 +431,13 @@ $("#txtkeyword").keypress(function (e) {
                         html += '<li><img src=' + item.Avatar + '><a href="' + item.UrlUser + '">' + item.Name + '</a></li>';
                     });
                     html += '</ul>';
-                    if (res.length===0) {
+                    if (res.length === 0) {
                         html += '<p>Không tìm thấy kết quả !</p>';
                     }
                     $('#keyname').html(keyname);
                     $('.DisplayFriend').html(html);
                     $(".ModalSearch").fadeIn(150);
+                    $(".main .fixModel").css("z-index", "2");
                 }
             });
         }

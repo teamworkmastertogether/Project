@@ -391,6 +391,17 @@ namespace ChatApp.Controllers
 			smtp.Send(mail); //Gửi mail đi
 		}
 
-
-	}
+        public JsonResult SearchFriend(string keyword)
+        {
+            var data = db.Users.Where(m => m.UserName.Contains(keyword)).Select(m => m.Name).ToList();
+            return Json(new { data = data, status = true }, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult DisplaySeach(string keyword)
+        {
+            List<PersonalDto> data = db.Users.Where(m => m.Name.Contains(keyword)).Select(s => new PersonalDto { Name = s.Name,Avatar=s.Avatar, UrlUser = "/Home/Personal?id=" + s.Id }).ToList();
+            
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+    }
 }

@@ -2261,7 +2261,7 @@ i.fas.fa-list-ul {
     opacity: 1;
 }
 
-@media only screen and (max-width: 1367px) {
+@media only screen and (max-width: 1368px) {
     span.badge {
         right: 28%;
     }
@@ -2291,6 +2291,9 @@ i.fas.fa-list-ul {
     .menu-search input[type="text"] {
         margin-left: 3%;
         padding-left: 15px;
+    }
+    .main .fixModel {
+        margin-left:2%;
     }
 }
 
@@ -5005,7 +5008,6 @@ i.glyphicon.glyphicon-cog.setting.pull-right {
     padding-top: 1%;
     color: #0000007a;
     cursor: pointer;
-    z-index: 9999;
 }
 
 .info-userpost {
@@ -5246,7 +5248,7 @@ input#ChangePassword {
 .menu-search #submit {
     position: absolute;
     top: 35%;
-    right: 12%;
+    right: 4%;
     font-size: 20px;
     cursor: pointer;
     color: #00000091;
@@ -5256,4 +5258,115 @@ input#ChangePassword {
     border-bottom-right-radius: 6px;
     padding-top: 8px;
     padding-left: 6px;
+}
+.icon .glyphicon.glyphicon-log-out {
+    font-size: 28px;
+    padding-top: 6%;
+}
+.logout #logout {
+    font-size: 15px;
+    background: #ccc;
+    width: 80%;
+    height: 90%;
+    border: 1px solid #00000029;
+    position: absolute;
+    z-index: 100;
+    top: 100%;
+    padding-top: 7%;
+    display:none;
+}
+
+.logout {
+    position: relative;
+}
+
+    .logout #logout ul li a {
+        color: #a94442;
+        text-decoration: none;
+    }
+
+    .logout #logout ul {
+        margin-bottom: 0;
+    }
+
+        .logout #logout ul li {
+            padding-bottom: 5%;
+        }
+
+    .logout #logout :hover {
+        background: #e6e486;
+        transition: 0.4s;
+    }
+.menu-search #submitTextKeyword {
+    position: absolute;
+    top: 35%;
+    right: 4%;
+    font-size: 20px;
+    cursor: pointer;
+    color: #00000091;
+    height: 65%;
+    width: 10%;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding-top: 8px;
+    padding-left: 6px;
+}
+
+.ModalSearch {
+    background: #63ffdc;
+    display: none;
+    z-index: 100;
+    top: 2%;
+    position: absolute;
+    width: 100%;
+    padding: 2%;
+    box-shadow: 1px 1px 10px;
+    border-radius: 3px;
+    height: 35%;
+}
+
+#keyname hr {
+    border-color: #0000006b;
+}
+
+.DisplayFriend ul li {
+    padding: 3%;
+    background: black;
+    margin-bottom: 1%;
+}
+
+    .DisplayFriend ul li a {
+        padding-left: 3%;
+        color: white;
+        font-size: large;
+    }
+
+    .DisplayFriend ul li img {
+        border-radius: 50%;
+        cursor: pointer;
+        width: 60px;
+        height: 60px;
+    }
+.DisplayFriend p {
+    color: blue;
+    font-size: 22px;
+    font-family: monospace;
+}
+.ModalSearch .closeDiv1 {
+    position: absolute;
+    bottom: 3%;
+    right: 2%;
+}
+.ModalSearch span.closeDiv {
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    font-size: 25px;
+}
+.main .fixModel {
+    position: fixed;
+    top: 0%;
+    width: 53%;
+    height: 190%;
+    z-index: 2;
 }

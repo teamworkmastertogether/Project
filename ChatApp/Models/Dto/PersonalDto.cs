@@ -18,5 +18,6 @@ namespace ChatApp.Models.Dto
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
         public string NewPassword { get; set; }
+        public string UrlUser { get; set; }
     }
 }

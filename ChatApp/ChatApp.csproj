@@ -204,14 +204,6 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Migrations\201903240931252_UpdateDatabase.cs" />
-    <Compile Include="Migrations\201903240931252_UpdateDatabase.Designer.cs">
-      <DependentUpon>201903240931252_UpdateDatabase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903270732183_AddIsActive.cs" />
-    <Compile Include="Migrations\201903270732183_AddIsActive.Designer.cs">
-      <DependentUpon>201903270732183_AddIsActive.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\LikeDto.cs" />
     <Compile Include="Models\Dto\NotifiDto.cs" />
@@ -7296,14 +7288,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\GetPostsByUser.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903240931252_UpdateDatabase.resx">
-      <DependentUpon>201903240931252_UpdateDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903270732183_AddIsActive.resx">
-      <DependentUpon>201903270732183_AddIsActive.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\GetSubjects.cshtml" />

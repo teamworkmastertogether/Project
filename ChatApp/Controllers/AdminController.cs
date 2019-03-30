@@ -21,6 +21,21 @@ namespace ChatApp.Controllers
         {
 			var userName = Session["username"] as string;
 			var user = db.Admins.FirstOrDefault(ad => ad.Username.Equals(userName));
+			var listUsers = db.Users.ToList();
+			var listUserVMs = AutoMapper.Mapper.Map<IEnumerable<UserViewModel>>(listUsers);
+			ViewBag.CountUsers = listUserVMs.Count();
+
+			var listPosts = db.Posts.ToList();
+			var listPostVMs = AutoMapper.Mapper.Map<IEnumerable<PostViewModel>>(listPosts);
+			ViewBag.CountPosts = listPostVMs.Count();
+
+			var listSubjects = db.Subjects.ToList();
+			var listSubjectVMs = AutoMapper.Mapper.Map<IEnumerable<SubjectViewModel>>(listSubjects);
+			ViewBag.CountSubjects = listSubjectVMs.Count();
+
+			var listUserDisabled = db.Users.Where(x => x.IsActive == false).ToList();
+			var listUserDisabledVMs = AutoMapper.Mapper.Map<IEnumerable<UserViewModel>>(listUserDisabled);
+			ViewBag.CountUsersDisabled = listUserDisabledVMs.Count();
 			return View();
         }
 

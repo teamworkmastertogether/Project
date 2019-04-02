@@ -5264,10 +5264,10 @@ input#ChangePassword {
     padding-top: 6%;
 }
 .logout #logout {
-    font-size: 15px;
+    font-size: 14px;
     background: #ccc;
     width: 80%;
-    height: 90%;
+    height: 131%;
     border: 1px solid #00000029;
     position: absolute;
     z-index: 100;
@@ -5299,8 +5299,8 @@ input#ChangePassword {
     }
 .menu-search #submitTextKeyword {
     position: absolute;
-    top: 35%;
-    right: 4%;
+    top: 32%;
+    right: 12%;
     font-size: 20px;
     cursor: pointer;
     color: #00000091;
@@ -5368,5 +5368,4 @@ input#ChangePassword {
     top: 0%;
     width: 53%;
     height: 190%;
-    z-index: 2;
 }

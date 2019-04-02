@@ -195,7 +195,7 @@ namespace ChatApp.Controllers
 			}
 			catch (Exception)
 			{
-				throw;
+				
 			}
 			return result;
 		}

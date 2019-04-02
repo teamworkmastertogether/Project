@@ -477,6 +477,11 @@ function UploadAvatar(formData) {
             $("#upImg").hide();
             $(".modal-backdrop").remove();
             $("#myModal #close").click();
+            Swal.fire(
+                'Thành công!',
+                'Bạn đã thay đổi ảnh thành công!',
+                'success'
+            );
         }
     }
     if ($(formData).attr('enctype') == "multipart/form-data") {

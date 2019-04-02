@@ -307,11 +307,6 @@ $(document).ready(function () {
             dataType: "json",
             success: function (result) {
                 hub.server.deletePost(GroupNameCurrent, postId);
-                Swal.fire(
-                    'Thành công!',
-                    'Bạn đã xóa bài viết thành công!',
-                    'success'
-                );
             },
             error: function (message) {
                 alert(message.responseText);
@@ -425,11 +420,7 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (result) {
                     hub.server.editPost(GroupNameCurrent, PostDto);
-                    Swal.fire(
-                        'Thành công!',
-                        'Bạn đã sửa bài viết thành công!',
-                        'success'
-                    );
+                  
                 },
                 error: function (message) {
                     alert(message.responseText);
@@ -466,25 +457,13 @@ $(document).ready(function () {
                 contentType: "application/json;charset=utf-8",
                 dataType: "json",
                 success: function (object) {
-                    hub.server.createPostNew(GroupNameCurrent, object.result, object.notiDto);
-                    Swal.fire(
-                        'Thành công!',
-                        'Bạn đã đăng bài thành công!',
-                        'success'
-                    );
+                    hub.server.createPostNew(GroupNameCurrent, object.result, object.notiDto);   
                     $("#xButton").hide();
                 },
                 error: function (message) {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                        footer: '<a href>Why do I have this issue?</a>'
-                    });
+                    alert(message.responseText);
                 }
-
-            });
-            
+            });  
         }
     });
 
@@ -520,7 +499,7 @@ function GetUrlPostImage(formData) {
             $('#xButton').show();
         }
     }
-    if ($(formData).attr('enctype') == "multipart/form-data") {
+    if ($(formData).attr('enctype') === "multipart/form-data") {
         ajaxConfig["contentType"] = false;
         ajaxConfig["processData"] = false;
     }

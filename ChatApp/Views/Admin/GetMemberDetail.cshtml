@@ -25,93 +25,88 @@
             <li class="active">Students</li>
         </ol>
     </section>
-    <div class="student-info" style="padding-top: 20px">
-        <dl class="dl-horizontal" style="font-size: 12pt">
-            <dt>
-                Mã học sinh:
-            </dt>
+    <div class="student-info row" style="padding-top: 20px">
+        <div class="col-md-3"></div>
+        <div class="col-md-7">
+            <dl class="dl-horizontal" style="font-size: 12pt">
+                <dt>
+                    Tên học sinh:
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Id)
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-            <dt>
-                Tên học sinh:
-            </dt>
+                <dt>
+                    Ngày sinh:
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
+                <dd>
+                    @if (Model.SchoolName == null)
+                    {
+                        <span>Đang cập nhật</span>
+                    }
+                    else
+                    {
+                        @Model.Dob.ToString("dd/MM/yyyy");
+                    }
+                </dd>
 
-            <dt>
-                Ngày sinh:
-            </dt>
+                <dt>
+                    Email:
+                </dt>
 
-            <dd>
-                @if (Model.SchoolName == null)
-                {
-                    <span>Đang cập nhật</span>
-                }
-                else
-                {
-                    @Html.DisplayFor(model => model.Dob)
-                }
-            </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-            <dt>
-                Email:
-            </dt>
+                <dt>
+                    Số điện thoại:
+                </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
+                <dd>
+                    @if (Model.SchoolName == null)
+                    {
+                        <span>Đang cập nhật</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    }
+                </dd>
 
-            <dt>
-                Số điện thoại:
-            </dt>
+                <dt>
+                    Học sinh trường:
+                </dt>
 
-            <dd>
-                @if (Model.SchoolName == null)
-                {
-                    <span>Đang cập nhật</span>
-                }
-                else
-                {
-                    @Html.DisplayFor(model => model.PhoneNumber)
-                }
-            </dd>
+                <dd>
+                    @if (Model.SchoolName == null)
+                    {
+                        <span>Đang cập nhật</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => model.SchoolName)
+                    }
+                </dd>
 
-            <dt>
-                Học sinh trường:
-            </dt>
+                <dt>
+                    Địa chỉ:
+                </dt>
 
-            <dd>
-                @if (Model.SchoolName == null)
-                {
-                    <span>Đang cập nhật</span>
-                }
-                else
-                {
-                    @Html.DisplayFor(model => model.SchoolName)
-                }
-            </dd>
+                <dd>
+                    @if (Model.SchoolName == null)
+                    {
+                        <span>Đang cập nhật</span>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => model.Address)
+                    }
+                </dd>
 
-            <dt>
-                Địa chỉ:
-            </dt>
-
-            <dd>
-                @if (Model.SchoolName == null)
-                {
-                    <span>Đang cập nhật</span>
-                }
-                else
-                {
-                    @Html.DisplayFor(model => model.Address)
-                }
-            </dd>
-
-        </dl>
+            </dl>
+        </div>
     </div>
 
     @using (Html.BeginForm())

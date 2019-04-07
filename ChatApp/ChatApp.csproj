@@ -217,6 +217,7 @@
     <Compile Include="Models\Dto\InforFriendDto.cs" />
     <Compile Include="Models\Dto\PersonalDto.cs" />
     <Compile Include="Models\Dto\PostDto.cs" />
+    <Compile Include="Models\Dto\SubjectDto.cs" />
     <Compile Include="Models\Dto\UserDto.cs" />
     <Compile Include="Models\Entities\Admin.cs" />
     <Compile Include="Models\Entities\BaseEntity.cs" />
@@ -6764,6 +6765,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\AdminCoverUpload\" />
     <Folder Include="ExportFiles\" />
     <Folder Include="Views\Notifi\" />
   </ItemGroup>

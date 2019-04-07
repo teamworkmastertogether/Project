@@ -1,4 +1,5 @@
-﻿
+﻿//import { setTimeout } from "timers";
+
 var IdPost;
 var GroupNameCurrent = $(".ToolFb .ToolLeft h2:eq(0)").text().trim();
 
@@ -187,19 +188,10 @@ $(document).ready(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                Swal.fire(
-                    'Thành công!',
-                    'Bạn đã lưu bài viết thành công!',
-                    'success'
-                );
+                toastr.success('Bạn đã lưu bài viết thành công!');
             },
             error: function (message) {
-                Swal.fire({
-                    type: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                    footer: '<a href>Why do I have this issue?</a>'
-                })
+               
             }
         });
     });
@@ -307,11 +299,7 @@ $(document).ready(function () {
             dataType: "json",
             success: function (result) {
                 hub.server.deletePost(GroupNameCurrent, postId);
-                Swal.fire(
-                    'Thành công!',
-                    'Bạn đã xóa bài viết thành công!',
-                    'success'
-                );
+                toastr.success('Bạn đã xóa bài viết thành công!');
             },
             error: function (message) {
                 alert(message.responseText);
@@ -425,11 +413,7 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (result) {
                     hub.server.editPost(GroupNameCurrent, PostDto);
-                    Swal.fire(
-                        'Thành công!',
-                        'Bạn đã sửa bài viết thành công!',
-                        'success'
-                    );
+                    toastr.success('Bạn đã sửa bài viết thành công!');
                 },
                 error: function (message) {
                     alert(message.responseText);
@@ -467,20 +451,11 @@ $(document).ready(function () {
                 dataType: "json",
                 success: function (object) {
                     hub.server.createPostNew(GroupNameCurrent, object.result, object.notiDto);
-                    Swal.fire(
-                        'Thành công!',
-                        'Bạn đã đăng bài thành công!',
-                        'success'
-                    );
+                    toastr.success('Bạn đã đăng bài viết thành công!');
                     $("#xButton").hide();
                 },
                 error: function (message) {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                        footer: '<a href>Why do I have this issue?</a>'
-                    });
+                   
                 }
 
             });

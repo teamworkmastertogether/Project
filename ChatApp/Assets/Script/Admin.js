@@ -52,6 +52,7 @@
                     'Bạn đã thêm thành viên thành công!',
                     'success'
                 );
+              
                 var dataObj = {
                     Name: $('#add-user').find('#userName').val(),
                     Email: $('#add-user').find('#userEmail').val()
@@ -122,6 +123,7 @@
                         'Bạn đã khóa tài khoản này thành công!',
                         'success'
                     );
+                   
                     $(button).text("Mở khóa");
                     $(button).removeClass('btn-danger');
                     $(button).addClass('btn-success');
@@ -132,6 +134,7 @@
                         'Bạn đã mở khóa tài khoản này thành công!',
                         'success'
                     );
+                   
                     $(button).text("Khóa");
                     $(button).removeClass('btn-success');
                     $(button).addClass('btn-danger');

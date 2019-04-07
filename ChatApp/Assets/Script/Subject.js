@@ -43,3 +43,7 @@ $(".list-friend-sugggest").on("click", ".add-friend", function () {
         }
     });
 });
+
+$(".list-friend-sugggest").on("click",".delete-suggest",function() {
+    $(this).closest(".content-listFriendSuggest").slideUp(300);
+});

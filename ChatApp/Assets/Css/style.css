@@ -1,48 +1,3 @@
-/* Minification failed. Returning unminified contents.
-(427,8): run-time error CSS1035: Expected colon, found ';'
-(672,7): run-time error CSS1035: Expected colon, found '.'
-(1203,7): run-time error CSS1035: Expected colon, found '.'
-(1534,7): run-time error CSS1035: Expected colon, found '.'
-(2534,8): run-time error CSS1035: Expected colon, found ';'
-(2780,7): run-time error CSS1035: Expected colon, found '.'
-(3293,7): run-time error CSS1035: Expected colon, found '.'
-(3626,7): run-time error CSS1035: Expected colon, found '.'
-(4386,1): run-time error CSS1019: Unexpected token, found '@import'
-(4386,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4478,17): run-time error CSS1036: Expected expression, found '#'
-(5049,1): run-time error CSS1019: Unexpected token, found '@keyframes'
-(5050,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
- */
-/* Minification failed. Returning unminified contents.
-(412,8): run-time error CSS1035: Expected colon, found ';'
-(657,7): run-time error CSS1035: Expected colon, found '.'
-(1188,7): run-time error CSS1035: Expected colon, found '.'
-(1519,7): run-time error CSS1035: Expected colon, found '.'
-(2508,8): run-time error CSS1035: Expected colon, found ';'
-(2754,7): run-time error CSS1035: Expected colon, found '.'
-(3267,7): run-time error CSS1035: Expected colon, found '.'
-(3600,7): run-time error CSS1035: Expected colon, found '.'
-(4360,1): run-time error CSS1019: Unexpected token, found '@import'
-(4360,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4452,17): run-time error CSS1036: Expected expression, found '#'
-(5023,1): run-time error CSS1019: Unexpected token, found '@keyframes'
-(5024,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
- */
-/* Minification failed. Returning unminified contents.
-(397,8): run-time error CSS1035: Expected colon, found ';'
-(642,7): run-time error CSS1035: Expected colon, found '.'
-(1173,7): run-time error CSS1035: Expected colon, found '.'
-(1504,7): run-time error CSS1035: Expected colon, found '.'
-(2493,8): run-time error CSS1035: Expected colon, found ';'
-(2739,7): run-time error CSS1035: Expected colon, found '.'
-(3252,7): run-time error CSS1035: Expected colon, found '.'
-(3585,7): run-time error CSS1035: Expected colon, found '.'
-(4345,1): run-time error CSS1019: Unexpected token, found '@import'
-(4345,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
-(4437,17): run-time error CSS1036: Expected expression, found '#'
-(5006,1): run-time error CSS1019: Unexpected token, found '@keyframes'
-(5007,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
- */
 
 
 * {
@@ -176,8 +131,8 @@
 
             .ToolRight.pull-right ul li a {
                 text-decoration: none;
-                color: black;
-                font-size: 20px;
+                color: #6b6666;
+                font-size: 17px;
                 font-family: serif;
             }
 
@@ -2292,8 +2247,9 @@ i.fas.fa-list-ul {
         margin-left: 3%;
         padding-left: 15px;
     }
+
     .main .fixModel {
-        margin-left:2%;
+        margin-left: 2%;
     }
 }
 
@@ -4126,7 +4082,7 @@ span.notify {
 
 span {
     background-color: transparent;
-    color: #cc1515;
+    color: black;
 }
 
     span.badge {
@@ -5212,6 +5168,7 @@ span.name-postStore:hover {
 .modal-show-image {
     margin-left: 100px;
 }
+
 .ChangePass input.form-control {
     background: white;
 }
@@ -5259,10 +5216,12 @@ input#ChangePassword {
     padding-top: 8px;
     padding-left: 6px;
 }
+
 .icon .glyphicon.glyphicon-log-out {
     font-size: 28px;
     padding-top: 6%;
 }
+
 .logout #logout {
     font-size: 14px;
     background: #ccc;
@@ -5273,7 +5232,7 @@ input#ChangePassword {
     z-index: 100;
     top: 100%;
     padding-top: 7%;
-    display:none;
+    display: none;
 }
 
 .logout {
@@ -5297,6 +5256,7 @@ input#ChangePassword {
         background: #e6e486;
         transition: 0.4s;
     }
+
 .menu-search #submitTextKeyword {
     position: absolute;
     top: 32%;
@@ -5347,26 +5307,51 @@ input#ChangePassword {
         width: 60px;
         height: 60px;
     }
+
 .DisplayFriend p {
     color: blue;
     font-size: 22px;
     font-family: monospace;
 }
+
 .ModalSearch .closeDiv1 {
     position: absolute;
     bottom: 3%;
     right: 2%;
 }
+
 .ModalSearch span.closeDiv {
     position: absolute;
     top: 5%;
     right: 3%;
     font-size: 25px;
 }
+
 .main .fixModel {
     position: fixed;
     top: 0%;
     width: 53%;
     height: 190%;
-    z-index:-1;
+    z-index: -1;
+}
+
+.name-user, .name-reply, .name-comment {
+    font-weight: bold;
+    color: #1f03f7 !important;
+    padding-left: 20px;
+}
+
+a.username_post, a.name-reply {
+    color: #1f03f7 !important;
+}
+
+
+ .swal2-confirm.swal2-styled{
+     display:none !important;
+ }
+
+.content-listFriendSuggest .infor h5 {
+    font-size: 15px;
+    color: #071b84;
+    font-family: auto;
 }

@@ -153,7 +153,10 @@
             <div class="info-user">
 
             </div>
-            <button class="btn btn-primary" id="ChangePass">Thay Đổi Mật Khẩu</button>
+            @if (ViewBag.checkUser)
+            {
+                <button class="btn btn-primary" id="ChangePass">Thay Đổi Mật Khẩu</button>
+            }
             <div class="ChangePass">
                 <form method="post">
                     <p id="prePassword" style="display:none;">a</p>

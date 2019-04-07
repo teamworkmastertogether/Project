@@ -266,6 +266,8 @@
     <Content Include="Assets\Plugin\list.min.js" />
     <Content Include="Assets\Plugin\sweetalert2.min.css" />
     <Content Include="Assets\Plugin\sweetalert2.min.js" />
+    <Content Include="Assets\Plugin\toastr.min.css" />
+    <Content Include="Assets\Plugin\toastr.min.js" />
     <Content Include="Assets\Script\Admin.js" />
     <Content Include="Assets\Script\CommentPost.js" />
     <Content Include="Assets\Script\CommentRealTime.js" />

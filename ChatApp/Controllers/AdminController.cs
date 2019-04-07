@@ -292,7 +292,7 @@ namespace ChatApp.Controllers
 		public JsonResult CreateUser (UserViewModel userVM)
 		{
 			User user = AutoMapper.Mapper.Map<User>(userVM);
-			user.DoB = DateTime.Now.Date;
+			user.DoB = DateTime.Today;
 			user.Avatar = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg";
 			Random random = new Random();
 			var newpass = random.Next(1000, 9000).ToString();

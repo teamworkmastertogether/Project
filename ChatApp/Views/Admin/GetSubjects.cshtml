@@ -8,7 +8,7 @@
 <link href="~/Assets/Plugin/sweetalert2.min.css" rel="stylesheet" />
 
 <div class="content-wrapper" style="padding-left: 10px">
-    <section class="content-header" style="border-bottom: 1px solid gray; padding-bottom: 10px">
+    <section class="content-header" style="border-bottom: 1px solid gray; padding-bottom: 10px; margin-bottom: 10px">
         <h1>
             Danh sách nhóm môn học
         </h1>
@@ -18,42 +18,45 @@
         </ol>
     </section>
 
-    <table class="table">
-        <tr>
-            <th>
-                Số thứ tự
-            </th>
-            <th>
-                Tên môn học
-            </th>
-            <th>
-                Ảnh bìa
-            </th>
-            <th>Thao tác</th>
-        </tr>
-
-        @{ int i = 0; }
-        @foreach (var item in Model)
-        {
-            i = i + 1;
+    <table class="table" style="padding-left: 10px;">
+        <thead>
             <tr>
-                <td>@i</td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    <img src="@Html.DisplayFor(modelItem => item.Photo)" alt="Alternate Img" style="width:150px;height:50px" class="photo-cover-@item.Id"/>
-                </td>
-                <td>
-                    <a href="/Admin/GetPostsBySubjects/@item.Id">
-                        <button class="btn btn-primary">Danh sách bài đăng</button>
-                    </a>
-                    <a href="#">
-                        <button class="btn btn-primary btn-change-cover" data-toggle="modal" data-target="#myModal" id="@item.Id">Thay đổi ảnh bìa</button>
-                    </a>
-                </td>
+                <th>
+                    Số thứ tự
+                </th>
+                <th>
+                    Tên môn học
+                </th>
+                <th>
+                    Ảnh bìa
+                </th>
+                <th>Thao tác</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @{ int i = 0; }
+            @foreach (var item in Model)
+            {
+                i = i + 1;
+                <tr>
+                    <td>@i</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <img src="@Html.DisplayFor(modelItem => item.Photo)" alt="Alternate Img" style="width:150px;height:50px" class="photo-cover-@item.Id" />
+                    </td>
+                    <td>
+                        <a href="/Admin/GetPostsBySubjects/@item.Id">
+                            <button class="btn btn-primary">Danh sách bài đăng</button>
+                        </a>
+                        <a href="#">
+                            <button class="btn btn-primary btn-change-cover" data-toggle="modal" data-target="#myModal" id="@item.Id">Thay đổi ảnh bìa</button>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
 

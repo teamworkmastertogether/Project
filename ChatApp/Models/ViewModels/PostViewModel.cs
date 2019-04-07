@@ -12,6 +12,7 @@ namespace ChatApp.Models.ViewModels
 		public string Photo { get; set; }
 		public string CreatedDate { get; set; }
 
+        public SubjectViewModel Subject { get; set; }
 		public int SubjectId { get; set; }
 
         public UserViewModel User { get; set; }

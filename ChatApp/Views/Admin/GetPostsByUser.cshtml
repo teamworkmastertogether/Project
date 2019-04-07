@@ -47,6 +47,8 @@
                         <th>
                             Nội dung bài đăng
                         </th>
+                        <th>Ảnh bài đăng</th>
+                        <th>Nhóm đăng</th>
                         <th>
                             Thời gian đăng
                         </th>
@@ -57,23 +59,35 @@
                     @foreach (var item in Model)
                     {
                         i = i + 1;
-                        <tr>
-                            <td>
-                                @i
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Text)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedDate)
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @i
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Text)
+                        </td>  
+                        <td>
+                            @if (item.Photo != null)
+                            {
+                                <img src="@item.Photo" style="width:100px;height: 100px" />
+                            }
+                            else {
+                                <p>Đang cập nhật</p>
+                            }
+                        </td>   
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject.Name)
+                        </td>
+                        <td>    
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
             @using (Html.BeginForm())
             {
-                <div style="padding-left: 20px;">
+                <div>
                     <a href="/Admin/GetMembers">Quay lại trang danh sách học sinh</a>
                 </div>
             }

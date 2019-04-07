@@ -83,6 +83,18 @@ namespace ChatApp.Controllers
 		{
 			var listMembers = db.Users.ToList();
 			var listMemberVMs = AutoMapper.Mapper.Map<IEnumerable<UserViewModel>>(listMembers);
+            ViewBag.Count = Session["Count"];
+            if(ViewBag.Count != null)
+            {
+                Session.Remove("Count");
+                if (ViewBag.Count == -1)
+                {
+                    ViewBag.FailMessage = Session["FailMessage"];
+                    Session.Remove("FailMessage");
+                    ViewBag.Count = "";
+                }
+            }
+          
 			return View(listMemberVMs);
 		}
 
@@ -146,15 +158,23 @@ namespace ChatApp.Controllers
 		[HttpPost]
 		public ActionResult ImportUserFromExcel(HttpPostedFileBase fileUpload)
 		{
-			int count = 0;
-			var package = new ExcelPackage(fileUpload.InputStream);
-			if (ImportData(out count, package))
-			{
-				ViewBag.message = "Bạn đã import dữ liệu học sinh thành công";
-			}else
-			{
-				ViewBag.message = "Import thất bại. Vui lòng thử lại";
-			}
+            int count = 0;
+            try
+            {
+                var package = new ExcelPackage(fileUpload.InputStream);
+                if (!ImportData(out count, package))
+                {
+                    Session["FailMessage"] = "File Excel sai định dạng";
+                    count = -1;
+                }
+            }
+            catch (Exception)
+            {
+                Session["FailMessage"] = "Import thất bại. Vui lòng chọn file Excel";
+                count = -1;
+            }
+
+            Session["Count"] = count;
 			return RedirectToAction("GetMembers");
 		}
 
@@ -162,6 +182,7 @@ namespace ChatApp.Controllers
 		public bool ImportData(out int count, ExcelPackage package)
 		{
 			count = 0;
+            var check = true;
 			var result = false;
 			try
 			{
@@ -196,7 +217,7 @@ namespace ChatApp.Controllers
 			}
 			catch (Exception)
 			{
-				
+                check = false;
 			}
 			return result;
 		}

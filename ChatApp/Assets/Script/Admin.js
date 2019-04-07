@@ -162,6 +162,25 @@
     $("#selectFile").click(function () {
         $("#UploadImage").trigger('click');
     });
+
+    if ($('.show-result').text().trim() !== "") {
+        var successImported = $('.show-result').text().trim() + ' người được import thành công';
+        Swal.fire(
+            'Thành công',
+            successImported,
+            'success'
+        );
+        $('.show-result').text("");
+    }
+
+    if ($('.import-fail').text().trim() !== "") {
+        var failImported = $('.import-fail').text().trim(); 
+        Swal.fire(
+            'Thất bại',
+            failImported,
+            'error'
+        );
+    }
 });
 
 var idCurrentImg;

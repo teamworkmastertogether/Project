@@ -5,6 +5,8 @@
     Layout = "~/Views/Admin/_AdminPartialView.cshtml";
 }
 
+<link href="~/Assets/Plugin/sweetalert2.min.css" rel="stylesheet" />
+
 <div class="content-wrapper" style="padding-left: 10px">
     <section class="content-header" style="border-bottom: 1px solid gray; padding-bottom: 10px">
         <h1>
@@ -40,14 +42,50 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    <img src="@Html.DisplayFor(modelItem => item.Photo)" alt="Alternate Img" style="width:150px;height:50px"/>
+                    <img src="@Html.DisplayFor(modelItem => item.Photo)" alt="Alternate Img" style="width:150px;height:50px" class="photo-cover-@item.Id"/>
                 </td>
                 <td>
                     <a href="/Admin/GetPostsBySubjects/@item.Id">
                         <button class="btn btn-primary">Danh sách bài đăng</button>
+                    </a>
+                    <a href="#">
+                        <button class="btn btn-primary btn-change-cover" data-toggle="modal" data-target="#myModal" id="@item.Id">Thay đổi ảnh bìa</button>
                     </a>
                 </td>
             </tr>
         }
     </table>
 </div>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog mod">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 style="font-weight: bold">Thay đổi ảnh bìa</h4>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form id="FormAvatar" method="post" enctype="multipart/form-data" onsubmit="return UploadSubjectPhoto(this)" runat="server">
+                    <img id="blah" src="" style="width: 570px; height: 300px;"/>
+                    <input type="file" id="UploadImage" accept="image/gif, image/jpeg, image/png" name="UploadCover" class="form-control" style="display:none" ; /><br />
+                    <a href="#" id="selectFile" class="btn btn-primary">Chọn ảnh</a>
+                    <button class="btn btn-danger" id="upImg" style="display:none;">Lưu chỉnh sửa</button>
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="close" data-dismiss="modal">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/Assets/Plugin/jquery-3.3.1.min.js"></script>
+<script src="~/Assets/Plugin/sweetalert2.min.js"></script>
+<script src="~/Assets/Script/Admin.js"></script>

@@ -5,6 +5,7 @@ using ChatApp.Models.ViewModels;
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -257,30 +258,33 @@ namespace ChatApp.Controllers
 		private bool ExportData()
 		{
 			bool result = false;
-			string fileName = Server.MapPath("/") + "\\ExportFiles\\UserData.xlsx";
-			ExcelPackage package = new ExcelPackage(new System.IO.FileInfo(fileName));
-			//create new sheet
-			var ws = package.Workbook.Worksheets.Add("User Sheet");
 
-			int startRow = 2;
+            var listUsers = db.Users.ToList();
+            var userList = AutoMapper.Mapper.Map <IEnumerable<UserViewModel>>(listUsers);
+            ExcelPackage package = new ExcelPackage();
+            ExcelWorksheet ws = package.Workbook.Worksheets.Add("New Sheet");
+            ws.Cells[1, 1].Value = "STT";
+            ws.Cells[1, 2].Value = "Tên học sinh";
+            ws.Cells[1, 3].Value = "Email";
+            int startRow = 2;
+            int i = 0;
 
-			//get data from db
-			ChatDbcontext db = new ChatDbcontext();
-			var users = db.Users.ToList();
-			int i = 0;
-			foreach (var item in users)
-			{
-				ws.Cells[1, 1].Value = "STT";
-				ws.Cells[1, 2].Value = "Tên học sinh";
-				ws.Cells[1, 3].Value = "Email";
-				ws.Cells[startRow, 1].Value = i + 1;
-				ws.Cells[startRow, 2].Value = item.Name;
-				ws.Cells[startRow, 3].Value = item.Email;
-				startRow++;
-				i++;
-			}
-			package.Save();
-			result = true;
+            foreach (var item in userList)
+            {
+                ws.Cells[startRow, 1].Value = i + 1;
+                ws.Cells[startRow, 2].Value = item.Name;
+                ws.Cells[startRow, 3].Value = item.Email;
+                startRow++;
+                i++;
+            }
+
+            ws.Cells["A:AZ"].AutoFitColumns();
+            Response.Clear();
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AppendHeader("content-disposition", "attachment; filename=" + "UserReport.xlsx");
+            Response.BinaryWrite(package.GetAsByteArray());
+            Response.End();
+            result = true;
 			return result;
 		}
 
@@ -288,7 +292,7 @@ namespace ChatApp.Controllers
 		public JsonResult CreateUser (UserViewModel userVM)
 		{
 			User user = AutoMapper.Mapper.Map<User>(userVM);
-			user.DoB = DateTime.Now;
+			user.DoB = DateTime.Now.Date;
 			user.Avatar = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg";
 			Random random = new Random();
 			var newpass = random.Next(1000, 9000).ToString();
@@ -406,5 +410,22 @@ namespace ChatApp.Controllers
 			db.SaveChanges();
 			return RedirectToAction("GetSubjects");
 		}
+
+        public ActionResult UploadCover (int id, HttpPostedFileBase UploadCover)
+        {
+            Subject sub = db.Subjects.FirstOrDefault(x => x.Id == id);
+            if(UploadCover != null)
+            {
+                string FileName = Path.GetFileNameWithoutExtension(UploadCover.FileName);
+                string Extension = Path.GetExtension(UploadCover.FileName);
+                FileName = FileName + Extension;
+                UploadCover.SaveAs(Path.Combine(Server.MapPath("~/Assets/AdminCoverUpload"), FileName));
+                sub.Photo = "http://localhost:54576/Assets/AdminCoverUpload/" + FileName;
+                db.SaveChanges();
+                var subjectDto = new SubjectDto { Name = sub.Name, Photo = sub.Photo };
+                return Json(subjectDto, JsonRequestBehavior.AllowGet);
+            }
+            return Json("Vui lòng chọn ảnh thích hợp !", JsonRequestBehavior.AllowGet);
+        }
 	}
 }

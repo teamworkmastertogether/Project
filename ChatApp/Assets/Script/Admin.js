@@ -141,4 +141,63 @@
             }
         });
     });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result);
+            }
+            $("#upImg").show();
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#UploadImage").change(function () {
+        readURL(this);
+    });
+
+    //đổi nút chọn file sang button avatar
+    $("#selectFile").click(function () {
+        $("#UploadImage").trigger('click');
+    });
 });
+
+var idCurrentImg;
+
+$('.btn-change-cover').on('click', function () {
+    idCurrentImg = $(this).attr('id');
+    var imgSrc = $(this).closest('td').prev().find('img').attr('src');
+    $(this).parents('.content-wrapper').next().find('#blah').attr('src', imgSrc);
+});
+
+function UploadSubjectPhoto(formData) {
+    url = "/Admin/UploadCover?id=" + idCurrentImg;
+    
+    var ajaxConfig = {
+        type: "POST",
+        url: url,
+        data: new FormData(formData),
+        success: function (result) {
+            $('.photo-cover-' + idCurrentImg).attr('src', result.Photo);
+            $("#upImg").hide();
+            $(".modal-backdrop").remove();
+            $("#myModal #close").click();
+            Swal.fire(
+                'Thành công!',
+                'Bạn đã thay đổi ảnh thành công!',
+                'success'
+            );
+        }
+    };
+    if ($(formData).attr('enctype') === "multipart/form-data") {
+        ajaxConfig["contentType"] = false;
+        ajaxConfig["processData"] = false;
+    }
+
+    $.ajax(ajaxConfig);
+
+    return false;
+}
+

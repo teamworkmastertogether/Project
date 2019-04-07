@@ -279,6 +279,7 @@ namespace ChatApp.Controllers
             }
             return Json(new { isvalid = false }, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public ActionResult UploadAvatar(int id,HttpPostedFileBase UploadImage)
 

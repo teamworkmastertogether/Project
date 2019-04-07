@@ -484,7 +484,7 @@ function UploadAvatar(formData) {
             );
         }
     }
-    if ($(formData).attr('enctype') == "multipart/form-data") {
+    if ($(formData).attr('enctype') === "multipart/form-data") {
         ajaxConfig["contentType"] = false;
         ajaxConfig["processData"] = false;
     }

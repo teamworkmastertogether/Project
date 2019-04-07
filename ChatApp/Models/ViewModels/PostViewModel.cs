@@ -14,7 +14,7 @@ namespace ChatApp.Models.ViewModels
 
 		public int SubjectId { get; set; }
 
-        //public user user { get; set; }
+        public UserViewModel User { get; set; }
         public int UserId { get; set; }
 	}
 }

@@ -341,11 +341,11 @@ img#blah {
 }
 
     .info-user .ht-left {
-        color: blue;
+        color: black;
     }
 
     .info-user .ht-right {
-        color: #1caf2f;
+        color: black;
     }
 
 span.ht-right {

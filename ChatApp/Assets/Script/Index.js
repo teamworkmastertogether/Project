@@ -1,5 +1,4 @@
-﻿
-var checkAvarta = 0;
+﻿var checkAvarta = 0;
 var count = 1;
 $(function () {
     countNoti = parseInt($(".icon-notify .badge").text());
@@ -75,9 +74,7 @@ $(function () {
                 alert(message.responseText);
             }
         });
-
     });
-
 
     $('body').on('click', ' .icon-friend ', function (e) {
         $.ajax({
@@ -114,7 +111,6 @@ $(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (array) {
-
             },
             error: function (message) {
                 alert(message.responseText);
@@ -128,9 +124,7 @@ $(function () {
 
     $('body').on('click', '#Main-content, #people-list, .icon-home, .icon-notify ', function (e) {
         $('#add-friend_invitation').hide();
-
     });
-
 
     $("#edit-info").click(function () {
         count++;
@@ -179,7 +173,6 @@ $(function () {
                 $(".edit-user #PhoneNumber").val(res.PhoneNumber);
                 $(".edit-user #Address").val(res.Address);
             }
-
         });
     });
     $(".avatar .img-responsive").mouseover(function () {
@@ -220,7 +213,6 @@ $(function () {
             success: function (res) {
                 toastr.success('Bạn đã hủy kết bạn thành công!');
             }
-
         });
         $(this).closest(".col-md-12").remove();
     });
@@ -238,9 +230,7 @@ $(function () {
     });
     $('#people-list,.icon-home,.icon-friend,.closeDiv,.closeDiv1').off().mouseup(function (e) {
         $(".ModalSearch").fadeOut(150);
-        $(".main .fixModel").css("z-index", "0");
     });
-
 
     $(".update-background,.update-img").click(function () {
         src = $(this).prev().attr("src");
@@ -299,8 +289,6 @@ $(function () {
     $("#close,.close").on("click", function () {
         $("#upImg").hide();
     });
-
-
 
     $(".content-store").on("click", ".EditPostStore", function () {
         $(this).next().toggle();
@@ -367,45 +355,8 @@ $(function () {
     });
     $(".logout").click(function () {
         $(".logout #logout").toggle(150);
-    })
-});
-
-$("#submitTextKeyword").click(function (e) {
-    keyword = $("#txtkeyword").val();
-    $("#txtkeyword").val('');
-    if (keyword != '') {
-        $.ajax({
-            type: "POST",
-            url: "/Home/DisplaySeach?keyword=" + keyword,
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (res) {
-                var html = '';
-                var keyname = 'Kết quả tìm kiếm cho : <span>' + keyword + '</span> <hr>';
-                html += '<ul>';
-                $.each(res, function (key, item) {
-
-                    html += '<li><img src=' + item.Avatar + '><a href="' + item.UrlUser + '">' + item.Name + '</a></li>';
-                });
-                html += '</ul>';
-                if (res.length === 0) {
-                    html += '<p>Không tìm thấy kết quả !</p>';
-                }
-                $('#keyname').html(keyname);
-                $('.DisplayFriend').html(html);
-                $(".ModalSearch").fadeIn(150);
-                $(".main .fixModel").css("z-index", "2");
-            }
-        });
-    }
-    else {
-        $("#txtkeyword").focus();
-        return false;
-    }
-
-});
-$("#txtkeyword").keypress(function (e) {
-    if (e.which === 13) {
+    });
+    $("#submitTextKeyword").click(function (e) {
         keyword = $("#txtkeyword").val();
         $("#txtkeyword").val('');
         if (keyword != '') {
@@ -419,7 +370,6 @@ $("#txtkeyword").keypress(function (e) {
                     var keyname = 'Kết quả tìm kiếm cho : <span>' + keyword + '</span> <hr>';
                     html += '<ul>';
                     $.each(res, function (key, item) {
-
                         html += '<li><img src=' + item.Avatar + '><a href="' + item.UrlUser + '">' + item.Name + '</a></li>';
                     });
                     html += '</ul>';
@@ -429,7 +379,6 @@ $("#txtkeyword").keypress(function (e) {
                     $('#keyname').html(keyname);
                     $('.DisplayFriend').html(html);
                     $(".ModalSearch").fadeIn(150);
-                    $(".main .fixModel").css("z-index", "2");
                 }
             });
         }
@@ -437,8 +386,75 @@ $("#txtkeyword").keypress(function (e) {
             $("#txtkeyword").focus();
             return false;
         }
-    }
+    });
+    $("#txtkeyword").keypress(function (e) {
+        if (e.which === 13) {
+            keyword = $("#txtkeyword").val();
+            $("#txtkeyword").val('');
+            if (keyword != '') {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/DisplaySeach?keyword=" + keyword,
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (res) {
+                        var html = '';
+                        var keyname = 'Kết quả tìm kiếm cho : <span>' + keyword + '</span> <hr>';
+                        html += '<ul>';
+                        $.each(res, function (key, item) {
+                            html += '<li><img src=' + item.Avatar + '><a href="' + item.UrlUser + '">' + item.Name + '</a></li>';
+                        });
+                        html += '</ul>';
+                        if (res.length === 0) {
+                            html += '<p>Không tìm thấy kết quả !</p>';
+                        }
+                        $('#keyname').html(keyname);
+                        $('.DisplayFriend').html(html);
+                        $(".ModalSearch").fadeIn(150);
+                    }
+                });
+            }
+            else {
+                $("#txtkeyword").focus();
+                return false;
+            }
+        }
+    });
 });
+function UploadAvatar(formData) {
+    url = "";
+    if (checkAvarta === 1) {
+        url = "/Home/UploadAvatar?id=1";
+    } else if (checkAvarta === 2) {
+        url = "/Home/UploadAvatar?id=2";
+    }
+
+    var ajaxConfig = {
+        type: "POST",
+        url: url,
+        data: new FormData(formData),
+        success: function (result) {
+            $(".avatar .img-responsive img").attr("src", result.Avatar);
+            $(".background img").attr("src", result.CoverPhoto);
+
+            $("#upImg").hide();
+            $(".modal-backdrop").remove();
+            $("#myModal #close").click();
+            Swal.fire(
+                'Thành công!',
+                'Bạn đã thay đổi ảnh thành công!',
+                'success'
+            );
+        }
+    }
+    if ($(formData).attr('enctype') === "multipart/form-data") {
+        ajaxConfig["contentType"] = false;
+        ajaxConfig["processData"] = false;
+    }
+    $.ajax(ajaxConfig);
+
+    return false;
+}
 
 $(document).mouseup(function (e) {
     var container = $('#logout');

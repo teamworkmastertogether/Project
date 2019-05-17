@@ -458,40 +458,7 @@ $("#UpdateUser").on("click", function () {
                 });
 });
 
-function UploadAvatar(formData) {
-    url = "";
-    if (checkAvarta === 1) {
-        url = "/Home/UploadAvatar?id=1";
-    } else if (checkAvarta === 2) {
-        url = "/Home/UploadAvatar?id=2";
-    }
-   
-    var ajaxConfig = {
-        type: "POST",
-        url: url,
-        data: new FormData(formData),
-        success: function (result) {
-            $(".avatar .img-responsive img").attr("src", result.Avatar);
-            $(".background img").attr("src", result.CoverPhoto);
 
-            $("#upImg").hide();
-            $(".modal-backdrop").remove();
-            $("#myModal #close").click();
-            Swal.fire(
-                'Thành công!',
-                'Bạn đã thay đổi ảnh thành công!',
-                'success'
-            );
-        }
-    }
-    if ($(formData).attr('enctype') === "multipart/form-data") {
-        ajaxConfig["contentType"] = false;
-        ajaxConfig["processData"] = false;
-    }
-    $.ajax(ajaxConfig);
-
-    return false;
-}
 function ValidatePhone(phone) {
     regex = new RegExp("^[0-9]{10,11}$");
     res = regex.test(phone);

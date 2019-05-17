@@ -218,11 +218,7 @@ $(function () {
             contentType: "application/json;charset=utf-8",
             dataType: "JSON",
             success: function (res) {
-                Swal.fire(
-                    'Thành công!',
-                    'Bạn đã hủy kết bạn thành công!',
-                    'success'
-                );
+                toastr.success('Bạn đã hủy kết bạn thành công!');
             }
 
         });
@@ -320,11 +316,7 @@ $(function () {
             dataType: "JSON",
             success: function (res) {
                 $(".post-store[id=" + IdPost + "]").remove();
-                Swal.fire(
-                    'Thành công!',
-                    'Bạn đã xóa bài viết thành công!',
-                    'success'
-                );
+                toastr.success('Bạn đã xóa bài viết thành công!');
             }
         })
     });

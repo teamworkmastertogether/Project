@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Social network</title>
     <link href="~/Assets/Images/Layout/logo.png" rel="icon" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">*@
+    <link href="~/Assets/Plugin/toastr.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
 
     @Styles.Render("~/web/css")
 
@@ -40,6 +42,7 @@
     <script src="~/Assets/Plugin/list.min.js"></script>
     <script src="~/Assets/Plugin/jquery.signalR-2.2.2.min.js"></script>
     <script src="~/signalr/hubs"></script>
+    <script src="~/Assets/Plugin/toastr.min.js"></script>
     <script>
          var MyUserName = '@Request.RequestContext.HttpContext.Session["userName"]';
     </script>

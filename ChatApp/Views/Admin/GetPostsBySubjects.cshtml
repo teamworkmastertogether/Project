@@ -43,7 +43,7 @@
                     <th>
                         Thời gian đăng
                     </th>
-                    <th></th>
+                    <th>Người đăng</th>
                 </tr>
 
                 @{ int i = 0;}
@@ -60,6 +60,9 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Name)
                         </td>
                         <td>
                             <a href="/Admin/DeletePost/@item.Id">

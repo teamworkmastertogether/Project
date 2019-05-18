@@ -5363,3 +5363,8 @@ a.username_post, a.name-reply {
     color: #071b84;
     font-family: auto;
 }
+.ToolRight.pull-right ul {
+    display: flex;
+    padding-right: 1em;
+    list-style: none;
+}

@@ -1,3 +1,18 @@
+/* Minification failed. Returning unminified contents.
+(398,8): run-time error CSS1035: Expected colon, found ';'
+(643,7): run-time error CSS1035: Expected colon, found '.'
+(1174,7): run-time error CSS1035: Expected colon, found '.'
+(1505,7): run-time error CSS1035: Expected colon, found '.'
+(2511,8): run-time error CSS1035: Expected colon, found ';'
+(2757,7): run-time error CSS1035: Expected colon, found '.'
+(3270,7): run-time error CSS1035: Expected colon, found '.'
+(3603,7): run-time error CSS1035: Expected colon, found '.'
+(4370,1): run-time error CSS1019: Unexpected token, found '@import'
+(4370,9): run-time error CSS1019: Unexpected token, found 'url(https://fonts.googleapis.com/css?family=Lato:400,700)'
+(4462,17): run-time error CSS1036: Expected expression, found '#'
+(5032,1): run-time error CSS1019: Unexpected token, found '@keyframes'
+(5033,5): run-time error CSS1062: Expected semicolon or closing curly-brace, found '0%'
+ */
 
 
 * {
@@ -2001,7 +2016,7 @@ span {
 
 .icon-friend span.badge {
     position: absolute;
-    right: 73px;
+    right: 95px;
     padding: 5px 8px;
     border-radius: 100%;
     background: #ff3d00fc;
@@ -3762,7 +3777,7 @@ i.fa.fa-bell:hover {
 }
 
 .menu-bar .icon {
-    width: 67px;
+    width: 86px;
     font-size: 25px;
     line-height: 40px;
 }
@@ -5354,17 +5369,22 @@ a.username_post, a.name-reply {
 }
 
 
- .swal2-confirm.swal2-styled{
-     display:none !important;
- }
+.swal2-confirm.swal2-styled {
+    display: none !important;
+}
 
 .content-listFriendSuggest .infor h5 {
     font-size: 15px;
     color: #071b84;
     font-family: auto;
 }
+
 .ToolRight.pull-right ul {
     display: flex;
     padding-right: 1em;
     list-style: none;
+}
+
+ul li{
+    list-style-type: none!important;
 }

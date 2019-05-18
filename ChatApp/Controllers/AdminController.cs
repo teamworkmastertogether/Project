@@ -79,7 +79,7 @@ namespace ChatApp.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult GetMembers ()
+		public ActionResult GetMembers()
 		{
 			var listMembers = db.Users.ToList();
 			var listMemberVMs = AutoMapper.Mapper.Map<IEnumerable<UserViewModel>>(listMembers);
@@ -237,7 +237,7 @@ namespace ChatApp.Controllers
 					var user = new User();
 					user.Name = fullname.Trim();
 					user.Email = email.Trim();
-					user.PassWord = HashPassword.ComputeSha256Hash(rd.Next(1000,9000).ToString().Trim());
+					user.PassWord = HashPassword.ComputeSha256Hash(1.ToString().Trim());
 					user.DoB = DateTime.Now;
 					string[] emailSplitString = email.Split('@');
 					user.UserName = emailSplitString[0];
@@ -316,12 +316,13 @@ namespace ChatApp.Controllers
 			user.DoB = DateTime.Today;
 			user.Avatar = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg";
 			Random random = new Random();
-			var newpass = random.Next(1000, 9000).ToString();
+			var newpass = random.Next(1000, 9000).ToString().Trim();
 
 			string emailAddress = user.Email;
 			string[] emailSplitString = emailAddress.Split('@');
-			user.UserName = emailSplitString[0];
+			user.UserName = emailSplitString[0].Trim();
 			user.PassWord = HashPassword.ComputeSha256Hash(newpass);
+            user.IsActive = true;
 			db.Users.Add(user);
 			db.SaveChanges();
 
@@ -448,5 +449,13 @@ namespace ChatApp.Controllers
             }
             return Json("Vui lòng chọn ảnh thích hợp !", JsonRequestBehavior.AllowGet);
         }
-	}
+
+        [HttpGet]
+        public ActionResult GetMembersDisabled()
+        {
+            var listMembers = db.Users.Where(x => x.IsActive == false).ToList();
+            var listMemberVMs = AutoMapper.Mapper.Map<IEnumerable<UserViewModel>>(listMembers);
+            return View(listMemberVMs);
+        }
+    }
 }

@@ -6,14 +6,14 @@ $(function () {
     if (countNoti) {
         $(".icon-notify .badge").show();
     } else {
-        $(".icon-notify .badge").hide();
+        $(".icon-notify .badge").show();
     }
 
     countNoti2 = parseInt($(".icon-friend .badge").text());
     if (countNoti2) {
         $(".icon-friend .badge").show();
     } else {
-        $(".icon-friend .badge").hide();
+        $(".icon-friend .badge").show();
     }
 
     notify = false;

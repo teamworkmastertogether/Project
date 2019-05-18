@@ -118,6 +118,7 @@
     .ToolRight.pull-right ul {
         display: flex;
         padding-right: 1em;
+        list-style-type: none;
     }
 
         .ToolRight.pull-right ul li {
@@ -2000,7 +2001,7 @@ span {
 
 .icon-friend span.badge {
     position: absolute;
-    right: 26px;
+    right: 73px;
     padding: 5px 8px;
     border-radius: 100%;
     background: #ff3d00fc;
@@ -3760,6 +3761,12 @@ i.fa.fa-bell:hover {
     transition: 0.4s;
 }
 
+.menu-bar .icon {
+    width: 67px;
+    font-size: 25px;
+    line-height: 40px;
+}
+
 .MenuOption .menu-bar {
     display: flex;
     background-color: #444753;
@@ -4310,7 +4317,8 @@ i.fas.fa-list-ul {
 
 @media only screen and (max-width: 1367px) {
     span.badge {
-        right: 28%;
+        right: 17%;
+        top: 16%;
     }
 
     .chat .chat-history {

@@ -204,9 +204,9 @@
     <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Hubs\CommentRealTime.cs" />
     <Compile Include="Mapping\MappingProfile.cs" />
-    <Compile Include="Migrations\201904011345188_CreateDB.cs" />
-    <Compile Include="Migrations\201904011345188_CreateDB.Designer.cs">
-      <DependentUpon>201904011345188_CreateDB.cs</DependentUpon>
+    <Compile Include="Migrations\201904071219577_InitDatabase.cs" />
+    <Compile Include="Migrations\201904071219577_InitDatabase.Designer.cs">
+      <DependentUpon>201904071219577_InitDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Dto\LikeDto.cs" />
@@ -7304,9 +7304,12 @@
     <Content Include="Views\Admin\GetPostsBySubjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904011345188_CreateDB.resx">
-      <DependentUpon>201904011345188_CreateDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904071219577_InitDatabase.resx">
+      <DependentUpon>201904071219577_InitDatabase.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\GetMembersDisabled.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

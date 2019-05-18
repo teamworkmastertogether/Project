@@ -154,12 +154,11 @@
 
 .ToolLeft.pull-left h2 {
     font-size: 30px;
-    color: #ab00ef;
+    color: #444753;
     font-weight: 700;
     font-family: serif;
     margin-bottom: 15%;
 }
-
 .row.ToolFb {
     padding-left: 5%;
     border: 1px solid #0000003d;
@@ -303,6 +302,7 @@ img#blah {
 }
 
 .info-user ul li {
+    list-style-type: none;
     margin-bottom: 10%;
 }
 
@@ -312,11 +312,11 @@ img#blah {
 }
 
     .info-user .ht-left {
-        color: blue;
+        color: black;
     }
 
     .info-user .ht-right {
-        color: #1caf2f;
+        color: black;
     }
 
 span.ht-right {
@@ -2420,9 +2420,6 @@ img#blah {
     margin-top: 5%;
 }
 
-.info-user ul li {
-    margin-bottom: 10%;
-}
 
 .info-user {
     font-size: 100%;
@@ -4438,9 +4435,8 @@ input.form-control {
 }
 
     .btn.btn-primary.add-friend:hover {
-        transition: all .2s ease-in-out;
-        transform: scale(1.1);
-        box-shadow: 1px 1px 10px red;
+        transition: all .1s ease-in-out;
+        box-shadow: 1px 1px 6px red;
     }
 
 .row.infor {
@@ -4454,9 +4450,8 @@ input.form-control {
 }
 
     .btn.btn-danger.delete-suggest:hover {
-        transition: all .2s ease-in-out;
-        transform: scale(1.1);
-        box-shadow: 1px 1px 10px blue;
+        transition: all .1s ease-in-out;
+        box-shadow: 1px 1px 6px blue;
     }
 
 h4.headSuggest {
@@ -4494,10 +4489,13 @@ h4.headSuggest {
     }
 
         .row.suggest-friend h5:hover {
-            color: #fb9427;
+            color: #333;
             transition: 0.4s;
         }
 
+.infor a {
+    text-decoration: none !important;
+}
 span.icon {
     font-size: 30px;
     margin: 5px;
@@ -4624,6 +4622,7 @@ body {
     border-bottom-right-radius: 5px;
     color: rgb(29, 10, 177);
     font-weight: bold;
+    border-left: 1px solid #0000006b;
 }
 
 .textNoti h4 {
@@ -4973,9 +4972,10 @@ button.btn.btn-primary.add-friend_invitation_btnAdd {
 }
 
     .top-post .editPost .edit-poststore:hover {
-        background: rgba(255, 94, 99, 0.74);
-        transition: 0.4s;
+        background: #444753;
+        color: #fff;
         cursor: pointer;
+        transition: 0.4s;
     }
 
 .top-post .editPost {
@@ -5067,17 +5067,13 @@ i.glyphicon.glyphicon-cog.setting.pull-right {
 
 span.group-joined {
     font-weight: 600;
-    color: blueviolet;
+    color: blue;
     font-family: sans-serif;
 }
 
-    span.group-joined:hover {
-        color: red;
-        transition: 0.4s;
-    }
 
 span.name-postStore {
-    color: #0058ff;
+    color: black;
     font-family: inherit;
     font-weight: 600;
 }
@@ -5296,32 +5292,37 @@ input#ChangePassword {
 }
 
 .ModalSearch {
-    background: #63ffdc;
+    background: #fbfbfb;
     display: none;
     z-index: 100;
     top: 2%;
     position: absolute;
     width: 100%;
     padding: 2%;
-    box-shadow: 1px 1px 10px;
-    border-radius: 3px;
+    box-shadow: 1px 1px 2px;
+    border-radius: 1px;
     height: 35%;
 }
 
 #keyname hr {
     border-color: #0000006b;
 }
-
+h3#keyname span {
+    font-size: 30px;
+}
 .DisplayFriend ul li {
     padding: 3%;
-    background: black;
+    background: #bbbbbb;
     margin-bottom: 1%;
+    list-style-type: none;
 }
 
     .DisplayFriend ul li a {
         padding-left: 3%;
-        color: white;
-        font-size: large;
+        color: #131212;
+        font-size: 25px;
+        font-family: inherit;
+        text-decoration: none;
     }
 
     .DisplayFriend ul li img {
@@ -5355,7 +5356,6 @@ input#ChangePassword {
     top: 0%;
     width: 53%;
     height: 190%;
-    z-index: -1;
 }
 
 .name-user, .name-reply, .name-comment {
@@ -5365,7 +5365,7 @@ input#ChangePassword {
 }
 
 a.username_post, a.name-reply {
-    color: #1f03f7 !important;
+    color: #444753 !important;
 }
 
 
@@ -5375,8 +5375,8 @@ a.username_post, a.name-reply {
 
 .content-listFriendSuggest .infor h5 {
     font-size: 15px;
-    color: #071b84;
-    font-family: auto;
+    color: #444753;
+    text-decoration: none;
 }
 
 .ToolRight.pull-right ul {

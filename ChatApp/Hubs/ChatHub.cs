@@ -31,6 +31,13 @@ namespace ChatApp.Hubs
             Clients.All.SetStatus(LstAllConnections);
         }
 
+        /// <summary>
+        /// Hàm dùng để lưu những tin nhắn đã được xem trong khi chat giữa 2 thành viên đang sử dụng hệ thống
+        /// Yêu cầu 2 thành viên phải kết bạn mới có quyền chat với nhau
+        /// Chức năng chat được thực hiện realtime
+        /// </summary>
+        /// <param name="partnerUserName"></param>
+        /// <param name="myUserName"></param>
         public void SaveSeenMessage(string partnerUserName, string myUserName)
         {
             MemberOfListFriend mem = db.Users.FirstOrDefault(s => s.UserName.Equals(myUserName))

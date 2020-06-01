@@ -152,7 +152,7 @@ namespace ChatApp.Controllers
                         PostId = comment.PostId,
                         NameOfUser = user.Name,
                         Avatar = user.Avatar,
-                        TextNoti = "Đã bình thích bình luận của bạn",
+                        TextNoti = "Đã thích bình luận của bạn",
                         ClassIconName = "far fa-thumbs-up",
                         NotificationState = false
                     };
@@ -197,7 +197,7 @@ namespace ChatApp.Controllers
                         PostId = subcomment.Comment.PostId,
                         NameOfUser = user.Name,
                         Avatar = user.Avatar,
-                        TextNoti = "Đã bình thích bình luận của bạn",
+                        TextNoti = "Đã thích bình luận của bạn",
                         ClassIconName = "far fa-thumbs-up",
                         NotificationState = false
                     };

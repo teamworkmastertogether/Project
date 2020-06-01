@@ -5,14 +5,14 @@ $(function () {
     if (countNoti) {
         $(".icon-notify .badge").show();
     } else {
-        $(".icon-notify .badge").show();
+        $(".icon-notify .badge").hide();
     }
 
     countNoti2 = parseInt($(".icon-friend .badge").text());
     if (countNoti2) {
         $(".icon-friend .badge").show();
     } else {
-        $(".icon-friend .badge").show();
+        $(".icon-friend .badge").hide();
     }
 
     notify = false;

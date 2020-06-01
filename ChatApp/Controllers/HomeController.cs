@@ -119,6 +119,8 @@ namespace ChatApp.Controllers
             if (id == 0)
             {
                 var userName = Session["userName"] as string;
+                /*Lấy ra người dùng trong Db có username tương ứng cũng như là 20 bạn bè của người đó 
+                theo thời gian chat gần nhất */
                  listUser = db.Users.FirstOrDefault(s => s.UserName.Equals(userName))
                 .ListFriends.First().MemberOfListFriends.Where(s => s.AccessRequest).OrderByDescending(s => s.TimeLastChat)
                 .Select(s => new InforFriendDto

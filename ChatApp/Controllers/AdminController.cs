@@ -18,6 +18,11 @@ namespace ChatApp.Controllers
     {
 		ChatDbcontext db = new ChatDbcontext();
 		// GET: Admin
+        /// <summary>
+        /// Hàm lấy ra dữ liệu thống kê ở màn hình tổng quan
+        /// Created By: NBDuong 04.05.2020
+        /// </summary>
+        /// <returns></returns>
 		public ActionResult Index()
         {
 			var userName = Session["username"] as string;
@@ -40,6 +45,11 @@ namespace ChatApp.Controllers
 			return View();
         }
 
+        /// <summary>
+        /// Hàm xử lý redirect vào hệ thống admin sau khi đăng nhập thành công
+        /// Created By: NBDuong 04.05.2020
+        /// </summary>
+        /// <returns></returns>
 		[HttpGet]
 		public ActionResult Login()
 		{
@@ -51,6 +61,12 @@ namespace ChatApp.Controllers
 			return View();
 		}
 
+        /// <summary>
+        /// Hàm xử lý nghiệp vụ đăng nhập vào hệ thống admin
+        /// Created By: NBDuong 04.05.2020
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
 		[HttpPost]
 		public ActionResult Login(FormCollection form)
 		{
@@ -69,8 +85,12 @@ namespace ChatApp.Controllers
 			return View();
 		}
 
-		// Đăng xuất tài khoản người dùng
-		public ActionResult Logout()
+        /// <summary>
+        /// Đăng xuất tài khoản người dùng
+        /// Created By: NBDuong 08.05.2020
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Logout()
 		{
 			// Hủy session lưu user và tên
 			Session.Remove("username");
@@ -78,6 +98,11 @@ namespace ChatApp.Controllers
 			return RedirectToAction("Login");
 		}
 
+        /// <summary>
+        /// Lấy ra danh sách học sinh trong hệ thống
+        /// Created By: NBDuong 13.05.2020
+        /// </summary>
+        /// <returns></returns>
 		[HttpGet]
 		public ActionResult GetMembers()
 		{
@@ -98,6 +123,12 @@ namespace ChatApp.Controllers
 			return View(listMemberVMs);
 		}
 
+        /// <summary>
+        /// Lấy thông tin học sinh
+        /// Created By: NBDuong 14.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 		[HttpGet]
 		public ActionResult GetMemberDetail(int? id)
 		{
@@ -114,6 +145,12 @@ namespace ChatApp.Controllers
 			return View(memberVM);
 		}
 
+        /// <summary>
+        /// Lấy ra danh sách bạn bè theo từng đối tượng
+        /// Created By: NBDuong 19.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 		[HttpGet]
 		public ActionResult GetListFriend(int? id)
 		{
@@ -135,6 +172,12 @@ namespace ChatApp.Controllers
 			return View(listFriends);
 		}
 
+        /// <summary>
+        /// Lấy ra danh sách bài đăng theo từng đối tượng
+        /// Created By: NBDuong 19.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 		[HttpGet]
 		public ActionResult GetPostsByUser(int? id)
 		{
@@ -154,8 +197,15 @@ namespace ChatApp.Controllers
 			return View(listPostVms);
 		}
 
-		//import data from excel
-		[HttpPost]
+        /// <summary>
+        /// Hàm xử lý giao diện nhập dữ liệu từ file excel
+        /// Created By: NBDuong 20.05.2020
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="package"></param>
+        /// <returns></returns>
+        //import data from excel
+        [HttpPost]
 		public ActionResult ImportUserFromExcel(HttpPostedFileBase fileUpload)
 		{
             int count = 0;
@@ -178,6 +228,13 @@ namespace ChatApp.Controllers
 			return RedirectToAction("GetMembers");
 		}
 
+        /// <summary>
+        /// Hàm xử lý nghiệp vụ nhập dữ liệu từ file excel
+        /// Created By: NBDuong 20.05.2020
+        /// </summary>
+        /// <param name="count"></param>
+        /// <param name="package"></param>
+        /// <returns></returns>
 		//get data to above function
 		public bool ImportData(out int count, ExcelPackage package)
 		{
@@ -222,6 +279,14 @@ namespace ChatApp.Controllers
 			return result;
 		}
 
+        /// <summary>
+        /// Thêm 1 tài khoản học sinh vào hệ thống
+        /// Created By: NBDuong 13.05.2020
+        /// </summary>
+        /// <param name="fullname"></param>
+        /// <param name="email"></param>
+        /// <param name="db"></param>
+        /// <returns></returns>
 		//check ability to save new student from excel
 		public bool SaveStudent(string fullname, string email, ChatDbcontext db)
 		{
@@ -262,6 +327,12 @@ namespace ChatApp.Controllers
 			return result;
 		}
 
+        /// <summary>
+        /// Hàm xử lý giao diện khi xuất dữ liệu ra file excel thành công
+        /// Created By: NBDuong 20.05.2020
+        /// </summary>
+        /// <param name="fileUpload"></param>
+        /// <returns></returns>
 		[HttpPost]
 		public ActionResult ExportUserToExcel(HttpPostedFileBase fileUpload)
 		{
@@ -276,6 +347,11 @@ namespace ChatApp.Controllers
 			return RedirectToAction("GetMembers");
 		}
 
+        /// <summary>
+        /// Hàm xử lý nghiệp vụ xuất dữ liệu ra file excel
+        /// Created By: NBDuong 20.05.2020
+        /// </summary>
+        /// <returns></returns>
 		private bool ExportData()
 		{
 			bool result = false;
@@ -309,6 +385,12 @@ namespace ChatApp.Controllers
 			return result;
 		}
 
+        /// <summary>
+        /// Hàm khởi tạo người dùng đăng nhập vào hệ thống
+        /// Created By: NBDuong 11.05.2020
+        /// </summary>
+        /// <param name="userVM"></param>
+        /// <returns></returns>
 		[HttpPost]
 		public JsonResult CreateUser (UserViewModel userVM)
 		{
@@ -329,7 +411,7 @@ namespace ChatApp.Controllers
 			string content = "<h1>Thông tin tài khoản là : </h1></br> ";
 			content += "<h1> Username:  " + user.UserName + "</h1></br> ";
 			content += "<h1> Mật khẩu: " + newpass + "</h1></br> ";
-			GuiEmail("Thông tin tài khoản", emailAddress, "teamworkmastertogether@gmail.com",
+			SendEmail("Thông tin tài khoản", emailAddress, "teamworkmastertogether@gmail.com",
 				"teamworkmastertogether@123", content);
 
 			int userId = db.Users.Max(x => x.Id);
@@ -342,6 +424,12 @@ namespace ChatApp.Controllers
 			return Json(userVM, JsonRequestBehavior.AllowGet);
 		}
 
+        /// <summary>
+        /// Hàm kiểm tra check mail tồn tại
+        /// Created By: NBDuong 22.05.2020
+        /// </summary>
+        /// <param name="userVM"></param>
+        /// <returns></returns>
 		public JsonResult CheckEmail(UserViewModel userVM)
 		{
 			if(db.Users.Any(s => s.Email.Equals(userVM.Email)))
@@ -353,7 +441,16 @@ namespace ChatApp.Controllers
 			}
 		}
 
-		public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
+        /// <summary>
+        /// Hàm xử lý gửi email lấy lại password cho tài khoản
+        /// Created By: NBDuong 01.06.2020
+        /// </summary>
+        /// <param name="Title"></param>
+        /// <param name="ToEmail"></param>
+        /// <param name="FromEmail"></param>
+        /// <param name="PassWord"></param>
+        /// <param name="Content"></param>
+		public void SendEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
 		{
 			// goi email
 			MailMessage mail = new MailMessage();
@@ -371,6 +468,12 @@ namespace ChatApp.Controllers
 			smtp.Send(mail); //Gửi mail đi
 		}
 
+        /// <summary>
+        /// Khóa tài khoản người dùng đăng nhập
+        /// Created By: NBDuong 24.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 		[HttpPost]
 		public JsonResult LockUser (int? id)
 		{
@@ -389,6 +492,11 @@ namespace ChatApp.Controllers
 			}
 		}
 
+        /// <summary>
+        /// Hàm xử lý lấy ra danh sách nhóm môn học
+        /// Created By: NBDuong 14.05.2020
+        /// </summary>
+        /// <returns></returns>
 		public ActionResult GetSubjects()
 		{
 			var listSubjects = db.Subjects.ToList();
@@ -396,6 +504,12 @@ namespace ChatApp.Controllers
 			return View(listSubjectVMs);
 		}
 
+        /// <summary>
+        /// Hàm xử lý lấy ra danh sách bài đăng theo từng nhóm môn học
+        /// Created By: NBDuong 16.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 		public ActionResult GetPostsBySubjects(int? id)
 		{
 			if(id == null)
@@ -415,6 +529,12 @@ namespace ChatApp.Controllers
 			return View(listPostVMs);
 		}
 
+        /// <summary>
+        /// Xóa post vi phạm
+        /// Created By: NBDuong 23.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 		public ActionResult DeletePost(int? id)
 		{
 			if (id == null)
@@ -433,6 +553,13 @@ namespace ChatApp.Controllers
 			return RedirectToAction("GetSubjects");
 		}
 
+        /// <summary>
+        /// Cập nhật ảnh bìa cho nhóm môn học
+        /// Created By: NBDuong 26.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="UploadCover"></param>
+        /// <returns></returns>
         public ActionResult UploadCover (int id, HttpPostedFileBase UploadCover)
         {
             Subject sub = db.Subjects.FirstOrDefault(x => x.Id == id);
@@ -450,6 +577,11 @@ namespace ChatApp.Controllers
             return Json("Vui lòng chọn ảnh thích hợp !", JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Lấy ra danh sách thành viên bị khóa
+        /// Created By: NBDuong 27.05.2020
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult GetMembersDisabled()
         {

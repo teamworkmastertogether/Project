@@ -198,6 +198,11 @@ namespace ChatApp.Controllers
             return Json(1, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Lấy danh sách gợi ý kết bạn
+        /// Created by: NBDuong 16.05.2020
+        /// </summary>
+        /// <returns></returns>
         public JsonResult GetFriendSuggest()
         {
             var userName = Session["userName"] as string;
@@ -217,6 +222,12 @@ namespace ChatApp.Controllers
            return Json(listUser, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Gửi lời mời kết bạn tới người khác
+        /// Created By: NBDuong 17.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult SendRequestAddFriend(int? id)
         {
@@ -242,6 +253,12 @@ namespace ChatApp.Controllers
             return Json("No value", JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Lấy ra danh sách tin nhắn đã chat với người khác
+        /// Created By: NBDuong 15.05.2020
+        /// </summary>
+        /// <param name="userDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult GetMessage(UserDto userDto)
         {
@@ -261,6 +278,12 @@ namespace ChatApp.Controllers
             return Json(listMess, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Sửa thông tin người dùng
+        /// Created By: NBDuong 10.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Edit(int? id)
         {
@@ -269,6 +292,13 @@ namespace ChatApp.Controllers
             return Json(personDto, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Xác nhận mật khẩu
+        /// Created By: NBDuong 14.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="personalDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult ConfirmPassword(int? id, PersonalDto personalDto)
         {
@@ -282,6 +312,13 @@ namespace ChatApp.Controllers
             return Json(new { isvalid = false }, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Cập nhật ảnh đại diện
+        /// Created By: NBDuong 14.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="UploadImage"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult UploadAvatar(int id,HttpPostedFileBase UploadImage)
 
@@ -312,6 +349,13 @@ namespace ChatApp.Controllers
             return Json("Vui lòng chọn ảnh thích hợp !", JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Lưu lại thông tin người dùng
+        /// Created By: NBDuong 08.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="personalDto"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult SaveData(int? id, PersonalDto personalDto)
         {
@@ -333,6 +377,14 @@ namespace ChatApp.Controllers
             db.SaveChanges();
             return Json("Success", JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// Hàm xử lý lấy ra password đăng nhập của người dùng
+        /// Xử lý so sánh password đã được hashed
+        /// Created By: NBDuong 15.05.2020
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
         [HttpPost]
 		public JsonResult GetPassWord(FormCollection form)
 		{
@@ -358,13 +410,19 @@ namespace ChatApp.Controllers
 				string content = "<h1>Thông tin tài khoản là : </h1></br> ";
 				content += "<h1> Tên đăng nhập:  " + username + "</h1></br> ";
 				content += "<h1> Mật khẩu: " + str + "</h1></br> ";
-				GuiEmail("Thông tin tài khoản", emailAddress, "teamworkmastertogether@gmail.com",
-					"teamworkmastertogether@123", content);
+                SendEmail("Thông tin tài khoản", emailAddress, "k61cbteamproject@gmail.com",
+					"123456a@A", content);
 				return Json(new { status = 1 }, JsonRequestBehavior.AllowGet);
 			}
 			return Json(new { status = 0 }, JsonRequestBehavior.AllowGet);
 		}
 
+        /// <summary>
+        /// Xóa bài viết đã lưu
+        /// Created By: NBDuong 21.05.2020
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public JsonResult DeletePostSaved(int? id)
         {
             PostSave postSave = db.PostSaves.FirstOrDefault(s => s.Id == id);
@@ -375,7 +433,16 @@ namespace ChatApp.Controllers
         }
 
 
-        public void GuiEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
+        /// <summary>
+        /// Hàm xử lý gửi email lấy lại password cho tài khoản
+        /// Created By: NBDuong 01.06.2020
+        /// </summary>
+        /// <param name="Title"></param>
+        /// <param name="ToEmail"></param>
+        /// <param name="FromEmail"></param>
+        /// <param name="PassWord"></param>
+        /// <param name="Content"></param>
+        public void SendEmail(string Title, string ToEmail, string FromEmail, string PassWord, string Content)
 		{
 			// goi email
 			MailMessage mail = new MailMessage();
@@ -394,11 +461,24 @@ namespace ChatApp.Controllers
 			smtp.Send(mail); //Gửi mail đi
 		}
 
+        /// <summary>
+        /// Tìm kiếm bạn bè
+        /// Created By: NBDuong 19.05.2020
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
         public JsonResult SearchFriend(string keyword)
         {
             var data = db.Users.Where(m => m.UserName.Contains(keyword)).Select(m => m.Name).ToList();
             return Json(new { data = data, status = true }, JsonRequestBehavior.AllowGet);
         }
+
+        /// <summary>
+        /// Hàm xử lý lấy ra danh sách dữ liệu tìm kiếm được
+        /// Created By: NBDuong 19.05.2020
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult DisplaySeach(string keyword)
         {

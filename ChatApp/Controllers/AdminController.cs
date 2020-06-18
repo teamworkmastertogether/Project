@@ -272,7 +272,7 @@ namespace ChatApp.Controllers
 					startRow++;
 				} while (data != null);
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
                 check = false;
 			}

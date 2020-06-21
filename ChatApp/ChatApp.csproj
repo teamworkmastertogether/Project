@@ -7311,6 +7311,10 @@
   <ItemGroup>
     <Content Include="Views\Admin\GetMembersDisabled.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\ChatApp2019 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\tienxuan - Web Deploy.pubxml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
